@@ -6,6 +6,17 @@
 
 DemoData SQL tools. Wrappers for the [DemoTools](https://github.com/timriffe/DemoTools) package to work with UNPD SQL data format.
 
-This package is a seed at this time.
+This package is a seed at this time and will begin active development very soon. This project is commissioned by the [UN Population Division](http://www.un.org/en/development/desa/population/) and financed by the [Bill and Melinda Gates Foundation](https://www.gatesfoundation.org/) as part of the [Making Family Planning Count](http://www.un.org/en/development/desa/population/projects/making-family-planning-count/index.shtml) project. This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)). If you detect a bug or have a suggestion please notify us using the Issues tab on github. Even better if you fix it and make a pull request!
+
+You can load the ```DDSQLtools``` package in R like so:
+```r
+# install.packages("devtools")
+
+library(devtools)
+install_github("timriffe/DDSQLtools")
+```
+(if either of the first two icons at the top of this README are red, then this might not be working at the moment. You can assume we're fixing it. If they're green, then it'll probably work.)
+
+There are no interesting functions to report at this time. If you are a random visiting demographer then you probably would rather check out the [DemoTools](https://github.com/timriffe/DemoTools) package.
 
 
