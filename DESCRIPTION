@@ -16,4 +16,4 @@ Imports: demogR,
          Rdpack, 
          DemoTools
 URL: https://github.com/timriffe/DDSQLtools
-Remotes: git::https://github.com/timriffe/DemoTools.git
+Remotes: timriffe/DemoTools
