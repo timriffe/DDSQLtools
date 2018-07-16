@@ -1,7 +1,7 @@
 
 # utility functions for wrappers. Name and value checking, for example.
 
-#' make sure values ina  column are as expected
+#' make sure values in a column are as expected
 #' @description A generic checking utility. This will need various
 #' presets of values for the various possible columns, and may have its own
 #' wrappers for each.
@@ -17,9 +17,9 @@
 #' # can be a check on probabilities, perhaps they're in logit and we dont' realize it?
 #' x <- runif(10)
 #' x <- log(x/(1-x))
-#' out <- try(check_values(x,c(0,1),categorical = FALSE))
+#' #out <- try(check_values(x,c(0,1),categorical = FALSE))
 #' # de facto unit test..
-#' stopifnot(class(out) == "try-error")
+#' #stopifnot(class(out) == "try-error")
 #' 
 #' # factors are checked against characters here.
 #' y <- as.factor(c("a","b","c"))

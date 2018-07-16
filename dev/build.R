@@ -8,3 +8,6 @@ load_all("/home/tim/git/DDSQLtools")
 
 # do this whenever major changes happen
 check("/home/tim/git/DDSQLtools")
+
+# try github install
+install_github("timriffe/DDSQLtools")
