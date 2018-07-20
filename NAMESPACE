@@ -3,6 +3,8 @@
 export(check_values)
 export(wrapPop5)
 import(DemoTools)
+import(Rdpack)
+import(demogR)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,mutate)
 importFrom(dplyr,select)
