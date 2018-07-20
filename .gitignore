@@ -3,3 +3,4 @@
 /devdata/
 *.Rhistory
 /inst/REFERENCES.bib.bak
+.Rproj.user

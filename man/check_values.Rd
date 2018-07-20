@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{check_values}
 \alias{check_values}
-\title{make sure values ina  column are as expected}
+\title{make sure values in a column are as expected}
 \usage{
 check_values(x, expected.values, categorical = FALSE)
 }
@@ -23,9 +23,9 @@ expected.values <- c(0,1)
 # can be a check on probabilities, perhaps they're in logit and we dont' realize it?
 x <- runif(10)
 x <- log(x/(1-x))
-out <- try(check_values(x,c(0,1),categorical = FALSE))
+#out <- try(check_values(x,c(0,1),categorical = FALSE))
 # de facto unit test..
-stopifnot(class(out) == "try-error")
+#stopifnot(class(out) == "try-error")
 
 # factors are checked against characters here.
 y <- as.factor(c("a","b","c"))
