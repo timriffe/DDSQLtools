@@ -2,7 +2,7 @@
 #' Here we list all the imports
 #' @import DemoTools Rdpack demogR
 #' @importFrom tidyr spread gather
-#' @importFrom dplyr select mutate %>%
+#' @importFrom dplyr select mutate %>% rename
 #' @importFrom tibble as.tibble
 #' @name foo_imports
 #' @keywords internal
@@ -10,7 +10,11 @@ NULL
 
 
 
-#' UN data - Egypt 1976 - Population by age and sex - abridged
+#' DDSQLtools test data - Egypt 1976 - Population by age and sex
 #'
-#' @source United Nations -- DemoData_Export_Pop5_Egypt+India_DB.xlsx
-"P5_Egypt1976"
+#' @details Check \code{dev/AddDataInPackage.R} to see how the data was selected.
+#' @source 
+#' UN Excel files: 
+#' \code{DemoData_Export_Pop1_Egypt_DB.xlsx} and 
+#' \code{DemoData_Export_Pop5_Egypt_DB.xlsx}. 
+"DDSQLtools.data"
