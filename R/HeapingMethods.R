@@ -24,7 +24,7 @@ doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
   
   A <- X$DataValue
   B <- X$AgeStart
-  meth <- c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi", "Spoorenberg")
+  fn <- c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi", "Spoorenberg")
   
   G1 <- Whipple(A, B, ageMin, ageMax, ...)
   G2 <- Myers(A, B, ageMin, ageMax) 
@@ -40,10 +40,10 @@ doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
            AgeEnd = max(B),
            AgeMid = AgeStart + AgeSpan/2,
            AgeLabel = paste0(min(B), "-", max(B)),
-           DataProcess = paste0("DemoTools::", meth),
-           DataProcessType = meth,
+           DataProcessType = fn,
            ReferencePeriod = unique(X$ReferencePeriod))
   
+  G$DataProcess <- deparse(match.call())
   out <- formatOutputTable(X, G)
   return(out)
 }

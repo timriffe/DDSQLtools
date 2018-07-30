@@ -21,6 +21,8 @@
 #' P1 <- DDSQLtools.data$Pop1_Egypt_DB
 #' 
 #' V1 <- doSplitting(P1, fn = "beers") 
+#' V2 <- doSplitting(P1, fn = "grabill") 
+#' V3 <- doSplitting(P1, fn = "sprague") 
 #' @export
 #' 
 doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
@@ -40,10 +42,10 @@ doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
            AgeEnd = AgeStart + AgeSpan,
            AgeMid = AgeStart + AgeSpan/2,
            AgeLabel = AgeStart,
-           DataProcess = paste0("DemoTools::", fn),
            DataProcessType = fn,
            ReferencePeriod = unique(X$ReferencePeriod)) 
   
+  G$DataProcess <- deparse(match.call())
   out <- formatOutputTable(X, G)
   return(out)
 }

@@ -33,4 +33,6 @@ W3 <- doSplitting(P5, fn = "sprague")
 P1 <- DDSQLtools.data$Pop1_Egypt_DB
 
 V1 <- doSplitting(P1, fn = "beers") 
+V2 <- doSplitting(P1, fn = "grabill") 
+V3 <- doSplitting(P1, fn = "sprague") 
 }
