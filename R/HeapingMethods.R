@@ -12,7 +12,7 @@
 #' @inheritParams doSplitting
 #' @inheritParams DemoTools::Myers
 #' @examples 
-#' P1 <- DDSQLtools.data$Pop1_Egypt_DB
+#' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' W <- doHeaping(P1)
 #' 
 #' W[, c("DataProcessType", "DataValue")]
@@ -20,7 +20,7 @@
 #' @export
 #' 
 doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
-  AgeStart = AgeSpan <- NULL # hack CRAN note
+  AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
   
   A <- X$DataValue
   B <- X$AgeStart
@@ -36,10 +36,10 @@ doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
   G <- c(G1, G2, G3, G4, G5, G6) %>% 
     as.data.frame() %>% dplyr::rename(DataValue = ".") %>%  
     mutate(AgeStart = min(B), 
-           AgeSpan = max(B) - min(B) + 1, 
-           AgeEnd = max(B),
-           AgeMid = AgeStart + AgeSpan/2,
-           AgeLabel = paste0(min(B), "-", max(B)),
+           AgeMid = sum(X$AgeMid - X$AgeStart),
+           AgeEnd = AgeMid * 2,
+           AgeSpan = AgeEnd - AgeStart, 
+           AgeLabel = paste0(min(B), "-", rev(X$AgeLabel)[1]),
            DataProcessType = fn,
            ReferencePeriod = unique(X$ReferencePeriod))
   

@@ -13,6 +13,6 @@ is.OAG(X)
 Check whether the input data contains an open age interval
 }
 \examples{
-p5 <- DDSQLtools.data$Pop5_Egypt_DB
+p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 is.OAG(p5)
 }

@@ -25,7 +25,7 @@ Wrap function for the age-heaping methods:
 \code{\link[DemoTools]{Spoorenberg}}.
 }
 \examples{
-P1 <- DDSQLtools.data$Pop1_Egypt_DB
+P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 W <- doHeaping(P1)
 
 W[, c("DataProcessType", "DataValue")]

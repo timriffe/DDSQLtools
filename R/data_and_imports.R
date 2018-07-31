@@ -1,6 +1,6 @@
 
 #' Here we list all the imports
-#' @import DemoTools Rdpack demogR
+#' @import DemoTools
 #' @importFrom tidyr spread gather
 #' @importFrom dplyr select mutate %>% rename
 #' @importFrom tibble as.tibble

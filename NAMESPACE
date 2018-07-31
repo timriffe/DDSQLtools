@@ -2,11 +2,10 @@
 
 export(check_values)
 export(doHeaping)
+export(doQualityChecks)
 export(doSplitting)
 export(is.OAG)
 import(DemoTools)
-import(Rdpack)
-import(demogR)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,mutate)
 importFrom(dplyr,rename)

@@ -11,14 +11,14 @@
 #' numbers of rows. UN format.
 #' @examples 
 #' # Example 1 --- Abridged data
-#' P5 <- DDSQLtools.data$Pop5_Egypt_DB
+#' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' 
 #' W1 <- doSplitting(P5, fn = "beers") 
 #' W2 <- doSplitting(P5, fn = "grabill")
 #' W3 <- doSplitting(P5, fn = "sprague")
 #' 
 #' # Example 2 --- 1-year age group   
-#' P1 <- DDSQLtools.data$Pop1_Egypt_DB
+#' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 
 #' V1 <- doSplitting(P1, fn = "beers") 
 #' V2 <- doSplitting(P1, fn = "grabill") 
@@ -54,7 +54,7 @@ doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
 #' Check whether the input data contains an open age interval 
 #' @inheritParams doSplitting
 #' @examples 
-#' p5 <- DDSQLtools.data$Pop5_Egypt_DB
+#' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' is.OAG(p5)
 #' @export
 is.OAG <- function(X){
