@@ -4,12 +4,15 @@
 \alias{doQualityChecks}
 \title{Perform age-sex male-female data quality checks}
 \usage{
-doQualityChecks(xy, xx, ageMin = NULL, ageMax = NULL, ...)
+doQualityChecks(XY, XX, fn = c("sexRatioScore", "ageSexAccuracy",
+  "ageSexAccuracyDasGupta"), ageMin = NULL, ageMax = NULL, ...)
 }
 \arguments{
-\item{xy}{Input data for male population. UN format.}
+\item{XY}{Input data for male population. UN format.}
 
-\item{xx}{Input data for female population. UN format.}
+\item{XX}{Input data for female population. UN format.}
+
+\item{fn}{Method to be called from DemoTools}
 
 \item{ageMin}{Integer. The lower age bound used for calculations. 
 If \code{NULL}, the smallest age in input data is considered. 
@@ -19,7 +22,7 @@ Default: \code{NULL}.}
 #' If \code{NULL}, the largest age in input data is considered. 
 Default: \code{NULL}.}
 
-\item{...}{Other arguments to be passed to \code{\link[DemoTools]{ageSexAccuracy}}.}
+\item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \description{
 Perform age-sex male-female data quality checks
@@ -28,8 +31,11 @@ Perform age-sex male-female data quality checks
 M5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 F5 <- DDSQLtools.data$Pop5_Egypt_F_DB
 
-Q <- doQualityChecks(M5, F5)
+Q1 <- doQualityChecks(M5, F5, fn = "sexRatioScore")
+Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
+Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 
+Q <- rbind(Q1, Q2, Q3)
 Q[, c("DataProcessType", "DataValue")]
 }
 \seealso{

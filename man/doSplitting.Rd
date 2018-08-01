@@ -18,8 +18,7 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrap function for \code{\link[DemoTools]{beers}}, 
-\code{\link[DemoTools]{grabill}} and \code{\link[DemoTools]{sprague}}
+Wrap function for the age-splitting methods: beers, grabill and sprague
 }
 \examples{
 # Example 1 --- Abridged data
@@ -35,4 +34,9 @@ P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 V1 <- doSplitting(P1, fn = "beers") 
 V2 <- doSplitting(P1, fn = "grabill") 
 V3 <- doSplitting(P1, fn = "sprague") 
+}
+\seealso{
+\code{\link[DemoTools]{beers}}, 
+\code{\link[DemoTools]{grabill}}, 
+\code{\link[DemoTools]{sprague}}.
 }

@@ -2,13 +2,14 @@
 
 #' Wrap function for the age-splitting methods: beers, grabill and sprague
 #' 
-#' @description Wrap function for \code{\link[DemoTools]{beers}}, 
-#' \code{\link[DemoTools]{grabill}} and \code{\link[DemoTools]{sprague}}
 #' @param X Input data. UN format.
 #' @param fn Method to be called from DemoTools
 #' @param ... Other arguments to be passed on to other methods and functions.
 #' @return A data.frame having the same number of colums as input data. Different 
 #' numbers of rows. UN format.
+#' @seealso \code{\link[DemoTools]{beers}}, 
+#' \code{\link[DemoTools]{grabill}}, 
+#' \code{\link[DemoTools]{sprague}}.
 #' @examples 
 #' # Example 1 --- Abridged data
 #' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
@@ -31,8 +32,9 @@ doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
   A <- X$DataValue
   B <- X$AgeStart
   names(A) <- B
-  OAG <- is.OAG(X)
+  OAG <- is_OAG(X)
   fn  <- match.arg(fn)
+  
   DTF <- get(fn)  # DemoTools Function
   E   <- DTF(popmat = A, Age = B, OAG = OAG, ...)
   G   <- E %>% as.data.frame() %>% 
@@ -45,7 +47,9 @@ doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
            DataProcessType = fn,
            ReferencePeriod = unique(X$ReferencePeriod)) 
   
-  G$DataProcess <- deparse(match.call())
+  C <- match.call()
+  controlOutputMsg(fn, C)
+  G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)
 }
@@ -55,9 +59,9 @@ doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), ...) {
 #' @inheritParams doSplitting
 #' @examples 
 #' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
-#' is.OAG(p5)
+#' is_OAG(p5)
 #' @export
-is.OAG <- function(X){
+is_OAG <- function(X){
   cond <- !(X$AgeLabel %in% c("Total", "Unknown")) # Check for "Total"
   Y    <- X[cond, ] 
   out  <- any(Y$AgeSpan == -1)
@@ -94,5 +98,31 @@ formatOutputTable <- function(X, G) {
   }
   
   return(as.tibble(H))
+}
+
+
+#' Print messages
+#' @inheritParams doSplitting
+#' @keywords internal
+#' @export
+controlOutputMsg <- function(fn, C) {
+  msg = "Additional arguments to control the output in "
+  switch(fn,
+         beers = if (is.null(C$method) | is.null(C$johnson)) {
+           message(msg, fn, ": `method` and `johnson`. Default: method = 'mod', johnson = FALSE.")
+         }, 
+         ageSexAccuracy = if (is.null(C$method) | is.null(C$adjust)) {
+           message(msg, fn, ": `method` and `adjust`. Default: method = 'UN', adjust = TRUE.")
+         }, 
+         AHI = if (is.null(C$Agei)) message(msg, fn, ": `Agei`. Default: 90."),
+         WI = if (is.null(C$Ages)) message(msg, fn, ": `Ages`. Default: seq(95, 105, by = 5)."),
+         Whipple = if (is.null(C$digit)) message(msg, fn, ": `digit`. Default: c(0, 5)."),
+         Bachi   = if (is.null(C$pasex)) message(msg, fn, ": `pasex`. Default: FALSE."), 
+         CoaleLi = if (is.null(C$terms) | is.null(C$digit)) {
+           message(msg, fn, ": `terms` and `digit`. Default: terms = 5, digit = 0.")
+         }, 
+         Noumbissi     = if (is.null(C$digit)) message(msg, fn, ": `digit`. Default: 0."),
+         ageRatioScore = if (is.null(C$method)) message(msg, fn, ": `method`. Default: 'UN'.")
+  )
 }
 

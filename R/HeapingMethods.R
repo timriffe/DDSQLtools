@@ -2,39 +2,63 @@
 
 #' Wrap function for the age-heaping methods
 #' 
-#' Wrap function for the age-heaping methods: 
-#' \code{\link[DemoTools]{Whipple}},
+#' @inheritParams doSplitting
+#' @inheritParams DemoTools::Myers
+#' @seealso \code{\link[DemoTools]{Whipple}},
 #' \code{\link[DemoTools]{Myers}},
 #' \code{\link[DemoTools]{Bachi}},
 #' \code{\link[DemoTools]{CoaleLi}},
-#' \code{\link[DemoTools]{Noumbissi}} and
-#' \code{\link[DemoTools]{Spoorenberg}}.
-#' @inheritParams doSplitting
-#' @inheritParams DemoTools::Myers
+#' \code{\link[DemoTools]{Noumbissi}},
+#' \code{\link[DemoTools]{Spoorenberg}},
+#' \code{\link[DemoTools]{ageRatioScore}},
+#' \code{\link[DemoTools]{AHI}},
+#' \code{\link[DemoTools]{WI}}.
 #' @examples 
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
-#' W <- doHeaping(P1)
 #' 
-#' W[, c("DataProcessType", "DataValue")]
+#' H1 <- doHeaping(P1, fn = "Whipple")
+#' H2 <- doHeaping(P1, fn = "Myers")
+#' H3 <- doHeaping(P1, fn = "Bachi")
+#' H4 <- doHeaping(P1, fn = "CoaleLi")
+#' H5 <- doHeaping(P1, fn = "Noumbissi")
+#' H6 <- doHeaping(P1, fn = "Spoorenberg")
+#' H7 <- doHeaping(P1, fn = "ageRatioScore")
+#' H8 <- doHeaping(P1, fn = "AHI")
+#' H9 <- doHeaping(P1, fn = "WI")
+#' 
+#' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
+#' H[, c("DataProcessType", "DataValue")]
+#' 
+#' # If `digit` is in input the message is not be printed
+#' H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
 #' 
 #' @export
 #' 
-doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
+doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
+                                "Noumbissi", "Spoorenberg", "ageRatioScore",
+                                "AHI", "WI"),
+                       ageMin = 10, ageMax = 90, ...) {
   AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
   
-  A <- X$DataValue
-  B <- X$AgeStart
-  fn <- c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi", "Spoorenberg")
+  A   <- X$DataValue
+  B   <- X$AgeStart
+  OAG <- is_OAG(X)
+  fn  <- match.arg(fn)
   
-  G1 <- Whipple(A, B, ageMin, ageMax, ...)
-  G2 <- Myers(A, B, ageMin, ageMax) 
-  G3 <- Bachi(A, B, ageMin, ageMax, ...) 
-  G4 <- CoaleLi(A, B, ageMin, ageMax, ...)
-  G5 <- Noumbissi(A, B, ageMin, ageMax, ...)
-  G6 <- Spoorenberg(A, B, ageMin, ageMax)
+  E <- switch(fn,
+    Whipple = Whipple(A, B, ageMin, ageMax, ...),
+    Myers = Myers(A, B, ageMin, ageMax), 
+    Bachi = Bachi(A, B, ageMin, ageMax, ...), 
+    CoaleLi = CoaleLi(A, B, ageMin, ageMax, ...),
+    Noumbissi = Noumbissi(A, B, ageMin, ageMax, ...),
+    Spoorenberg = Spoorenberg(A, B, ageMin, ageMax),
+    ageRatioScore = ageRatioScore(A, B, ageMin, ageMax, OAG = OAG, ...),
+    AHI = AHI(A, B, ...),
+    WI = WI(A, B, ...)
+  )
   
-  G <- c(G1, G2, G3, G4, G5, G6) %>% 
-    as.data.frame() %>% dplyr::rename(DataValue = ".") %>%  
+  G <- E %>% as.data.frame() %>% 
+    dplyr::rename(DataValue = ".") %>%  
     mutate(AgeStart = min(B), 
            AgeMid = sum(X$AgeMid - X$AgeStart),
            AgeEnd = AgeMid * 2,
@@ -43,8 +67,14 @@ doHeaping <- function(X, ageMin = 10, ageMax = 90, ...) {
            DataProcessType = fn,
            ReferencePeriod = unique(X$ReferencePeriod))
   
-  G$DataProcess <- deparse(match.call())
+  C <- match.call()
+  controlOutputMsg(fn, C)
+  G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)
 }
+
+
+
+
 
