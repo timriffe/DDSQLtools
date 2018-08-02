@@ -1,6 +1,6 @@
 
 
-#' Wrap function for the age-heaping methods
+#' Wrapper for the Age-Heaping Methods
 #' 
 #' @inheritParams doSplitting
 #' @inheritParams DemoTools::Myers

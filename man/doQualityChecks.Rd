@@ -2,7 +2,7 @@
 % Please edit documentation in R/QualityMethods.R
 \name{doQualityChecks}
 \alias{doQualityChecks}
-\title{Perform age-sex male-female data quality checks}
+\title{Wrapper for Performing Age-Sex Male-Female Data Quality Checks}
 \usage{
 doQualityChecks(XY, XX, fn = c("sexRatioScore", "ageSexAccuracy",
   "ageSexAccuracyDasGupta"), ageMin = NULL, ageMax = NULL, ...)
@@ -24,8 +24,12 @@ Default: \code{NULL}.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
+\value{
+A data.frame having the same number of colums as input data. Different 
+numbers of rows. UN format.
+}
 \description{
-Perform age-sex male-female data quality checks
+Wrapper for Performing Age-Sex Male-Female Data Quality Checks
 }
 \examples{
 M5 <- DDSQLtools.data$Pop5_Egypt_M_DB

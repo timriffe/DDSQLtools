@@ -2,7 +2,7 @@
 % Please edit documentation in R/SplittingMethods.R
 \name{doSplitting}
 \alias{doSplitting}
-\title{Wrap function for the age-splitting methods: beers, grabill and sprague}
+\title{Wrapper for the Age-Splitting Methods: beers, grabill and sprague}
 \usage{
 doSplitting(X, fn = c("beers", "grabill", "sprague"), ...)
 }
@@ -18,7 +18,7 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrap function for the age-splitting methods: beers, grabill and sprague
+Wrapper for the Age-Splitting Methods: beers, grabill and sprague
 }
 \examples{
 # Example 1 --- Abridged data

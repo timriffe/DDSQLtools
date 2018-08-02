@@ -1,6 +1,6 @@
 
 
-#' Wrap function for the age-splitting methods: beers, grabill and sprague
+#' Wrapper for the Age-Splitting Methods: beers, grabill and sprague
 #' 
 #' @param X Input data. UN format.
 #' @param fn Method to be called from DemoTools

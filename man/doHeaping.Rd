@@ -2,7 +2,7 @@
 % Please edit documentation in R/HeapingMethods.R
 \name{doHeaping}
 \alias{doHeaping}
-\title{Wrap function for the age-heaping methods}
+\title{Wrapper for the Age-Heaping Methods}
 \usage{
 doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
   "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10, ageMax = 90,
@@ -15,12 +15,12 @@ doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
 
 \item{ageMin}{integer. The lowest age included in calculations. Default 10.}
 
-\item{ageMax}{integer. The upper age bound used for calculations. Default 90.}
+\item{ageMax}{integer. The upper age bound used for calculations. Default 89.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \description{
-Wrap function for the age-heaping methods
+Wrapper for the Age-Heaping Methods
 }
 \examples{
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB

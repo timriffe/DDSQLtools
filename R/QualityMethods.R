@@ -1,6 +1,6 @@
 
 
-#' Perform age-sex male-female data quality checks
+#' Wrapper for Performing Age-Sex Male-Female Data Quality Checks
 #' 
 #' @param XY Input data for male population. UN format.
 #' @param XX Input data for female population. UN format.
@@ -11,6 +11,7 @@
 #' #' If \code{NULL}, the largest age in input data is considered. 
 #' Default: \code{NULL}.
 #' @inheritParams doSplitting
+#' @inherit doSplitting return
 #' @seealso \code{\link[DemoTools]{sexRatioScore}}, 
 #' \code{\link[DemoTools]{ageSexAccuracy}},
 #' \code{\link[DemoTools]{ageSexAccuracyDasGupta}}.
