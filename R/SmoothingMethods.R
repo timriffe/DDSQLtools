@@ -22,7 +22,7 @@
 #' S6 <- doSmoothing(P5, method = M[6])
 #' 
 #' S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
-#'            S4$DataValue, S5$DataValue, S2$DataValue)
+#'            S4$DataValue, S5$DataValue, S5$DataValue)
 #' dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 #' 
 #' S 

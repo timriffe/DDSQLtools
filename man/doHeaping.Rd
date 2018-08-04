@@ -2,7 +2,7 @@
 % Please edit documentation in R/HeapingMethods.R
 \name{doHeaping}
 \alias{doHeaping}
-\title{Wrapper for the Age-Heaping Methods}
+\title{Wrapper for Age-Heaping Methods}
 \usage{
 doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
   "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10, ageMax = 90,
@@ -20,7 +20,7 @@ doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \description{
-Wrapper for the Age-Heaping Methods
+Wrapper for Age-Heaping Methods
 }
 \examples{
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
@@ -38,7 +38,7 @@ H9 <- doHeaping(P1, fn = "WI")
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataProcessType", "DataValue")]
 
-# If `digit` is in input the message is not be printed
+# If `digit` is in input the message is not printed
 H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
 
 }

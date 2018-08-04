@@ -1,6 +1,6 @@
 
 
-#' Wrapper for the Age-Splitting Methods: beers, grabill and sprague
+#' Wrapper for Age-Splitting Methods
 #' 
 #' @param X Input data. UN format.
 #' @param fn Method to be called from DemoTools
@@ -18,7 +18,7 @@
 #' W2 <- doSplitting(P5, fn = "grabill")
 #' W3 <- doSplitting(P5, fn = "sprague")
 #' 
-#' # Example 2 --- 1-year age group   
+#' # Example 2 --- 1-year age groups   
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 
 #' V1 <- doSplitting(P1, fn = "beers") 

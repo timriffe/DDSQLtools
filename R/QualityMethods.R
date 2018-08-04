@@ -73,17 +73,19 @@ doQualityChecks <- function(XY, XX,
 #' Internal function that validates the input in \code{doQualityChecks} as
 #' stop it if data is not alright
 #' @param z A list containing the input supplied in \code{doQualityChecks}.
-#' @return Nothing. Just lets you move on.
+#' @return Nothing. Just lets you pass through... or not.
 #' @keywords internal
 #' 
 validateInput <- function(z) {
+  mismatch <- "Mismatch between the two datasets."
+  
   if (!identical(dim(z$XY), dim(z$XX))) {
-    stop("Mismatch between the two datasets. Different dimensions.", call. = F)
+    stop(mismatch, "Different dimensions.", call. = F)
   }
   if (!identical(z$XY$AgeStart, z$XX$AgeStart)) {
-    stop("Mismatch between the two datasets. Different 'AgeStart'.", call. = F)
+    stop(mismatch, "Different 'AgeStart' in input.", call. = F)
   }
   if (is_OAG(z$XY) != is_OAG(z$XX)) {
-    stop("Mismatch between the two datasets. Different 'AgeSpan'.", call. = F)
+    stop(mismatch, "Different 'AgeSpan' in input.", call. = F)
   }
 }

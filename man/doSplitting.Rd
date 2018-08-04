@@ -2,7 +2,7 @@
 % Please edit documentation in R/SplittingMethods.R
 \name{doSplitting}
 \alias{doSplitting}
-\title{Wrapper for the Age-Splitting Methods: beers, grabill and sprague}
+\title{Wrapper for Age-Splitting Methods}
 \usage{
 doSplitting(X, fn = c("beers", "grabill", "sprague"), ...)
 }
@@ -18,7 +18,7 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrapper for the Age-Splitting Methods: beers, grabill and sprague
+Wrapper for Age-Splitting Methods
 }
 \examples{
 # Example 1 --- Abridged data
@@ -28,7 +28,7 @@ W1 <- doSplitting(P5, fn = "beers")
 W2 <- doSplitting(P5, fn = "grabill")
 W3 <- doSplitting(P5, fn = "sprague")
 
-# Example 2 --- 1-year age group   
+# Example 2 --- 1-year age groups   
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 
 V1 <- doSplitting(P1, fn = "beers") 

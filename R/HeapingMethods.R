@@ -1,6 +1,6 @@
 
 
-#' Wrapper for the Age-Heaping Methods
+#' Wrapper for Age-Heaping Methods
 #' 
 #' @inheritParams doSplitting
 #' @inheritParams DemoTools::Myers
@@ -29,7 +29,7 @@
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' H[, c("DataProcessType", "DataValue")]
 #' 
-#' # If `digit` is in input the message is not be printed
+#' # If `digit` is in input the message is not printed
 #' H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
 #' 
 #' @export
