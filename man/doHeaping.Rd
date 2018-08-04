@@ -2,32 +2,54 @@
 % Please edit documentation in R/HeapingMethods.R
 \name{doHeaping}
 \alias{doHeaping}
-\title{Wrap function for the age-heaping methods}
+\title{Wrapper for the Age-Heaping Methods}
 \usage{
-doHeaping(X, ageMin = 10, ageMax = 90, ...)
+doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
+  "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10, ageMax = 90,
+  ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
 
+\item{fn}{Method to be called from DemoTools}
+
 \item{ageMin}{integer. The lowest age included in calculations. Default 10.}
 
-\item{ageMax}{integer. The upper age bound used for calculations. Default 90.}
+\item{ageMax}{integer. The upper age bound used for calculations. Default 89.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \description{
-Wrap function for the age-heaping methods: 
+Wrapper for the Age-Heaping Methods
+}
+\examples{
+P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
+
+H1 <- doHeaping(P1, fn = "Whipple")
+H2 <- doHeaping(P1, fn = "Myers")
+H3 <- doHeaping(P1, fn = "Bachi")
+H4 <- doHeaping(P1, fn = "CoaleLi")
+H5 <- doHeaping(P1, fn = "Noumbissi")
+H6 <- doHeaping(P1, fn = "Spoorenberg")
+H7 <- doHeaping(P1, fn = "ageRatioScore")
+H8 <- doHeaping(P1, fn = "AHI")
+H9 <- doHeaping(P1, fn = "WI")
+
+H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
+H[, c("DataProcessType", "DataValue")]
+
+# If `digit` is in input the message is not be printed
+H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
+
+}
+\seealso{
 \code{\link[DemoTools]{Whipple}},
 \code{\link[DemoTools]{Myers}},
 \code{\link[DemoTools]{Bachi}},
 \code{\link[DemoTools]{CoaleLi}},
-\code{\link[DemoTools]{Noumbissi}} and
-\code{\link[DemoTools]{Spoorenberg}}.
-}
-\examples{
-P1 <- DDSQLtools.data$Pop1_Egypt_DB
-W <- doHeaping(P1)
-
-W[, c("DataProcessType", "DataValue")]
-
+\code{\link[DemoTools]{Noumbissi}},
+\code{\link[DemoTools]{Spoorenberg}},
+\code{\link[DemoTools]{ageRatioScore}},
+\code{\link[DemoTools]{AHI}},
+\code{\link[DemoTools]{WI}}.
 }

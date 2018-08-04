@@ -10,6 +10,8 @@ file3 <- paste0(getwd(), "/devdata/", "DemoData_Export_Pop5_Egypt_DB.xlsx")
 P1 <- read_excel(file2)
 P5 <- read_excel(file3)
 
+P5$SexName
+
 # keys <- as.character(unlist(X[X$key == 1, 1]))
 
 
@@ -38,19 +40,22 @@ subsetUNdata <- function(x, locID, sexID, year, ages) {
   return(B4)
 }
 
-P1s <- subsetUNdata(P1, locID = 818, sexID = 1, year = 2006, 
-                    ages = 0:99)
-P1s <- P1s %>% filter(AgeLabel != "95+")
+P1_M <- subsetUNdata(P1, locID = 818, sexID = 1, year = 2006, ages = 0:99)
+P1_M <- P1_M %>% filter(AgeLabel != "95+")
+P1_F <- subsetUNdata(P1, locID = 818, sexID = 2, year = 2006, ages = 0:99)
+P1_F <- P1_F %>% filter(AgeLabel != "95+")
 
+x = c(0, 1, seq(5, 75, by = 5))
+P5_M <- subsetUNdata(P5, locID = 818, sexID = 1, year = 1976, ages = x)
+P5_F <- subsetUNdata(P5, locID = 818, sexID = 2, year = 1976, ages = x)
 
-P5s <- subsetUNdata(P5, locID = 818, sexID = 1, year = 1976, 
-                    ages = c(0, 1, seq(5, 75, by = 5)))
-
-DDSQLtools.data <- list(Pop1_Egypt_DB = P1s, Pop5_Egypt_DB = P5s)
+DDSQLtools.data <- list(Pop1_Egypt_M_DB = P1_M, Pop1_Egypt_F_DB = P1_F,
+                        Pop5_Egypt_M_DB = P5_M, Pop5_Egypt_F_DB = P5_F)
 
 devtools::use_data(DDSQLtools.data, overwrite = TRUE)
 
-# Fri Jul 27 11:24:06 2018 ------------------------------
+
+# Tue Jul 31 22:40:00 2018 ------------------------------
 
 
 
