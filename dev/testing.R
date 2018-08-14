@@ -50,6 +50,7 @@ Q <- rbind(Q1, Q2, Q3)
 Q[, c("DataProcessType", "DataValue")]
 
 # "Additional arguments to control" -> Additional (optional) arguments to control 
+# Q: if I add args in demotools does this message update automatically?
 ?doSmoothing
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
@@ -86,3 +87,14 @@ V1 <- doSplitting(P1, fn = "beers")
 V2 <- doSplitting(P1, fn = "grabill") 
 V3 <- doSplitting(P1, fn = "sprague") 
 
+
+# 1) make doComparePops()
+# calls IRDID.R functions, also UN sex compare, also LIFIT.R RDM, ADM (relative, absolute)
+
+# 2) make doLTabr , calling LTabr() (inside LTPOPDTH). That is a messy messy function, I'm afraid. 
+# My guess is you'll uncoveer problems that I need to attend to.
+
+# 3) MortalityLaws() wrapper? Q: make sense for quality checks, forced smoothing, old-age extrapolation?
+# I think it'd be cool to be able to bring all lifetables out to HMD age 110, even if highest closed 
+# age group is 70-74-- make sense to wrap MortalityLaws to do this? This would be superior to MortPak
+# extrapolation methods I think.
