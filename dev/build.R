@@ -1,10 +1,12 @@
 #install_github("timriffe/TimUtils/TimUtils")
 #install_github("hadley/devtools")
+# install.packages("devtools")
 shhh <- function(expr){
 	capture.output(x <- suppressPackageStartupMessages(
 					suppressMessages(suppressWarnings(expr))))
 	invisible(x)
 }
+#library(DemoTools)
 library(devtools)
 library(TimUtils)
 # MP, you can do something like this so it works for both of us

@@ -12,6 +12,16 @@ doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
 \arguments{
 \item{X}{Input data. UN format.}
 
+\item{method}{character string. Options include \code{"Carrier-Farrag"},\code{"Arriaga"},\code{"Karup-King-Newton"},\code{"United Nations"}, \code{"Strong"}, and \code{"Zigzag"}. See details. Default \code{"Carrier-Farrag"}.}
+
+\item{ageMin}{integer. The lowest age included included in intermediate adjustment. Default 10. Only relevant for Strong method.}
+
+\item{ageMax}{integer. The highest age class included in intermediate adjustment. Default 65. Only relevant for Strong method.}
+
+\item{young.tail}{\code{NA} or character. Method to use for ages 0-9. See details. Default \code{"original"}.}
+
+\item{old.tail}{\code{NA} or character. Method to use for the final age groups. See details. Default \code{"original"}.}
+
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
@@ -19,7 +29,30 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrapper for Smoothing Populations in 5-year Age Groups
+Smooth population counts in 5-year age groups using the Carrier-Farrag, 
+Karup-King-Newton, Arriaga, United Nations, Stong, or Zigzag methods. Allows for imputation 
+of values in the youngest and oldest age groups for the Carrier-Farrag, Karup-King-Newton, 
+and United Nations methods.
+}
+\details{
+The Carrier-Farrag, Karup-King-Newton, and Arriaga methods do not modify the totals 
+in each 10-year age group, whereas the United Nations, Strong, Zigzag, and moving average (MAV) methods do. The age intervals 
+of input data could be any integer structure (single, abridged, 5-year, other), but 
+output is always in 5-year age groups. All methods except the United Nations and MAV methods
+operate based on 10-year age group totals, excluding the open age group. 
+
+The Carrier-Farrag, Karup-King-Newton, and United Nations methods do not produce estimates 
+for the first and final 10-year age groups. By default, these are imputed with the original 5-year age group totals, but
+you can also specify to impute with \code{NA}, or the results of the Arriaga or
+Strong methods. If the terminal digit of the open age group is 5, then the terminal 10-year 
+age group shifts down, so imputations may affect more ages in this case. Imputation can follow 
+different methods for young and old ages. 
+
+Method names are simplified using \code{simplify.text} and checked against a set of plausible matches 
+designed to give some flexibility in case you're not sure 
+
+In accordance with the description of these methods in Arriaga (1994), it is advised to 
+compare the resutls from a variety of methods.
 }
 \examples{
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
