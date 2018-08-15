@@ -1,5 +1,4 @@
 
-
 #' Wrapper for Smoothing Populations in 5-year Age Groups
 #' 
 #' @param X Input data. UN format.
@@ -22,17 +21,19 @@
 #' S6 <- doSmoothing(P5, method = M[6])
 #' 
 #' S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
-#'            S4$DataValue, S5$DataValue, S5$DataValue)
+#'            S4$DataValue, S5$DataValue, S6$DataValue)
 #' dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 #' 
 #' S 
 #' @export
 #' 
 doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-                                  "United Nations", "Strong", "Zigzag"),
+                                  "United Nations", "Strong", "Zigzag", "MAV"),
                         ageMin = 10, ageMax = 65,
                         young.tail = c("Original", "Arriaga", "Strong", NA),
-                        old.tail = young.tail, ...) {
+                        old.tail = young.tail, verbose = TRUE, ...) {
+  # input <- as.list(environment())
+  # arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeSpan = AgeEnd <- NULL # hack CRAN note
   
   A <- X$DataValue
@@ -58,8 +59,8 @@ doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
   G[nrow(G), cx] <- X[nrow(X), cx]
   
   C <- match.call()
-  # controlOutputMsg(fn, C)
   G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)
 }
+

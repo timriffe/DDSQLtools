@@ -5,17 +5,16 @@
 \title{Wrapper for Age-Heaping Methods}
 \usage{
 doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
-  "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10, ageMax = 90,
-  ...)
+  "Spoorenberg", "ageRatioScore", "AHI", "WI"), verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools}
+\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\code{"beers", "grabill", "sprague"}.}
 
-\item{ageMin}{integer. The lowest age included in calculations. Default 10.}
-
-\item{ageMax}{integer. The upper age bound used for calculations. Default 89.}
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
@@ -38,8 +37,8 @@ H9 <- doHeaping(P1, fn = "WI")
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataProcessType", "DataValue")]
 
-# If `digit` is in input the message is not printed
-H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
+# If all DemoTools arguments are specified the message is not printed
+H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 
 }
 \seealso{

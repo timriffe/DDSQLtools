@@ -1,13 +1,12 @@
 Package: DDSQLtools
 Type: Package
 Title: Wrappers for DemoTools functions to work with UNPD SQL internal data format
-Version: 0.0.7
-Date: 2017-11-30
+Version: 0.0.8
+Date: 2018-08-06
 Authors@R: c(
   person("Tim", "Riffe", role = c("aut", "cre"), 
          email = "tim.riffe@gmail.com"),
   person("Marius D.", "Pascariu", role = "aut"))
-Maintainer: Tim Riffe <tim.riffe@gmail.com>
 Description: Make the DemoTools package click into the UNPD workflow.
 License: CC BY-NC 4.0
 LazyData: TRUE
@@ -17,7 +16,8 @@ Imports:
   tidyr (>= 0.8.1),
   dplyr (>= 0.7.6),
   tibble (>= 1.4.2),
-  Rdpack (>= 0.8)
+  Rdpack (>= 0.8),
+  methods (>= 3.5.0)
 Suggests: 
   covr,
   testthat

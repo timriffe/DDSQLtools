@@ -4,12 +4,16 @@
 \alias{doSplitting}
 \title{Wrapper for Age-Splitting Methods}
 \usage{
-doSplitting(X, fn = c("beers", "grabill", "sprague"), ...)
+doSplitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools}
+\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\code{"beers", "grabill", "sprague"}.}
+
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }

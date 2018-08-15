@@ -1,15 +1,4 @@
 
-#' Here we list all the imports
-#' @import DemoTools Rdpack
-#' @importFrom tidyr spread gather
-#' @importFrom dplyr select mutate %>% rename
-#' @importFrom tibble as.tibble
-#' @name foo_imports
-#' @keywords internal
-NULL
-
-
-
 #' DDSQLtools test data - Egypt 1976 - Population by age and sex
 #'
 #' @details Check \code{dev/AddDataInPackage.R} to see how the data was selected.

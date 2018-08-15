@@ -1,5 +1,4 @@
 
-
 #' Wrapper for Age-Heaping Methods
 #' 
 #' @inheritParams doSplitting
@@ -29,15 +28,16 @@
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' H[, c("DataProcessType", "DataValue")]
 #' 
-#' # If `digit` is in input the message is not printed
-#' H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
+#' # If all DemoTools arguments are specified the message is not printed
+#' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' 
 #' @export
 #' 
 doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
                                 "Noumbissi", "Spoorenberg", "ageRatioScore",
-                                "AHI", "WI"),
-                       ageMin = 10, ageMax = 90, ...) {
+                                "AHI", "WI"), verbose = TRUE, ...) {
+  input <- as.list(environment())
+  arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
   
   A   <- X$DataValue
@@ -46,13 +46,13 @@ doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi",
   fn  <- match.arg(fn)
   
   E <- switch(fn,
-    Whipple = Whipple(A, B, ageMin, ageMax, ...),
-    Myers = Myers(A, B, ageMin, ageMax), 
-    Bachi = Bachi(A, B, ageMin, ageMax, ...), 
-    CoaleLi = CoaleLi(A, B, ageMin, ageMax, ...),
-    Noumbissi = Noumbissi(A, B, ageMin, ageMax, ...),
-    Spoorenberg = Spoorenberg(A, B, ageMin, ageMax),
-    ageRatioScore = ageRatioScore(A, B, ageMin, ageMax, OAG = OAG, ...),
+    Whipple = Whipple(A, B, ...),
+    Myers = Myers(A, B, ...), 
+    Bachi = Bachi(A, B, ...), 
+    CoaleLi = CoaleLi(A, B, ...),
+    Noumbissi = Noumbissi(A, B, ...),
+    Spoorenberg = Spoorenberg(A, B, ...),
+    ageRatioScore = ageRatioScore(A, B, OAG = OAG, ...),
     AHI = AHI(A, B, ...),
     WI = WI(A, B, ...)
   )
@@ -68,7 +68,7 @@ doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi",
            ReferencePeriod = unique(X$ReferencePeriod))
   
   C <- match.call()
-  controlOutputMsg(fn, C)
+  if (verbose) controlOutputMsg2(fn, arg_names)
   G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)

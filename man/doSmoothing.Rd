@@ -5,9 +5,9 @@
 \title{Wrapper for Smoothing Populations in 5-year Age Groups}
 \usage{
 doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-  "United Nations", "Strong", "Zigzag"), ageMin = 10, ageMax = 65,
+  "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10, ageMax = 65,
   young.tail = c("Original", "Arriaga", "Strong", NA),
-  old.tail = young.tail, ...)
+  old.tail = young.tail, verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
@@ -21,6 +21,9 @@ doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
 \item{young.tail}{\code{NA} or character. Method to use for ages 0-9. See details. Default \code{"original"}.}
 
 \item{old.tail}{\code{NA} or character. Method to use for the final age groups. See details. Default \code{"original"}.}
+
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
@@ -65,7 +68,7 @@ S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
 
 S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
-           S4$DataValue, S5$DataValue, S5$DataValue)
+           S4$DataValue, S5$DataValue, S6$DataValue)
 dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 
 S 

@@ -4,12 +4,8 @@
 #' 
 #' @param XY Input data for male population. UN format.
 #' @param XX Input data for female population. UN format.
-#' @param ageMin Integer. The lower age bound used for calculations. 
-#' If \code{NULL}, the smallest age in input data is considered. 
-#' Default: \code{NULL}.
-#' @param ageMax Integer. The upper age bound used for calculations. 
-#' #' If \code{NULL}, the largest age in input data is considered. 
-#' Default: \code{NULL}.
+#' @param fn Method to be called from DemoTools. Available aternatives: 
+#' \code{"sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"}.
 #' @inheritParams doSplitting
 #' @inherit doSplitting return
 #' @seealso \code{\link[DemoTools]{sexRatioScore}}, 
@@ -29,8 +25,9 @@
 #' 
 doQualityChecks <- function(XY, XX, 
                             fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
-                            ageMin = NULL, ageMax = NULL, ...) {
-  input <- c(as.list(environment()))
+                            verbose = TRUE, ...) {
+  input <- as.list(environment())
+  arg_names <- c(names(input), names(list(...)))
   validateInput(input)
   
   A1  <- XY$DataValue
@@ -39,13 +36,10 @@ doQualityChecks <- function(XY, XX,
   OAG <- is_OAG(XY)
   fn  <- match.arg(fn)
   
-  if (is.null(ageMin)) ageMin = min(B)
-  if (is.null(ageMax)) ageMax = max(B)
-  
   E <- switch(fn,
-    sexRatioScore = sexRatioScore(A1, A2, B, ageMin, ageMax, OAG),
-    ageSexAccuracy = ageSexAccuracy(A1, A2, B, ageMin, ageMax, OAG = OAG,  ...),
-    ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, B, ageMin, ageMax, OAG)
+    sexRatioScore = sexRatioScore(A1, A2, Age = B, OAG = OAG),
+    ageSexAccuracy = ageSexAccuracy(A1, A2, Age = B, OAG = OAG,  ...),
+    ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, Age = B, OAG = OAG)
   )
   
   AgeMid = AgeStart = AgeEnd <- NULL # hack CRAN note
@@ -62,7 +56,7 @@ doQualityChecks <- function(XY, XX,
            SexName = "Both sexes")
   
   C <- match.call()
-  controlOutputMsg(fn, C)
+  if (verbose) controlOutputMsg2(fn, arg_names)
   G$DataProcess <- deparse(C)
   out <- formatOutputTable(XY, G)
   return(out)  
