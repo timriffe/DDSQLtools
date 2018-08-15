@@ -5,17 +5,13 @@
 \title{Wrapper for the Age-Heaping Methods}
 \usage{
 doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
-  "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10, ageMax = 90,
-  ...)
+  "Spoorenberg", "ageRatioScore", "AHI", "WI"), ageMin = 10,
+  ageMax = 90, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
 
 \item{fn}{Method to be called from DemoTools}
-
-\item{ageMin}{integer. The lowest age included in calculations. Default 10.}
-
-\item{ageMax}{integer. The upper age bound used for calculations. Default 89.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
