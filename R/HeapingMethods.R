@@ -37,7 +37,7 @@
 doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
                                 "Noumbissi", "Spoorenberg", "ageRatioScore",
                                 "AHI", "WI"),
-                       ageMin = 10, ageMax = 90, ...) {
+                       ageMin = 10, ageMax = 89, ...) {
   AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
   
   A   <- X$DataValue
