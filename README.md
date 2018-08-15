@@ -18,6 +18,6 @@ install_github("timriffe/DDSQLtools")
 ```
 (if either of the first two icons at the top of this README are red, then this might not be working at the moment. You can assume we're fixing it. If they're green, then it'll probably work.)
 
-There are no interesting functions to report at this time. If you are a random visiting demographer then you probably would rather check out the [DemoTools](https://github.com/timriffe/DemoTools) package.
+If you are a random visiting demographer then you probably would rather check out the [DemoTools](https://github.com/timriffe/DemoTools) package. 
 
 
