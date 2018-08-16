@@ -5,9 +5,9 @@
 \title{Wrapper for Smoothing Populations in 5-year Age Groups}
 \usage{
 doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-  "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10, ageMax = 65,
-  n = 3, young.tail = c("Original", "Arriaga", "Strong", NA),
-  old.tail = young.tail, verbose = TRUE, ...)
+  "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10,
+  ageMax = 65, n = 3, young.tail = c("Original", "Arriaga", "Strong",
+  NA), old.tail = young.tail, verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
@@ -34,7 +34,10 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrapper for Smoothing Populations in 5-year Age Groups
+Smooth population counts in 5-year age groups using the Carrier-Farrag, 
+Karup-King-Newton, Arriaga, United Nations, Stong, or Zigzag methods. Allows for imputation 
+of values in the youngest and oldest age groups for the Carrier-Farrag, Karup-King-Newton, 
+and United Nations methods.
 }
 \details{
 The Carrier-Farrag, Karup-King-Newton, and Arriaga methods do not modify the totals 

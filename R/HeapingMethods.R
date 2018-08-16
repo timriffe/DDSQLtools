@@ -38,6 +38,7 @@ doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi",
                                 "AHI", "WI"), verbose = TRUE, ...) {
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
+
   AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
   
   A   <- X$DataValue

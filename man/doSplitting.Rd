@@ -4,7 +4,8 @@
 \alias{doSplitting}
 \title{Wrapper for Age-Splitting Methods}
 \usage{
-doSplitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE, ...)
+doSplitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}

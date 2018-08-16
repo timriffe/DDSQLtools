@@ -3,9 +3,6 @@
 ###############################################################################
 context("utils")
 
-# Table 7.20 in Siegel and Swanson (2004). Make sure cited in IRDID.R
-# under @references tag (using \insertRef{bibtextag}{DemoTools}
-
 test_that("check_values throws errors as expected", {
 			x <- runif(10)
 			x <- log(x/(1-x)) # logit
