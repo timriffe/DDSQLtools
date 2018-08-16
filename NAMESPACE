@@ -2,6 +2,7 @@
 
 export(check_values)
 export(controlOutputMsg2)
+export(doCompare)
 export(doHeaping)
 export(doQualityChecks)
 export(doSmoothing)

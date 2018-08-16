@@ -1,4 +1,4 @@
-#install_github("timriffe/TimUtils/TimUtils")
+install_github("timriffe/TimUtils/TimUtils")
 #install_github("hadley/devtools")
 # install.packages("devtools")
 shhh <- function(expr){
@@ -17,7 +17,7 @@ if (system("whoami",intern=TRUE) == "tim"){
 
 # do this whenever new functions are added to /R, or whenever roxygen is updated
 document()
-versionIncrement(
+TimUtils::versionIncrement(
 		major = FALSE,       # only for releases
 		mid = FALSE,         # major functionality added
 		minor = TRUE,        # whenever documentation renewed, any patch, tweak, or fix
