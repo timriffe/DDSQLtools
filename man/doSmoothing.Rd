@@ -6,7 +6,7 @@
 \usage{
 doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
   "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10, ageMax = 65,
-  young.tail = c("Original", "Arriaga", "Strong", NA),
+  n = 3, young.tail = c("Original", "Arriaga", "Strong", NA),
   old.tail = young.tail, verbose = TRUE, ...)
 }
 \arguments{
@@ -17,6 +17,8 @@ doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
 \item{ageMin}{integer. The lowest age included included in intermediate adjustment. Default 10. Only relevant for Strong method.}
 
 \item{ageMax}{integer. The highest age class included in intermediate adjustment. Default 65. Only relevant for Strong method.}
+
+\item{n}{integer. The width of the moving avarage. Default 3 intervals (x-5 to x+9). Only relevant for moving average method.}
 
 \item{young.tail}{\code{NA} or character. Method to use for ages 0-9. See details. Default \code{"original"}.}
 
@@ -36,9 +38,9 @@ Wrapper for Smoothing Populations in 5-year Age Groups
 }
 \details{
 The Carrier-Farrag, Karup-King-Newton, and Arriaga methods do not modify the totals 
-in each 10-year age group, whereas the United Nations, Strong, and Zigzag methods do. The age intervals 
+in each 10-year age group, whereas the United Nations, Strong, Zigzag, and moving average (MAV) methods do. The age intervals 
 of input data could be any integer structure (single, abridged, 5-year, other), but 
-output is always in 5-year age groups. All methods except the United Nations methods
+output is always in 5-year age groups. All methods except the United Nations and MAV methods
 operate based on 10-year age group totals, excluding the open age group. 
 
 The Carrier-Farrag, Karup-King-Newton, and United Nations methods do not produce estimates 
@@ -58,7 +60,7 @@ compare the resutls from a variety of methods.
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
 M <- c("Carrier-Farrag", "KKN", "Arriaga",
-       "United Nations", "Strong", "Zigzag")
+       "United Nations", "Strong", "Zigzag", "MAV")
 
 S1 <- doSmoothing(P5, method = M[1])
 S2 <- doSmoothing(P5, method = M[2])
@@ -66,9 +68,10 @@ S3 <- doSmoothing(P5, method = M[3])
 S4 <- doSmoothing(P5, method = M[4])
 S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
+S7 <- doSmoothing(P5, method = M[7])
 
 S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
-           S4$DataValue, S5$DataValue, S6$DataValue)
+           S4$DataValue, S5$DataValue, S6$DataValue, S7$DataValue)
 dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 
 S 
