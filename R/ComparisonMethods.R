@@ -44,6 +44,9 @@ doCompare <- function(pop1, pop2, fn = c("ID", "IRD"),
   B   <- pop1$AgeStart
   # OAG <- is_OAG(pop1)
   fn  <- match.arg(fn)
+  sex <- c("Male", "Female", "Both sexes")
+  sex_id   <- if (pop1$SexID[1] == pop2$SexID[1]) pop1$SexID[1] else 3
+  sex_name <- sex[sex_id]
   
   E <- switch(fn,
               ID = ID(A1, A2),
@@ -59,7 +62,9 @@ doCompare <- function(pop1, pop2, fn = c("ID", "IRD"),
            AgeSpan = AgeEnd - AgeStart, 
            AgeLabel = paste0(min(B), "-", rev(pop1$AgeLabel)[1]),
            DataProcessType = fn,
-           ReferencePeriod = unique(pop1$ReferencePeriod))
+           ReferencePeriod = unique(pop1$ReferencePeriod),
+           SexID = sex_id,
+           SexName = sex_name)
   
   C <- match.call()
   if (verbose) controlOutputMsg2(fn, arg_names)

@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/timriffe/DDSQLtools.svg?branch=master)](https://travis-ci.org/timriffe/DDSQLtools)
 [![Build status](https://ci.appveyor.com/api/projects/status/79gd3yfnim3m6m5v?svg=true)](https://ci.appveyor.com/project/timriffe/ddsqltools)
 [![codecov](https://codecov.io/gh/timriffe/DemoTools/branch/master/graph/badge.svg)](https://codecov.io/gh/timriffe/DDSQLtools) 
-[![](https://img.shields.io/badge/devel%20version-0.01.001-yellow.svg)](https://github.com/timriffe/DDSQLtools)
+[![](https://img.shields.io/badge/devel%20version-0.01.002-yellow.svg)](https://github.com/timriffe/DDSQLtools)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 DemoData SQL tools. Wrappers for the [DemoTools](https://github.com/timriffe/DemoTools) package to work with UNPD SQL data format.

@@ -28,9 +28,10 @@
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' H[, c("DataProcessType", "DataValue")]
 #' 
-#' # If all DemoTools arguments are specified the message is not printed
+#' # Silence the function with verbose = FALSE
+#' H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)
+#' # ... or by specifying all arguments
 #' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
-#' 
 #' @export
 #' 
 doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 

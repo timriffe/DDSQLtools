@@ -35,6 +35,9 @@ doQualityChecks <- function(XY, XX,
   B   <- XY$AgeStart
   OAG <- is_OAG(XY)
   fn  <- match.arg(fn)
+  sex <- c("Male", "Female", "Both sexes")
+  sex_id   <- if (XX$SexID[1] == XY$SexID[1]) XX$SexID[1] else 3
+  sex_name <- sex[sex_id]
   
   E <- switch(fn,
     sexRatioScore = sexRatioScore(A1, A2, Age = B, OAG = OAG),
@@ -52,8 +55,8 @@ doQualityChecks <- function(XY, XX,
            AgeLabel = paste0(min(B), "-", rev(XY$AgeLabel)[1]),
            DataProcessType = fn,
            ReferencePeriod = unique(XY$ReferencePeriod),
-           SexID = 2,
-           SexName = "Both sexes")
+           SexID = sex_id,
+           SexName = sex_name)
   
   C <- match.call()
   if (verbose) controlOutputMsg2(fn, arg_names)

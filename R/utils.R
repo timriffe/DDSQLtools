@@ -63,8 +63,8 @@ controlOutputMsg2 <- function(fn, arg_names) {
   
   if (sum(L) != 0) {
     message("Additional (optional) arguments to control the output for the ",
-            "DemoTools::", fn, " method:\n", 
-            paste(missing_args, collapse = " "), "\nCheck ?", fn, " for details.")
+            "DemoTools::", fn, " method:\n", paste(missing_args, collapse = " "), 
+            "\nCheck ?", fn, " for details and default values.\n")
   }
 }
 
