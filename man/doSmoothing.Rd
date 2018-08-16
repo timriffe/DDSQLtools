@@ -5,9 +5,9 @@
 \title{Wrapper for Smoothing Populations in 5-year Age Groups}
 \usage{
 doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-  "United Nations", "Strong", "Zigzag"), ageMin = 10, ageMax = 65,
-  young.tail = c("Original", "Arriaga", "Strong", NA),
-  old.tail = young.tail, ...)
+  "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10,
+  ageMax = 65, n = 3, young.tail = c("Original", "Arriaga", "Strong",
+  NA), old.tail = young.tail, verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
@@ -18,9 +18,14 @@ doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
 
 \item{ageMax}{integer. The highest age class included in intermediate adjustment. Default 65. Only relevant for Strong method.}
 
+\item{n}{integer. The width of the moving avarage. Default 3 intervals (x-5 to x+9). Only relevant for moving average method.}
+
 \item{young.tail}{\code{NA} or character. Method to use for ages 0-9. See details. Default \code{"original"}.}
 
 \item{old.tail}{\code{NA} or character. Method to use for the final age groups. See details. Default \code{"original"}.}
+
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
@@ -58,7 +63,7 @@ compare the resutls from a variety of methods.
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
 M <- c("Carrier-Farrag", "KKN", "Arriaga",
-       "United Nations", "Strong", "Zigzag")
+       "United Nations", "Strong", "Zigzag", "MAV")
 
 S1 <- doSmoothing(P5, method = M[1])
 S2 <- doSmoothing(P5, method = M[2])
@@ -66,9 +71,10 @@ S3 <- doSmoothing(P5, method = M[3])
 S4 <- doSmoothing(P5, method = M[4])
 S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
+S7 <- doSmoothing(P5, method = M[7])
 
 S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
-           S4$DataValue, S5$DataValue, S2$DataValue)
+           S4$DataValue, S5$DataValue, S6$DataValue, S7$DataValue)
 dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 
 S 

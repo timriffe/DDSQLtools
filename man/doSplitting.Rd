@@ -2,14 +2,19 @@
 % Please edit documentation in R/SplittingMethods.R
 \name{doSplitting}
 \alias{doSplitting}
-\title{Wrapper for the Age-Splitting Methods: beers, grabill and sprague}
+\title{Wrapper for Age-Splitting Methods}
 \usage{
-doSplitting(X, fn = c("beers", "grabill", "sprague"), ...)
+doSplitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools}
+\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\code{"beers", "grabill", "sprague"}.}
+
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
@@ -18,7 +23,7 @@ A data.frame having the same number of colums as input data. Different
 numbers of rows. UN format.
 }
 \description{
-Wrapper for the Age-Splitting Methods: beers, grabill and sprague
+Wrapper for Age-Splitting Methods
 }
 \examples{
 # Example 1 --- Abridged data
@@ -28,7 +33,7 @@ W1 <- doSplitting(P5, fn = "beers")
 W2 <- doSplitting(P5, fn = "grabill")
 W3 <- doSplitting(P5, fn = "sprague")
 
-# Example 2 --- 1-year age group   
+# Example 2 --- 1-year age groups   
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 
 V1 <- doSplitting(P1, fn = "beers") 

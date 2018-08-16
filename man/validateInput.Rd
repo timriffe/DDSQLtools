@@ -11,7 +11,7 @@ validateInput(z)
 \item{z}{A list containing the input supplied in \code{doQualityChecks}.}
 }
 \value{
-Nothing. Just lets you move on.
+Nothing. Just lets you pass through... or not.
 }
 \description{
 Internal function that validates the input in \code{doQualityChecks} as

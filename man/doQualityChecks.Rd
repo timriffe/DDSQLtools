@@ -5,22 +5,18 @@
 \title{Wrapper for Performing Age-Sex Male-Female Data Quality Checks}
 \usage{
 doQualityChecks(XY, XX, fn = c("sexRatioScore", "ageSexAccuracy",
-  "ageSexAccuracyDasGupta"), ageMin = NULL, ageMax = NULL, ...)
+  "ageSexAccuracyDasGupta"), verbose = TRUE, ...)
 }
 \arguments{
 \item{XY}{Input data for male population. UN format.}
 
 \item{XX}{Input data for female population. UN format.}
 
-\item{fn}{Method to be called from DemoTools}
+\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\code{"sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"}.}
 
-\item{ageMin}{Integer. The lower age bound used for calculations. 
-If \code{NULL}, the smallest age in input data is considered. 
-Default: \code{NULL}.}
-
-\item{ageMax}{Integer. The upper age bound used for calculations. 
-#' If \code{NULL}, the largest age in input data is considered. 
-Default: \code{NULL}.}
+\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }

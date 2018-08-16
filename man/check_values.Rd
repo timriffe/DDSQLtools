@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{check_values}
 \alias{check_values}
-\title{make sure values in a column are as expected}
+\title{Utility functions for wrappers. Name and value checking, for example.}
 \usage{
 check_values(x, expected.values, categorical = FALSE)
 }
@@ -18,6 +18,9 @@ A generic checking utility. This will need various
 presets of values for the various possible columns, and may have its own
 wrappers for each.
 }
+\details{
+make sure values in a column are as expected
+}
 \examples{
 expected.values <- c(0,1)
 # can be a check on probabilities, perhaps they're in logit and we dont' realize it?
@@ -31,3 +34,4 @@ x <- log(x/(1-x))
 y <- as.factor(c("a","b","c"))
 check_values(y,letters,categorical = TRUE)
 }
+\keyword{internal}

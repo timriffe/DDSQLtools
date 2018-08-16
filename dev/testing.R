@@ -2,9 +2,9 @@
 ###############################################################################
 
 # TR messing around with wrappers here:
-
+remove(list = ls())
 library(devtools)
-load_all("/home/tim/git/DDSQLtools")
+# load_all("/home/tim/git/DDSQLtools")
 
 ?doHeaping
 
@@ -18,23 +18,26 @@ H5 <- doHeaping(P1, fn = "Noumbissi")
 H6 <- doHeaping(P1, fn = "Spoorenberg")
 H7 <- doHeaping(P1, fn = "ageRatioScore")
 H8 <- doHeaping(P1, fn = "AHI")
-H9 <- doHeaping(P1, fn = "WI")
+H9 <- doHeaping(P1, fn = "WI", verbose = F)
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataProcessType", "DataValue")]
 
-# If `digit` is in input the message is not printed
-H1 <- doHeaping(P1, fn = "Whipple", digit = 1)
+# Silence the function with verbose = FALSE
+H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)
+# ... or by specifying all arguments
+H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
+
 
 # COMMENTS: love the printed tips. Maybe an extra argument:
-# verbose = TRUE (by default) for whether or not to print.
+# verbose = TRUE (by default) for whether or not to print.  *** DONE!
 # also, maybe make printing conditional on interactive()?
 # or maybe it's no big deal for them to print as such.
 # this is very usable
 
-# Q: can @seealso refer to other packages like that?
+# Q: can @seealso refer to other packages like that?  *** YES!
 # Q: ageMax ageMin defaults apply to different functions: Can different called
-# functions have different defaults?
+# functions have different defaults?  *** Fixed!
 
 
 # -------------------------
@@ -49,8 +52,8 @@ Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 Q <- rbind(Q1, Q2, Q3)
 Q[, c("DataProcessType", "DataValue")]
 
-# "Additional arguments to control" -> Additional (optional) arguments to control 
-# Q: if I add args in demotools does this message update automatically?
+# "Additional arguments to control" -> Additional (optional) arguments to control *** DONE!
+# Q: if I add args in demotools does this message update automatically? *** YES!
 ?doSmoothing
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
@@ -67,8 +70,8 @@ S7 <- doSmoothing(P5, method = M[7]) # add MAV
 
 S1[, c("DataProcessType", "DataValue")]
 S2[, c("DataProcessType", "DataValue")]
-# would be nice to record not just agesmth, but also which method was used.
-# perhaps also note optional args with message like above.
+# would be nice to record not just agesmth, but also which method was used. *** DONE!
+# perhaps also note optional args with message like above. *** NOT NEEDED.
 
 ?doSplitting
 

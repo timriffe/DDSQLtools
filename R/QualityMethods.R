@@ -4,12 +4,8 @@
 #' 
 #' @param XY Input data for male population. UN format.
 #' @param XX Input data for female population. UN format.
-#' @param ageMin Integer. The lower age bound used for calculations. 
-#' If \code{NULL}, the smallest age in input data is considered. 
-#' Default: \code{NULL}.
-#' @param ageMax Integer. The upper age bound used for calculations. 
-#' #' If \code{NULL}, the largest age in input data is considered. 
-#' Default: \code{NULL}.
+#' @param fn Method to be called from DemoTools. Available aternatives: 
+#' \code{"sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"}.
 #' @inheritParams doSplitting
 #' @inherit doSplitting return
 #' @seealso \code{\link[DemoTools]{sexRatioScore}}, 
@@ -29,8 +25,9 @@
 #' 
 doQualityChecks <- function(XY, XX, 
                             fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
-                            ageMin = NULL, ageMax = NULL, ...) {
-  input <- c(as.list(environment()))
+                            verbose = TRUE, ...) {
+  input <- as.list(environment())
+  arg_names <- c(names(input), names(list(...)))
   validateInput(input)
   
   A1  <- XY$DataValue
@@ -38,14 +35,14 @@ doQualityChecks <- function(XY, XX,
   B   <- XY$AgeStart
   OAG <- is_OAG(XY)
   fn  <- match.arg(fn)
-  
-  if (is.null(ageMin)) ageMin = min(B)
-  if (is.null(ageMax)) ageMax = max(B)
+  sex <- c("Male", "Female", "Both sexes")
+  sex_id   <- if (XX$SexID[1] == XY$SexID[1]) XX$SexID[1] else 3
+  sex_name <- sex[sex_id]
   
   E <- switch(fn,
-    sexRatioScore = sexRatioScore(A1, A2, B, ageMin, ageMax, OAG),
-    ageSexAccuracy = ageSexAccuracy(A1, A2, B, ageMin, ageMax, OAG = OAG,  ...),
-    ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, B, ageMin, ageMax, OAG)
+    sexRatioScore = sexRatioScore(A1, A2, Age = B, OAG = OAG),
+    ageSexAccuracy = ageSexAccuracy(A1, A2, Age = B, OAG = OAG,  ...),
+    ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, Age = B, OAG = OAG)
   )
   
   AgeMid = AgeStart = AgeEnd <- NULL # hack CRAN note
@@ -58,11 +55,11 @@ doQualityChecks <- function(XY, XX,
            AgeLabel = paste0(min(B), "-", rev(XY$AgeLabel)[1]),
            DataProcessType = fn,
            ReferencePeriod = unique(XY$ReferencePeriod),
-           SexID = 2,
-           SexName = "Both sexes")
+           SexID = sex_id,
+           SexName = sex_name)
   
   C <- match.call()
-  controlOutputMsg(fn, C)
+  if (verbose) controlOutputMsg2(fn, arg_names)
   G$DataProcess <- deparse(C)
   out <- formatOutputTable(XY, G)
   return(out)  
@@ -73,17 +70,19 @@ doQualityChecks <- function(XY, XX,
 #' Internal function that validates the input in \code{doQualityChecks} as
 #' stop it if data is not alright
 #' @param z A list containing the input supplied in \code{doQualityChecks}.
-#' @return Nothing. Just lets you move on.
+#' @return Nothing. Just lets you pass through... or not.
 #' @keywords internal
 #' 
 validateInput <- function(z) {
+  mismatch <- "Mismatch between the two datasets."
+  
   if (!identical(dim(z$XY), dim(z$XX))) {
-    stop("Mismatch between the two datasets. Different dimensions.", call. = F)
+    stop(mismatch, "Different dimensions.", call. = F)
   }
   if (!identical(z$XY$AgeStart, z$XX$AgeStart)) {
-    stop("Mismatch between the two datasets. Different 'AgeStart'.", call. = F)
+    stop(mismatch, "Different 'AgeStart' in input.", call. = F)
   }
   if (is_OAG(z$XY) != is_OAG(z$XX)) {
-    stop("Mismatch between the two datasets. Different 'AgeSpan'.", call. = F)
+    stop(mismatch, "Different 'AgeSpan' in input.", call. = F)
   }
 }
