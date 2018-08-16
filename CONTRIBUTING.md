@@ -1,18 +1,18 @@
 ## Contributing to the PACKAGE
 
-The goal of this guide is to help you contribute to the PACKAGE as quickly and as easily possible. The guide is divided into two main pieces:
+The goal of this guide is to help you contribute to `DDSQLtools` as quickly and as easily possible. The guide is divided into two main pieces:
 
-1. Filing a bug report or feature request in an issue.
+1. Filing a bug report or feature request in an [issue](https://github.com/timriffe/DDSQLtools/issues).
 1. Suggesting a change via a pull request.
 
 ## Issues
 
 Before you file an issue:
 
-1.  Check that you're using the latest version of the PACKAGE. It's quite
+1.  Check that you're using the latest version of `DDSQLtools`. It's quite
     possible that the problem you're experiencing has already been fixed.
     
-1.  Check that the issue belongs in this PACKAGE. Much functionality now lives in 
+1.  Check that the issue belongs in `DDSQLtools`. Much functionality now lives in 
     separate packages. 
     
 1.  Spend a few minutes looking at the existing issues. It's possible that
@@ -36,8 +36,8 @@ When filing an issue, the most important thing is to include a minimal reproduci
        2. Copy the output
        3. In my reproducible script, type `mtcars <- ` then paste.
        
-    But even better is if you can create a `data.frame()` with just a handful
-    of rows and columns that still illustrates the problem.
+    But even better is if you can create simple objects such as those
+    used in the function examples for most top-level methods in the package.
   
 1.  Spend a little bit of time ensuring that your **code** is easy for others to
     read:
@@ -69,13 +69,14 @@ When filing an issue, the most important thing is to include a minimal reproduci
     Please don't add headings like "bug fix" or "new features" - these are 
     added during the release process.
 
-*   If you can, also write a test. Testing devtools is particularly difficult
-    because most devtools functions are called for their side-effects, but do
-    the best you can.
+*   If you can, also write a test. 
 
 *   If you're adding new parameters or a new function, you'll also need
     to document them with [roxygen2](http://r-pkgs.had.co.nz/man.html).
-    Make sure to re-run `devtools::document()` on the code before submitting.
+    Make sure to re-run `devtools::document()` on the code before submitting. 
+    
+*   Also run `devtools::check()` to make sure your function doesn't imply 
+    downstream errors or warnings. More such checking will be taken care of by us.
 
 A pull request is a process, and unless you're a practiced contributor it's unlikely that your pull request will be accepted as is. Typically the process looks like this:
 
@@ -86,14 +87,11 @@ A pull request is a process, and unless you're a practiced contributor it's unli
     suggest an alternative home for your code.
     
 1.  We'll take a closer look at the code and give you feedback.
-
+    
 1.  You respond to our feedback, update the pull request and add a comment 
-    like "PTAL" (please take a look). Adding the comment is important,
-    otherwise we don't get any notification that your pull request is
-    ready for review.
+    like "PTAL" (please take a look). 
 
 Don't worry if your pull request isn't perfect. It's a learning process and we'll be happy to help you out. 
 
-It can be frustrating that your PR is ignored for months, and then we request a whole bunch on changes within a short time period. Don't worry - if your PR doesn't make it for this release, it will for the next one.
-
-[markdown]: https://help.github.com/articles/basic-writing-and-formatting-syntax/
+It can be frustrating that your PR is ignored for some time, but it will eventually make it into 
+the package in one way or another.
