@@ -35,8 +35,10 @@ Q1 <- doQualityChecks(M5, F5, fn = "sexRatioScore")
 Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
 Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+                    "DataTypeName", "DataTypeID", "DataValue")
 Q <- rbind(Q1, Q2, Q3)
-Q[, c("DataProcessType", "DataValue")]
+Q[, select_columns]
 }
 \seealso{
 \code{\link[DemoTools]{sexRatioScore}}, 

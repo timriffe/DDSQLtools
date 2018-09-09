@@ -43,9 +43,10 @@ P5f <- DDSQLtools.data$Pop5_Egypt_F_DB
 C3 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "ID")
 C4 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "IRD")
 
-
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+                    "DataTypeName", "DataTypeID", "DataValue")
 C <- rbind(C1, C2, C3, C4)
-C[, c("DataProcess", "DataProcessType", "ReferencePeriod", "DataValue")]
+C[, select_columns]
 }
 \seealso{
 \code{\link[DemoTools]{ID}}, 

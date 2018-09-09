@@ -39,6 +39,11 @@ P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 V1 <- doSplitting(P1, fn = "beers") 
 V2 <- doSplitting(P1, fn = "grabill") 
 V3 <- doSplitting(P1, fn = "sprague") 
+
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
+                    "DataTypeName", "DataTypeID", "DataValue")
+W1[, select_columns]
+V1[, select_columns]
 }
 \seealso{
 \code{\link[DemoTools]{beers}}, 
