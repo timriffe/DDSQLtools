@@ -73,11 +73,15 @@ S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
 S7 <- doSmoothing(P5, method = M[7])
 
-S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+                    "DataTypeName", "DataTypeID", "DataValue")
+S1[, select_columns]
+
+S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue,
            S4$DataValue, S5$DataValue, S6$DataValue, S7$DataValue)
 dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 
-S 
+S
 }
 \seealso{
 \code{\link[DemoTools]{agesmth}}
