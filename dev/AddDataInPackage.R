@@ -1,4 +1,8 @@
-# Fri Jul 27 11:15:21 2018 --------- Marius D. Pascariu ---
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: GNU General Public License v3.0
+# Last update: Tue Nov 27 18:28:12 2018
+# --------------------------------------------------- #
 remove(list = ls())
 library(readxl)
 library(tidyverse)
@@ -49,14 +53,18 @@ x = c(0, 1, seq(5, 75, by = 5))
 P5_M <- subsetUNdata(P5, locID = 818, sexID = 1, year = 1976, ages = x)
 P5_F <- subsetUNdata(P5, locID = 818, sexID = 2, year = 1976, ages = x)
 
+
+
+# Tue Nov 27 18:28:26 2018 ------------------------------
+
+Mx <- paste0(getwd(), "/devdata/", "LTabr_error1.csv") %>% read.csv()
+
+
 DDSQLtools.data <- list(Pop1_Egypt_M_DB = P1_M, Pop1_Egypt_F_DB = P1_F,
-                        Pop5_Egypt_M_DB = P5_M, Pop5_Egypt_F_DB = P5_F)
+                        Pop5_Egypt_M_DB = P5_M, Pop5_Egypt_F_DB = P5_F,
+                        Mx5 = Mx)
 
 devtools::use_data(DDSQLtools.data, overwrite = TRUE)
-
-
-# Tue Jul 31 22:40:00 2018 ------------------------------
-
 
 
 
