@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:01:09 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Age-Heaping Methods
 #' 
@@ -35,10 +40,13 @@
 #' # ... or by specifying all arguments
 #' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
-#' 
-doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
-                                "Noumbissi", "Spoorenberg", "ageRatioScore",
-                                "AHI", "WI"), verbose = TRUE, ...) {
+doHeaping <- function(X, 
+                      fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
+                             "Noumbissi", "Spoorenberg", "ageRatioScore",
+                             "AHI", "WI"), 
+                      verbose = TRUE, 
+                      ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
 
@@ -78,8 +86,4 @@ doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi",
   out <- formatOutputTable(X, G)
   return(out)
 }
-
-
-
-
 

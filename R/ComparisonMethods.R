@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:00:15 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Population Comparison
 #' 
@@ -32,8 +37,11 @@
 #' C <- rbind(C1, C2, C3, C4)
 #' C[, select_columns]
 #' @export
-doCompare <- function(pop1, pop2, fn = c("ID", "IRD"), 
-                            verbose = TRUE, ...) {
+doCompare <- function(pop1, 
+                      pop2, 
+                      fn = c("ID", "IRD"), 
+                      verbose = TRUE, ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   validateInput(input)

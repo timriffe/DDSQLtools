@@ -1,4 +1,8 @@
-
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:01:57 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Performing Age-Sex Male-Female Data Quality Checks
 #' 
@@ -26,7 +30,9 @@
 #' @export
 doQualityChecks <- function(XY, XX, 
                             fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
-                            verbose = TRUE, ...) {
+                            verbose = TRUE, 
+                            ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   validateInput(input)

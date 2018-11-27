@@ -57,9 +57,13 @@ P5_F <- subsetUNdata(P5, locID = 818, sexID = 2, year = 1976, ages = x)
 
 # Tue Nov 27 18:28:26 2018 ------------------------------
 
-Mx <- paste0(getwd(), "/devdata/", "LTabr_error1.csv") %>% read.csv()
+# This is a small table
+Mx <- paste0(getwd(), "/devdata/", "LTabr_error1.csv") %>% 
+  read.csv() %>% 
+  rename(ReferencePeriod = year, DataValue = Mx, SexID = SexCode) %>% 
+  mutate(SexID = 1, IndicatorID = "nMx")
 
-
+# Save data
 DDSQLtools.data <- list(Pop1_Egypt_M_DB = P1_M, Pop1_Egypt_F_DB = P1_F,
                         Pop5_Egypt_M_DB = P5_M, Pop5_Egypt_F_DB = P5_F,
                         Mx5 = Mx)

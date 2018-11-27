@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 20:58:25 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Age-Splitting Methods
 #' 

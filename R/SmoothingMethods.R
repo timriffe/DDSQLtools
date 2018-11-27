@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:02:54 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Smoothing Populations in 5-year Age Groups
 #' 
@@ -31,12 +36,16 @@
 #' 
 #' S
 #' @export
-#' 
 doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
                                   "United Nations", "Strong", "Zigzag", "MAV"),
-                        ageMin = 10, ageMax = 65, n = 3,
+                        ageMin = 10, 
+                        ageMax = 65, 
+                        n = 3,
                         young.tail = c("Original", "Arriaga", "Strong", NA),
-                        old.tail = young.tail, verbose = TRUE, ...) {
+                        old.tail = young.tail, 
+                        verbose = TRUE, 
+                        ...) {
+  
   # input <- as.list(environment())
   # arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeSpan = AgeEnd <- NULL # hack CRAN note
@@ -48,9 +57,16 @@ doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
   OAG <- is_OAG(X)
   method <- match.arg(method)
   if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)
-  E <- agesmth(Value = A, Age = B, method = method, OAG = OAG, 
-               ageMin = ageMin, ageMax = ageMax, n = n, 
-               young.tail = young.tail, old.tail = old.tail)
+  
+  E <- agesmth(Value = A, 
+               Age = B, 
+               method = method, 
+               OAG = OAG, 
+               ageMin = ageMin, 
+               ageMax = ageMax, 
+               n = n, 
+               young.tail = young.tail, 
+               old.tail = old.tail)
   E.age <- as.numeric(names(E))
   
   G <- E %>% as.data.frame() %>% 
