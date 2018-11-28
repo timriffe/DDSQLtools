@@ -30,8 +30,8 @@ as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
-A data.frame having the same number of colums as input data. Different 
-numbers of rows. UN format.
+A data.frame having the same number of columns as input data. 
+Different numbers of rows. UN format.
 }
 \description{
 Smooth population counts in 5-year age groups using the Carrier-Farrag, 

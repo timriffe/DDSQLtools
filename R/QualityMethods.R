@@ -28,7 +28,8 @@
 #' Q <- rbind(Q1, Q2, Q3)
 #' Q[, select_columns]
 #' @export
-doQualityChecks <- function(XY, XX, 
+doQualityChecks <- function(XY, 
+                            XX, 
                             fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
                             verbose = TRUE, 
                             ...) {

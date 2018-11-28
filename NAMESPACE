@@ -3,6 +3,7 @@
 export(check_values)
 export(controlOutputMsg2)
 export(doCompare)
+export(doExtrapolate)
 export(doHeaping)
 export(doLifeTable)
 export(doQualityChecks)

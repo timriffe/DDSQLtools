@@ -1,19 +1,19 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 20:58:25 2018
+# Last update: Wed Nov 28 11:40:37 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Age-Splitting Methods
 #' 
 #' @param X Input data. UN format.
-#' @param fn Method to be called from DemoTools. Available aternatives: 
+#' @param fn Method to be called from DemoTools. Available alternatives: 
 #' \code{"beers", "grabill", "sprague"}.
 #' @param verbose Logical value. If \code{TRUE} messages are printed 
 #' as the method is applied. Set \code{verbose = FALSE} to silent the function.
 #' @param ... Other arguments to be passed on to other methods and functions.
-#' @return A data.frame having the same number of colums as input data. Different 
-#' numbers of rows. UN format.
+#' @return A data.frame having the same number of columns as input data. 
+#' Different numbers of rows. UN format.
 #' @seealso \code{\link[DemoTools]{beers}}, 
 #' \code{\link[DemoTools]{grabill}}, 
 #' \code{\link[DemoTools]{sprague}}.
@@ -37,8 +37,11 @@
 #' W1[, select_columns]
 #' V1[, select_columns]
 #' @export
-doSplitting <- function(X, fn = c("beers", "grabill", "sprague"), 
-                        verbose = TRUE, ...) {
+doSplitting <- function(X, 
+                        fn = c("beers", "grabill", "sprague"), 
+                        verbose = TRUE, 
+                        ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeSpan <- NULL # hack CRAN note

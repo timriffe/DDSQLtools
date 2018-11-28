@@ -52,7 +52,7 @@ formatOutputTable <- function(X, G) {
 #' @export
 controlOutputMsg2 <- function(fn, arg_names) {
   # DemoTools arguments renamed or fed automatically in DDSQL functions
-  args_ren <- c("Age", "Value", "OAG", "popmat", "Males", "Females") 
+  args_ren <- c("Age", "Value", "OAG", "popmat", "Males", "Females", "mx", "x") 
   # DDSQLtools arguments
   args_DDSQL <- c(arg_names, args_ren)
   # DemoTools arguments

@@ -36,8 +36,9 @@
 #' 
 #' S
 #' @export
-doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-                                  "United Nations", "Strong", "Zigzag", "MAV"),
+doSmoothing <- function(X, 
+                        method = c("Carrier-Farrag", "KKN", "Arriaga",
+                                   "United Nations", "Strong", "Zigzag", "MAV"),
                         ageMin = 10, 
                         ageMax = 65, 
                         n = 3,

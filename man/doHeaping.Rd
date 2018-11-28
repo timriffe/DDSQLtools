@@ -10,7 +10,7 @@ doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives: 
 \code{"beers", "grabill", "sprague"}.}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 

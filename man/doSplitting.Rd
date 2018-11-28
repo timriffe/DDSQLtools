@@ -10,7 +10,7 @@ doSplitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE,
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives: 
 \code{"beers", "grabill", "sprague"}.}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
@@ -19,8 +19,8 @@ as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
-A data.frame having the same number of colums as input data. Different 
-numbers of rows. UN format.
+A data.frame having the same number of columns as input data. 
+Different numbers of rows. UN format.
 }
 \description{
 Wrapper for Age-Splitting Methods
