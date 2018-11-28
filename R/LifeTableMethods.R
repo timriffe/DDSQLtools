@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 20:50:05 2018
+# Last update: Wed Nov 28 12:16:04 2018
 # --------------------------------------------------- #
 
 
@@ -38,10 +38,10 @@ doLifeTable <- function(X,
   
   G <- gather(E, key = "IndicatorID", value = "DataValue", -c(1:2)) %>% 
     dplyr::rename(AgeSpan = AgeInt, AgeStart = Age) %>%  
-    mutate(AgeID = NA,
-           # AgeEnd = max(X$AgeEnd),
-           # AgeMid = sum(X$AgeMid - X$AgeStart),
-           # AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+    mutate(AgeID = NA,  # This NA field should be updated when real UN data will be available
+           AgeEnd = NA,
+           AgeMid = NA,
+           AgeLabel = NA,
            DataTypeName = paste0("DemoTools::", fn),
            DataTypeID = deparse(C),
            ReferencePeriod = unique(X$ReferencePeriod))

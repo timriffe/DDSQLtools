@@ -4,15 +4,16 @@
 \alias{doCompare}
 \title{Wrapper for Population Comparison}
 \usage{
-doCompare(pop1, pop2, fn = c("ID", "IRD"), verbose = TRUE, ...)
+doCompare(pop1, pop2, fn = c("ID", "IRD", "ADM", "RDM"),
+  verbose = TRUE, ...)
 }
 \arguments{
-\item{pop1}{Input data for population 1. UN format.}
+\item{pop1}{Input data for population 1. UN format;}
 
-\item{pop2}{Input data for population 2. UN format.}
+\item{pop2}{Input data for population 2. UN format;}
 
 \item{fn}{Method to be called from DemoTools. Available aternatives: 
-\code{"ID", "IRD"}.}
+\code{"ID", "IRD", "ADM", "RDM"};}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
@@ -27,28 +28,50 @@ Different numbers of rows. UN format.
 Wrapper for Population Comparison
 }
 \examples{
-# ----------------------------------------------
-# 1-year age groups
-P1m <- DDSQLtools.data$Pop1_Egypt_M_DB
+# ------------------------------------------
+# Example 1 - Compute the Index of dissimilarity between 2 populations
+
+P1m <- DDSQLtools.data$Pop1_Egypt_M_DB # 1-year age groups data
 P1f <- DDSQLtools.data$Pop1_Egypt_F_DB
-
-C1 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "ID")
-C2 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "IRD")
-
-# ----------------------------------------------
-# 5-year age groups
-P5m <- DDSQLtools.data$Pop5_Egypt_M_DB
+P5m <- DDSQLtools.data$Pop5_Egypt_M_DB # 5-year age groups data
 P5f <- DDSQLtools.data$Pop5_Egypt_F_DB
 
-C3 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "ID")
+C1 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "ID")
+C2 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "ID")
+
+# ------------------------------------------
+# Example 2 - Compute the Index of relative difference between 2 populations
+C3 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "IRD")
 C4 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "IRD")
 
 select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
                     "DataTypeName", "DataTypeID", "DataValue")
 C <- rbind(C1, C2, C3, C4)
 C[, select_columns]
+
+# ------------------------------------------
+# Example 3 - Compute the Mean Absolute Difference in survival 
+# rates between 2 populations
+
+# Since we do not have l[x] data yet, we will make up some dummy data from 
+# death-rates just to check the example (to be updated).
+library(dplyr)
+Mx <- DDSQLtools.data$Mx5
+
+lx.A <- Mx \%>\% doLifeTable \%>\% filter(IndicatorID == "lx")
+lx.B <- Mx \%>\% mutate(DataValue = DataValue * 0.98, SexID = 0) \%>\% 
+  doLifeTable \%>\% filter(IndicatorID == "lx")
+
+C5 <- doCompare(pop1 = lx.A, pop2 = lx.B, fn = "ADM")
+
+# ------------------------------------------
+# Example 4 - Compute the Mean Absolute Difference in age-ratios of survival
+# rates between 2 populations
+C6 <- doCompare(pop1 = lx.A, pop2 = lx.B, fn = "RDM")
 }
 \seealso{
 \code{\link[DemoTools]{ID}}, 
-\code{\link[DemoTools]{IRD}}.
+\code{\link[DemoTools]{IRD}},
+\code{\link[DemoTools]{ADM}},
+\code{\link[DemoTools]{RDM}}.
 }

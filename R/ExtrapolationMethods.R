@@ -4,8 +4,8 @@
 # Last update: Wed Nov 28 11:38:26 2018
 # --------------------------------------------------- #
 
-#' Wrapper for extrapolating old-age human mortality data using 
-#' various mortality models ("laws")
+#' Wrapper for Extrapolating Old-Age Human Mortality Data Using 
+#' Various Mortality Models ("laws")
 #' @inheritParams DemoTools::extra_mortality
 #' @inheritParams doLifeTable
 #' @inherit doLifeTable return
@@ -64,9 +64,9 @@ doExtrapolate <- function(X,
     mutate(AgeID = NA,
            AgeStart = as.numeric(names(E$values)),
            AgeSpan = NA,
-           # AgeEnd =  NA,
-           # AgeMid = sum(X$AgeMid - X$AgeStart),
-           # AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+           AgeEnd = NA,
+           AgeMid = NA,
+           AgeLabel = NA,
            SexID = unique(X$SexID), 
            IndicatorID = unique(X$IndicatorID),
            DataTypeName = paste0("DemoTools::", fn),
