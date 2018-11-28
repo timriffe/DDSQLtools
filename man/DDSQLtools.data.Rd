@@ -7,8 +7,9 @@
 \format{An object of class \code{list} of length 5.}
 \source{
 UN Excel files: 
-\code{DemoData_Export_Pop1_Egypt_DB.xlsx} and 
-\code{DemoData_Export_Pop5_Egypt_DB.xlsx}.
+\code{DemoData_Export_Pop1_Egypt_DB.xlsx}, 
+\code{DemoData_Export_Pop5_Egypt_DB.xlsx} and 
+\code{LTabr_error1.csv}.
 }
 \usage{
 DDSQLtools.data
