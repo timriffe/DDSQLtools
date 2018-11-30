@@ -1,4 +1,8 @@
-
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:01:57 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Performing Age-Sex Male-Female Data Quality Checks
 #' 
@@ -19,13 +23,17 @@
 #' Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
 #' Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 #' 
+#' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+#'                     "DataTypeName", "DataTypeID", "DataValue")
 #' Q <- rbind(Q1, Q2, Q3)
-#' Q[, c("DataProcessType", "DataValue")]
+#' Q[, select_columns]
 #' @export
-#' 
-doQualityChecks <- function(XY, XX, 
+doQualityChecks <- function(XY, 
+                            XX, 
                             fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
-                            verbose = TRUE, ...) {
+                            verbose = TRUE, 
+                            ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   validateInput(input)
@@ -33,6 +41,7 @@ doQualityChecks <- function(XY, XX,
   A1  <- XY$DataValue
   A2  <- XX$DataValue
   B   <- XY$AgeStart
+  C   <- match.call()
   OAG <- is_OAG(XY)
   fn  <- match.arg(fn)
   sex <- c("Male", "Female", "Both sexes")
@@ -45,22 +54,22 @@ doQualityChecks <- function(XY, XX,
     ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, Age = B, OAG = OAG)
   )
   
-  AgeMid = AgeStart = AgeEnd <- NULL # hack CRAN note
+  AgeStart = AgeEnd <- NULL # hack CRAN note
   G <- E %>% as.data.frame() %>% 
     dplyr::rename(DataValue = ".") %>%
-    mutate(AgeStart = min(B), 
+    mutate(AgeID = NA,
+           AgeStart = min(XY$AgeStart), 
+           AgeEnd = max(XY$AgeEnd),
            AgeMid = sum(XY$AgeMid - XY$AgeStart),
-           AgeEnd = AgeMid * 2,
            AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(min(B), "-", rev(XY$AgeLabel)[1]),
-           DataProcessType = fn,
+           AgeLabel = paste0(AgeStart, "-", rev(XY$AgeLabel)[1]),
+           DataTypeName = paste0("DemoTools::", fn),
+           DataTypeID = deparse(C),
            ReferencePeriod = unique(XY$ReferencePeriod),
            SexID = sex_id,
            SexName = sex_name)
   
-  C <- match.call()
   if (verbose) controlOutputMsg2(fn, arg_names)
-  G$DataProcess <- deparse(C)
   out <- formatOutputTable(XY, G)
   return(out)  
 }

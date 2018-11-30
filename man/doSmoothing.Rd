@@ -18,7 +18,7 @@ doSmoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
 
 \item{ageMax}{integer. The highest age class included in intermediate adjustment. Default 65. Only relevant for Strong method.}
 
-\item{n}{integer. The width of the moving avarage. Default 3 intervals (x-5 to x+9). Only relevant for moving average method.}
+\item{n}{integer. The width of the moving average. Default 3 intervals (x-5 to x+9). Only relevant for moving average method.}
 
 \item{young.tail}{\code{NA} or character. Method to use for ages 0-9. See details. Default \code{"original"}.}
 
@@ -30,8 +30,8 @@ as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
-A data.frame having the same number of colums as input data. Different 
-numbers of rows. UN format.
+A data.frame having the same number of columns as input data. 
+Different numbers of rows. UN format.
 }
 \description{
 Smooth population counts in 5-year age groups using the Carrier-Farrag, 
@@ -57,7 +57,7 @@ Method names are simplified using \code{simplify.text} and checked against a set
 designed to give some flexibility in case you're not sure 
 
 In accordance with the description of these methods in Arriaga (1994), it is advised to 
-compare the resutls from a variety of methods.
+compare the results from a variety of methods.
 }
 \examples{
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
@@ -73,11 +73,15 @@ S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
 S7 <- doSmoothing(P5, method = M[7])
 
-S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+                    "DataTypeName", "DataTypeID", "DataValue")
+S1[, select_columns]
+
+S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue,
            S4$DataValue, S5$DataValue, S6$DataValue, S7$DataValue)
 dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 
-S 
+S
 }
 \seealso{
 \code{\link[DemoTools]{agesmth}}

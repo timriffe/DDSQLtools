@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:02:54 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Smoothing Populations in 5-year Age Groups
 #' 
@@ -21,18 +26,27 @@
 #' S6 <- doSmoothing(P5, method = M[6])
 #' S7 <- doSmoothing(P5, method = M[7])
 #' 
-#' S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue, 
+#' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+#'                     "DataTypeName", "DataTypeID", "DataValue")
+#' S1[, select_columns]
+#' 
+#' S <- cbind(S1$DataValue, S2$DataValue, S3$DataValue,
 #'            S4$DataValue, S5$DataValue, S6$DataValue, S7$DataValue)
 #' dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 #' 
-#' S 
+#' S
 #' @export
-#' 
-doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-                                  "United Nations", "Strong", "Zigzag", "MAV"),
-                        ageMin = 10, ageMax = 65, n = 3,
+doSmoothing <- function(X, 
+                        method = c("Carrier-Farrag", "KKN", "Arriaga",
+                                   "United Nations", "Strong", "Zigzag", "MAV"),
+                        ageMin = 10, 
+                        ageMax = 65, 
+                        n = 3,
                         young.tail = c("Original", "Arriaga", "Strong", NA),
-                        old.tail = young.tail, verbose = TRUE, ...) {
+                        old.tail = young.tail, 
+                        verbose = TRUE, 
+                        ...) {
+  
   # input <- as.list(environment())
   # arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeSpan = AgeEnd <- NULL # hack CRAN note
@@ -40,29 +54,36 @@ doSmoothing <- function(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
   A <- X$DataValue
   B <- X$AgeStart
   names(A) <- B
-  OAG    <- is_OAG(X)
+  C   <- match.call()
+  OAG <- is_OAG(X)
   method <- match.arg(method)
   if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)
-  E      <- agesmth(Value = A, Age = B, method = method, OAG = OAG, 
-                    ageMin = ageMin, ageMax = ageMax, n = n, 
-                    young.tail = young.tail, old.tail = old.tail)
-  E.age  <- as.numeric(names(E))
   
-  G   <- E %>% as.data.frame() %>% 
+  E <- agesmth(Value = A, 
+               Age = B, 
+               method = method, 
+               OAG = OAG, 
+               ageMin = ageMin, 
+               ageMax = ageMax, 
+               n = n, 
+               young.tail = young.tail, 
+               old.tail = old.tail)
+  E.age <- as.numeric(names(E))
+  
+  G <- E %>% as.data.frame() %>% 
     dplyr::rename(DataValue = ".") %>%
-    mutate(AgeStart = E.age, 
+    mutate(AgeID = NA,
+           AgeStart = E.age, 
            AgeSpan = 5, 
            AgeEnd = AgeStart + AgeSpan,
            AgeMid = AgeStart + AgeSpan/2,
            AgeLabel = paste0(AgeStart, "-", AgeEnd - 1),
-           DataProcessType = paste0("agesmth - ", method),
+           DataTypeName = paste0("DemoTools::agesmth_", method),
+           DataTypeID = deparse(C),
            ReferencePeriod = unique(X$ReferencePeriod)) 
   
   cx <- c("AgeSpan", "AgeEnd", "AgeMid", "AgeLabel")
   G[nrow(G), cx] <- X[nrow(X), cx]
-  
-  C <- match.call()
-  G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)
 }

@@ -10,7 +10,7 @@ doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives: 
 \code{"beers", "grabill", "sprague"}.}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
@@ -35,7 +35,9 @@ H8 <- doHeaping(P1, fn = "AHI")
 H9 <- doHeaping(P1, fn = "WI")
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
-H[, c("DataProcessType", "DataValue")]
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+                    "DataTypeName", "DataTypeID", "DataValue")
+H[, select_columns]
 
 # Silence the function with verbose = FALSE
 H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)

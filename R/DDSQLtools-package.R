@@ -1,17 +1,16 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:02:40 2018
+# --------------------------------------------------- #
 
-#' DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal data format
-#' 
+# DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal data format
+
 #' @import DemoTools Rdpack
 #' @importFrom tidyr spread gather
 #' @importFrom dplyr select mutate %>% rename
 #' @importFrom tibble as.tibble
 #' @importFrom methods formalArgs
-#' @author \itemize{
-#' \item {Marius D. Pascariu}
-#' \item {Tim Riffe}
-#' }
-#' 
-#' Maintainer: Tim Riffe  <tim.riffe@@gmail.com>
-#' @name DDSQLtools-package
+#' @name DDSQLtools
 #' @docType package
-NULL
+"_PACKAGE"

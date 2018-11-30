@@ -5,20 +5,26 @@
 remove(list = ls())
 library(devtools)
 # load_all("/home/tim/git/DDSQLtools")
-
-?doHeaping
+library(DDSQLtools)
+??doHeaping
 
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
+P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
+
+data.frame(P1)
 
 H1 <- doHeaping(P1, fn = "Whipple")
-H2 <- doHeaping(P1, fn = "Myers")
+
+t(H1)
+
+H2 <- doHeaping(P1, fn = "Myers") # warning w P1
 H3 <- doHeaping(P1, fn = "Bachi")
 H4 <- doHeaping(P1, fn = "CoaleLi")
 H5 <- doHeaping(P1, fn = "Noumbissi")
 H6 <- doHeaping(P1, fn = "Spoorenberg")
-H7 <- doHeaping(P1, fn = "ageRatioScore")
-H8 <- doHeaping(P1, fn = "AHI")
-H9 <- doHeaping(P1, fn = "WI", verbose = F)
+H7 <- doHeaping(P1, fn = "ageRatioScore") # ***
+H8 <- doHeaping(P1, fn = "AHI") # error w P5
+H9 <- doHeaping(P1, fn = "WI", verbose = F) # ***
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataProcessType", "DataValue")]
@@ -52,6 +58,7 @@ Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 Q <- rbind(Q1, Q2, Q3)
 Q[, c("DataProcessType", "DataValue")]
 
+t(Q1)
 # "Additional arguments to control" -> Additional (optional) arguments to control *** DONE!
 # Q: if I add args in demotools does this message update automatically? *** YES!
 ?doSmoothing
@@ -60,7 +67,10 @@ P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 M <- c("Carrier-Farrag", "KKN", "Arriaga",
 		"United Nations", "Strong", "Zigzag","MAV")
 
+data.frame(P5)
 S1 <- doSmoothing(P5, method = M[1])
+data.frame(S1)
+
 S2 <- doSmoothing(P5, method = M[2])
 S3 <- doSmoothing(P5, method = M[3])
 S4 <- doSmoothing(P5, method = M[4])
@@ -68,8 +78,8 @@ S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
 S7 <- doSmoothing(P5, method = M[7]) # add MAV
 
-S1[, c("DataProcessType", "DataValue")]
-S2[, c("DataProcessType", "DataValue")]
+S1[, c("AgeStart", "DataProcessType", "DataValue")]
+S2[, c("AgeStart", "DataProcessType", "DataValue")]
 # would be nice to record not just agesmth, but also which method was used. *** DONE!
 # perhaps also note optional args with message like above. *** NOT NEEDED.
 

@@ -1,3 +1,8 @@
+# --------------------------------------------------- #
+# Author: Marius D. Pascariu
+# License: CC-BY-NC 4.0
+# Last update: Tue Nov 27 21:01:09 2018
+# --------------------------------------------------- #
 
 #' Wrapper for Age-Heaping Methods
 #' 
@@ -26,24 +31,30 @@
 #' H9 <- doHeaping(P1, fn = "WI")
 #' 
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
-#' H[, c("DataProcessType", "DataValue")]
+#' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
+#'                     "DataTypeName", "DataTypeID", "DataValue")
+#' H[, select_columns]
 #' 
 #' # Silence the function with verbose = FALSE
 #' H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)
 #' # ... or by specifying all arguments
 #' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
-#' 
-doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
-                                "Noumbissi", "Spoorenberg", "ageRatioScore",
-                                "AHI", "WI"), verbose = TRUE, ...) {
+doHeaping <- function(X, 
+                      fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
+                             "Noumbissi", "Spoorenberg", "ageRatioScore",
+                             "AHI", "WI"), 
+                      verbose = TRUE, 
+                      ...) {
+  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
 
-  AgeStart = AgeMid = AgeEnd <- NULL # hack CRAN note
+  AgeStart = AgeEnd <- NULL # hack CRAN note
   
   A   <- X$DataValue
   B   <- X$AgeStart
+  C   <- match.call()
   OAG <- is_OAG(X)
   fn  <- match.arg(fn)
   
@@ -61,22 +72,18 @@ doHeaping <- function(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi",
   
   G <- E %>% as.data.frame() %>% 
     dplyr::rename(DataValue = ".") %>%  
-    mutate(AgeStart = min(B), 
+    mutate(AgeID = NA,
+           AgeStart = min(X$AgeStart), 
+           AgeEnd = max(X$AgeEnd),
            AgeMid = sum(X$AgeMid - X$AgeStart),
-           AgeEnd = AgeMid * 2,
            AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(min(B), "-", rev(X$AgeLabel)[1]),
-           DataProcessType = fn,
+           AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+           DataTypeName = paste0("DemoTools::", fn),
+           DataTypeID = deparse(C),
            ReferencePeriod = unique(X$ReferencePeriod))
   
-  C <- match.call()
   if (verbose) controlOutputMsg2(fn, arg_names)
-  G$DataProcess <- deparse(C)
   out <- formatOutputTable(X, G)
   return(out)
 }
-
-
-
-
 

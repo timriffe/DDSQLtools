@@ -7,7 +7,7 @@
 controlOutputMsg2(fn, arg_names)
 }
 \arguments{
-\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives: 
 \code{"beers", "grabill", "sprague"}.}
 }
 \description{
