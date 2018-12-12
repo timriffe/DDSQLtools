@@ -59,6 +59,25 @@ getIndicators <- function(addDefault = "false",
 }
 
 
+#' Download data-types and DataProcessTypeID's
+#' 
+#' @inheritParams getCountries
+#' @examples 
+#' getDataProcessTypes()
+#' @export
+getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/") {
+  
+  this_table <- "dataProcessTypes"
+  this_data  <- "All"
+  this_path  <- paste0(server, this_table, this_data)
+
+  DT <- fromJSON(file = this_path)
+  out <- do.call("rbind", DT) %>% as.data.frame
+  
+  return(out)
+}
+
+
 
 #' Format data from character to numeric
 #' @description When a data is downloaded from web it is saved as a list or 
