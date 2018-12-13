@@ -10,21 +10,25 @@ build_filter(dataProcess = NULL, startYear = NULL, endYear = NULL,
   includeDependencies = NULL, includeFormerCountries = NULL)
 }
 \arguments{
-\item{dataProcess}{Default: NULL;}
+\item{dataProcess}{Data process ID as defined by the UNPD. Run the
+\code{\link{getDataProcessTypes}} function to see the available options;}
 
-\item{startYear}{Default: NULL;}
+\item{startYear}{Start year. Default: NULL;}
 
-\item{endYear}{Default: NULL;}
+\item{endYear}{End year. Default: NULL;}
 
-\item{indicatorType}{Default: NULL;}
+\item{indicatorType}{Indicator type ID as defined by the UNPD. Run the
+\code{\link{getIndicators}} function to see the available options;}
 
 \item{isComplete}{Default: NULL;}
 
-\item{loc}{Default: NULL;}
+\item{loc}{Location ID as defined by the UNPD. Run the
+\code{\link{getCountries}} function to see the available options;}
 
 \item{locAreaType}{Default: NULL;}
 
-\item{subGroup}{Default: NULL;}
+\item{subGroup}{SubGroup ID as defined by the UNPD. 
+Run the \code{\link{getSubGroup}} function to see the available options;}
 
 \item{addDefault}{Logical. Default: FALSE;}
 

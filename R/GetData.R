@@ -7,9 +7,7 @@
 
 #' Download country names and LocID's
 #' 
-#' @param addDefault Logical. Default: FALSE;
-#' @param includeDependencies Logical. Default: FALSE;
-#' @param includeFormerCountries Logical. Default: FALSE;
+#' @inheritParams build_filter
 #' @param server The path to the database. Default: 
 #' \code{"http://24.239.36.16:9654/un2/api/"};
 #' @param save Logical. Choose whether or not to save the data in an external 
@@ -43,6 +41,7 @@ getCountries <- function(addDefault = "false",
 
 
 #' Download indicator names and IndicatorTypeID's
+#' @inheritParams build_filter
 #' @inheritParams getCountries
 #' @examples 
 #' Ind <- getIndicators()
@@ -87,6 +86,45 @@ getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/",
 }
 
 
+#' Download sub-group-types and SubGroupTypeID's
+#' @inheritParams build_filter
+#' @inheritParams getCountries
+#' @examples 
+#' # Check what subgroups are available for:
+#' S <- getSubGroup(indicatorType = 8,  # Population by age and sex indicator;
+#'                  loc = 818)          # Egypt
+#' S
+#' @export
+getSubGroup <- function(indicatorType = 8,
+                        loc = 818,
+                        isComplete = 0,
+                        server = "http://24.239.36.16:9654/un2/api/",
+                        save = FALSE,
+                        ...) {
+  
+  . <- NULL # hack CRAN check note
+  
+  this_table <- "subGroup"
+  this_data  <- build_filter(indicatorType = indicatorType, 
+                             loc = loc,
+                             isComplete = isComplete,
+                             ...)
+  this_path  <- paste0(server, this_table, this_data)
+  
+  X <- fromJSON(file = this_path)
+  out <- suppressWarnings(X %>% 
+                            lapply(unlist) %>% 
+                            do.call("rbind", .) %>% 
+                            as.data.frame)
+  # Some of the lists might have different number of elements. When we rbind
+  # a warning is displayed. We surpress it here. It seems to work fine.
+  
+  if (save) save_data_in_working_directory(out, file_name = "UNPD_SubGroupTypes")
+  
+  return(out)
+}
+
+
 
 #' Format data from character to numeric
 #' @description When a data is downloaded from web it is saved as a list or 
@@ -104,15 +142,21 @@ format.numeric.colums <- function(X) {
 
 
 #' Build the section of the path (link) responsible with filtering the data
-#' @param dataProcess Default: NULL;
-#' @param startYear Default: NULL;
-#' @param endYear Default: NULL;
-#' @param indicatorType Default: NULL;
+#' @param addDefault Logical. Default: FALSE;
+#' @param dataProcess Data process ID as defined by the UNPD. Run the
+#' \code{\link{getDataProcessTypes}} function to see the available options;
+#' @param startYear Start year. Default: NULL;
+#' @param endYear End year. Default: NULL;
+#' @param indicatorType Indicator type ID as defined by the UNPD. Run the
+#' \code{\link{getIndicators}} function to see the available options;
 #' @param isComplete Default: NULL;
-#' @param loc Default: NULL;
+#' @param loc Location ID as defined by the UNPD. Run the
+#' \code{\link{getCountries}} function to see the available options;
 #' @param locAreaType Default: NULL;
-#' @param subGroup Default: NULL;
-#' @inheritParams getCountries
+#' @param subGroup SubGroup ID as defined by the UNPD. 
+#' Run the \code{\link{getSubGroup}} function to see the available options;
+#' @param includeDependencies Logical. Default: FALSE;
+#' @param includeFormerCountries Logical. Default: FALSE;
 #' @keywords internal
 build_filter <- function(dataProcess = NULL,
                          startYear = NULL,
