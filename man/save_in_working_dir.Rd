@@ -9,7 +9,7 @@ save_in_working_dir(data, file_name)
 \arguments{
 \item{data}{The dataset to be saved;}
 
-\item{file_name}{Name to be assined to the data.}
+\item{file_name}{Name to be assigned to the data.}
 }
 \description{
 Save downloaded data in a .Rdata file located in the working directory

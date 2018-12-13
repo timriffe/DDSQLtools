@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Thu Dec 13 17:07:27 2018
+# Last update: Thu Dec 13 17:35:43 2018
 # --------------------------------------------------- #
 
 #' API Link Generator Function
@@ -140,7 +140,7 @@ format.numeric.colums <- function(X) {
 
 #' Save downloaded data in a .Rdata file located in the working directory
 #' @param data The dataset to be saved;
-#' @param file_name Name to be assined to the data.
+#' @param file_name Name to be assigned to the data.
 #' @keywords internal 
 save_in_working_dir <- function(data, file_name) {
   assign(file_name, value = data)
