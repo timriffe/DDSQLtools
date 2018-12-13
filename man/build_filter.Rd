@@ -23,7 +23,7 @@ build_filter(dataProcess = NULL, startYear = NULL, endYear = NULL,
 \item{isComplete}{Default: NULL;}
 
 \item{loc}{Location ID as defined by the UNPD. Run the
-\code{\link{getCountries}} function to see the available options;}
+\code{\link{getLocations}} function to see the available options;}
 
 \item{locAreaType}{Default: NULL;}
 

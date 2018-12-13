@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetData.R
 \name{getSubGroup}
 \alias{getSubGroup}
-\title{Download sub-group-types and SubGroupTypeID's}
+\title{Get information about available sub-group-types (SubGroupTypeID)}
 \usage{
 getSubGroup(indicatorType = 8, loc = 818, isComplete = 0,
   server = "http://24.239.36.16:9654/un2/api/", save = FALSE, ...)
@@ -12,7 +12,7 @@ getSubGroup(indicatorType = 8, loc = 818, isComplete = 0,
 \code{\link{getIndicators}} function to see the available options;}
 
 \item{loc}{Location ID as defined by the UNPD. Run the
-\code{\link{getCountries}} function to see the available options;}
+\code{\link{getLocations}} function to see the available options;}
 
 \item{isComplete}{Default: NULL;}
 
@@ -26,7 +26,7 @@ getSubGroup(indicatorType = 8, loc = 818, isComplete = 0,
 \item{...}{Other conditions that might define the path to data.}
 }
 \description{
-Download sub-group-types and SubGroupTypeID's
+Get information about available sub-group-types (SubGroupTypeID)
 }
 \examples{
 # Check what subgroups are available for:

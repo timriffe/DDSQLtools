@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetData.R
 \name{getIndicators}
 \alias{getIndicators}
-\title{Download indicator names and IndicatorTypeID's}
+\title{Get information about available indicators (IndicatorTypeID)}
 \usage{
 getIndicators(addDefault = "false",
   server = "http://24.239.36.16:9654/un2/api/", save = FALSE, ...)
@@ -20,7 +20,7 @@ getIndicators(addDefault = "false",
 \item{...}{Other conditions that might define the path to data.}
 }
 \description{
-Download indicator names and IndicatorTypeID's
+Get information about available indicators (IndicatorTypeID)
 }
 \examples{
 Ind <- getIndicators()

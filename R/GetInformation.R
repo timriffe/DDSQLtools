@@ -5,8 +5,7 @@
 # --------------------------------------------------- #
 
 
-#' Download country names and LocID's
-#' 
+#' Get information about available locations (LocID)
 #' @inheritParams build_filter
 #' @param server The path to the database. Default: 
 #' \code{"http://24.239.36.16:9654/un2/api/"};
@@ -15,9 +14,9 @@
 #' \code{FALSE};
 #' @param ... Other conditions that might define the path to data.
 #' @examples 
-#' getCountries()
+#' getLocations()
 #' @export
-getCountries <- function(addDefault = "false",
+getLocations <- function(addDefault = "false",
                          includeDependencies = "false",
                          includeFormerCountries = "false",
                          server = "http://24.239.36.16:9654/un2/api/",
@@ -40,9 +39,9 @@ getCountries <- function(addDefault = "false",
 }
 
 
-#' Download indicator names and IndicatorTypeID's
+#' Get information about available indicators (IndicatorTypeID)
 #' @inheritParams build_filter
-#' @inheritParams getCountries
+#' @inheritParams getLocations
 #' @examples 
 #' Ind <- getIndicators()
 #' Ind[, c("IndicatorTypeID", "Name", "ShortName")]
@@ -65,8 +64,8 @@ getIndicators <- function(addDefault = "false",
 }
 
 
-#' Download data-types and DataProcessTypeID's
-#' @inheritParams getCountries
+#' Get information about available data-types (DataProcessTypeID)
+#' @inheritParams getLocations
 #' @examples 
 #' getDataProcessTypes()
 #' @export
@@ -86,9 +85,9 @@ getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/",
 }
 
 
-#' Download sub-group-types and SubGroupTypeID's
+#' Get information about available sub-group-types (SubGroupTypeID)
 #' @inheritParams build_filter
-#' @inheritParams getCountries
+#' @inheritParams getLocations
 #' @examples 
 #' # Check what subgroups are available for:
 #' S <- getSubGroup(indicatorType = 8,  # Population by age and sex indicator;
@@ -151,7 +150,7 @@ format.numeric.colums <- function(X) {
 #' \code{\link{getIndicators}} function to see the available options;
 #' @param isComplete Default: NULL;
 #' @param loc Location ID as defined by the UNPD. Run the
-#' \code{\link{getCountries}} function to see the available options;
+#' \code{\link{getLocations}} function to see the available options;
 #' @param locAreaType Default: NULL;
 #' @param subGroup SubGroup ID as defined by the UNPD. 
 #' Run the \code{\link{getSubGroup}} function to see the available options;
@@ -200,3 +199,4 @@ save_data_in_working_directory <- function(data, file_name) {
           appendLF = FALSE)
   cat("\n   ")
 }
+

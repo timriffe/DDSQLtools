@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetData.R
 \name{getDataProcessTypes}
 \alias{getDataProcessTypes}
-\title{Download data-types and DataProcessTypeID's}
+\title{Get information about available data-types (DataProcessTypeID)}
 \usage{
 getDataProcessTypes(server = "http://24.239.36.16:9654/un2/api/",
   save = FALSE)
@@ -16,7 +16,7 @@ getDataProcessTypes(server = "http://24.239.36.16:9654/un2/api/",
 \code{FALSE};}
 }
 \description{
-Download data-types and DataProcessTypeID's
+Get information about available data-types (DataProcessTypeID)
 }
 \examples{
 getDataProcessTypes()
