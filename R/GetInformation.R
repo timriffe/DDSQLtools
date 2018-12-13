@@ -22,6 +22,7 @@ getLocations <- function(addDefault = "false",
                          server = "http://24.239.36.16:9654/un2/api/",
                          save = FALSE,
                          ...) {
+  . <- NULL # hack CRAN check note
   
   this_table <- "country"
   this_data  <- build_filter(addDefault = addDefault,
@@ -30,10 +31,52 @@ getLocations <- function(addDefault = "false",
                              ...)
   this_path  <- paste0(server, this_table, this_data)
   
-  C <- fromJSON(file = this_path) %>% lapply(unlist)
-  out <- do.call("rbind", C) %>% as.data.frame
+  X <- fromJSON(file = this_path)
+  out <- X %>% 
+    lapply(unlist) %>% 
+    do.call("rbind", .) %>% 
+    as.data.frame
   
-  if (save) save_data_in_working_directory(out, file_name = "UNPD_Countries")
+  if (save) save_in_working_dir(data = out, 
+                                file_name = paste0("UNPD_", this_table))
+  
+  return(out)
+}
+
+
+#' Get information about available location types (LocAreaTypeID)
+#' @inheritParams build_filter
+#' @inheritParams getLocations
+#' @examples 
+#' # Check what subgroups are available for:
+#' L <- getLocationTypes(indicatorType = 8,  # Population by age and sex indicator;
+#'                       loc = 818)          # Egypt
+#' L
+#' @export
+getLocationTypes <- function(indicatorType = 8,
+                             loc = 818,
+                             isComplete = 0,
+                             server = "http://24.239.36.16:9654/un2/api/",
+                             save = FALSE,
+                             ...) {
+  
+  . <- NULL # hack CRAN check note
+  
+  this_table <- "locationType"
+  this_data  <- build_filter(indicatorType = indicatorType, 
+                             loc = loc,
+                             isComplete = isComplete,
+                             ...)
+  this_path  <- paste0(server, this_table, this_data)
+  
+  X <- fromJSON(file = this_path)
+  out <- suppressWarnings(X %>% 
+                          lapply(unlist) %>% 
+                          do.call("rbind", .) %>% 
+                          as.data.frame)
+  
+  if (save) save_in_working_dir(data = out, 
+                                file_name = paste0("UNPD_", this_table))
   
   return(out)
 }
@@ -58,7 +101,8 @@ getIndicators <- function(addDefault = "false",
   I   <- fromJSON(file = this_path)
   out <- do.call("rbind", I) %>% as.data.frame
   
-  if (save) save_data_in_working_directory(out, file_name = "UNPD_Indicators")
+  if (save) save_in_working_dir(data = out, 
+                                file_name = paste0("UNPD_", this_table))
   
   return(out)
 }
@@ -79,7 +123,8 @@ getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/",
   DT <- fromJSON(file = this_path)
   out <- do.call("rbind", DT) %>% as.data.frame
   
-  if (save) save_data_in_working_directory(out, file_name = "UNPD_DataProcessTypes")
+  if (save) save_in_working_dir(data = out, 
+                                file_name = paste0("UNPD_", this_table))
   
   return(out)
 }
@@ -118,7 +163,8 @@ getSubGroup <- function(indicatorType = 8,
   # Some of the lists might have different number of elements. When we rbind
   # a warning is displayed. We surpress it here. It seems to work fine.
   
-  if (save) save_data_in_working_directory(out, file_name = "UNPD_SubGroupTypes")
+  if (save) save_in_working_dir(data = out, 
+                                file_name = paste0("UNPD_", this_table))
   
   return(out)
 }
@@ -148,7 +194,7 @@ format.numeric.colums <- function(X) {
 #' @param endYear End year. Default: NULL;
 #' @param indicatorType Indicator type ID as defined by the UNPD. Run the
 #' \code{\link{getIndicators}} function to see the available options;
-#' @param isComplete Default: NULL;
+#' @param isComplete isComplete;
 #' @param loc Location ID as defined by the UNPD. Run the
 #' \code{\link{getLocations}} function to see the available options;
 #' @param locAreaType Default: NULL;
@@ -188,14 +234,14 @@ build_filter <- function(dataProcess = NULL,
 #' @param data The dataset to be saved;
 #' @param file_name Name to be assined to the data.
 #' @keywords internal 
-save_data_in_working_directory <- function(data, file_name) {
+save_in_working_dir <- function(data, file_name) {
   assign(file_name, value = data)
   save(list = file_name, file = paste0(file_name, ".Rdata"))
   
   wd <- getwd()
   n  <- nchar(wd)
   wd <- paste0("...", substring(wd, first = n - 45, last = n))
-  message(paste0(file_name, ".Rdata is saved in your working directory:\n  ", wd), 
+  message(paste0(file_name, ".Rdata is saved in your working directory:\n", wd), 
           appendLF = FALSE)
   cat("\n   ")
 }
