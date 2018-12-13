@@ -38,8 +38,8 @@ Get information about available location types (LocAreaTypeID)
 }
 \examples{
 # Check what subgroups are available for:
-P <- getLocationTypes(indicatorType = 8,  # Population by age and sex indicator;
-                      loc = 818,          # Egypt
+P <- getLocationTypes(indicatorType = 8, # Population by age and sex indicator;
+                      loc = 818,         # Egypt
                       isComplete = 0)
 P
 }
