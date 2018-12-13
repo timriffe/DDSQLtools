@@ -4,25 +4,39 @@
 \alias{getIndicators}
 \title{Get information about available indicators (IndicatorTypeID)}
 \usage{
-getIndicators(addDefault = "false",
-  server = "http://24.239.36.16:9654/un2/api/", save = FALSE, ...)
+getIndicators(save = FALSE, ...)
 }
 \arguments{
-\item{addDefault}{Logical. Default: FALSE;}
-
-\item{server}{The path to the database. Default: 
-\code{"http://24.239.36.16:9654/un2/api/"};}
-
 \item{save}{Logical. Choose whether or not to save the data in an external 
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
-\item{...}{Other conditions that might define the path to data.}
+\item{...}{Other arguments that might define the path to data. Handle with 
+care, this is important! The following options are available: \itemize{
+  \item{\code{dataProcess}} -- Data process ID as defined by the UNPD. 
+  Run the \code{\link{getDataProcessTypes}} function to see the available 
+  options;
+  \item{\code{startYear}} -- Start year. Default: NULL;
+  \item{\code{endYear}} -- End year. Default: NULL;
+  \item{\code{indicatorType}} -- Indicator type ID as defined by the UNPD. 
+  Run the \code{\link{getIndicators}} function to see the available options;
+  \item{\code{isComplete}} -- isComplete;
+  \item{\code{loc}} -- Location ID as defined by the UNPD. Run the
+  \code{\link{getLocations}} function to see the available options;
+  \item{\code{locAreaType}} -- Location area type ID as defined by the UNPD. 
+  Run the \code{\link{getLocationTypes}} function to see the available 
+  options;
+  \item{\code{subGroup}} -- SubGroup ID as defined by the UNPD. Run the 
+  \code{\link{getSubGroups}} function to see the available options;
+  \item{\code{addDefault}} -- Logical. Default: FALSE;
+  \item{\code{includeDependencies}} -- Logical. Default: FALSE;
+  \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
+  }}
 }
 \description{
 Get information about available indicators (IndicatorTypeID)
 }
 \examples{
-Ind <- getIndicators()
-Ind[, c("IndicatorTypeID", "Name", "ShortName")]
+I <- getIndicators(addDefault = "false")
+I[, c("IndicatorTypeID", "Name", "ShortName")]
 }
