@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Wed Dec 12 16:10:33 2018
+# Last update: Thu Dec 13 13:15:56 2018
 # --------------------------------------------------- #
 
 
@@ -11,7 +11,10 @@
 #' @param includeDependencies Logical. Default: FALSE;
 #' @param includeFormerCountries Logical. Default: FALSE;
 #' @param server The path to the database. Default: 
-#' "http://24.239.36.16:9654/un2/api/"
+#' \code{"http://24.239.36.16:9654/un2/api/"};
+#' @param save Logical. Choose whether or not to save the data in an external 
+#' \code{.Rdata} file in the working directory. Default: 
+#' \code{FALSE};
 #' @param ... Other conditions that might define the path to data.
 #' @examples 
 #' getCountries()
@@ -20,6 +23,7 @@ getCountries <- function(addDefault = "false",
                          includeDependencies = "false",
                          includeFormerCountries = "false",
                          server = "http://24.239.36.16:9654/un2/api/",
+                         save = FALSE,
                          ...) {
   
   this_table <- "country"
@@ -27,18 +31,18 @@ getCountries <- function(addDefault = "false",
                              includeDependencies = includeDependencies,
                              includeFormerCountries = includeFormerCountries,
                              ...)
-  
   this_path  <- paste0(server, this_table, this_data)
   
   C <- fromJSON(file = this_path) %>% lapply(unlist)
   out <- do.call("rbind", C) %>% as.data.frame
+  
+  if (save) save_data_in_working_directory(out, file_name = "UNPD_Countries")
   
   return(out)
 }
 
 
 #' Download indicator names and IndicatorTypeID's
-#' 
 #' @inheritParams getCountries
 #' @examples 
 #' Ind <- getIndicators()
@@ -46,6 +50,7 @@ getCountries <- function(addDefault = "false",
 #' @export
 getIndicators <- function(addDefault = "false",
                           server = "http://24.239.36.16:9654/un2/api/",
+                          save = FALSE,
                           ...) {
   
   this_table <- "Indicator"
@@ -55,24 +60,28 @@ getIndicators <- function(addDefault = "false",
   I   <- fromJSON(file = this_path)
   out <- do.call("rbind", I) %>% as.data.frame
   
+  if (save) save_data_in_working_directory(out, file_name = "UNPD_Indicators")
+  
   return(out)
 }
 
 
 #' Download data-types and DataProcessTypeID's
-#' 
 #' @inheritParams getCountries
 #' @examples 
 #' getDataProcessTypes()
 #' @export
-getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/") {
+getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/",
+                                save = FALSE) {
   
   this_table <- "dataProcessTypes"
   this_data  <- "All"
   this_path  <- paste0(server, this_table, this_data)
-
+  
   DT <- fromJSON(file = this_path)
   out <- do.call("rbind", DT) %>% as.data.frame
+  
+  if (save) save_data_in_working_directory(out, file_name = "UNPD_DataProcessTypes")
   
   return(out)
 }
@@ -81,8 +90,8 @@ getDataProcessTypes <- function(server = "http://24.239.36.16:9654/un2/api/") {
 
 #' Format data from character to numeric
 #' @description When a data is downloaded from web it is saved as a list or 
-#' data.frame with columns containing strings of infromation (character format).
-#' This function reads the values and if it sees in these columns anly numbers
+#' data.frame with columns containing strings of information (character format).
+#' This function reads the values and if it sees in these columns only numbers
 #' will convert the column to class numeric.
 #' @param A data.frame or matrix.
 #' @keywords internal
@@ -92,6 +101,7 @@ format.numeric.colums <- function(X) {
   out <- data.frame(X[, !isNum], apply(X[, isNum], 2, as.numeric))
   out[, cn]
 }
+
 
 #' Build the section of the path (link) responsible with filtering the data
 #' @param dataProcess Default: NULL;
@@ -130,3 +140,19 @@ build_filter <- function(dataProcess = NULL,
   return(out)
 }
 
+
+#' Save downloaded data in a .Rdata file located in the working directory
+#' @param data The dataset to be saved;
+#' @param file_name Name to be assined to the data.
+#' @keywords internal 
+save_data_in_working_directory <- function(data, file_name) {
+  assign(file_name, value = data)
+  save(list = file_name, file = paste0(file_name, ".Rdata"))
+  
+  wd <- getwd()
+  n  <- nchar(wd)
+  wd <- paste0("...", substring(wd, first = n - 45, last = n))
+  message(paste0(file_name, ".Rdata is saved in your working directory:\n  ", wd), 
+          appendLF = FALSE)
+  cat("\n   ")
+}

@@ -5,13 +5,17 @@
 \title{Download indicator names and IndicatorTypeID's}
 \usage{
 getIndicators(addDefault = "false",
-  server = "http://24.239.36.16:9654/un2/api/", ...)
+  server = "http://24.239.36.16:9654/un2/api/", save = FALSE, ...)
 }
 \arguments{
 \item{addDefault}{Logical. Default: FALSE;}
 
 \item{server}{The path to the database. Default: 
-"http://24.239.36.16:9654/un2/api/"}
+\code{"http://24.239.36.16:9654/un2/api/"};}
+
+\item{save}{Logical. Choose whether or not to save the data in an external 
+\code{.Rdata} file in the working directory. Default: 
+\code{FALSE};}
 
 \item{...}{Other conditions that might define the path to data.}
 }
