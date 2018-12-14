@@ -68,7 +68,8 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un2/api/",
                                    "locationType", 
                                    "subGroup",
                                    "Indicator", 
-                                   "dataProcessTypes"),
+                                   "dataProcessTypes", 
+                                   "seriesDataDetail"),
                           ...) {
   
   type <- match.arg(type)

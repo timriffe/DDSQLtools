@@ -73,6 +73,22 @@ getDataProcessTypes <- function(save = FALSE, ...) {
 }
 
 
+#' Get information about available details for a given series of data
+#' @inheritParams read_API
+#' @examples 
+#' G <- getSeriesDataDetail(dataProcess = paste(0:15, collapse = ","), # all possible processes
+#'                          indicatorType = 25,    # M[x]
+#'                          loc = 818,             # Egypt
+#'                          locAreaType = "2,3,4", # all possible types
+#'                          subGroup = 2)
+#' G
+#' @export
+getSeriesDataDetail <- function(save = FALSE, ...) {
+  
+  read_API("seriesDataDetail", save, ...)
+}
+
+
 #' Download data
 #' @param save Logical. Choose whether or not to save the data in an external 
 #' \code{.Rdata} file in the working directory. Default: 
@@ -94,17 +110,21 @@ read_API <-function(type,
     # So we build a matrix and populate it row by row as follows:
     n  <- length(X1)
     cn <- X1 %>% lapply(names) %>% unlist %>% unique # unique names
-    X2 <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
-    for (j in 1:n) X2[j, names(X1[[j]])] <- X1[[j]]
-    Z <- as.data.frame(X2)
-    
+    Z  <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
+    for (j in 1:n) Z[j, names(X1[[j]])] <- X1[[j]]
+  
+  } else if (type %in% c("seriesDataDetail")) {
+    X1 <- X %>% lapply(unlist) 
+    Z  <- do.call("rbind", X1)
+     
   } else {
-    Z <- do.call("rbind", X) %>% as.data.frame
+    Z <- do.call("rbind", X)
   }
   
-  if (save) save_in_working_dir(data = Z, 
+  out <- as.data.frame(Z)
+  if (save) save_in_working_dir(data = out, 
                                 file_name = paste0("UNPD_", type))
-  return(Z)
+  return(out)
 }
 
 
