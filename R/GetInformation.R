@@ -83,17 +83,24 @@ read_API <-function(type,
                     save, 
                     ...) {
   
-  . <- NULL # hack CRAN check note
   P <- linkGenerator(type = type, ...) # path
   X <- fromJSON(file = P)
   
   if (type %in% c("Indicator", "dataProcessTypes")) {
-    X <- X %>% lapply(unlist) 
+    
+    X1 <- X %>% lapply(unlist) 
+    # X1 may be a list with elements of different length, therefore if we do
+    # do.call("rbind", X1) we might have some errors/warnings and funny output;
+    # So we build a matrix and populate it row by row as follows:
+    n  <- length(X1)
+    cn <- X1 %>% lapply(names) %>% unlist %>% unique # unique names
+    X2 <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
+    for (j in 1:n) X2[j, names(X1[[j]])] <- X1[[j]]
+    Z <- as.data.frame(X2)
+    
+  } else {
+    Z <- do.call("rbind", X) %>% as.data.frame
   }
-  
-  Z <- suppressWarnings(X %>% do.call("rbind", .) %>% as.data.frame)
-  # Some of the lists might have different number of elements. When we rbind
-  # a warning is displayed. We suppress it here. It seems to work fine.
   
   if (save) save_in_working_dir(data = Z, 
                                 file_name = paste0("UNPD_", type))
