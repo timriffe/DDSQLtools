@@ -57,7 +57,7 @@ Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
 Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 
 Q <- rbind(Q1, Q2, Q3)
-Q[, c("DataProcessType", "DataValue")]
+Q[, c("DataTypeName", "DataValue")]
 
 t(Q1)
 # "Additional arguments to control" -> Additional (optional) arguments to control *** DONE!
@@ -79,8 +79,8 @@ S5 <- doSmoothing(P5, method = M[5])
 S6 <- doSmoothing(P5, method = M[6])
 S7 <- doSmoothing(P5, method = M[7]) # add MAV
 
-S1[, c("AgeStart", "DataProcessType", "DataValue")]
-S2[, c("AgeStart", "DataProcessType", "DataValue")]
+S1[, c("AgeStart", "DataTypeName", "DataValue")]
+S2[, c("AgeStart", "DataTypeName", "DataValue")]
 # would be nice to record not just agesmth, but also which method was used. *** DONE!
 # perhaps also note optional args with message like above. *** NOT NEEDED.
 
@@ -92,7 +92,7 @@ W1 <- doSplitting(P5, fn = "beers")
 W2 <- doSplitting(P5, fn = "grabill")
 W3 <- doSplitting(P5, fn = "sprague")
 
-W1[, c("DataProcessType", "DataValue")] # OK
+W1[, c("DataTypeName", "DataValue")] # OK
 
 # Example 2 --- 1-year age group   
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB

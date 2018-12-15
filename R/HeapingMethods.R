@@ -8,7 +8,8 @@
 #' 
 #' @inheritParams doSplitting
 #' @inheritParams DemoTools::Myers
-#' @seealso \code{\link[DemoTools]{Whipple}},
+#' @seealso 
+#' \code{\link[DemoTools]{Whipple}},
 #' \code{\link[DemoTools]{Myers}},
 #' \code{\link[DemoTools]{Bachi}},
 #' \code{\link[DemoTools]{CoaleLi}},
@@ -41,9 +42,15 @@
 #' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
 doHeaping <- function(X, 
-                      fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
-                             "Noumbissi", "Spoorenberg", "ageRatioScore",
-                             "KannistoHeap", "Jdanov"), 
+                      fn = c("Whipple", 
+                             "Myers", 
+                             "Bachi", 
+                             "CoaleLi", 
+                             "Noumbissi", 
+                             "Spoorenberg", 
+                             "ageRatioScore",
+                             "KannistoHeap", 
+                             "Jdanov"), 
                       verbose = TRUE, 
                       ...) {
   

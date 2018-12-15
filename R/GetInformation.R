@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 12:13:27 2018
+# Last update: Sat Dec 15 15:26:04 2018
 # --------------------------------------------------- #
 
 
@@ -98,7 +98,7 @@ getSeriesDataDetail <- function(save = FALSE, ...) {
 #'                          locAreaType = 2,   # Whole area 
 #'                          subGroup = 2,      # Total or All groups
 #'                          isComplete = 0)    # Age Distribution: Abridged
-#' X
+#' head(X)
 #' @export
 getRecordDataDetail <- function(save = FALSE, ...) {
   

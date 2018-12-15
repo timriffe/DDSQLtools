@@ -1,58 +1,55 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
-# License: GNU General Public License v3.0
-# Last update: Tue Nov 27 18:28:12 2018
+# License: CC-BY-NC 4.0
+# Last update: Sat Dec 15 16:28:01 2018
 # --------------------------------------------------- #
+
 remove(list = ls())
 library(readxl)
 library(tidyverse)
 
-# Load data
-file1 <- paste0(getwd(), "/devdata/", "Pop5_Metadata.xlsx")
-file2 <- paste0(getwd(), "/devdata/", "DemoData_Export_Pop1_Egypt_DB.xlsx")
-file3 <- paste0(getwd(), "/devdata/", "DemoData_Export_Pop5_Egypt_DB.xlsx")
-P1 <- read_excel(file2)
-P5 <- read_excel(file3)
+# Download Abridge Data
+P5 <- getRecordDataDetail(dataProcess = 2,   # Estimate
+                          indicatorType = 8, # Population by age and sex
+                          loc = 818,         # Egypt
+                          locAreaType = 2,   # Whole area
+                          subGroup = 2,      # Total or All groups
+                          isComplete = 0)    # Age Distribution: Abridged
 
-P5$SexName
+ageID_5 <- c(701:715, 765)
+P5_M <- P5 %>% filter(ReferencePeriod == 2006,
+                      AgeID %in% ageID_5,
+                      SexID == 1, 
+                      DataTypeID == 58)
 
-# keys <- as.character(unlist(X[X$key == 1, 1]))
+P5_F <- P5 %>% filter(ReferencePeriod == 2006, 
+                      AgeID %in% ageID_5,
+                      SexID == 2, 
+                      DataTypeID == 58)
+dim(P5_M)
+dim(P5_F)
 
 
-subsetUNdata <- function(x, locID, sexID, year, ages) {
-  # remove duplicate columns
-  B0 <- x %>% select(-IndicatorName__1, -LocName__1)
-  B1 <- B0 %>% filter(LocID == locID)
-  if (!(locID %in% B1$LocID)) {
-    stop("LocID = ", locID, " does not exist in the input data.", call. = F)
-  }
-  B2 <- B1 %>% filter(SexID == sexID)
-  if (!(sexID %in% B2$SexID)) {
-    stop("SexID = ", sexID, " it is not available for LocID = ", locID, call. = F)
-  }
-  B3 <- B2 %>% filter(ReferencePeriod == year)
-  if (!(year %in% B3$ReferencePeriod)) {
-    stop("Year = ", year, " it is not available for LocID = ", locID, 
-         " and SexID = ", sexID, call. = F)
-  }
-  B4 <- B3 %>% filter(AgeStart %in% ages, !(AgeLabel %in% c("Total", "Unknown"))) %>% 
-    arrange(AgeStart)
-  if (!all(ages %in% B4$AgeStart)) {
-    stop("The specified ages are not available. ",
-         "\nAvailable ages: ", paste(B4$AgeStart, collapse = " "), call. = F)
-  }
-  return(B4)
-}
+# Download Single Age Data
+P1 <- getRecordDataDetail(dataProcess = 2,   # Estimate
+                          indicatorType = 8, # Population by age and sex
+                          loc = 818,         # Egypt
+                          locAreaType = 2,   # Whole area
+                          subGroup = 2,      # Total or All groups
+                          isComplete = 1)    # Age Distribution: Complete
 
-P1_M <- subsetUNdata(P1, locID = 818, sexID = 1, year = 2006, ages = 0:99)
-P1_M <- P1_M %>% filter(AgeLabel != "95+")
-P1_F <- subsetUNdata(P1, locID = 818, sexID = 2, year = 2006, ages = 0:99)
-P1_F <- P1_F %>% filter(AgeLabel != "95+")
+ageID_1 <- c(2001:2099, 3220) # Select all ages 0-99+
+P1_M <- P1 %>% filter(ReferencePeriod == 2006, 
+                      AgeID %in% ageID_1,
+                      SexID == 1, 
+                      DataTypeID == 58)
 
-x = c(0, 1, seq(5, 75, by = 5))
-P5_M <- subsetUNdata(P5, locID = 818, sexID = 1, year = 1976, ages = x)
-P5_F <- subsetUNdata(P5, locID = 818, sexID = 2, year = 1976, ages = x)
-
+P1_F <- P1 %>% filter(ReferencePeriod == 2006, 
+                      AgeID %in% ageID_1,
+                      SexID == 2, 
+                      DataTypeID == 58)
+dim(P1_M)
+dim(P1_F)
 
 
 # Tue Nov 27 18:28:26 2018 ------------------------------
