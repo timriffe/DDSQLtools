@@ -5,7 +5,8 @@
 \title{Wrapper for Age-Heaping Methods}
 \usage{
 doHeaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
-  "Spoorenberg", "ageRatioScore", "AHI", "WI"), verbose = TRUE, ...)
+  "Spoorenberg", "ageRatioScore", "KannistoHeap", "Jdanov"),
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{X}{Input data. UN format.}
@@ -31,8 +32,8 @@ H4 <- doHeaping(P1, fn = "CoaleLi")
 H5 <- doHeaping(P1, fn = "Noumbissi")
 H6 <- doHeaping(P1, fn = "Spoorenberg")
 H7 <- doHeaping(P1, fn = "ageRatioScore")
-H8 <- doHeaping(P1, fn = "AHI")
-H9 <- doHeaping(P1, fn = "WI")
+H8 <- doHeaping(P1, fn = "KannistoHeap")
+H9 <- doHeaping(P1, fn = "Jdanov")
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
@@ -52,6 +53,6 @@ H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 \code{\link[DemoTools]{Noumbissi}},
 \code{\link[DemoTools]{Spoorenberg}},
 \code{\link[DemoTools]{ageRatioScore}},
-\code{\link[DemoTools]{AHI}},
-\code{\link[DemoTools]{WI}}.
+\code{\link[DemoTools]{KannistoHeap}},
+\code{\link[DemoTools]{Jdanov}}.
 }

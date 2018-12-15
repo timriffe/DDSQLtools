@@ -23,11 +23,12 @@ H4 <- doHeaping(P1, fn = "CoaleLi")
 H5 <- doHeaping(P1, fn = "Noumbissi")
 H6 <- doHeaping(P1, fn = "Spoorenberg")
 H7 <- doHeaping(P1, fn = "ageRatioScore") # ***
-H8 <- doHeaping(P1, fn = "AHI") # error w P5
-H9 <- doHeaping(P1, fn = "WI", verbose = F) # ***
+H8 <- doHeaping(P1, fn = "KannistoHeap") # error w P5
+H9 <- doHeaping(P1, fn = "Jdanov", verbose = F) # ***
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
-H[, c("DataProcessType", "DataValue")]
+H[, c("DataTypeName", "DataValue")]
+
 
 # Silence the function with verbose = FALSE
 H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)

@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 21:01:09 2018
+# Last update: Sat Dec 15 15:09:23 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Age-Heaping Methods
@@ -15,8 +15,8 @@
 #' \code{\link[DemoTools]{Noumbissi}},
 #' \code{\link[DemoTools]{Spoorenberg}},
 #' \code{\link[DemoTools]{ageRatioScore}},
-#' \code{\link[DemoTools]{AHI}},
-#' \code{\link[DemoTools]{WI}}.
+#' \code{\link[DemoTools]{KannistoHeap}},
+#' \code{\link[DemoTools]{Jdanov}}.
 #' @examples 
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 
@@ -27,8 +27,8 @@
 #' H5 <- doHeaping(P1, fn = "Noumbissi")
 #' H6 <- doHeaping(P1, fn = "Spoorenberg")
 #' H7 <- doHeaping(P1, fn = "ageRatioScore")
-#' H8 <- doHeaping(P1, fn = "AHI")
-#' H9 <- doHeaping(P1, fn = "WI")
+#' H8 <- doHeaping(P1, fn = "KannistoHeap")
+#' H9 <- doHeaping(P1, fn = "Jdanov")
 #' 
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
@@ -43,7 +43,7 @@
 doHeaping <- function(X, 
                       fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
                              "Noumbissi", "Spoorenberg", "ageRatioScore",
-                             "AHI", "WI"), 
+                             "KannistoHeap", "Jdanov"), 
                       verbose = TRUE, 
                       ...) {
   
@@ -66,8 +66,8 @@ doHeaping <- function(X,
     Noumbissi = Noumbissi(A, B, ...),
     Spoorenberg = Spoorenberg(A, B, ...),
     ageRatioScore = ageRatioScore(A, B, OAG = OAG, ...),
-    AHI = AHI(A, B, ...),
-    WI = WI(A, B, ...)
+    KannistoHeap = KannistoHeap(A, B, ...),
+    Jdanov = Jdanov(A, B, ...)
   )
   
   G <- E %>% as.data.frame() %>% 
