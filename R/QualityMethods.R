@@ -30,7 +30,9 @@
 #' @export
 doQualityChecks <- function(XY, 
                             XX, 
-                            fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"), 
+                            fn = c("sexRatioScore", 
+                                   "ageSexAccuracy", 
+                                   "ageSexAccuracyDasGupta"), 
                             verbose = TRUE, 
                             ...) {
   
@@ -83,15 +85,15 @@ doQualityChecks <- function(XY,
 #' @keywords internal
 #' 
 validateInput <- function(z) {
-  mismatch <- "Mismatch between the two datasets."
+  mismatch <- "Mismatch between the two datasets. "
   
   if (!identical(dim(z$XY), dim(z$XX))) {
-    stop(mismatch, "Different dimensions.", call. = F)
+    stop(mismatch, "Different dimensions.", call. = FALSE)
   }
   if (!identical(z$XY$AgeStart, z$XX$AgeStart)) {
-    stop(mismatch, "Different 'AgeStart' in input.", call. = F)
+    stop(mismatch, "Different 'AgeStart' in input.", call. = FALSE)
   }
   if (is_OAG(z$XY) != is_OAG(z$XX)) {
-    stop(mismatch, "Different 'AgeSpan' in input.", call. = F)
+    stop(mismatch, "Different 'AgeSpan' in input.", call. = FALSE)
   }
 }
