@@ -102,7 +102,7 @@ getSeriesDataDetail <- function(save = FALSE, ...) {
 #' @export
 getRecordDataDetail <- function(save = FALSE, ...) {
   
-  read_API("seriesDataDetail", save, ...)
+  read_API("recordDataDetail", save, ...)
 }
 
 
@@ -131,7 +131,7 @@ read_API <-function(type,
     Z  <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
     for (j in 1:n) Z[j, names(X1[[j]])] <- X1[[j]]
   
-  } else if (type %in% c("seriesDataDetail")) {
+  } else if (type %in% c("seriesDataDetail", "recordDataDetail")) {
     X1 <- X %>% lapply(unlist) 
     Z  <- do.call("rbind", X1)
     

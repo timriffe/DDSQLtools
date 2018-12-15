@@ -73,9 +73,11 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un2/api/",
                                    "recordDataDetail"),
                           ...) {
   
-  type <- match.arg(type)
-  this_data <- if (type == "dataProcessTypes") "All" else build_filter(...)
-  paste0(server, type, this_data)
+  type  <- match.arg(type)
+  query <- if (type == "dataProcessTypes") "All" else build_filter(...)
+  link  <- paste0(server, type, query)
+  
+  return(link)
 }
 
 
