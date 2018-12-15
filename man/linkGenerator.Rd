@@ -6,7 +6,7 @@
 \usage{
 linkGenerator(server = "http://24.239.36.16:9654/un2/api/",
   type = c("country", "locationType", "subGroup", "Indicator",
-  "dataProcessTypes", "seriesDataDetail"), ...)
+  "dataProcessTypes", "seriesDataDetail", "recordDataDetail"), ...)
 }
 \arguments{
 \item{server}{The path to the database. Default: 

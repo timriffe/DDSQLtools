@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Thu Dec 13 17:35:43 2018
+# Last update: Sat Dec 15 12:14:32 2018
 # --------------------------------------------------- #
 
 #' API Link Generator Function
@@ -69,7 +69,8 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un2/api/",
                                    "subGroup",
                                    "Indicator", 
                                    "dataProcessTypes", 
-                                   "seriesDataDetail"),
+                                   "seriesDataDetail",
+                                   "recordDataDetail"),
                           ...) {
   
   type <- match.arg(type)
@@ -132,10 +133,11 @@ build_filter <- function(dataProcess = NULL,
 #' @param A data.frame or matrix.
 #' @keywords internal
 format.numeric.colums <- function(X) {
-  cn <- colnames(X) 
+  cn    <- colnames(X) 
   isNum <- apply(X, 2, FUN = function(w) w %>% check.numeric %>% all)
-  out <- data.frame(X[, !isNum], apply(X[, isNum], 2, as.numeric))
-  out[, cn]
+  out   <- data.frame(X[, !isNum], apply(X[, isNum], 2, as.numeric))
+  
+  return(out[, cn])
 }
 
 

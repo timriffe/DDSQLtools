@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Thu Dec 13 17:07:36 2018
+# Last update: Sat Dec 15 12:13:27 2018
 # --------------------------------------------------- #
 
 
@@ -89,6 +89,24 @@ getSeriesDataDetail <- function(save = FALSE, ...) {
 }
 
 
+#' Download data from UNPD portal
+#' @inheritParams read_API
+#' @examples 
+#' X <- getRecordDataDetail(dataProcess = 6,   # Estimate
+#'                          indicatorType = 8, # Population by age and sex - abridged 
+#'                          loc = 818,         # Egypt
+#'                          locAreaType = 2,   # Whole area 
+#'                          subGroup = 2,      # Total or All groups
+#'                          isComplete = 0)    # Age Distribution: Abridged
+#' X
+#' @export
+getRecordDataDetail <- function(save = FALSE, ...) {
+  
+  read_API("seriesDataDetail", save, ...)
+}
+
+
+
 #' Download data
 #' @param save Logical. Choose whether or not to save the data in an external 
 #' \code{.Rdata} file in the working directory. Default: 
@@ -116,14 +134,21 @@ read_API <-function(type,
   } else if (type %in% c("seriesDataDetail")) {
     X1 <- X %>% lapply(unlist) 
     Z  <- do.call("rbind", X1)
-     
+    
   } else {
     Z <- do.call("rbind", X)
   }
   
   out <- as.data.frame(Z)
-  if (save) save_in_working_dir(data = out, 
-                                file_name = paste0("UNPD_", type))
+  
+  if (type == "recordDataDetail"){
+    out <- format.numeric.colums(out)
+  } 
+  
+  if (save) {
+    save_in_working_dir(data = out, file_name = paste0("UNPD_", type))
+  }
+  
   return(out)
 }
 
