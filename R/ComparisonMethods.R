@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 21:00:15 2018
+# Last update: Sun Dec 16 13:01:40 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Population Comparison
@@ -86,19 +86,18 @@ doCompare <- function(pop1,
   )
   
   AgeStart = AgeEnd <- NULL # hack CRAN note
-  G <- E %>% as.data.frame() %>% 
-    dplyr::rename(DataValue = ".") %>%
-    mutate(AgeID = NA,
-           AgeStart = min(pop1$AgeStart), 
-           AgeEnd = max(pop1$AgeEnd),
-           AgeMid = sum(pop1$AgeMid - pop1$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(pop1$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
-           ReferencePeriod = unique(pop1$ReferencePeriod),
-           SexID = sex_id,
-           SexName = sex_name)
+  G <- data.frame(DataValue = E) %>%
+        mutate(AgeID = NA,
+               AgeStart = min(pop1$AgeStart), 
+               AgeEnd = max(pop1$AgeEnd),
+               AgeMid = sum(pop1$AgeMid - pop1$AgeStart),
+               AgeSpan = AgeEnd - AgeStart, 
+               AgeLabel = paste0(AgeStart, "-", rev(pop1$AgeLabel)[1]),
+               DataTypeName = paste0("DemoTools::", fn),
+               DataTypeID = paste(deparse(C), collapse = ""),
+               ReferencePeriod = unique(pop1$ReferencePeriod),
+               SexID = sex_id,
+               SexName = sex_name)
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(pop1, G)

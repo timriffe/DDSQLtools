@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Wed Nov 28 12:16:04 2018
+# Last update: Sun Dec 16 13:00:52 2018
 # --------------------------------------------------- #
 
 
@@ -43,7 +43,7 @@ doLifeTable <- function(X,
            AgeMid = NA,
            AgeLabel = NA,
            DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
+           DataTypeID = paste(deparse(C), collapse = ""),
            ReferencePeriod = unique(X$ReferencePeriod))
   
   if (verbose) controlOutputMsg2(fn, arg_names)

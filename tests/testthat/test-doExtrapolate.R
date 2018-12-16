@@ -36,7 +36,7 @@ validate_here <- function(I, O) {
     expect_true(nrow(O) >= nrow(I))              # 5. The output must have the same or more rows as the input;
     expect_true(class(O$DataValue) == "numeric") # 6. DataValue is always numeric;
     expect_true(all(O$DataValue >= 0))           # 7. And positive;
-    expect_true(all(O$DataValue <= 1e3))         # 8. If the value in DataValue is to large maybe somebody should come back here and do a manual inspection.
+    expect_true(all(O$DataValue <= 1e2))         # 8. If the value in DataValue is to large maybe somebody should come back here and do a manual inspection.
   })
   
 }

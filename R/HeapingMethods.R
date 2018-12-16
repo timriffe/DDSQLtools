@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 15:09:23 2018
+# Last update: Sun Dec 16 12:54:00 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Age-Heaping Methods
@@ -77,17 +77,16 @@ doHeaping <- function(X,
     Jdanov = Jdanov(A, B, ...)
   )
   
-  G <- E %>% as.data.frame() %>% 
-    dplyr::rename(DataValue = ".") %>%  
-    mutate(AgeID = NA,
-           AgeStart = min(X$AgeStart), 
-           AgeEnd = max(X$AgeEnd),
-           AgeMid = sum(X$AgeMid - X$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
-           ReferencePeriod = unique(X$ReferencePeriod))
+  G <- data.frame(DataValue = E) %>%  
+        mutate(AgeID = NA,
+               AgeStart = min(X$AgeStart), 
+               AgeEnd = max(X$AgeEnd),
+               AgeMid = sum(X$AgeMid - X$AgeStart),
+               AgeSpan = AgeEnd - AgeStart, 
+               AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+               DataTypeName = paste0("DemoTools::", fn),
+               DataTypeID = paste(deparse(C), collapse = ""),
+               ReferencePeriod = unique(X$ReferencePeriod))
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(X, G)

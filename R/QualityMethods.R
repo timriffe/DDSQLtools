@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 21:01:57 2018
+# Last update: Sun Dec 16 13:01:00 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Performing Age-Sex Male-Female Data Quality Checks
@@ -57,19 +57,18 @@ doQualityChecks <- function(XY,
   )
   
   AgeStart = AgeEnd <- NULL # hack CRAN note
-  G <- E %>% as.data.frame() %>% 
-    dplyr::rename(DataValue = ".") %>%
-    mutate(AgeID = NA,
-           AgeStart = min(XY$AgeStart), 
-           AgeEnd = max(XY$AgeEnd),
-           AgeMid = sum(XY$AgeMid - XY$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(XY$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
-           ReferencePeriod = unique(XY$ReferencePeriod),
-           SexID = sex_id,
-           SexName = sex_name)
+  G <- data.frame(DataValue = E) %>%
+        mutate(AgeID = NA,
+               AgeStart = min(XY$AgeStart), 
+               AgeEnd = max(XY$AgeEnd),
+               AgeMid = sum(XY$AgeMid - XY$AgeStart),
+               AgeSpan = AgeEnd - AgeStart, 
+               AgeLabel = paste0(AgeStart, "-", rev(XY$AgeLabel)[1]),
+               DataTypeName = paste0("DemoTools::", fn),
+               DataTypeID = paste(deparse(C), collapse = ""),
+               ReferencePeriod = unique(XY$ReferencePeriod),
+               SexID = sex_id,
+               SexName = sex_name)
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(XY, G)
