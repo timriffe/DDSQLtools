@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 12:13:27 2018
+# Last update: Sat Dec 15 15:26:04 2018
 # --------------------------------------------------- #
 
 
@@ -98,11 +98,11 @@ getSeriesDataDetail <- function(save = FALSE, ...) {
 #'                          locAreaType = 2,   # Whole area 
 #'                          subGroup = 2,      # Total or All groups
 #'                          isComplete = 0)    # Age Distribution: Abridged
-#' X
+#' head(X)
 #' @export
 getRecordDataDetail <- function(save = FALSE, ...) {
   
-  read_API("seriesDataDetail", save, ...)
+  read_API("recordDataDetail", save, ...)
 }
 
 
@@ -131,7 +131,7 @@ read_API <-function(type,
     Z  <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
     for (j in 1:n) Z[j, names(X1[[j]])] <- X1[[j]]
   
-  } else if (type %in% c("seriesDataDetail")) {
+  } else if (type %in% c("seriesDataDetail", "recordDataDetail")) {
     X1 <- X %>% lapply(unlist) 
     Z  <- do.call("rbind", X1)
     

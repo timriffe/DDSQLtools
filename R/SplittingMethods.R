@@ -1,7 +1,7 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Wed Nov 28 11:40:37 2018
+# Last update: Sun Dec 16 14:25:16 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Age-Splitting Methods
@@ -55,17 +55,16 @@ doSplitting <- function(X,
   
   DTF <- get(fn)  # DemoTools Function
   E   <- DTF(popmat = A, Age = B, OAG = OAG, ...)
-  G   <- E %>% as.data.frame() %>% 
-    dplyr::rename(DataValue = "V1") %>%
-    mutate(AgeID = NA,
-           AgeStart = as.numeric(rownames(E)), 
-           AgeSpan = 1, 
-           AgeEnd = AgeStart + AgeSpan,
-           AgeMid = AgeStart + AgeSpan/2,
-           AgeLabel = AgeStart,
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
-           ReferencePeriod = unique(X$ReferencePeriod)) 
+  G   <- data.frame(DataValue = E) %>%
+          mutate(AgeID = NA,
+                 AgeStart = as.numeric(rownames(E)), 
+                 AgeSpan = 1, 
+                 AgeEnd = AgeStart + AgeSpan,
+                 AgeMid = AgeStart + AgeSpan/2,
+                 AgeLabel = AgeStart,
+                 DataTypeName = paste0("DemoTools::", fn),
+                 DataTypeID = paste(deparse(C), collapse = ""),
+                 ReferencePeriod = unique(X$ReferencePeriod)) 
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(X, G)

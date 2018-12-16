@@ -1,22 +1,23 @@
 # --------------------------------------------------- #
 # Author: Marius D. Pascariu
 # License: CC-BY-NC 4.0
-# Last update: Tue Nov 27 21:01:09 2018
+# Last update: Sun Dec 16 12:54:00 2018
 # --------------------------------------------------- #
 
 #' Wrapper for Age-Heaping Methods
 #' 
 #' @inheritParams doSplitting
 #' @inheritParams DemoTools::Myers
-#' @seealso \code{\link[DemoTools]{Whipple}},
+#' @seealso 
+#' \code{\link[DemoTools]{Whipple}},
 #' \code{\link[DemoTools]{Myers}},
 #' \code{\link[DemoTools]{Bachi}},
 #' \code{\link[DemoTools]{CoaleLi}},
 #' \code{\link[DemoTools]{Noumbissi}},
 #' \code{\link[DemoTools]{Spoorenberg}},
 #' \code{\link[DemoTools]{ageRatioScore}},
-#' \code{\link[DemoTools]{AHI}},
-#' \code{\link[DemoTools]{WI}}.
+#' \code{\link[DemoTools]{KannistoHeap}},
+#' \code{\link[DemoTools]{Jdanov}}.
 #' @examples 
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 
@@ -27,8 +28,8 @@
 #' H5 <- doHeaping(P1, fn = "Noumbissi")
 #' H6 <- doHeaping(P1, fn = "Spoorenberg")
 #' H7 <- doHeaping(P1, fn = "ageRatioScore")
-#' H8 <- doHeaping(P1, fn = "AHI")
-#' H9 <- doHeaping(P1, fn = "WI")
+#' H8 <- doHeaping(P1, fn = "KannistoHeap")
+#' H9 <- doHeaping(P1, fn = "Jdanov")
 #' 
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
@@ -41,9 +42,15 @@
 #' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
 doHeaping <- function(X, 
-                      fn = c("Whipple", "Myers", "Bachi", "CoaleLi", 
-                             "Noumbissi", "Spoorenberg", "ageRatioScore",
-                             "AHI", "WI"), 
+                      fn = c("Whipple", 
+                             "Myers", 
+                             "Bachi", 
+                             "CoaleLi", 
+                             "Noumbissi", 
+                             "Spoorenberg", 
+                             "ageRatioScore",
+                             "KannistoHeap", 
+                             "Jdanov"), 
                       verbose = TRUE, 
                       ...) {
   
@@ -66,21 +73,20 @@ doHeaping <- function(X,
     Noumbissi = Noumbissi(A, B, ...),
     Spoorenberg = Spoorenberg(A, B, ...),
     ageRatioScore = ageRatioScore(A, B, OAG = OAG, ...),
-    AHI = AHI(A, B, ...),
-    WI = WI(A, B, ...)
+    KannistoHeap = KannistoHeap(A, B, ...),
+    Jdanov = Jdanov(A, B, ...)
   )
   
-  G <- E %>% as.data.frame() %>% 
-    dplyr::rename(DataValue = ".") %>%  
-    mutate(AgeID = NA,
-           AgeStart = min(X$AgeStart), 
-           AgeEnd = max(X$AgeEnd),
-           AgeMid = sum(X$AgeMid - X$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = deparse(C),
-           ReferencePeriod = unique(X$ReferencePeriod))
+  G <- data.frame(DataValue = E) %>%  
+        mutate(AgeID = NA,
+               AgeStart = min(X$AgeStart), 
+               AgeEnd = max(X$AgeEnd),
+               AgeMid = sum(X$AgeMid - X$AgeStart),
+               AgeSpan = AgeEnd - AgeStart, 
+               AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+               DataTypeName = paste0("DemoTools::", fn),
+               DataTypeID = paste(deparse(C), collapse = ""),
+               ReferencePeriod = unique(X$ReferencePeriod))
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(X, G)

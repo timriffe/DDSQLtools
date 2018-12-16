@@ -3,19 +3,18 @@
 \docType{data}
 \name{DDSQLtools.data}
 \alias{DDSQLtools.data}
-\title{DDSQLtools test data - Egypt 1976 - Population by age and sex}
+\title{DDSQLtools test data - Egypt 2006 - Population by age and sex}
 \format{An object of class \code{list} of length 5.}
 \source{
-UN Excel files: 
-\code{DemoData_Export_Pop1_Egypt_DB.xlsx}, 
-\code{DemoData_Export_Pop5_Egypt_DB.xlsx} and 
+The population counts were downloade using the \code{getRecordDataDetail()}
+function. The life table was imported from a file called 
 \code{LTabr_error1.csv}.
 }
 \usage{
 DDSQLtools.data
 }
 \description{
-DDSQLtools test data - Egypt 1976 - Population by age and sex
+DDSQLtools test data - Egypt 2006 - Population by age and sex
 }
 \details{
 Check \code{dev/AddDataInPackage.R} to see how the data was selected.

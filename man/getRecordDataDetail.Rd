@@ -43,5 +43,5 @@ X <- getRecordDataDetail(dataProcess = 6,   # Estimate
                          locAreaType = 2,   # Whole area 
                          subGroup = 2,      # Total or All groups
                          isComplete = 0)    # Age Distribution: Abridged
-X
+head(X)
 }
