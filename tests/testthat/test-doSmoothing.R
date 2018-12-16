@@ -17,7 +17,7 @@ I <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' @param I Input
 #' @param O Output
 validate_smoothing_method <- function(I, O) {
-  test_that("Test heaping methods", {
+  test_that("Test smoothing methods", {
     expect_output(print(O))                      # 1. We always expect an output;
     expect_true(any(class(O) == "data.frame"))   # 2. Output should be a data.frame;
     expect_identical(dim(O), dim(I))             # 3. Output dimensions are identical with input dimensions
