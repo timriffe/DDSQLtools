@@ -5,6 +5,7 @@
 # --------------------------------------------------- #
 remove(list = ls())
 library(DDSQLtools)
+library(tibble)
 
 # Check what subgroups are available for:
 S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
@@ -19,7 +20,7 @@ L
 
 # Check what subgroups are available for:
 P <- getLocationTypes(indicatorType = 8,  # Population by age and sex indicator;
-                      loc = 818,          # Egypt
+                      loc = 230,          # Venezuela
                       isComplete = 0)
 P
 
@@ -28,15 +29,15 @@ I[, c("IndicatorTypeID", "Name", "ShortName")]
 
 
 D <- getDataProcessTypes()
-D
+D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
-G <- getSeriesDataDetail(dataProcess = 2,
-                         indicatorType = 8,
+G <- getSeriesDataDetail(dataProcess = 2,    # Census
+                         indicatorType = 8,  # Population
                          isComplete = 0,
-                         loc = 4,
-                         locAreaType = 2,
+                         loc = 4,            # American Samoa
+                         locAreaType = 2,    #
                          startYear = 1950,
-                         subGroup = 2)
+                         subGroup = 2)       # Nationals only
 G
 
 X <- getRecordDataDetail(dataProcess = 2,   # Estimate
@@ -46,8 +47,6 @@ X <- getRecordDataDetail(dataProcess = 2,   # Estimate
                          locAreaType = 2,   # Whole area 
                          subGroup = 2       # Total or All groups
                          )  
-as.tibble(X)
-dim(X)
 
 # Test Links ------------------------------------------
 # Link to country list
