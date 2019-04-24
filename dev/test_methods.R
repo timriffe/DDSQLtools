@@ -26,6 +26,8 @@ H7 <- doHeaping(P1, fn = "ageRatioScore") # ***
 H8 <- doHeaping(P1, fn = "KannistoHeap") # error w P5
 H9 <- doHeaping(P1, fn = "Jdanov", verbose = F) # ***
 
+?doHeaping
+
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataTypeName", "DataValue")]
 

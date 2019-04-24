@@ -1,8 +1,8 @@
 Package: DDSQLtools
 Type: Package
 Title: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Format
-Version: 0.08.00
-Date: 2018-12-16
+Version: 01.00.000
+Date: 2019-04-24
 Authors@R: c(
   person("Tim", "Riffe", role = c("aut", "cre"), email = "tim.riffe@gmail.com"),
   person("Marius D.", "Pascariu", role = "aut", comment = c(ORCID = "0000-0002-2568-6489")))
@@ -22,10 +22,9 @@ Imports:
 Suggests: 
   covr (>= 3.1.0),
   testthat (>= 2.0.0)
-RdMacros: 
-  Rdpack
+RdMacros: Rdpack
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Remotes: timriffe/DemoTools
 Encoding: UTF-8
