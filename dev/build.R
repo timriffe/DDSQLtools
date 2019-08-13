@@ -17,6 +17,7 @@ if (system("whoami",intern=TRUE) == "tim"){
 
 # do this whenever new functions are added to /R, or whenever roxygen is updated
 document()
+
 TimUtils::versionIncrement(
 		major = FALSE,       # only for releases
 		mid = FALSE,         # major functionality added
