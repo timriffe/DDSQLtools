@@ -15,7 +15,7 @@
 #' @export
 getLocations <- function(save = FALSE, ...) {
   
-  read_API("country", save, ...)
+  read_API("locations", save, ...)
 }
 
 
