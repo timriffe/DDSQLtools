@@ -4,7 +4,7 @@ Title: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Form
 Version: 01.00.000
 Date: 2019-04-24
 Authors@R: c(
-  person("Tim", "Riffe", role = c("aut", "cre"), email = "tim.riffe@gmail.com"),
+  person("Tim", "Riffe", role = c("aut", "cre"), email = "tim.riffe@gmail.com", comment = c(ORCID = "0000-0002-2673-4622")),
   person("Marius D.", "Pascariu", role = "aut", comment = c(ORCID = "0000-0002-2568-6489")))
 Description: Make the DemoTools package click into the UNPD workflow.
 License: file LICENSE

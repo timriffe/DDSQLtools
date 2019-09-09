@@ -63,8 +63,8 @@
 #' L5 <- linkGenerator(type = "dataProcessTypes")
 #' L5
 #' @export
-linkGenerator <- function(server = "http://24.239.36.16:9654/un2/api/", 
-                          type = c("country", 
+linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/", 
+                          type = c("locations", 
                                    "locationType", 
                                    "subGroup",
                                    "Indicator", 
