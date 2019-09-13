@@ -13,21 +13,45 @@ library(DDSQLtools)
 L <- getLocations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "true")
+
+
 library(tidyverse)
 getCodes <- function(type = "Locations", save = FALSE, ...){
-  read_API2(type, save = save, ...)
+  as_tibble(read_API2(type, save = save, ...))
 }
 
 linkGenerator2 <- function(server = "http://24.239.36.16:9654/un3/api/", 
-                           type , ...) {
+                           type,
+                           ...) {
   
   # This list needs a major overhaul: some items are valid and some are not.
   
-  types <- c("ages","Age","Component","DataCatalog","dataProcessTypes","DataReliability"
-             ,"DataSource","DataSourceStatus","DataSourceType","DataStatus"
-             ,"DataType","DefaultKeys","Indicator","IndicatorType","locAreaTypes"
-             ,"Location","PeriodGroup","PeriodType","Sex","StatisticalConcept",
-             "StructuredData","subGroups","SubGroupType","TimeReference","UserUtility")
+  types <- c("ages",
+             "openAges",
+             "Component",
+             "DataCatalog",
+             "dataProcessTypes",
+             "DataReliability",
+             "DataSource",
+             "DataSourceStatus",
+             "DataSourceType",
+             "DataStatus",
+             "DataType",
+             "DefaultKeys",
+             "Indicator",
+             "IndicatorTypes",
+             "locAreaTypes",
+             "Locations",
+             "PeriodGroup",
+             "PeriodType",
+             "Sex",
+             "StatisticalConcept",
+             "StructuredData",
+             "subGroups",
+             "SubGroupType",
+             "TimeReference",
+             "UserUtility")
+  
   type  <- match.arg(tolower(type), choices = tolower(types))
   query <- build_filter2(...)
   link  <- paste0(server, type, query)
@@ -36,6 +60,8 @@ linkGenerator2 <- function(server = "http://24.239.36.16:9654/un3/api/",
 
 read_API2 <- function(type, save, ...){
   P <- linkGenerator2(type = type, ...)
+  # Temporary, just to check how the URL is constructed
+  print(P)
   X <- rjson::fromJSON(file = P)
   #
   out <- X %>% 
@@ -58,19 +84,82 @@ read_API2 <- function(type, save, ...){
 # Some can be used in combinations and some not. I don't
 # see a pattern. 
 build_filter2 <- function(
-  dataProcess = NULL, startYear = NULL, endYear = NULL, 
-  indicatorTypeIds = NULL, isComplete = NULL, locIds = NULL, LocAreaType = NULL, 
-  SubGroup = NULL, addDefault = NULL, includeDependencies = NULL, 
-  includeFormerCountries = NULL) {
+                          dataProcess = NULL,
+                          startYear = NULL,
+                          endYear = NULL,
+                          AgeStart = NULL,
+                          AgeEnd = NULL,
+                          indicatorTypeIds = NULL,
+                          isComplete = NULL,
+                          isActive = NULL,
+                          locIds = NULL,
+                          LocAreaType = NULL,
+                          SubGroup = NULL,
+                          addDefault = NULL,
+                          includeDependencies = NULL, 
+                          includeFormerCountries = NULL) {
   I <- environment() %>% as.list() %>% unlist()
   if (length(I) > 0){
-    S   <- paste(paste(names(I), I, sep = "="),collapse="&")
+    S   <- paste(paste(names(I), I, sep = "="), collapse="&")
     out <- paste0("?", S)
   } else {
     out <- ""
   }
   return(out)
 }
+
+# Gets all locations
+getCodes("locations")
+getCodes("locations", includeFormerCountries = "false")
+getCodes("locations",
+         includeFormerCountries = "false",
+         includeDependencies = "true")
+
+# Gets all indicator Types
+getCodes("indicatortypes")
+
+# Get all location area types
+getCodes("locareatypes")
+
+getCodes("locareatypes",
+         isActive = "1")
+
+getCodes("locareatypes",
+         isComplete = "1")
+
+getCodes("locareatypes",
+         startYear = 800,
+         endYear = 1000)
+
+getCodes("locareatypes",
+         endYear = 2019,
+         indicatorTypeIds = 8,
+         isComplete = 0,
+         locIds = 4,
+         startYear = 1950
+         )
+
+
+# Get all age distributions
+getCodes("ages")
+
+## Why doesn't this work?
+## It says in the new docs that these parameters are available
+getCodes("ages", AgeStart = 0, AgeEnd = 30)
+getCodes("ages", AgeStart = "0", AgeEnd = "30")
+
+# Doesn't work, see docx file with inconsistencies
+getCodes("openAges")
+
+# Data process types
+getCodes("dataprocesstypes",
+         startYear = 1950
+         endYear = 2019,
+         indicatorTypeIds = 8,
+         isComplete = 0,
+         locIds = 4,
+         )
+
 
 
 getCodes("locAreaTypes", locIds = 8,indicatorTypeIds = 8) # works
