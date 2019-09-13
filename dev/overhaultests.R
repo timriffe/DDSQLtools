@@ -47,6 +47,9 @@ linkGenerator2 <- function(server = "http://24.239.36.16:9654/un3/api/",
              "Sex",
              "StatisticalConcept",
              "StructuredData",
+             "StructuredDataTable",
+             "StructuredDataRecords",
+             "StructuredDataSeries",
              "subGroups",
              "SubGroupType",
              "TimeReference",
@@ -83,8 +86,8 @@ read_API2 <- function(type, save, ...){
 # items and some for others. Some are required and some not. 
 # Some can be used in combinations and some not. I don't
 # see a pattern. 
-build_filter2 <- function(
-                          dataProcess = NULL,
+build_filter2 <- function(dataProcess = NULL,
+                          dataProcessIds = NULL,
                           startYear = NULL,
                           endYear = NULL,
                           AgeStart = NULL,
@@ -94,12 +97,23 @@ build_filter2 <- function(
                           isActive = NULL,
                           locIds = NULL,
                           LocAreaType = NULL,
+                          locAreaTypeIds = NULL,
                           SubGroup = NULL,
+                          subGroupIds = NULL,
                           addDefault = NULL,
                           includeDependencies = NULL, 
                           includeFormerCountries = NULL) {
-  I <- environment() %>% as.list() %>% unlist()
-  if (length(I) > 0){
+
+  # Keep as list because unlisting multiple ids for a single
+  # parameters separates them into different strings
+  I <- environment() %>% as.list()
+
+  if (length(I) > 0) {
+    # Collapse multiple ids to parameters
+    I <- vapply(I, paste0, collapse = ",", FUN.VALUE = character(1))
+    # and exclude the empty ones
+    I <- I[I != ""]
+    
     S   <- paste(paste(names(I), I, sep = "="), collapse="&")
     out <- paste0("?", S)
   } else {
@@ -127,18 +141,23 @@ getCodes("locareatypes",
 getCodes("locareatypes",
          isComplete = "1")
 
+# Reurns same number of locations as other requests, why?
 getCodes("locareatypes",
          startYear = 800,
          endYear = 1000)
 
+# This can be read as give me locareatypes of:
+# - Afghanistan
+# - "Population by sex and age"
+# - From 1950 to 2019
+# - which are not complete
 getCodes("locareatypes",
-         endYear = 2019,
-         indicatorTypeIds = 8,
-         isComplete = 0,
          locIds = 4,
-         startYear = 1950
+         indicatorTypeIds = 8,
+         startYear = 1950,
+         endYear = 2019,
+         isComplete = 0
          )
-
 
 # Get all age distributions
 getCodes("ages")
@@ -153,12 +172,88 @@ getCodes("openAges")
 
 # Data process types
 getCodes("dataprocesstypes",
-         startYear = 1950
+         startYear = 1950,
          endYear = 2019,
          indicatorTypeIds = 8,
          isComplete = 0,
          locIds = 4,
          )
+
+# subGroups
+
+# This can be read as give me the subgroups of:
+# - Afghanistan
+# - "Population by sex and age"
+# - From 1950 to 2019
+# - which are not complete
+getCodes("subgroups",
+         startYear = 1950,
+         endYear = 2019,
+         indicatorTypeIds = 8,
+         isComplete = 0,
+         locIds = 4,
+         )
+
+# Get data
+# Example 1:
+# - Data Process(dataProcessIds)=2 (Census)
+# - Indicator Type(indicatorTypeIds)=8 (Pop by age/sex)
+# - Age Distribution (isComplete)=0 (Abridged)
+# - Country/Location(locIds)=4 (Afghanistan)
+# - Location Area Type(locAreaTypeIds)=2 (Urban only)
+# - Start Year(startYear)=1950 (default)
+# - SubGroup(subGroupIds)=2 (Total or All Groups)
+
+# I think this returns some time of metadata
+getCodes("structureddataseries",
+         locIds = 4,
+         locAreaTypeIds = 2,
+         dataProcessIds = 2,
+         startYear = 1950,
+         endYear = 3000,
+         indicatorTypeIds = 8,
+         isComplete = 0,
+         subGroupIds = 2)
+
+
+tst <-
+  getCodes("structureddatatable",
+           locIds = c(4, 32),
+           locAreaTypeIds = 2,
+           dataProcessIds = 2,
+           startYear = 1950,
+           endYear = 3000,
+           indicatorTypeIds = 8,
+           isComplete = 0,
+           subGroupIds = 2)
+
+# There is no way of uniquely identifying an observation
+# because even if I specify the same columns as the parameters
+# in the request, the response might bring *further* columns
+# such as sex which would double the dataset in size.
+# This means that in principle we can not reshape
+# the data for the user (to wide or long).
+tst %>%
+  select(location,
+         locationtype,
+         dataprocess,
+         sourceyear,
+         year,
+         datatype,
+         sex,
+         age,
+         subgroup,
+         FootNoteID,
+         DataValue)
+
+
+# Question to Tim #1
+# Would the result of the request above be what the analyst receives?
+# That is, all of the requested filters + the Data Value column?
+# I'm trying to think in terms of whether we need more reshaping
+# for the `DemoTools` wrappers.
+
+
 
 
 
