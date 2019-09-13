@@ -122,6 +122,8 @@ build_filter2 <- function(dataProcess = NULL,
   return(out)
 }
 
+getCodes("datareliability")
+
 # Gets all locations
 getCodes("locations")
 getCodes("locations", includeFormerCountries = "false")
@@ -154,7 +156,7 @@ getCodes("locareatypes",
 getCodes("locareatypes",
          locIds = 4,
          indicatorTypeIds = 8,
-         startYear = 1950,
+}         startYear = 1950,
          endYear = 2019,
          isComplete = 0
          )
@@ -254,7 +256,40 @@ tst %>%
 # for the `DemoTools` wrappers.
 
 
+# You left off here
 
+# Next thing you wanted to do was to try some more examples
+# of data extraction as the first one (try, Dominican Republic, fertility)
+# and also try one with two or three countries (before you need to check
+# that they indeed have the specific type of indicator available)
+
+
+# Once you have that, you need to identify all API end points which are
+# only useful to extract information to be used in the data extraction
+# stage (location, locationtype, dataprocess, etc...). Why do you do that?
+# Because I think a nice way of organizing everything is that these 'accessor'
+# endpoints should have a separate function so that users can extract all their
+# available values to search for the name. However, inside the main grab data
+# function, the user will be able to just input either the code or the string name
+# and we would do the extraction of these string names with these 'accessor'
+# functions. Here I have a small dilemma which is whether each API request
+# should return an empty data.frame with all columns of the request and thus
+# if someone asks, let's say, for country asasda, you would get an empty
+# data frame back, or whether we should throw an error on the 'accessor'
+# functions that tell the user that country/dataprocess
+
+# The other problem is whether making several API requests (through the accessor
+# functions) every time you request a main data source would just break the API.
+# This we have to talk with them. Two solutions is just adding a Sys.sleep(1)
+# or something like that or just cacheing each accessor result in tmpdir
+# for that session. If we add the Sys.sleep(1) solution (which I like)
+# then we would have to avoid the empty dataframe workaround when the request
+# is wrong and just fail fast to avoid spending time in the next requests
+# when we already know that they've failed (not waste any more time).
+
+# And the next stage is to identify the functions that do the actual extraction
+# and just create wrappers around those and use the accessor function to
+# check their values.
 
 
 getCodes("locAreaTypes", locIds = 8,indicatorTypeIds = 8) # works
