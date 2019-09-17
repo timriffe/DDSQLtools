@@ -63,7 +63,7 @@ getCodes("locareatypes",
 getCodes("locareatypes",
          locIds = 4,
          indicatorTypeIds = 8,
-}         startYear = 1950,
+         startYear = 1950,
          endYear = 2019,
          isComplete = 0
          )
@@ -211,6 +211,40 @@ tst %>%
 # and also try one with two or three countries (before you need to check
 # that they indeed have the specific type of indicator available)
 
+loc_id <-
+  getLocations() %>%
+  filter(Name == "Dominican Republic") %>%
+  pull(PK_LocID)
+
+indicator_id <-
+  getIndicators(locIds = loc_id) %>%
+  filter(Name == "Total fertility: Rates") %>%
+  pull("PK_IndicatorTypeID")
+
+# This doesn't work very often if the country/indicator
+# don't have a local area.
+locarea_id <-
+  getLocationTypes(locIds = loc_id,
+                   indicatorTypeIds = indicator_id) %>%
+  pull("PK_LocAreaTypeID")
+
+dprocess_id <-
+  getDataProcess(locIds = loc_id,
+               indicatorTypeIds = indicator_id) %>%
+  filter(ShortName == "Survey") %>%
+  pull(PK_DataProcessTypeID)
+
+subgroup_id <-
+  getSubGroups() %>%
+  filter(Name == "Total or All groups") %>%
+  pull(PK_SubGroupID)
+
+tst <-
+  getRecordData(locIds = loc_id,
+                indicatorTypeIds = indicator_id,
+                locAreaTypeIds = locarea_id,
+                dataProcessIds = dprocess_id,
+                subGroupIds = subgroup_id)
 
 # Once you have that, you need to identify all API end points which are
 # only useful to extract information to be used in the data extraction
