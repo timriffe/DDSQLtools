@@ -78,6 +78,7 @@ getCodes("ages", AgeStart = "0", AgeEnd = "30")
 
 # Doesn't work, see docx file with inconsistencies
 getCodes("openAges")
+getCodes("openAges", 1)
 
 # Data process types
 getCodes("dataprocesstypes",
@@ -114,16 +115,15 @@ getCodes("subgroups",
 # - SubGroup(subGroupIds)=2 (Total or All Groups)
 
 # I think this returns some time of metadata
-getCodes("structureddataseries",
-         locIds = 4,
-         locAreaTypeIds = 2,
-         dataProcessIds = 2,
-         startYear = 1950,
-         endYear = 3000,
-         indicatorTypeIds = 8,
-         isComplete = 0,
-         subGroupIds = 2)
-
+tst1 <- getCodes("structureddataseries",
+                 locIds = 4,
+                 locAreaTypeIds = 2,
+                 dataProcessIds = 2,
+                 startYear = 1950,
+                 endYear = 3000,
+                 indicatorTypeIds = 8,
+                 isComplete = 0,
+                 subGroupIds = 2)
 
 tst <-
   getCodes("structureddatatable",
@@ -155,12 +155,53 @@ tst %>%
          FootNoteID,
          DataValue)
 
-
 # Question to Tim #1
 # Would the result of the request above be what the analyst receives?
 # That is, all of the requested filters + the Data Value column?
 # I'm trying to think in terms of whether we need more reshaping
 # for the `DemoTools` wrappers.
+
+
+id <-
+  getCodes("locations") %>%
+  filter(Name == "Dominican Republic") %>%
+  pull(PK_LocID)
+
+getCodes("locareatype")
+getCodes("dataprocesstypes")
+getCodes("indicatortypes")
+
+
+# To be able to make a query these parameters
+# are required:
+getCodes("structureddataseries",
+         locIds = 214,
+         locAreaTypeIds = 2,
+         dataProcessIds = 2,
+         indicatorTypeIds = 8,
+         subGroupIds = 2)
+
+tst <-
+  getCodes("structureddatatable",
+         locIds = 214,
+         locAreaTypeIds = 2,
+         dataProcessIds = 2,
+         indicatorTypeIds = 8,
+         subGroupIds = 2)
+
+
+tst %>%
+  select(location,
+         locationtype,
+         dataprocess,
+         sourceyear,
+         year,
+         datatype,
+         sex,
+         age,
+         subgroup,
+         FootNoteID,
+         DataValue)
 
 
 # You left off here
