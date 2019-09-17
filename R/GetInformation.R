@@ -117,11 +117,13 @@ read_API <- function(type, save, ...){
   print(P)
   X <- rjson::fromJSON(file = P)
   #
-  out <- X %>% 
+  out <-
+    X %>% 
     lapply(unlist) %>%    # list elements can either be lists or vectors
     lapply(as.list) %>%   # here now everything is homogenously a vector
-    dplyr::bind_rows() %>%       # even if named elements differ still becomes rectangular
-    as.data.frame()       # coerce to desired form
+    dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
+    lapply(trimws) %>%    # Remove leading/trailing spaces from the names
+    as.data.frame(stringsAsFactors = FALSE)       # coerce to desired form
   if (type == "recordDataDetail") {
     out <- format.numeric.colums(out)
   }
@@ -129,6 +131,6 @@ read_API <- function(type, save, ...){
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
   }
-  tibble::as_tibble(out)
+  out
 }
 
