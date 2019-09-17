@@ -4,38 +4,56 @@
 \alias{build_filter}
 \title{Build the section of the path (link) responsible with filtering the data}
 \usage{
-build_filter(dataProcess = NULL, startYear = NULL, endYear = NULL,
-  indicatorType = NULL, isComplete = NULL, loc = NULL,
-  locAreaType = NULL, subGroup = NULL, addDefault = NULL,
+build_filter(dataProcessIds = NULL, startYear = NULL, endYear = NULL,
+  AgeStart = NULL, AgeEnd = NULL, indicatorTypeIds = NULL,
+  isComplete = NULL, isActive = NULL, locIds = NULL,
+  locAreaTypeIds = NULL, subGroupIds = NULL, addDefault = NULL,
   includeDependencies = NULL, includeFormerCountries = NULL)
 }
 \arguments{
-\item{dataProcess}{Data process ID as defined by the UNPD. Run the
-\code{\link{getDataProcessTypes}} function to see the available options;}
+\item{dataProcessIds}{}
 
 \item{startYear}{Start year. Default: NULL;}
 
 \item{endYear}{End year. Default: NULL;}
 
-\item{indicatorType}{Indicator type ID as defined by the UNPD. Run the
-\code{\link{getIndicators}} function to see the available options;}
+\item{AgeStart}{}
+
+\item{AgeEnd}{}
+
+\item{indicatorTypeIds}{}
 
 \item{isComplete}{isComplete;}
 
-\item{loc}{Location ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
+\item{isActive}{}
 
-\item{locAreaType}{Location area type ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
+\item{locIds}{}
 
-\item{subGroup}{SubGroup ID as defined by the UNPD.
-Run the \code{\link{getSubGroups}} function to see the available options;}
+\item{locAreaTypeIds}{}
+
+\item{subGroupIds}{}
 
 \item{addDefault}{Logical. Default: FALSE;}
 
 \item{includeDependencies}{Logical. Default: FALSE;}
 
 \item{includeFormerCountries}{Logical. Default: FALSE;}
+
+\item{dataProcess}{Data process ID as defined by the UNPD. Run the
+\code{\link{getDataProcessTypes}} function to see the available options;
+TODOOOOOOOOOOOOO!!}
+
+\item{indicatorType}{Indicator type ID as defined by the UNPD. Run the
+\code{\link{getIndicators}} function to see the available options;}
+
+\item{locIds}{Location ID as defined by the UNPD. Run the
+\code{\link{getLocations}} function to see the available options;}
+
+\item{locAreaTypeIds}{Location area type ID as defined by the UNPD. Run the
+\code{\link{getLocations}} function to see the available options;}
+
+\item{subGroup}{SubGroup ID as defined by the UNPD.
+Run the \code{\link{getSubGroups}} function to see the available options;}
 }
 \description{
 Build the section of the path (link) responsible with filtering the data

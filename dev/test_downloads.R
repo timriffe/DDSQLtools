@@ -8,8 +8,8 @@ library(DDSQLtools)
 library(tibble)
 
 # Check what subgroups are available for:
-S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
-                  loc = 818,          # Egypt
+S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+                  locIds = 818,          # Egypt
                   isComplete = 0)
 S
 
@@ -19,8 +19,8 @@ L <- getLocations(addDefault = "false",
 L
 
 # Check what subgroups are available for:
-P <- getLocationTypes(indicatorType = 8,  # Population by age and sex indicator;
-                      loc = 230,          # Venezuela
+P <- getLocationTypes(indicatorTypeIds = 8,  # Population by age and sex indicator;
+                      locIds = 230,          # Venezuela
                       isComplete = 0)
 P
 
@@ -58,15 +58,15 @@ L1
 
 # Link to location types (for Egypt)
 L2 <- linkGenerator(type = "locationType",
-                    loc = 818,
-                    indicatorType = "8,9,10",
+                    locIds = 818,
+                    indicatorTypeIds = "8,9,10",
                     isComplete = 0)
 L2
 
 # Link to subgroup types (for Egypt)
 L3 <- linkGenerator(type = "subGroup",
-                    indicatorType = 8,
-                    loc = 818,
+                    indicatorTypeIds = 8,
+                    locIds = 818,
                     isComplete = 0)
 L3
 

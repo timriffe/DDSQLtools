@@ -42,8 +42,8 @@ D <- getDataProcessTypes()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
-S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
-                  loc = 818,          # Egypt
+S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+                  locIds = 818,          # Egypt
                   isComplete = 0)
 validate_read_API(S)  # validate
 
@@ -54,8 +54,8 @@ L <- getLocations(addDefault = "false",
 validate_read_API(L)  # validate
 
 # ------------------------------------------
-P <- getLocationTypes(indicatorType = 8,  
-                      loc = 818,
+P <- getLocationTypes(indicatorTypeIds = 8,  
+                      locIds = 818,
                       isComplete = 0)
 validate_read_API(P)  # validate
 

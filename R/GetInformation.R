@@ -23,14 +23,14 @@ getLocations <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' # Check what subgroups are available for:
-#' P <- getLocationTypes(indicatorType = 8, # Population by age and sex indicator;
-#'                       loc = 818,         # Egypt
+#' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
+#'                       locIds = 818,      # Egypt
 #'                       isComplete = 0)
 #' P
 #' @export
 getLocationTypes <- function(save = FALSE, ...) {
   
-  read_API("locationType", save, ...)
+  read_API("locareatypes", save, ...)
 }
 
 
@@ -38,14 +38,14 @@ getLocationTypes <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' # Check what subgroups are available for:
-#' S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
-#'                   loc = 818,          # Egypt
+#' S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+#'                   locIds = 818,       # Egypt
 #'                   isComplete = 0)
 #' S
 #' @export
 getSubGroups <- function(save = FALSE, ...) {
   
-  read_API("subGroup", save, ...)
+  read_API("subGroups", save, ...)
 }
 
 
