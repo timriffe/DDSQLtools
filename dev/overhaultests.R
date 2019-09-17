@@ -20,107 +20,14 @@ getCodes <- function(type = "Locations", save = FALSE, ...){
   as_tibble(read_API2(type, save = save, ...))
 }
 
-linkGenerator2 <- function(server = "http://24.239.36.16:9654/un3/api/", 
-                           type,
-                           ...) {
-  
-  # This list needs a major overhaul: some items are valid and some are not.
-  
-  types <- c("ages",
-             "openAges",
-             "Component",
-             "DataCatalog",
-             "dataProcessTypes",
-             "DataReliability",
-             "DataSource",
-             "DataSourceStatus",
-             "DataSourceType",
-             "DataStatus",
-             "DataType",
-             "DefaultKeys",
-             "Indicator",
-             "IndicatorTypes",
-             "locAreaTypes",
-             "Locations",
-             "PeriodGroup",
-             "PeriodType",
-             "Sex",
-             "StatisticalConcept",
-             "StructuredData",
-             "StructuredDataTable",
-             "StructuredDataRecords",
-             "StructuredDataSeries",
-             "subGroups",
-             "SubGroupType",
-             "TimeReference",
-             "UserUtility")
-  
-  type  <- match.arg(tolower(type), choices = tolower(types))
-  query <- build_filter2(...)
-  link  <- paste0(server, type, query)
-  return(link)
-}
 
-read_API2 <- function(type, save, ...){
-  P <- linkGenerator2(type = type, ...)
-  # Temporary, just to check how the URL is constructed
-  print(P)
-  X <- rjson::fromJSON(file = P)
-  #
-  out <- X %>% 
-    lapply(unlist) %>%    # list elements can either be lists or vectors
-    lapply(as.list) %>%   # here now everything is homogenously a vector
-    bind_rows() %>%       # even if named elements differ still becomes rectangular
-    as.data.frame()       # coerce to desired form
-  if (type == "recordDataDetail") {
-    out <- format.numeric.colums(out)
-  }
-  if (save) {
-    save_in_working_dir(data = out, file_name = paste0("UNPD_", 
-                                                       type))
-  }
-  return(out)
-}
+
+
 
 # All the optional args in build_filter2() need an overhaul: some work for some
 # items and some for others. Some are required and some not. 
 # Some can be used in combinations and some not. I don't
 # see a pattern. 
-build_filter2 <- function(dataProcess = NULL,
-                          dataProcessIds = NULL,
-                          startYear = NULL,
-                          endYear = NULL,
-                          AgeStart = NULL,
-                          AgeEnd = NULL,
-                          indicatorTypeIds = NULL,
-                          isComplete = NULL,
-                          isActive = NULL,
-                          locIds = NULL,
-                          LocAreaType = NULL,
-                          locAreaTypeIds = NULL,
-                          SubGroup = NULL,
-                          subGroupIds = NULL,
-                          addDefault = NULL,
-                          includeDependencies = NULL, 
-                          includeFormerCountries = NULL) {
-
-  # Keep as list because unlisting multiple ids for a single
-  # parameters separates them into different strings
-  I <- environment() %>% as.list()
-
-  if (length(I) > 0) {
-    # Collapse multiple ids to parameters
-    I <- vapply(I, paste0, collapse = ",", FUN.VALUE = character(1))
-    # and exclude the empty ones
-    I <- I[I != ""]
-    
-    S   <- paste(paste(names(I), I, sep = "="), collapse="&")
-    out <- paste0("?", S)
-  } else {
-    out <- ""
-  }
-  return(out)
-}
 
 getCodes("datareliability")
 

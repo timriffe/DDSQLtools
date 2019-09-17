@@ -4,9 +4,7 @@
 \alias{linkGenerator}
 \title{API Link Generator Function}
 \usage{
-linkGenerator(server = "http://24.239.36.16:9654/un2/api/",
-  type = c("country", "locationType", "subGroup", "Indicator",
-  "dataProcessTypes", "seriesDataDetail", "recordDataDetail"), ...)
+linkGenerator(server = "http://24.239.36.16:9654/un3/api/", type, ...)
 }
 \arguments{
 \item{server}{The path to the database. Default: 
@@ -14,22 +12,23 @@ linkGenerator(server = "http://24.239.36.16:9654/un2/api/",
 
 \item{type}{Type of data. Various options are available.}
 
-\item{...}{Other arguments that might define the path to data. Handle with 
+\item{...}{Other arguments that might define the path to data. Handle with
+TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
 care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcess}} -- Data process ID as defined by the UNPD. 
+  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{getDataProcessTypes}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{indicatorType}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{getIndicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
-  \item{\code{loc}} -- Location ID as defined by the UNPD. Run the
+  \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{getLocations}} function to see the available options;
-  \item{\code{locAreaType}} -- Location area type ID as defined by the UNPD. 
+  \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
   Run the \code{\link{getLocationTypes}} function to see the available 
   options;
-  \item{\code{subGroup}} -- SubGroup ID as defined by the UNPD. Run the 
+  \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
   \code{\link{getSubGroups}} function to see the available options;
   \item{\code{addDefault}} -- Logical. Default: FALSE;
   \item{\code{includeDependencies}} -- Logical. Default: FALSE;

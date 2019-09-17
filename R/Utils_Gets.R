@@ -8,22 +8,23 @@
 #' @param server The path to the database. Default: 
 #' \code{"http://24.239.36.16:9654/un2/api/"};
 #' @param type Type of data. Various options are available.
-#' @param ... Other arguments that might define the path to data. Handle with 
+#' @param ... Other arguments that might define the path to data. Handle with
+#' TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
 #' care, this is important! The following options are available: \itemize{
-#'   \item{\code{dataProcess}} -- Data process ID as defined by the UNPD. 
+#'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
 #'   Run the \code{\link{getDataProcessTypes}} function to see the available 
 #'   options;
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
-#'   \item{\code{indicatorType}} -- Indicator type ID as defined by the UNPD. 
+#'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
 #'   Run the \code{\link{getIndicators}} function to see the available options;
 #'   \item{\code{isComplete}} -- isComplete;
-#'   \item{\code{loc}} -- Location ID as defined by the UNPD. Run the
+#'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
 #'   \code{\link{getLocations}} function to see the available options;
-#'   \item{\code{locAreaType}} -- Location area type ID as defined by the UNPD. 
+#'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
 #'   Run the \code{\link{getLocationTypes}} function to see the available 
 #'   options;
-#'   \item{\code{subGroup}} -- SubGroup ID as defined by the UNPD. Run the 
+#'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
 #'   \code{\link{getSubGroups}} function to see the available options;
 #'   \item{\code{addDefault}} -- Logical. Default: FALSE;
 #'   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
@@ -104,46 +105,62 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
 
 
 #' Build the section of the path (link) responsible with filtering the data
-#' @param dataProcess Data process ID as defined by the UNPD. Run the
-#' \code{\link{getDataProcessTypes}} function to see the available options;
+#' @param dataProcessIds 
 #' @param startYear Start year. Default: NULL;
 #' @param endYear End year. Default: NULL;
-#' @param indicatorType Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{getIndicators}} function to see the available options;
+#' @param AgeStart 
+#' @param AgeEnd 
+#' @param indicatorTypeIds 
 #' @param isComplete isComplete;
-#' @param loc Location ID as defined by the UNPD. Run the
-#' \code{\link{getLocations}} function to see the available options;
-#' @param locAreaType Location area type ID as defined by the UNPD. Run the
-#' \code{\link{getLocations}} function to see the available options;
-#' @param subGroup SubGroup ID as defined by the UNPD.
-#' Run the \code{\link{getSubGroups}} function to see the available options;
+#' @param isActive 
+#' @param locIds 
+#' @param locAreaTypeIds 
+#' @param subGroupIds 
 #' @param addDefault Logical. Default: FALSE;
 #' @param includeDependencies Logical. Default: FALSE;
 #' @param includeFormerCountries Logical. Default: FALSE;
+#' @param dataProcess Data process ID as defined by the UNPD. Run the
+#' \code{\link{getDataProcessTypes}} function to see the available options;
+#' TODOOOOOOOOOOOOO!!
+#' @param indicatorType Indicator type ID as defined by the UNPD. Run the
+#' \code{\link{getIndicators}} function to see the available options;
+#' @param locIds Location ID as defined by the UNPD. Run the
+#' \code{\link{getLocations}} function to see the available options;
+#' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
+#' \code{\link{getLocations}} function to see the available options;
+#' @param subGroup SubGroup ID as defined by the UNPD.
+#' Run the \code{\link{getSubGroups}} function to see the available options;
 #' @keywords internal
-build_filter <- function(dataProcess = NULL,
+build_filter <- function(dataProcessIds = NULL,
                          startYear = NULL,
                          endYear = NULL,
-                         indicatorType = NULL,
+                         AgeStart = NULL,
+                         AgeEnd = NULL,
+                         indicatorTypeIds = NULL,
                          isComplete = NULL,
-                         loc = NULL,
-                         locAreaType = NULL,
-                         subGroup = NULL,
+                         isActive = NULL,
+                         locIds = NULL,
+                         locAreaTypeIds = NULL,
+                         subGroupIds = NULL,
                          addDefault = NULL,
-                         includeDependencies = NULL,
+                         includeDependencies = NULL, 
                          includeFormerCountries = NULL) {
-  
-  I <- as.list(environment())
-  S <- NULL
-  for (i in 1:length(I)) {
-    if (!is.null(I[[i]])) {
-      x <- paste0(names(I)[i], "=", I[[i]])
-      S <- paste(S, x, sep = "&")
-    }
+
+  # Keep as list because unlisting multiple ids for a single
+  # parameters separates them into different strings
+  I <- environment() %>% as.list()
+
+  if (length(I) > 0) {
+    # Collapse multiple ids to parameters
+    I <- vapply(I, paste0, collapse = ",", FUN.VALUE = character(1))
+    # and exclude the empty ones
+    I <- I[I != ""]
+    
+    S   <- paste(paste(names(I), I, sep = "="), collapse="&")
+    out <- paste0("?", S)
+  } else {
+    out <- ""
   }
-  
-  S <- substr(S, 2, nchar(S)) # remove 1st "&"...
-  out <- paste0("?", S)       # and add "?" instead
   return(out)
 }
 

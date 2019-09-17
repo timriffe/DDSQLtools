@@ -111,44 +111,24 @@ getRecordData <- function(save = FALSE, ...) {
 #' \code{FALSE};
 #' @inheritParams linkGenerator
 #' @keywords internal
-read_API <-function(type, 
-                    save, 
-                    ...) {
-  
-  P <- linkGenerator(type = type, ...) # path
-  X <- fromJSON(file = P)
-  
-  if (type %in% c("Indicator", "dataProcessTypes")) {
-    
-    X1 <- X %>% lapply(unlist) 
-    # X1 may be a list with elements of different length, therefore if we do
-    # do.call("rbind", X1) we might have some errors/warnings and funny output;
-    # So we build a matrix and populate it row by row as follows:
-    n  <- length(X1)
-    cn <- X1 %>% lapply(names) %>% unlist %>% unique # unique names
-    Z  <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
-    for (j in 1:n) Z[j, names(X1[[j]])] <- X1[[j]]
-  
-  } else if (type %in% c("seriesDataDetail", "recordDataDetail")) {
-    X1 <- X %>% lapply(unlist) 
-    Z  <- do.call("rbind", X1)
-    
-  } else {
-    Z <- do.call("rbind", X)
-  }
-  
-  out <- as.data.frame(Z)
-  
-  if (type == "recordDataDetail"){
+read_API <- function(type, save, ...){
+  P <- linkGenerator(type = type, ...)
+  # Temporary, just to check how the URL is constructed
+  print(P)
+  X <- rjson::fromJSON(file = P)
+  #
+  out <- X %>% 
+    lapply(unlist) %>%    # list elements can either be lists or vectors
+    lapply(as.list) %>%   # here now everything is homogenously a vector
+    dplyr::bind_rows() %>%       # even if named elements differ still becomes rectangular
+    as.data.frame()       # coerce to desired form
+  if (type == "recordDataDetail") {
     out <- format.numeric.colums(out)
-  } 
-  
-  if (save) {
-    save_in_working_dir(data = out, file_name = paste0("UNPD_", type))
   }
-  
-  return(out)
+  if (save) {
+    save_in_working_dir(data = out, file_name = paste0("UNPD_", 
+                                                       type))
+  }
+  tibble::as_tibble(out)
 }
-
-
 
