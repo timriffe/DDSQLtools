@@ -46,28 +46,28 @@ of the database changes this will have to be updated as well.
 }
 \examples{
 # Link to country list
-L1 <- linkGenerator(type = "country",
+L1 <- linkGenerator(type = "locations",
                     addDefault = "false",
                     includeDependencies = "false",
                     includeFormerCountries = "false")
 L1
 
 # Link to location types (for Egypt)
-L2 <- linkGenerator(type = "locationType",
-                    indicatorType = 8,
-                    loc = 818,
+L2 <- linkGenerator(type = "locAreaTypes",
+                    indicatorTypeIds = 8,
+                    locIds = 818,
                     isComplete = 0)
 L2
 
 # Link to subgroup types (for Egypt)
-L3 <- linkGenerator(type = "subGroup",
-                    indicatorType = 8,
-                    loc = 818,
+L3 <- linkGenerator(type = "subGroups",
+                    indicatorTypeIds = 8,
+                    locIds = 818,
                     isComplete = 0)
 L3
 
 # Link to indicator list
-L4 <- linkGenerator(type = "Indicator",
+L4 <- linkGenerator(type = "indicators",
                     addDefault = "false")
 L4
 

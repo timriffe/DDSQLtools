@@ -53,56 +53,54 @@ getSubGroups <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' I <- getIndicators(addDefault = "false")
-#' I[, c("IndicatorTypeID", "Name", "ShortName")]
+#' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' @export
 getIndicators <- function(save = FALSE, ...) {
   
-  read_API("Indicator", save, ...)
+  read_API("indicatortypes", save, ...)
 }
-
 
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples 
 #' D <- getDataProcessTypes()
-#' D
+#' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' @export
 getDataProcessTypes <- function(save = FALSE, ...) {
   
   read_API("dataProcessTypes", save, ...)
 }
 
-
 #' Get information about available details for a given series of data
 #' @inheritParams read_API
 #' @examples 
-#' G <- getSeriesDataDetail(dataProcess = paste(0:15, collapse = ","), # all possible processes
-#'                          indicatorType = 25,    # M[x]
-#'                          loc = 818,             # Egypt
-#'                          locAreaType = "2,3,4", # all possible types
-#'                          subGroup = 2)
+#' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
+#'                    indicatorTypeIds = 25,    # M[x]
+#'                    locIds = 818,             # Egypt
+#'                    locAreaTypeIds = c(2, 3, 4), # all possible types
+#'                    subGroupIds = 2)
 #' G
 #' @export
-getSeriesDataDetail <- function(save = FALSE, ...) {
+getSeriesData <- function(save = FALSE, ...) {
   
-  read_API("seriesDataDetail", save, ...)
+  read_API("structureddataseries", save, ...)
 }
 
 
 #' Download data from UNPD portal
 #' @inheritParams read_API
 #' @examples 
-#' X <- getRecordDataDetail(dataProcess = 6,   # Estimate
-#'                          indicatorType = 8, # Population by age and sex - abridged 
-#'                          loc = 818,         # Egypt
-#'                          locAreaType = 2,   # Whole area 
-#'                          subGroup = 2,      # Total or All groups
-#'                          isComplete = 0)    # Age Distribution: Abridged
+#' X <- getRecordData(dataProcessIds = 6,   # Estimate
+#'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
+#'                    locIds = 818,         # Egypt
+#'                    locAreaTypeIds = 2,   # Whole area 
+#'                    subGroupIds = 2,      # Total or All groups
+#'                    isComplete = 0)       # Age Distribution: Abridged
 #' head(X)
 #' @export
-getRecordDataDetail <- function(save = FALSE, ...) {
+getRecordData <- function(save = FALSE, ...) {
   
-  read_API("recordDataDetail", save, ...)
+  read_API("structureddatarecords", save, ...)
 }
 
 

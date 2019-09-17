@@ -34,28 +34,28 @@
 #' of the database changes this will have to be updated as well.
 #' @examples 
 #' # Link to country list
-#' L1 <- linkGenerator(type = "country",
+#' L1 <- linkGenerator(type = "locations",
 #'                     addDefault = "false",
 #'                     includeDependencies = "false",
 #'                     includeFormerCountries = "false")
 #' L1
 #' 
 #' # Link to location types (for Egypt)
-#' L2 <- linkGenerator(type = "locationType",
-#'                     indicatorType = 8,
-#'                     loc = 818,
+#' L2 <- linkGenerator(type = "locAreaTypes",
+#'                     indicatorTypeIds = 8,
+#'                     locIds = 818,
 #'                     isComplete = 0)
 #' L2
 #' 
 #' # Link to subgroup types (for Egypt)
-#' L3 <- linkGenerator(type = "subGroup",
-#'                     indicatorType = 8,
-#'                     loc = 818,
+#' L3 <- linkGenerator(type = "subGroups",
+#'                     indicatorTypeIds = 8,
+#'                     locIds = 818,
 #'                     isComplete = 0)
 #' L3
 #' 
 #' # Link to indicator list
-#' L4 <- linkGenerator(type = "Indicator",
+#' L4 <- linkGenerator(type = "indicators",
 #'                     addDefault = "false")
 #' L4
 #' 
@@ -64,20 +64,42 @@
 #' L5
 #' @export
 linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/", 
-                          type = c("locations", 
-                                   "locationType", 
-                                   "subGroup",
-                                   "Indicator", 
-                                   "dataProcessTypes", 
-                                   "seriesDataDetail",
-                                   "recordDataDetail"),
-                          ...) {
+                           type,
+                           ...) {
   
-  type  <- match.arg(type)
-  query <- if (type == "dataProcessTypes") "All" else build_filter(...)
+  types <- c("ages",
+             "openAges",
+             "Component",
+             "DataCatalog",
+             "dataProcessTypes",
+             "DataReliability",
+             "DataSources",
+             "DataSourceStatus",
+             "DataSourceTypes",
+             "DataStatus",
+             "DataTypes",
+             "DefaultKeys",
+             "Indicators",
+             "IndicatorTypes",
+             "locAreaTypes",
+             "Locations",
+             "PeriodGroups",
+             "PeriodTypes",
+             "Sex",
+             "StatisticalConcepts",
+             "StructuredData",
+             "StructuredDataTable",
+             "StructuredDataRecords",
+             "StructuredDataSeries",
+             "subGroups",
+             "SubGroupTypes",
+             "TimeReferences",
+             "UserUtility")
+  
+  type  <- match.arg(tolower(type), choices = tolower(types))
+  query <- build_filter(...)
   link  <- paste0(server, type, query)
-  
-  return(link)
+  link
 }
 
 

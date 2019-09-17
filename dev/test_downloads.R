@@ -31,22 +31,22 @@ I[, c("IndicatorTypeID", "Name", "ShortName")]
 D <- getDataProcessTypes()
 D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
-G <- getSeriesDataDetail(dataProcess = 2,    # Census
-                         indicatorType = 8,  # Population
-                         isComplete = 0,
-                         loc = 4,            # American Samoa
-                         locAreaType = 2,    #
-                         startYear = 1950,
-                         subGroup = 2)       # Nationals only
+G <- getSeriesData(dataProcessIds = 2,    # Census
+                   indicatorTypeIds = 8,  # Population
+                   isComplete = 0,
+                   locIds = 4,            # American Samoa
+                   locAreaTypeIds = 2,    #
+                   startYear = 1950,
+                   subGroupIds = 2)       # Nationals only
 G
 
-X <- getRecordDataDetail(dataProcess = 2,   # Estimate
-                         indicatorType = 8, # Population by age and sex - abridged 
-                         isComplete = 0,    # Age Distribution: Abridged
-                         loc = 818,         # Egypt
-                         locAreaType = 2,   # Whole area 
-                         subGroup = 2       # Total or All groups
-                         )  
+X <- getRecordData(dataProcessIds = 2,   # Estimate
+                   indicatorTypeIds = 8, # Population by age and sex - abridged 
+                   isComplete = 0,    # Age Distribution: Abridged
+                   locIds = 818,         # Egypt
+                   locAreaTypeIds = 2,   # Whole area 
+                   subGroupIds = 2       # Total or All groups
+                   )  
 
 # Test Links ------------------------------------------
 # Link to country list

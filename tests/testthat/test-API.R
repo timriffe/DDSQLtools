@@ -13,10 +13,10 @@ library(DDSQLtools)
 
 test_that("The linkGenerator() works fine", {
   
-  L <- linkGenerator(type = "recordDataDetail",
-                     loc = 4,
-                     indicatorType = 8,
-                     dataProcess = "2,6")
+  L <- linkGenerator(type = "structureddatarecords",
+                     locIds = 4,
+                     indicatorTypeIds = 8,
+                     dataProcessIds = "2,6")
   
   expect_output(print(L))                          # 1. Always expect an output;
   expect_true(is.character(L))                     # 2. The output is of the class "character";
@@ -27,8 +27,6 @@ test_that("The linkGenerator() works fine", {
 
 
 ## Test API functions
-
-
 validate_read_API <- function(Z) {
   test_that("The read_API works fine", {
     expect_output(print(Z))                     # 1. Always expect an output;
@@ -66,31 +64,22 @@ I <- getIndicators(addDefault = "false")
 validate_read_API(I)  # validate
 
 # ------------------------------------------
-G <- getSeriesDataDetail(dataProcess = 2,
-                         indicatorType = 8,
-                         isComplete = 0,
-                         loc = 4,
-                         locAreaType = 2,
-                         startYear = 1950,
-                         subGroup = 2)
+G <- getSeriesData(dataProcessIds = 2,
+                   indicatorTypeIds = 8,
+                   isComplete = 0,
+                   locIds = 4,
+                   locAreaTypeIds = 2,
+                   startYear = 1950,
+                   subGroupIds = 2)
+
 validate_read_API(G)  # validate
 
 # ------------------------------------------
-X <- getRecordDataDetail(dataProcess = 2,   # Estimate
-                         indicatorType = 8, # Population by age and sex - abridged 
-                         isComplete = 0,    # Age Distribution: Abridged
-                         loc = 818,         # Egypt
-                         locAreaType = 2,   # Whole area 
-                         subGroup = 2)       # Total or All groups
+X <- getRecordData(dataProcessIds = 2,   # Estimate
+                   indicatorTypeIds = 8, # Population by age and sex - abridged 
+                   locIds = 818,         # Egypt
+                   locAreaTypeIds = 2,   # Whole area 
+                   subGroupIds = 2,      # Total or All groups
+                   isComplete = 0)       # Age Distribution: Abridged
+
 validate_read_API(X)  # validate
-
-
-
-
-
-
-
-
-
-
-
