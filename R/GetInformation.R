@@ -63,10 +63,10 @@ getIndicators <- function(save = FALSE, ...) {
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples 
-#' D <- getDataProcessTypes()
+#' D <- getDataProcess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' @export
-getDataProcessTypes <- function(save = FALSE, ...) {
+getDataProcess <- function(save = FALSE, ...) {
   
   read_API("dataProcessTypes", save, ...)
 }

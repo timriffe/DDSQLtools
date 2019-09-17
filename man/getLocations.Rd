@@ -15,7 +15,7 @@ getLocations(save = FALSE, ...)
 TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
 care, this is important! The following options are available: \itemize{
   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{getDataProcessTypes}} function to see the available 
+  Run the \code{\link{getDataProcess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;

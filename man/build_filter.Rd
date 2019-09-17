@@ -40,7 +40,7 @@ build_filter(dataProcessIds = NULL, startYear = NULL, endYear = NULL,
 \item{includeFormerCountries}{Logical. Default: FALSE;}
 
 \item{dataProcess}{Data process ID as defined by the UNPD. Run the
-\code{\link{getDataProcessTypes}} function to see the available options;
+\code{\link{getDataProcess}} function to see the available options;
 TODOOOOOOOOOOOOO!!}
 
 \item{indicatorType}{Indicator type ID as defined by the UNPD. Run the

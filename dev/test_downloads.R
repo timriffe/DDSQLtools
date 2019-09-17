@@ -28,7 +28,7 @@ I <- getIndicators(addDefault = "false")
 I[, c("IndicatorTypeID", "Name", "ShortName")]
 
 
-D <- getDataProcessTypes()
+D <- getDataProcess()
 D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
 G <- getSeriesData(dataProcessIds = 2,    # Census

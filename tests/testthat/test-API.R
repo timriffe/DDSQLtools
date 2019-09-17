@@ -38,7 +38,7 @@ validate_read_API <- function(Z) {
 }
 
 # ------------------------------------------
-D <- getDataProcessTypes()
+D <- getDataProcess()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
