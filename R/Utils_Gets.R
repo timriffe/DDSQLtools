@@ -171,14 +171,14 @@ build_filter <- function(dataProcessIds = NULL,
 #' data.frame with columns containing strings of information (character format).
 #' This function reads the values and if it sees in these columns only numbers
 #' will convert the column to class numeric.
-#' @param A data.frame or matrix.
+#' @param X data.frame
 #' @keywords internal
 format.numeric.colums <- function(X) {
   cn    <- colnames(X) 
-  isNum <- apply(X, 2, FUN = function(w) w %>% check.numeric %>% all)
-  out   <- data.frame(X[, !isNum], apply(X[, isNum], 2, as.numeric))
-  
-  return(out[, cn])
+  isNum <- apply(X, 2, FUN = function(w) all(check.numeric(w)))
+  X[isNum] <- lapply(X[, isNum], as.numeric)
+
+  X
 }
 
 

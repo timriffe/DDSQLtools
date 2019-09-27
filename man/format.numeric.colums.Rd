@@ -7,7 +7,7 @@
 \method{format}{numeric.colums}(X)
 }
 \arguments{
-\item{A}{data.frame or matrix.}
+\item{X}{data.frame}
 }
 \description{
 When a data is downloaded from web it is saved as a list or 

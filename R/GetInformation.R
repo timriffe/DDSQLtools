@@ -123,10 +123,10 @@ read_API <- function(type, save, ...){
     lapply(as.list) %>%   # here now everything is homogenously a vector
     dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
     lapply(trimws) %>%    # Remove leading/trailing spaces from the names
-    as.data.frame(stringsAsFactors = FALSE)       # coerce to desired form
-  if (type == "recordDataDetail") {
-    out <- format.numeric.colums(out)
-  }
+    as.data.frame(stringsAsFactors = FALSE)  # coerce to desired form
+
+  out <- format.numeric.colums(out)
+
   if (save) {
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
