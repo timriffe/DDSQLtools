@@ -95,7 +95,8 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
              "subGroups",
              "SubGroupTypes",
              "TimeReferences",
-             "UserUtility")
+             # These are within UserUtility
+             "dataEntryCount")
   
   type  <- match.arg(tolower(type), choices = tolower(types))
   query <- build_filter(...)

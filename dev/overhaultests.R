@@ -1,3 +1,4 @@
+library(tidyverse)
 library(DDSQLtools)
 
 # notes for overall: dataset extract (could be multiple),
@@ -17,12 +18,8 @@ L <- getLocations(addDefault = "false",
 
 library(tidyverse)
 getCodes <- function(type = "Locations", save = FALSE, ...){
-  as_tibble(read_API2(type, save = save, ...))
+  as_tibble(read_API(type, save = save, ...))
 }
-
-
-
-
 
 # All the optional args in build_filter2() need an overhaul: some work for some
 # items and some for others. Some are required and some not. 
@@ -62,10 +59,10 @@ getCodes("locareatypes",
 # - which are not complete
 getCodes("locareatypes",
          locIds = 4,
-         indicatorTypeIds = 8,
-         startYear = 1950,
-         endYear = 2019,
-         isComplete = 0
+         indicatorTypeIds = 8
+         ## startYear = 1950,
+         ## endYear = 2019,
+         ## isComplete = 0
          )
 
 # Get all age distributions
@@ -213,25 +210,28 @@ tst %>%
 
 loc_id <-
   getLocations() %>%
-  filter(Name == "Dominican Republic") %>%
+  filter(Name == "Afghanistan") %>%
   pull(PK_LocID)
 
 indicator_id <-
   getIndicators(locIds = loc_id) %>%
-  filter(Name == "Total fertility: Rates") %>%
+  filter(Name == "Population by sex") %>%
   pull("PK_IndicatorTypeID")
 
 # This doesn't work very often if the country/indicator
 # don't have a local area.
 locarea_id <-
   getLocationTypes(locIds = loc_id,
-                   indicatorTypeIds = indicator_id) %>%
+                   indicatorTypeIds = indicator_id,
+                   isComplete = 2) %>%
+  filter(Name == "Rural") %>% 
   pull("PK_LocAreaTypeID")
 
 dprocess_id <-
   getDataProcess(locIds = loc_id,
-               indicatorTypeIds = indicator_id) %>%
-  filter(ShortName == "Survey") %>%
+                 indicatorTypeIds = indicator_id,
+                 isComplete = 2) %>%
+  filter(ShortName == "Census") %>%
   pull(PK_DataProcessTypeID)
 
 subgroup_id <-
@@ -241,10 +241,14 @@ subgroup_id <-
 
 tst <-
   getRecordData(locIds = loc_id,
+                isComplete = 2,
                 indicatorTypeIds = indicator_id,
                 locAreaTypeIds = locarea_id,
                 dataProcessIds = dprocess_id,
                 subGroupIds = subgroup_id)
+
+
+tst <- getCodes("ages")
 
 # Once you have that, you need to identify all API end points which are
 # only useful to extract information to be used in the data extraction
