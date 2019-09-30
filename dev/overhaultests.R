@@ -207,46 +207,39 @@ tst %>%
 # of data extraction as the first one (try, Dominican Republic, fertility)
 # and also try one with two or three countries (before you need to check
 # that they indeed have the specific type of indicator available)
-
-loc_id <-
-  getLocations() %>%
-  filter(Name == "Afghanistan") %>%
-  pull(PK_LocID)
-
-indicator_id <-
-  getIndicators(locIds = loc_id) %>%
-  filter(Name == "Population by sex") %>%
-  pull("PK_IndicatorTypeID")
-
-# This doesn't work very often if the country/indicator
-# don't have a local area.
-locarea_id <-
-  getLocationTypes(locIds = loc_id,
-                   indicatorTypeIds = indicator_id,
-                   isComplete = 2) %>%
-  filter(Name == "Rural") %>% 
-  pull("PK_LocAreaTypeID")
-
-dprocess_id <-
-  getDataProcess(locIds = loc_id,
-                 indicatorTypeIds = indicator_id,
-                 isComplete = 2) %>%
-  filter(ShortName == "Census") %>%
-  pull(PK_DataProcessTypeID)
-
-subgroup_id <-
-  getSubGroups() %>%
-  filter(Name == "Total or All groups") %>%
-  pull(PK_SubGroupID)
-
 tst <-
-  getRecordData(locIds = loc_id,
-                isComplete = 2,
-                indicatorTypeIds = indicator_id,
-                locAreaTypeIds = locarea_id,
-                dataProcessIds = dprocess_id,
-                subGroupIds = subgroup_id)
-
+  getRecordData(locIds = "Mexico",
+                # Options can be abridged, complete or total
+                isComplete = "abridged",
+                # Options can be:
+                # Population by sex
+                # Population by age and sex
+                # Births by sex
+                # Total fertility: Rates
+                # Births by age of mother
+                # Fertility rates by age of mother
+                # Fertility age distribution measures
+                # Deaths by age and sex
+                # Infant mortality
+                # Under-five mortality
+                # Mortality rates by age and sex
+                # Neonatal mortality
+                # Postneonatal mortality
+                # Child mortality (age 1-4)
+                # Life table statistics
+                indicatorTypeIds = "Total fertility: Rates",
+                # Options can be:
+                # Whole area
+                # Urban
+                # Rural
+                locAreaTypeIds = "Whole area",
+                # Options can be:
+                # Census
+                # Estimate
+                dataProcessIds = "Survey: Demographic and Health Survey (DHS)",
+                # Options are 5 thousand.
+                # See getSubgroups()
+                subGroupIds = "Total or All groups")
 
 tst <- getCodes("ages")
 
