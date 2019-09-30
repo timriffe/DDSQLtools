@@ -12,8 +12,10 @@ linkGenerator(server = "http://24.239.36.16:9654/un3/api/", type, ...)
 
 \item{type}{Type of data. Various options are available.}
 
-\item{...}{Other arguments that might define the path to data. Handle with
-TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
+\item{...}{Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{getDataProcess}} function to see the available 
@@ -52,10 +54,11 @@ L1 <- linkGenerator(type = "locations",
 L1
 
 # Link to location types (for Egypt)
+# With strings rather than codes
 L2 <- linkGenerator(type = "locAreaTypes",
-                    indicatorTypeIds = 8,
-                    locIds = 818,
-                    isComplete = 0)
+                    indicatorTypeIds = "Population by sex",
+                    locIds = "Egypt",
+                    isComplete = "Abridged")
 L2
 
 # Link to subgroup types (for Egypt)

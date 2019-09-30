@@ -8,8 +8,10 @@
 #' @param server The path to the database. Default: 
 #' \code{"http://24.239.36.16:9654/un2/api/"};
 #' @param type Type of data. Various options are available.
-#' @param ... Other arguments that might define the path to data. Handle with
-#' TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
+#' @param ... Other arguments that might define the path to data. All arguments
+#' accept a numeric code which is interpreted as the code of the specific
+#' product requested. Alternatively, you can supply the equivalent product
+#' name as a string which is case insensitive (see examples). Handle with
 #' care, this is important! The following options are available: \itemize{
 #'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
 #'   Run the \code{\link{getDataProcess}} function to see the available 
@@ -42,10 +44,11 @@
 #' L1
 #' 
 #' # Link to location types (for Egypt)
+#' # With strings rather than codes
 #' L2 <- linkGenerator(type = "locAreaTypes",
-#'                     indicatorTypeIds = 8,
-#'                     locIds = 818,
-#'                     isComplete = 0)
+#'                     indicatorTypeIds = "Population by sex",
+#'                     locIds = "Egypt",
+#'                     isComplete = "Abridged")
 #' L2
 #' 
 #' # Link to subgroup types (for Egypt)
@@ -150,6 +153,35 @@ build_filter <- function(dataProcessIds = NULL,
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
   I <- environment() %>% as.list()
+  lookupParams <- list("locIds" = lookupLocIds,
+                       "indicatorTypeIds" = lookupIndicatorIds,
+                       "isComplete" = lookupIsCompleteIds,
+                       "subGroupIds" = lookupSubGroupsIds)
+
+  # Iteratire over each lookupParams and apply their correspoding lookup
+  # function to translate strings such as Germany to the corresponding code.
+  # Only available for the names in lookupParams
+  I[names(lookupParams)] <- mapply(
+    function(fun, vec) fun(vec),
+    lookupParams,
+    I[names(lookupParams)]
+  )
+
+  # Here we need a separate call to the same thing bc
+  # I reuse the translated parameters defined above
+  # to make queries in the endpoints below
+  extraParams <- list("locAreaTypeIds" = lookupAreaTypeIds,
+                      "dataProcessIds" = lookupDataProcess)
+
+  I[names(extraParams)] <- mapply(
+    function(fun, vec, ...) fun(vec, ...),
+    extraParams,
+    I[names(extraParams)],
+    # I pass the already translated parameter list
+    # to avoid retranslating stuff like locations, etc...
+    # This can save time in querying API
+    MoreArgs = list(paramList = I)
+  )
 
   if (length(I) > 0) {
     # Collapse multiple ids to parameters
@@ -194,10 +226,114 @@ save_in_working_dir <- function(data, file_name) {
   wd <- getwd()
   n  <- nchar(wd)
   wd <- paste0("...", substring(wd, first = n - 45, last = n))
-  message(paste0(file_name, ".Rdata is saved in your working directory:\n", wd), 
+  message(paste0(file_name, ".Rdata is saved in your working directory:\n", wd),
           appendLF = FALSE)
   cat("\n   ")
 }
 
+lookupLocIds <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
 
+  paramStr_low <- tolower(paramStr)
+  
+  locs <- getLocations()
+  cnt_code <- locs[tolower(locs$Name) %in% paramStr_low, ]
 
+  # The all statement is in case you provide 2 countries, for example
+  if (all(!paramStr_low %in% tolower(cnt_code$Name))) {
+    stop("Location(s) ",
+         paste0("'", paramStr[!paramStr_low %in% cnt_code$Name], "'", collapse = ", "),
+         " not found. Check getLocations()")
+  }
+
+  cnt_code[["PK_LocID"]]
+}
+
+lookupIndicatorIds <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+  paramStr_low <- tolower(paramStr)
+  
+  inds <- getIndicators()
+  inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
+
+  # The all statement is in case you provide 2 indicators, for example
+  if (all(!tolower(paramStr_low) %in% tolower(inds_code$Name))) {
+    stop("Location(s) ",
+         paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
+         " not found. Check getIndicators()")
+  }
+
+  inds_code[["PK_IndicatorTypeID"]]
+}
+
+lookupSubGroupsIds <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+  paramStr_low <- tolower(paramStr)
+
+  inds <- getSubGroups()
+  inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
+
+  # The all statement is in case you provide 2 indicators, for example
+  if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
+    stop("Location(s) ",
+         paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
+         " not found. Check getSubGroups()")
+  }
+
+  inds_code[["PK_SubGroupID"]]
+}
+
+lookupAreaTypeIds <- function(paramStr, paramList) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+  paramStr_low <- tolower(paramStr)
+  
+  inds <- getLocationTypes(locIds = paramList[["locIds"]],
+                           indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                           isComplete = paramList[["isComplete"]])
+
+  inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
+  # The all statement is in case you provide 2 area types, for example
+  if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
+    stop("Area Type(s) ",
+         paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
+         " not found. Check getLocationTypes()")
+  }
+  
+  inds_code[["PK_LocAreaTypeID"]]
+}
+
+lookupDataProcess <- function(paramStr, paramList) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+  paramStr_low <- tolower(paramStr)
+
+  inds <- getDataProcess(locIds = paramList[["locIds"]],
+                         indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                         isComplete = paramList[["isComplete"]])
+
+  inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
+  # The all statement is in case you provide 2 area types, for example
+  if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
+    stop("Data type(s) ",
+         paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
+         " not found. Check getDataProcess()")
+  }
+  
+  inds_code[["PK_DataProcessTypeID"]]
+}
+
+lookupIsCompleteIds <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+
+  paramStr_low <- tolower(paramStr)
+
+  res <- switch(paramStr_low,
+                "abridged" = 0,
+                "complete" = 1,
+                "total" = 2,
+                stop("IsComplete does not accept string '",
+                     paramStr, "'",
+                     ". Only 'abridged', 'complete', 'total'.")
+                )
+
+  res
+}

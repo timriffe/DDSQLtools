@@ -11,8 +11,10 @@ getSeriesData(save = FALSE, ...)
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
-\item{...}{Other arguments that might define the path to data. Handle with
-TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
+\item{...}{Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{getDataProcess}} function to see the available 
@@ -38,10 +40,11 @@ care, this is important! The following options are available: \itemize{
 Get information about available details for a given series of data
 }
 \examples{
+# You can provide all strings, all codes, or a combination of both
 G <- getSeriesData(dataProcessIds = 0:15, # possible processes
                    indicatorTypeIds = 25,    # M[x]
-                   locIds = 818,             # Egypt
-                   locAreaTypeIds = c(2, 3, 4), # all possible types
+                   locIds = "Egypt",             # Egypt
+                   locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
                    subGroupIds = 2)
 G
 }

@@ -11,8 +11,10 @@ getSubGroups(save = FALSE, ...)
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
-\item{...}{Other arguments that might define the path to data. Handle with
-TODOOOOOOOOOOOOOOOOOOOOOOO!!!!! Add all args here
+\item{...}{Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{getDataProcess}} function to see the available 

@@ -24,8 +24,8 @@ getLocations <- function(save = FALSE, ...) {
 #' @examples 
 #' # Check what subgroups are available for:
 #' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
-#'                       locIds = 818,      # Egypt
-#'                       isComplete = 0)
+#'                       locIds = "egypt",
+#'                       isComplete = "abridged")
 #' P
 #' @export
 getLocationTypes <- function(save = FALSE, ...) {
@@ -73,11 +73,12 @@ getDataProcess <- function(save = FALSE, ...) {
 
 #' Get information about available details for a given series of data
 #' @inheritParams read_API
-#' @examples 
+#' @examples
+#' # You can provide all strings, all codes, or a combination of both
 #' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
-#'                    locIds = 818,             # Egypt
-#'                    locAreaTypeIds = c(2, 3, 4), # all possible types
+#'                    locIds = "Egypt",             # Egypt
+#'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
 #'                    subGroupIds = 2)
 #' G
 #' @export
@@ -90,13 +91,26 @@ getSeriesData <- function(save = FALSE, ...) {
 #' Download data from UNPD portal
 #' @inheritParams read_API
 #' @examples 
-#' X <- getRecordData(dataProcessIds = 6,   # Estimate
+#' #  You can provide all strings, all codes, or a combination of both
+#' Y <- getRecordData(dataProcessIds = "Census",
+#'                    indicatorTypeIds = 8, # and support numeric of string names
+#'                    locIds = "egypt", # all arguments are case insensitive
+#'                    locAreaTypeIds = "Whole area",
+#'                    subGroupIds = "Total or All groups",
+#'                    isComplete = "Abridged")
+#'
+#' head(Y)
+#'
+#' # Same thing only with codes
+#' X <- getRecordData(dataProcessIds = 2,   # Census
 #'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
 #'                    locIds = 818,         # Egypt
 #'                    locAreaTypeIds = 2,   # Whole area 
 #'                    subGroupIds = 2,      # Total or All groups
 #'                    isComplete = 0)       # Age Distribution: Abridged
+#'
 #' head(X)
+#' 
 #' @export
 getRecordData <- function(save = FALSE, ...) {
   
