@@ -9,11 +9,6 @@ shhh <- function(expr){
 #library(DemoTools)
 library(devtools)
 library(TimUtils)
-# MP, you can do something like this so it works for both of us
-if (system("whoami",intern=TRUE) == "tim"){
-	# if I'm on the laptop
-	setwd("/home/tim/git/DDSQLtools")
-} 
 
 # do this whenever new functions are added to /R, or whenever roxygen is updated
 document()
