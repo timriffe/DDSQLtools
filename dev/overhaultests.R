@@ -18,7 +18,7 @@ getCodes <- function(type = "Locations", save = FALSE, ...){
   read_API2(type, save = save, ...)
 }
 
-linkGenerator2 <- function(server = "http://24.239.36.16:9654/un3/api/", 
+linkGenerator2 <- function(server = "https://24.239.36.16:9654/un3/api/", 
                            type , ...) {
   
   # This list needs a major overhaul: some items are valid and some are not.
@@ -79,13 +79,13 @@ getCodes("locAreaTypes", locIds = 8)                      # fails
 getCodes("locAreaTypes")  
 getCodes("locareatypes")  
 getCodes("locAreaTypes", locIds = "4,8", indicatorTypeIds = 8)  
-"http://24.239.36.16:9654/un3/api/subGroups?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
+"https://24.239.36.16:9654/un3/api/subGroups?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
 getCodes(type = "subGroups", endYear = 2019, indicatorTypeIds = 8, isComplete = 0, locIds= 4, startYear = 1950) # works
 getCodes(type = "subGroups", locIds = 4)                                          # fails
 getCodes(type = "subGroups", locIds = 4, indicatorTypeIds = 8)                    # works
 getCodes(type = "subGroups", locIds = 4, indicatorTypeIds = 8, startYear = 1980)  # works
 getCodes(type="ages")
-"http://24.239.36.16:9654/un3/api/dataProcessTypes?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
+"https://24.239.36.16:9654/un3/api/dataProcessTypes?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
 getCodes(type = "dataProcessTypes", endYear = 2019, indicatorTypeIds = 8, isComplete = 0, locIds= 4, startYear = 1950)
 
 # Next to test.
@@ -129,3 +129,18 @@ library(magrittr);library(dplyr)
 # # keep only non-open ages, plus the highest open age. that is, throw out extra open ages
 # # below the highest one.
 # #filter(!(AgeSpan == -1 & AgeStart < max(AgeStart[AgeSpan == -1])))
+
+library(DDSQLtools)
+Y <- getRecordDataDetail(dataProcessIds = 2,
+                   indicatorTypeIds = 8,
+                   locIds = 818, 
+                   locAreaTypeIds = 2,
+                   subGroupIds = 2,
+                   isComplete = 0)
+
+Y <- getRecordData(dataProcessIds = "Census",
+                   indicatorTypeIds = "Population by age and sex",
+                   locIds = "Egypt",
+                   locAreaTypeIds = "Whole area",
+                   subGroupIds = "Total or All groups",
+                   isComplete = "Abridged")
