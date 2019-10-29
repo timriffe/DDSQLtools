@@ -23,14 +23,14 @@ getLocations <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' # Check what subgroups are available for:
-#' P <- getLocationTypes(indicatorType = 8, # Population by age and sex indicator;
-#'                       loc = 818,         # Egypt
-#'                       isComplete = 0)
+#' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
+#'                       locIds = "egypt",
+#'                       isComplete = "abridged")
 #' P
 #' @export
 getLocationTypes <- function(save = FALSE, ...) {
   
-  read_API("locationType", save, ...)
+  read_API("locareatypes", save, ...)
 }
 
 
@@ -38,14 +38,14 @@ getLocationTypes <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' # Check what subgroups are available for:
-#' S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
-#'                   loc = 818,          # Egypt
+#' S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+#'                   locIds = 818,       # Egypt
 #'                   isComplete = 0)
 #' S
 #' @export
 getSubGroups <- function(save = FALSE, ...) {
   
-  read_API("subGroup", save, ...)
+  read_API("subGroups", save, ...)
 }
 
 
@@ -53,56 +53,68 @@ getSubGroups <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' I <- getIndicators(addDefault = "false")
-#' I[, c("IndicatorTypeID", "Name", "ShortName")]
+#' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' @export
 getIndicators <- function(save = FALSE, ...) {
   
-  read_API("Indicator", save, ...)
+  read_API("indicatortypes", save, ...)
 }
-
 
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples 
-#' D <- getDataProcessTypes()
-#' D
+#' D <- getDataProcess()
+#' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' @export
-getDataProcessTypes <- function(save = FALSE, ...) {
+getDataProcess <- function(save = FALSE, ...) {
   
   read_API("dataProcessTypes", save, ...)
 }
 
-
 #' Get information about available details for a given series of data
 #' @inheritParams read_API
-#' @examples 
-#' G <- getSeriesDataDetail(dataProcess = paste(0:15, collapse = ","), # all possible processes
-#'                          indicatorType = 25,    # M[x]
-#'                          loc = 818,             # Egypt
-#'                          locAreaType = "2,3,4", # all possible types
-#'                          subGroup = 2)
+#' @examples
+#' # You can provide all strings, all codes, or a combination of both
+#' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
+#'                    indicatorTypeIds = 25,    # M[x]
+#'                    locIds = "Egypt",             # Egypt
+#'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
+#'                    subGroupIds = 2)
 #' G
 #' @export
-getSeriesDataDetail <- function(save = FALSE, ...) {
+getSeriesData <- function(save = FALSE, ...) {
   
-  read_API("seriesDataDetail", save, ...)
+  read_API("structureddataseries", save, ...)
 }
 
 
 #' Download data from UNPD portal
 #' @inheritParams read_API
 #' @examples 
-#' X <- getRecordDataDetail(dataProcess = 6,   # Estimate
-#'                          indicatorType = 8, # Population by age and sex - abridged 
-#'                          loc = 818,         # Egypt
-#'                          locAreaType = 2,   # Whole area 
-#'                          subGroup = 2,      # Total or All groups
-#'                          isComplete = 0)    # Age Distribution: Abridged
+#' #  You can provide all strings, all codes, or a combination of both
+#' Y <- getRecordData(dataProcessIds = "Census",
+#'                    indicatorTypeIds = 8, # and support numeric of string names
+#'                    locIds = "egypt", # all arguments are case insensitive
+#'                    locAreaTypeIds = "Whole area",
+#'                    subGroupIds = "Total or All groups",
+#'                    isComplete = "Abridged")
+#'
+#' head(Y)
+#'
+#' # Same thing only with codes
+#' X <- getRecordData(dataProcessIds = 2,   # Census
+#'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
+#'                    locIds = 818,         # Egypt
+#'                    locAreaTypeIds = 2,   # Whole area 
+#'                    subGroupIds = 2,      # Total or All groups
+#'                    isComplete = 0)       # Age Distribution: Abridged
+#'
 #' head(X)
+#' 
 #' @export
-getRecordDataDetail <- function(save = FALSE, ...) {
+getRecordData <- function(save = FALSE, ...) {
   
-  read_API("recordDataDetail", save, ...)
+  read_API("structureddatarecords", save, ...)
 }
 
 
@@ -113,44 +125,26 @@ getRecordDataDetail <- function(save = FALSE, ...) {
 #' \code{FALSE};
 #' @inheritParams linkGenerator
 #' @keywords internal
-read_API <-function(type, 
-                    save, 
-                    ...) {
-  
-  P <- linkGenerator(type = type, ...) # path
-  X <- fromJSON(file = P)
-  
-  if (type %in% c("Indicator", "dataProcessTypes")) {
-    
-    X1 <- X %>% lapply(unlist) 
-    # X1 may be a list with elements of different length, therefore if we do
-    # do.call("rbind", X1) we might have some errors/warnings and funny output;
-    # So we build a matrix and populate it row by row as follows:
-    n  <- length(X1)
-    cn <- X1 %>% lapply(names) %>% unlist %>% unique # unique names
-    Z  <- matrix(NA, ncol = length(cn), nrow = n, dimnames = list(1:n, cn))
-    for (j in 1:n) Z[j, names(X1[[j]])] <- X1[[j]]
-  
-  } else if (type %in% c("seriesDataDetail", "recordDataDetail")) {
-    X1 <- X %>% lapply(unlist) 
-    Z  <- do.call("rbind", X1)
-    
-  } else {
-    Z <- do.call("rbind", X)
-  }
-  
-  out <- as.data.frame(Z)
-  
-  if (type == "recordDataDetail"){
-    out <- format.numeric.colums(out)
-  } 
-  
+read_API <- function(type, save, ...){
+  P <- linkGenerator(type = type, ...)
+  # Temporary, just to check how the URL is constructed
+  print(P)
+  X <- rjson::fromJSON(file = P)
+  #
+  out <-
+    X %>% 
+    lapply(unlist) %>%    # list elements can either be lists or vectors
+    lapply(as.list) %>%   # here now everything is homogenously a vector
+    dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
+    lapply(trimws) %>%    # Remove leading/trailing spaces from the names
+    as.data.frame(stringsAsFactors = FALSE)  # coerce to desired form
+
+  out <- format.numeric.colums(out)
+
   if (save) {
-    save_in_working_dir(data = out, file_name = paste0("UNPD_", type))
+    save_in_working_dir(data = out, file_name = paste0("UNPD_", 
+                                                       type))
   }
-  
-  return(out)
+  out
 }
-
-
 

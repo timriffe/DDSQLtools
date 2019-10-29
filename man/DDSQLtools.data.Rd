@@ -6,7 +6,7 @@
 \title{DDSQLtools test data - Egypt 2006 - Population by age and sex}
 \format{An object of class \code{list} of length 5.}
 \source{
-The population counts were downloade using the \code{getRecordDataDetail()}
+The population counts were downloade using the \code{getRecordData()}
 function. The life table was imported from a file called 
 \code{LTabr_error1.csv}.
 }

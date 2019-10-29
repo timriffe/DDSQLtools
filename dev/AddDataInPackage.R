@@ -9,12 +9,12 @@ library(readxl)
 library(tidyverse)
 
 # Download Abridge Data
-P5 <- getRecordDataDetail(dataProcess = 2,   # Estimate
-                          indicatorType = 8, # Population by age and sex
-                          loc = 818,         # Egypt
-                          locAreaType = 2,   # Whole area
-                          subGroup = 2,      # Total or All groups
-                          isComplete = 0)    # Age Distribution: Abridged
+P5 <- getRecordData(dataProcessIds = 2,   # Estimate
+                    indicatorTypeIds = 8, # Population by age and sex
+                    locIds = 818,         # Egypt
+                    locAreaTypeIds = 2,   # Whole area
+                    subGroupIds = 2,      # Total or All groups
+                    isComplete = 0)    # Age Distribution: Abridged
 
 ageID_5 <- c(701:715, 765)
 P5_M <- P5 %>% filter(ReferencePeriod == 2006,
@@ -31,12 +31,12 @@ dim(P5_F)
 
 
 # Download Single Age Data
-P1 <- getRecordDataDetail(dataProcess = 2,   # Estimate
-                          indicatorType = 8, # Population by age and sex
-                          loc = 818,         # Egypt
-                          locAreaType = 2,   # Whole area
-                          subGroup = 2,      # Total or All groups
-                          isComplete = 1)    # Age Distribution: Complete
+P1 <- getRecordData(dataProcessIds = 2,   # Estimate
+                    indicatorTypeIds = 8, # Population by age and sex
+                    locIds = 818,         # Egypt
+                    locAreaTypeIds = 2,   # Whole area
+                    subGroupIds = 2,      # Total or All groups
+                    isComplete = 1)    # Age Distribution: Complete
 
 ageID_1 <- c(2001:2099, 3220) # Select all ages 0-99+
 P1_M <- P1 %>% filter(ReferencePeriod == 2006, 
