@@ -11,22 +11,25 @@ getSubGroups(save = FALSE, ...)
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
-\item{...}{Other arguments that might define the path to data. Handle with 
+\item{...}{Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcess}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{getDataProcessTypes}} function to see the available 
+  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+  Run the \code{\link{getDataProcess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{indicatorType}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{getIndicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
-  \item{\code{loc}} -- Location ID as defined by the UNPD. Run the
+  \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{getLocations}} function to see the available options;
-  \item{\code{locAreaType}} -- Location area type ID as defined by the UNPD. 
+  \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
   Run the \code{\link{getLocationTypes}} function to see the available 
   options;
-  \item{\code{subGroup}} -- SubGroup ID as defined by the UNPD. Run the 
+  \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
   \code{\link{getSubGroups}} function to see the available options;
   \item{\code{addDefault}} -- Logical. Default: FALSE;
   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
@@ -38,8 +41,8 @@ Get information about available sub-group-types (SubGroupTypeID)
 }
 \examples{
 # Check what subgroups are available for:
-S <- getSubGroups(indicatorType = 8,  # Population by age and sex indicator;
-                  loc = 818,          # Egypt
+S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+                  locIds = 818,       # Egypt
                   isComplete = 0)
 S
 }
