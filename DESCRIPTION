@@ -25,6 +25,6 @@ Suggests:
 RdMacros: Rdpack
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Remotes: timriffe/DemoTools
 Encoding: UTF-8

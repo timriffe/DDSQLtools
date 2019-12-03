@@ -90,7 +90,9 @@ getSeriesData <- function(save = FALSE, ...) {
 
 #' Download data from UNPD portal
 #' @inheritParams read_API
-#' @examples 
+#' @examples
+#'
+#' \dontrun{
 #' #  You can provide all strings, all codes, or a combination of both
 #' Y <- getRecordData(dataProcessIds = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
@@ -110,6 +112,7 @@ getSeriesData <- function(save = FALSE, ...) {
 #'                    isComplete = 0)       # Age Distribution: Abridged
 #'
 #' head(X)
+#' }
 #' 
 #' @export
 getRecordData <- function(save = FALSE, ...) {

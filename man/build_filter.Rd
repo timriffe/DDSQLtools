@@ -4,11 +4,22 @@
 \alias{build_filter}
 \title{Build the section of the path (link) responsible with filtering the data}
 \usage{
-build_filter(dataProcessIds = NULL, startYear = NULL, endYear = NULL,
-  AgeStart = NULL, AgeEnd = NULL, indicatorTypeIds = NULL,
-  isComplete = NULL, isActive = NULL, locIds = NULL,
-  locAreaTypeIds = NULL, subGroupIds = NULL, addDefault = NULL,
-  includeDependencies = NULL, includeFormerCountries = NULL)
+build_filter(
+  dataProcessIds = NULL,
+  startYear = NULL,
+  endYear = NULL,
+  AgeStart = NULL,
+  AgeEnd = NULL,
+  indicatorTypeIds = NULL,
+  isComplete = NULL,
+  isActive = NULL,
+  locIds = NULL,
+  locAreaTypeIds = NULL,
+  subGroupIds = NULL,
+  addDefault = NULL,
+  includeDependencies = NULL,
+  includeFormerCountries = NULL
+)
 }
 \arguments{
 \item{dataProcessIds}{}
@@ -27,9 +38,11 @@ build_filter(dataProcessIds = NULL, startYear = NULL, endYear = NULL,
 
 \item{isActive}{}
 
-\item{locIds}{}
+\item{locIds}{Location ID as defined by the UNPD. Run the
+\code{\link{getLocations}} function to see the available options;}
 
-\item{locAreaTypeIds}{}
+\item{locAreaTypeIds}{Location area type ID as defined by the UNPD. Run the
+\code{\link{getLocations}} function to see the available options;}
 
 \item{subGroupIds}{}
 
@@ -45,12 +58,6 @@ TODOOOOOOOOOOOOO!!}
 
 \item{indicatorType}{Indicator type ID as defined by the UNPD. Run the
 \code{\link{getIndicators}} function to see the available options;}
-
-\item{locIds}{Location ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
-
-\item{locAreaTypeIds}{Location area type ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
 
 \item{subGroup}{SubGroup ID as defined by the UNPD.
 Run the \code{\link{getSubGroups}} function to see the available options;}

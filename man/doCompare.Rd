@@ -4,8 +4,7 @@
 \alias{doCompare}
 \title{Wrapper for Population Comparison}
 \usage{
-doCompare(pop1, pop2, fn = c("ID", "IRD", "ADM", "RDM"),
-  verbose = TRUE, ...)
+doCompare(pop1, pop2, fn = c("ID", "IRD", "ADM", "RDM"), verbose = TRUE, ...)
 }
 \arguments{
 \item{pop1}{Input data for population 1. UN format;}

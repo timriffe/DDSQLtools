@@ -35,7 +35,8 @@ The following options are available: \itemize{
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
-\item{...}{Other arguments to be passed on to other methods and functions.}
+\item{...}{Other arguments to be passed on to the 
+\code{\link[MortalityLaws]{MortalityLaw}} function.}
 }
 \value{
 A data.frame having the same number of columns as input data. 

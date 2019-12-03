@@ -40,6 +40,8 @@ care, this is important! The following options are available: \itemize{
 Download data from UNPD portal
 }
 \examples{
+
+\dontrun{
 #  You can provide all strings, all codes, or a combination of both
 Y <- getRecordData(dataProcessIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
@@ -59,5 +61,6 @@ X <- getRecordData(dataProcessIds = 2,   # Census
                    isComplete = 0)       # Age Distribution: Abridged
 
 head(X)
+}
 
 }
