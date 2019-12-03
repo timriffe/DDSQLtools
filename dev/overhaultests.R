@@ -1,5 +1,5 @@
 library(DDSQLtools)
-
+library(tidyverse)
 # notes for overall: dataset extract (could be multiple),
 # a minimum of country and indicator.
 
@@ -13,7 +13,7 @@ library(DDSQLtools)
 L <- getLocations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "true")
-library(tidyverse)
+
 getCodes <- function(type = "Locations", save = FALSE, ...){
   read_API2(type, save = save, ...)
 }
