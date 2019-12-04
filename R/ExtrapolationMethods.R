@@ -6,13 +6,13 @@
 
 #' Wrapper for Extrapolating Old-Age Human Mortality Data Using 
 #' Various Mortality Models ("laws")
-#' @inheritParams DemoTools::extra_mortality
+#' @inheritParams DemoTools::lt_rule_m_extrapolate
 #' @inheritParams doLifeTable
 #' @inherit doLifeTable return
 #' @source The function is based on the methods implemented in the 
 #' \code{MortalityLaws} R package.
 #' @seealso 
-#' \code{\link[DemoTools]{extra_mortality}}
+#' \code{\link[DemoTools]{lt_rule_m_extrapolate}}
 #' \code{\link[MortalityLaws]{MortalityLaw}}
 #' @examples 
 #' # Example 1 - abridged data

@@ -66,6 +66,6 @@ dim(LT1)
 dim(LT2) # note the 2nd life table has few extra rows
 }
 \seealso{
-\code{\link[DemoTools]{extra_mortality}}
+\code{\link[DemoTools]{lt_rule_m_extrapolate}}
 \code{\link[MortalityLaws]{MortalityLaw}}
 }
