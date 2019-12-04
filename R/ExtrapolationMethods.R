@@ -49,14 +49,14 @@ doExtrapolate <- function(X,
   B   <- X$AgeStart
   C   <- match.call()
   # OAG <- is_OAG(X)
-  fn  <- "extra_mortality"
+  fn  <- "lt_rule_m_extrapolate"
   
-  E <- extra_mortality(mx = A, 
-                       x = B, 
-                       x_fit = x_fit, 
-                       x_extr = x_extr, 
-                       law = law, 
-                       ...)
+  E <- lt_rule_m_extrapolate(mx = A, 
+                             x = B, 
+                             x_fit = x_fit, 
+                             x_extr = x_extr, 
+                             law = law, 
+                             ...)
   
   G <- E$values %>% 
     as.data.frame() %>% 

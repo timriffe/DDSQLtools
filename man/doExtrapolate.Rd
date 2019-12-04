@@ -20,7 +20,7 @@ fitted values and residuals are computed for all ages in \code{x}.}
 
 \item{x_extr}{Ages for which to extrapolate the death-rates.}
 
-\item{law}{The name of the mortality law/model to be used. 
+\item{law}{The name of the mortality law/model to be used.
 The following options are available: \itemize{
   \item{\code{"kannisto"}} -- The Kannisto model;
   \item{\code{"kannisto_makeham"}} -- The Kannisto-Makeham model;
@@ -35,7 +35,7 @@ The following options are available: \itemize{
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
-\item{...}{Other arguments to be passed on to the 
+\item{...}{Other arguments to be passed on to the
 \code{\link[MortalityLaws]{MortalityLaw}} function.}
 }
 \value{

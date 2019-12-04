@@ -23,7 +23,7 @@ validate_LT_method <- function(I, O) {
     expect_output(print(O))                      # 1. We always expect an output;
     expect_true(any(class(O) == "data.frame"))   # 2. Output should be a data.frame;
     # expect_true(ncol(O) == ncol(I))              # 3. No of columns as in input? Not yet.
-    expect_true(nrow(O) == 8 * nrow(I))          # 4. The number of rows is 8 times the number of rows in input, because we stack life-table indices.
+    expect_true(nrow(O) == 9 * nrow(I))          # 4. The number of rows is 8 times the number of rows in input, because we stack life-table indices.
     expect_true(is.numeric(O$DataValue))         # 5. DataValue is always numeric;
     # expect_true(O$DataValue >= 0)                # 6. And positive?? There are NaN. The values should be tested in DemoTools, this is just a wrapper.
   })

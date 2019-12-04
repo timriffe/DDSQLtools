@@ -26,15 +26,15 @@ doLifeTable <- function(X,
   B   <- X$AgeStart
   C   <- match.call()
   # OAG <- is_OAG(X)
-  fn  <- "LTabr"
+  fn  <- "lt_abridged"
   sex <- unique(X$SexID) 
   sex <- if (sex == 1) "m" else if (sex == 2) "f" else "b"
   
-  E <- LTabr(nMx = A,
-             Age = X$AgeStart,
-             AgeInt = X$AgeSpan,
-             Sex = sex, 
-             ...)
+  E <- lt_abridged(nMx = A,
+                   Age = X$AgeStart,
+                   AgeInt = X$AgeSpan,
+                   Sex = sex, 
+                   ...)
   
   G <- gather(E, key = "IndicatorID", value = "DataValue", -c(1:2)) %>% 
     dplyr::rename(AgeSpan = AgeInt, AgeStart = Age) %>%  
