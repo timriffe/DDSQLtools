@@ -22,6 +22,7 @@ Useful links:
 Authors:
 \itemize{
   \item Marius D. Pascariu (\href{https://orcid.org/0000-0002-2568-6489}{ORCID})
+  \item Jorge Cimentada (\href{https://orcid.org/0000-0001-5594-1156}{ORCID})
 }
 
 }

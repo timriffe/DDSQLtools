@@ -5,20 +5,21 @@ Version: 01.01.000
 Date: 2019-10-29
 Authors@R: c(
   person("Tim", "Riffe", role = c("aut", "cre"), email = "tim.riffe@gmail.com", comment = c(ORCID = "0000-0002-2673-4622")),
-  person("Marius D.", "Pascariu", role = "aut", comment = c(ORCID = "0000-0002-2568-6489")))
+  person("Marius D.", "Pascariu", role = "aut", comment = c(ORCID = "0000-0002-2568-6489")),
+  person("Jorge", "Cimentada", role = "aut", comment = c(ORCID = "0000-0001-5594-1156")))
 Description: Make the DemoTools package click into the UNPD workflow.
 License: file LICENSE
 LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
-  DemoTools (>= 0.12.32),
-  tidyr (>= 0.8.1),
-  dplyr (>= 0.7.6),
-  tibble (>= 1.4.2),
-  Rdpack (>= 0.8),
-  methods (>= 3.5.0),
-  rjson (>= 0.2.20),
-  varhandle (>= 2.0.3)
+    DemoTools (>= 1.3.28),
+    tidyr (>= 0.8.1),
+    dplyr (>= 0.7.6),
+    tibble (>= 1.4.2),
+    Rdpack (>= 0.8),
+    methods (>= 3.5.0),
+    rjson (>= 0.2.20),
+    varhandle (>= 2.0.3)
 Suggests: 
   covr (>= 3.1.0),
   testthat (>= 2.0.0)
