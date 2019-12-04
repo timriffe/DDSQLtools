@@ -41,7 +41,7 @@ doSplitting <- function(X,
                         fn = c("beers", "grabill", "sprague"), 
                         verbose = TRUE, 
                         ...) {
-  
+
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   AgeStart = AgeSpan <- NULL # hack CRAN note
@@ -51,13 +51,14 @@ doSplitting <- function(X,
   names(A) <- B
   OAG <- is_OAG(X)
   fn  <- match.arg(fn)
+  fn <- paste0("graduate_", fn)
   C   <- match.call()
   
   DTF <- get(fn)  # DemoTools Function
-  E   <- DTF(popmat = A, Age = B, OAG = OAG, ...)
+  E   <- DTF(Value = A, Age = B, OAG = OAG, ...)
   G   <- data.frame(DataValue = E) %>%
           mutate(AgeID = NA,
-                 AgeStart = as.numeric(rownames(E)), 
+                 AgeStart = as.numeric(names(E)), 
                  AgeSpan = 1, 
                  AgeEnd = AgeStart + AgeSpan,
                  AgeMid = AgeStart + AgeSpan/2,
@@ -69,6 +70,7 @@ doSplitting <- function(X,
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(X, G)
   return(out)
+
 }
 
 
