@@ -6,6 +6,8 @@ cache: packages
 
 r_packages:
   - covr
+before_install:
+  - sudo apt-get install libglu1-mesa-dev 
   
 after_success:
   - Rscript -e 'covr::codecov()'
