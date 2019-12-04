@@ -7,7 +7,9 @@ cache: packages
 r_packages:
   - covr
 before_install:
-  - sudo apt-get install libglu1-mesa-dev 
+  - sudo apt-get install libglu1-mesa-dev
+  - sudo apt-get install libcgal-dev
+  - sudo apt-get install libx11-dev  
   
 after_success:
   - Rscript -e 'covr::codecov()'
