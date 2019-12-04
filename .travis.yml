@@ -4,6 +4,9 @@ language: R
 sudo: false
 cache: packages
 
+env:
+  - RGL_USE_NULL=TRUE
+
 r_packages:
   - covr
 before_install:
