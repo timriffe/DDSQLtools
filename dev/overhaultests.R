@@ -130,7 +130,7 @@ library(magrittr);library(dplyr)
 # # below the highest one.
 # #filter(!(AgeSpan == -1 & AgeStart < max(AgeStart[AgeSpan == -1])))
 
-library(DDSQLtools)
+
 Y <- getRecordDataDetail(dataProcessIds = 2,
                    indicatorTypeIds = 8,
                    locIds = 818, 
@@ -144,3 +144,20 @@ Y <- getRecordData(dataProcessIds = "Census",
                    locAreaTypeIds = "Whole area",
                    subGroupIds = "Total or All groups",
                    isComplete = "Abridged")
+
+library(DDSQLtools)
+tst <- read_API("structureddatacriteria",
+                save = FALSE,
+                locIds = 4,
+                indicatorIDs = 60,
+                includeDataIDs = "true"
+                )
+
+all_codes <- strsplit(tst$StructuredDataIDs, ",")[[1]]
+
+tst <- read_API("structureddatarecords",
+                save = FALSE,
+                ids = all_codes[1:100]
+                )
+
+

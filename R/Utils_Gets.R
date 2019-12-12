@@ -95,6 +95,7 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
              "StructuredDataTable",
              "StructuredDataRecords",
              "StructuredDataSeries",
+             "structuredDataCriteria",
              "subGroups",
              "SubGroupTypes",
              "TimeReferences",
@@ -141,14 +142,17 @@ build_filter <- function(dataProcessIds = NULL,
                          AgeStart = NULL,
                          AgeEnd = NULL,
                          indicatorTypeIds = NULL,
+                         indicatorIDs = NULL,
                          isComplete = NULL,
                          isActive = NULL,
                          locIds = NULL,
+                         ids = NULL,
                          locAreaTypeIds = NULL,
                          subGroupIds = NULL,
                          addDefault = NULL,
                          includeDependencies = NULL, 
-                         includeFormerCountries = NULL) {
+                         includeFormerCountries = NULL,
+                         includeDataIDs = NULL) {
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
