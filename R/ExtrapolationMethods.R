@@ -77,5 +77,3 @@ doExtrapolate <- function(X,
   out <- formatOutputTable(X, G)
   return(out)
 }
-
-

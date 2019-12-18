@@ -11,14 +11,17 @@ build_filter(
   AgeStart = NULL,
   AgeEnd = NULL,
   indicatorTypeIds = NULL,
+  indicatorIDs = NULL,
   isComplete = NULL,
   isActive = NULL,
   locIds = NULL,
+  ids = NULL,
   locAreaTypeIds = NULL,
   subGroupIds = NULL,
   addDefault = NULL,
   includeDependencies = NULL,
-  includeFormerCountries = NULL
+  includeFormerCountries = NULL,
+  includeDataIDs = NULL
 )
 }
 \arguments{

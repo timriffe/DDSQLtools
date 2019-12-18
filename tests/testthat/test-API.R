@@ -121,7 +121,6 @@ test_that("getRecordData with codes gives same output with strings", {
   expect_equal(X, mixed_codes)
 })
 
-
 test_that("Looking up wrong input throws errors in getRecordData", {
   expect_error(getRecordData(locIds = "Wrong country"),
                regexp = "Location(s) 'Wrong country' not found. Check getLocations()",
@@ -138,4 +137,39 @@ test_that("Looking up wrong input throws errors in getRecordData", {
   expect_error(getRecordData(isComplete = "Wrong"),
                regexp = "IsComplete does not accept string 'Wrong'. Only 'abridged', 'complete', 'total'.",
                fixed = TRUE)
+})
+
+ids <- "35444654"
+res <- extractData(ids)
+validate_read_API(res)
+
+test_that("extractData returns the correct data when link is too long", {
+  test_res <- function(res, ids) {
+    all(
+      all(ids %in% res$PK_StructuredDataID),
+      nrow(res) == length(ids),
+      all(table(res$PK_StructuredDataID) == 1)
+    )
+  }
+
+  tst <- read_API("structureddatacriteria",
+                  save = FALSE,
+                  locIds = 4, # Afghanistan
+                  indicatorIDs = c(60, 58), # Two indicators
+                  includeDataIDs = "true"
+                  )
+
+  # Try reading different chunks of all codes
+  # to make sure that the function can handle
+  # reading different chunks of codes
+  all_codes <- strsplit(tst$StructuredDataIDs, ",")[[1]]
+  indices_test <- c(1, 50, 200, 201, 501, length(all_codes))
+  all_test <-
+    vapply(indices_test, function(i) {
+      ids <- all_codes[1:i]
+      res <- extractData(ids)
+      test_res(res, ids)
+    }, logical(1))
+
+  expect_true(all(all_test))
 })

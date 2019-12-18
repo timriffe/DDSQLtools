@@ -4,6 +4,48 @@
 # Last update: Sat Dec 15 15:26:04 2018
 # --------------------------------------------------- #
 
+##' Request data records directly from their ID
+##'
+##' @param ids a character vector of ID's that identify each data point
+##' @inheritParams read_API
+##' @return A data frame with the same rows as the number of ID's containing
+##' the data values for that specific ID.
+##'
+##' @examples
+##'
+##' # TODO: Add good example once the data filtering of all data available
+##' # is ready.
+##' 
+##' \dontrun{
+##' extractData("35444654")
+##' }
+##' 
+extractData <- function(ids, save = FALSE) {
+  len_ids <- length(ids)
+
+  if (len_ids > 200) {
+
+    values <- c(seq(1, len_ids, by = 199), len_ids)
+    seq_values <- seq_along(values)[-length(values)]
+
+    all_res <-
+      lapply(seq_values, function(i) {
+        cat(paste0("\r\r Reading chunks: [", i, "/", length(seq_values + 1), "]"))
+        seq_ch <- values[i:(i + 1)]
+        if (i > 1) seq_ch[1] <- seq_ch[1] + 1
+        id_chunk <- ids[seq_ch[1]:seq_ch[2]]
+        read_API("structureddatarecords", save = save, ids = id_chunk)
+      })
+
+    collapsed_res <- do.call(rbind, all_res)
+    return(collapsed_res)
+  }
+
+  cat(paste0("\r\r Reading chunks: [0/1]"))  
+  collapsed_res <- read_API("structureddatarecords", save = save, ids = ids)
+  cat(paste0("\r\r Reading chunks: [1/1]"))
+  collapsed_res
+}
 
 #' Get information about available locations (LocID)
 #' @inheritParams read_API
@@ -131,11 +173,13 @@ getRecordData <- function(save = FALSE, ...) {
 read_API <- function(type, save, ...){
   P <- linkGenerator(type = type, ...)
   # Temporary, just to check how the URL is constructed
-  print(P)
-  X <- rjson::fromJSON(file = P)
-  #
+  ## print(P)
+
+  out <- rjson::fromJSON(file = P)
+  ## print("URL saved")
+
   out <-
-    X %>% 
+    out %>% 
     lapply(unlist) %>%    # list elements can either be lists or vectors
     lapply(as.list) %>%   # here now everything is homogenously a vector
     dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
