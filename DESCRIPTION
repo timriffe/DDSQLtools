@@ -12,7 +12,7 @@ License: file LICENSE
 LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
-    DemoTools (>= 1.4.5),
+    DemoTools (>= 1.5.3),
     tidyr (>= 0.8.1),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
@@ -26,6 +26,6 @@ Suggests:
 RdMacros: Rdpack
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
 Remotes: timriffe/DemoTools
 Encoding: UTF-8
