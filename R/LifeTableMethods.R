@@ -39,7 +39,7 @@ do_lifetable <- function(X,
            DataTypeID = paste(deparse(C), collapse = ""),
            ReferencePeriod = unique(X$ReferencePeriod))
   
-  if (verbose) controlOutputMsg2(fn, arg_names)
+  if (verbose) output_msg(fn, arg_names)
   out <- formatOutputTable(X, G)
   out
 }

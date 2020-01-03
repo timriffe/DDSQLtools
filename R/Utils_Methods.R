@@ -48,8 +48,7 @@ formatOutputTable <- function(X, G) {
 #' Print messages
 #' @inheritParams do_splitting
 #' @keywords internal
-#' @export
-controlOutputMsg2 <- function(fn, arg_names) {
+output_msg <- function(fn, arg_names) {
   # DemoTools arguments renamed or fed automatically in DDSQL functions
   args_ren <- c("Age", "Value", "OAG", "popmat", "Males", "Females", "mx", "x") 
   # DDSQLtools arguments
