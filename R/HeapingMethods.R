@@ -60,15 +60,15 @@ doHeaping <- function(X,
   fn  <- match.arg(fn)
   
   E <- switch(fn,
-    Whipple = Whipple(A, B, ...),
-    Myers = Myers(A, B, ...), 
-    Bachi = Bachi(A, B, ...), 
-    CoaleLi = CoaleLi(A, B, ...),
-    Noumbissi = Noumbissi(A, B, ...),
-    Spoorenberg = Spoorenberg(A, B, ...),
+    Whipple = check_heaping_whipple(A, B, ...),
+    Myers = check_heaping_myers(A, B, ...), 
+    Bachi = check_heaping_bachi(A, B, ...), 
+    CoaleLi = check_heaping_coale_li(A, B, ...),
+    Noumbissi = check_heaping_noumbissi(A, B, ...),
+    Spoorenberg = check_heaping_spoorenberg(A, B, ...),
     ageRatioScore = ageRatioScore(A, B, OAG = OAG, ...),
-    KannistoHeap = KannistoHeap(A, B, ...),
-    Jdanov = Jdanov(A, B, ...)
+    KannistoHeap = check_heaping_kannisto(A, B, ...),
+    Jdanov = check_heaping_jdanov(A, B, ...)
   )
   
   G <- data.frame(DataValue = E) %>%  
