@@ -54,17 +54,17 @@ do_heaping <- function(X,
   fn  <- match.arg(fn)
   
   E <- switch(fn,
-    Whipple = check_heaping_whipple(A, B, ...),
-    Myers = check_heaping_myers(A, B, ...), 
-    Bachi = check_heaping_bachi(A, B, ...), 
-    CoaleLi = check_heaping_coale_li(A, B, ...),
-    Noumbissi = check_heaping_noumbissi(A, B, ...),
-    Spoorenberg = check_heaping_spoorenberg(A, B, ...),
-    ageRatioScore = ageRatioScore(A, B, OAG = is_OAG(X), ...),
-    KannistoHeap = check_heaping_kannisto(A, B, ...),
-    Jdanov = check_heaping_jdanov(A, B, ...)
-  )
-  
+              Whipple = check_heaping_whipple(A, B, ...),
+              Myers = check_heaping_myers(A, B, ...), 
+              Bachi = check_heaping_bachi(A, B, ...), 
+              CoaleLi = check_heaping_coale_li(A, B, ...),
+              Noumbissi = check_heaping_noumbissi(A, B, ...),
+              Spoorenberg = check_heaping_spoorenberg(A, B, ...),
+              ageRatioScore = ageRatioScore(A, B, OAG = is_OAG(X), ...),
+              KannistoHeap = check_heaping_kannisto(A, B, ...),
+              Jdanov = check_heaping_jdanov(A, B, ...)
+              )
+
   G <-
     data.frame(DataValue = E) %>%  
     mutate(AgeID = NA,
@@ -77,7 +77,7 @@ do_heaping <- function(X,
            DataTypeID = paste(deparse(C), collapse = ""),
            ReferencePeriod = unique(X$ReferencePeriod))
   
-  if (verbose) output_msg(fn, arg_names)
+  if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)
   out
 }

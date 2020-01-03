@@ -1,7 +1,7 @@
 #' Wrapper for Life Table Methods
-#' @seealso \code{\link[DemoTools]{LTabr}}
 #' @inheritParams do_splitting
 #' @inherit do_splitting return
+#' @seealso \code{\link[DemoTools]{lt_abridged}}
 #' @examples 
 #' mx <- DDSQLtools.data$Mx5
 #' do_lifetable(X = mx)
@@ -10,10 +10,6 @@ do_lifetable <- function(X,
                         verbose = TRUE, 
                         ...) {
   
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
-  
-  Age = AgeStart = AgeEnd = AgeInt <- NULL # hack CRAN note
   C   <- match.call()
   # OAG <- is_OAG(X)
   fn  <- "lt_abridged"

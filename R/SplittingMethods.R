@@ -35,10 +35,6 @@ do_splitting <- function(X,
                         fn = c("beers", "grabill", "sprague"), 
                         verbose = TRUE, 
                         ...) {
-
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
-  AgeStart = AgeSpan <- NULL # hack CRAN note
   
   A <- X$DataValue
   B <- X$AgeStart
@@ -61,7 +57,7 @@ do_splitting <- function(X,
                  DataTypeID = paste(deparse(C), collapse = ""),
                  ReferencePeriod = unique(X$ReferencePeriod)) 
   
-  if (verbose) output_msg(fn, arg_names)
+  if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)
   out
 

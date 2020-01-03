@@ -33,11 +33,6 @@ do_extrapolate <- function(X,
                           law = "kannisto",
                           verbose = TRUE,
                           ...) {
-
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
-
-  Age = AgeStart = AgeEnd = AgeInt <- NULL # hack CRAN note
   
   A   <- X$DataValue
   B   <- X$AgeStart
@@ -70,7 +65,7 @@ do_extrapolate <- function(X,
            DataTypeID = paste(deparse(C), collapse = ""),
            ReferencePeriod = unique(X$ReferencePeriod))
   
-  if (verbose) output_msg(fn, arg_names)
+  if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)
   out
 }

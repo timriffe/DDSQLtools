@@ -30,8 +30,6 @@ do_qualitychecks <- function(XY,
                             verbose = TRUE, 
                             ...) {
   
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
   validate_input(XY, XX)
   
   A1  <- XY$DataValue
@@ -64,7 +62,7 @@ do_qualitychecks <- function(XY,
                SexID = sex_id,
                SexName = sex_name)
   
-  if (verbose) output_msg(fn, arg_names)
+  if (verbose) output_msg(fn, names(C))
   out <- format_output(XY, G)
   out  
 }

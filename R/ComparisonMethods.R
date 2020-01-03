@@ -55,9 +55,6 @@
 #' 
 #' @export
 do_compare <- function(pop1, 
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
-  validate_input(input)
                        pop2, 
                        fn = c("ID", "IRD", "ADM", "RDM"), 
                        verbose = TRUE,
@@ -79,26 +76,24 @@ do_compare <- function(pop1,
               IRD = IRD(pop1 = A1, pop2 = A2),
               ADM = ADM(lx1 = A1, lx2 = A2, Age1 = B, Age2 = B, ...),
               RDM = RDM(lx1 = A1, lx2 = A2, Age1 = B, Age2 = B, ...)
-  )
+              )
   
-  AgeStart = AgeEnd <- NULL # hack CRAN note
-  G <- data.frame(DataValue = E) %>%
-        mutate(AgeID = NA,
-               AgeStart = min(pop1$AgeStart), 
-               AgeEnd = max(pop1$AgeEnd),
-               AgeMid = sum(pop1$AgeMid - pop1$AgeStart),
-               AgeSpan = AgeEnd - AgeStart, 
-               AgeLabel = paste0(AgeStart, "-", rev(pop1$AgeLabel)[1]),
-               DataTypeName = paste0("DemoTools::", fn),
-               DataTypeID = paste(deparse(C), collapse = ""),
-               ReferencePeriod = unique(pop1$ReferencePeriod),
-               SexID = sex_id,
-               SexName = sex_name)
+  G <-
+    data.frame(DataValue = E) %>%
+    mutate(AgeID = NA,
+           AgeStart = min(pop1$AgeStart), 
+           AgeEnd = max(pop1$AgeEnd),
+           AgeMid = sum(pop1$AgeMid - pop1$AgeStart),
+           AgeSpan = AgeEnd - AgeStart, 
+           AgeLabel = paste0(AgeStart, "-", rev(pop1$AgeLabel)[1]),
+           DataTypeName = paste0("DemoTools::", fn),
+           DataTypeID = paste(deparse(C), collapse = ""),
+           ReferencePeriod = unique(pop1$ReferencePeriod),
+           SexID = sex_id,
+           SexName = sex_name)
   
-  if (verbose) output_msg(fn, arg_names)
+  if (verbose) output_msg(fn, names(C))
   out <- format_output(pop1, G)
   out  
+
 }
-
-
-
