@@ -1,6 +1,3 @@
-library(testthat)
-library(DDSQLtools)
-
 ## DATA
 Mx5 <- DDSQLtools.data$Mx5 
 x1  <- c(75, 80, 85, 90)        # ages to be used in fitting

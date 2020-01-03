@@ -1,6 +1,3 @@
-library(testthat)
-library(DDSQLtools)
-
 ## DATA
 I <- DDSQLtools.data$Mx5
 

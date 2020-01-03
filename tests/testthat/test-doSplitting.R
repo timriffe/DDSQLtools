@@ -1,6 +1,3 @@
-library(testthat)
-library(DDSQLtools)
-
 ## DATA
 I1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 I5 <- DDSQLtools.data$Pop5_Egypt_M_DB

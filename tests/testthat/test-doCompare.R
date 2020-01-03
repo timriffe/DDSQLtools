@@ -1,6 +1,3 @@
-library(testthat)
-library(DDSQLtools)
-
 ## DATA
 P1m <- DDSQLtools.data$Pop1_Egypt_M_DB # 1-year age groups data
 P1f <- DDSQLtools.data$Pop1_Egypt_F_DB 

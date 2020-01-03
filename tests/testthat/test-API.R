@@ -1,5 +1,3 @@
-library(testthat)
-library(DDSQLtools)
 
 
 ## Test the linkGenerator
