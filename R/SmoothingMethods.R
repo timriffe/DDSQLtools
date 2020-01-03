@@ -53,15 +53,15 @@ doSmoothing <- function(X,
   method <- match.arg(method)
   if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)
   
-  E <- agesmth(Value = A, 
-               Age = B, 
-               method = method, 
-               OAG = OAG, 
-               ageMin = ageMin, 
-               ageMax = ageMax, 
-               n = n, 
-               young.tail = young.tail, 
-               old.tail = old.tail)
+  E <- smooth_age_5(Value = A, 
+                    Age = B, 
+                    method = method, 
+                    OAG = OAG, 
+                    ageMin = ageMin, 
+                    ageMax = ageMax, 
+                    n = n, 
+                    young.tail = young.tail, 
+                    old.tail = old.tail)
   E.age <- as.numeric(names(E))
   
   G <- data.frame(DataValue = E) %>%
