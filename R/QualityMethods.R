@@ -65,7 +65,7 @@ do_qualitychecks <- function(XY,
                SexName = sex_name)
   
   if (verbose) output_msg(fn, arg_names)
-  out <- formatOutputTable(XY, G)
+  out <- format_output(XY, G)
   out  
 }
 

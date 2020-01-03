@@ -94,7 +94,7 @@ do_compare <- function(pop1,
                SexName = sex_name)
   
   if (verbose) output_msg(fn, arg_names)
-  out <- formatOutputTable(pop1, G)
+  out <- format_output(pop1, G)
   out  
 }
 

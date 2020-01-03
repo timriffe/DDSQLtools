@@ -5,7 +5,6 @@
 #' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' is_OAG(p5)
 #' @export
-
 is_OAG <- function(X){
   cond <- !(X$AgeLabel %in% c("Total", "Unknown")) # Check for "Total"
   Y    <- X[cond, ] 
@@ -19,7 +18,7 @@ is_OAG <- function(X){
 #' @param G The G object in wrap functions
 #' @keywords internal
 #' 
-formatOutputTable <- function(X, G) {
+format_output <- function(X, G) {
   H <- data.frame(matrix(NA, ncol = ncol(X), nrow = nrow(G)))
   colnames(H) <- colnames(X)
   CnameX <- colnames(X)

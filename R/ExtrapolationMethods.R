@@ -71,6 +71,6 @@ do_extrapolate <- function(X,
            ReferencePeriod = unique(X$ReferencePeriod))
   
   if (verbose) output_msg(fn, arg_names)
-  out <- formatOutputTable(X, G)
+  out <- format_output(X, G)
   out
 }
