@@ -1,10 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 13:14:01 2018
-# --------------------------------------------------- #
-
-remove(list = ls())
 library(testthat)
 library(DDSQLtools)
 
