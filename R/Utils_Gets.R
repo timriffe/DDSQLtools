@@ -193,7 +193,7 @@ build_filter <- function(dataProcessIds = NULL,
   } else {
     out <- ""
   }
-  return(out)
+  out
 }
 
 

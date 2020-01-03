@@ -63,7 +63,7 @@ doSplitting <- function(X,
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(X, G)
-  return(out)
+  out
 
 }
 

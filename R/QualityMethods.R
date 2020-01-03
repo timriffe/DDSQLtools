@@ -66,7 +66,7 @@ doQualityChecks <- function(XY,
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(XY, G)
-  return(out)  
+  out  
 }
 
 

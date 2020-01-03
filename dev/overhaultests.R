@@ -31,7 +31,7 @@ linkGenerator2 <- function(server = "https://24.239.36.16:9654/un3/api/",
   type  <- match.arg(tolower(type), choices = tolower(types))
   query <- build_filter2(...)
   link  <- paste0(server, type, query)
-  return(link)
+  link
 }
 
 read_API2 <- function(type, save, ...){
@@ -50,7 +50,7 @@ read_API2 <- function(type, save, ...){
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
   }
-  return(out)
+  out
 }
 
 # All the optional args in build_filter2() need an overhaul: some work for some
@@ -69,7 +69,7 @@ build_filter2 <- function(
   } else {
     out <- ""
   }
-  return(out)
+  out
 }
 
 

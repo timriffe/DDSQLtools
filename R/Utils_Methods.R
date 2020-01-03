@@ -10,7 +10,7 @@ is_OAG <- function(X){
   cond <- !(X$AgeLabel %in% c("Total", "Unknown")) # Check for "Total"
   Y    <- X[cond, ] 
   out  <- any(Y$AgeSpan == -1)
-  return(out)
+  out
 }
 
 
@@ -41,7 +41,7 @@ formatOutputTable <- function(X, G) {
     }
   }
   
-  return(as.tibble(H))
+  as.tibble(H)
 }
 
 

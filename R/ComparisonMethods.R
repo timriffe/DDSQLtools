@@ -95,7 +95,7 @@ doCompare <- function(pop1,
   
   if (verbose) controlOutputMsg2(fn, arg_names)
   out <- formatOutputTable(pop1, G)
-  return(out)  
+  out  
 }
 
 

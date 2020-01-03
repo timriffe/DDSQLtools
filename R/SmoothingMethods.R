@@ -78,6 +78,6 @@ doSmoothing <- function(X,
   cx <- c("AgeSpan", "AgeEnd", "AgeMid", "AgeLabel")
   G[nrow(G), cx] <- X[nrow(X), cx]
   out <- formatOutputTable(X, G)
-  return(out)
+  out
 }
 
