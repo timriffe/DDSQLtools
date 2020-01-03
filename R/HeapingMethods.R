@@ -15,15 +15,15 @@
 #' @examples 
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 
-#' H1 <- doHeaping(P1, fn = "Whipple")
-#' H2 <- doHeaping(P1, fn = "Myers")
-#' H3 <- doHeaping(P1, fn = "Bachi")
-#' H4 <- doHeaping(P1, fn = "CoaleLi")
-#' H5 <- doHeaping(P1, fn = "Noumbissi")
-#' H6 <- doHeaping(P1, fn = "Spoorenberg")
-#' H7 <- doHeaping(P1, fn = "ageRatioScore")
-#' H8 <- doHeaping(P1, fn = "KannistoHeap")
-#' H9 <- doHeaping(P1, fn = "Jdanov")
+#' H1 <- do_heaping(P1, fn = "Whipple")
+#' H2 <- do_heaping(P1, fn = "Myers")
+#' H3 <- do_heaping(P1, fn = "Bachi")
+#' H4 <- do_heaping(P1, fn = "CoaleLi")
+#' H5 <- do_heaping(P1, fn = "Noumbissi")
+#' H6 <- do_heaping(P1, fn = "Spoorenberg")
+#' H7 <- do_heaping(P1, fn = "ageRatioScore")
+#' H8 <- do_heaping(P1, fn = "KannistoHeap")
+#' H9 <- do_heaping(P1, fn = "Jdanov")
 #' 
 #' H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
@@ -31,11 +31,11 @@
 #' H[, select_columns]
 #' 
 #' # Silence the function with verbose = FALSE
-#' H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)
+#' H1 <- do_heaping(P1, fn = "Whipple", verbose = FALSE)
 #' # ... or by specifying all arguments
-#' H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
+#' H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
-doHeaping <- function(X, 
+do_heaping <- function(X, 
                       fn = c("Whipple", 
                              "Myers", 
                              "Bachi", 

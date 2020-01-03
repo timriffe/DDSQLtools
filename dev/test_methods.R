@@ -6,36 +6,36 @@ remove(list = ls())
 library(devtools)
 # load_all("/home/tim/git/DDSQLtools")
 library(DDSQLtools)
-??doHeaping
+??do_heaping
 
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
 data.frame(P1)
 
-H1 <- doHeaping(P1, fn = "Whipple")
+H1 <- do_heaping(P1, fn = "Whipple")
 
 t(H1)
 
-H2 <- doHeaping(P1, fn = "Myers") # warning w P1
-H3 <- doHeaping(P1, fn = "Bachi")
-H4 <- doHeaping(P1, fn = "CoaleLi")
-H5 <- doHeaping(P1, fn = "Noumbissi")
-H6 <- doHeaping(P1, fn = "Spoorenberg")
-H7 <- doHeaping(P1, fn = "ageRatioScore") # ***
-H8 <- doHeaping(P1, fn = "KannistoHeap") # error w P5
-H9 <- doHeaping(P1, fn = "Jdanov", verbose = F) # ***
+H2 <- do_heaping(P1, fn = "Myers") # warning w P1
+H3 <- do_heaping(P1, fn = "Bachi")
+H4 <- do_heaping(P1, fn = "CoaleLi")
+H5 <- do_heaping(P1, fn = "Noumbissi")
+H6 <- do_heaping(P1, fn = "Spoorenberg")
+H7 <- do_heaping(P1, fn = "ageRatioScore") # ***
+H8 <- do_heaping(P1, fn = "KannistoHeap") # error w P5
+H9 <- do_heaping(P1, fn = "Jdanov", verbose = F) # ***
 
-?doHeaping
+?do_heaping
 
 H <- rbind(H1, H2, H3, H4, H5, H6, H7, H8, H9)
 H[, c("DataTypeName", "DataValue")]
 
 
 # Silence the function with verbose = FALSE
-H1 <- doHeaping(P1, fn = "Whipple", verbose = FALSE)
+H1 <- do_heaping(P1, fn = "Whipple", verbose = FALSE)
 # ... or by specifying all arguments
-H1 <- doHeaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
+H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 
 
 # COMMENTS: love the printed tips. Maybe an extra argument:

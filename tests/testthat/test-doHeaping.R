@@ -30,24 +30,24 @@ for (i in c("Whipple",
             "KannistoHeap", 
             "Jdanov")) { 
 
-  test_that(paste0("doHeaping with ", i), {
+  test_that(paste0("do_heaping with ", i), {
     # Expect a message here too;
-    expect_message(O <- doHeaping(X = P1, fn = i))
+    expect_message(O <- do_heaping(X = P1, fn = i))
     # The same but no message here;
-    expect_message(doHeaping(X = P1, fn = i, verbose = FALSE), regexp = NA)
+    expect_message(do_heaping(X = P1, fn = i, verbose = FALSE), regexp = NA)
     # Validate.
     validate_heaping_method(P1, O)
   })
 }
 
-test_that("doHeaping is sensitive to typos and messages", {
+test_that("do_heaping is sensitive to typos and messages", {
   # Expect no message here because all the possible arguments are specified.
-  expect_message(doHeaping(X = P1, 
+  expect_message(do_heaping(X = P1, 
                            fn = "Jdanov", 
                            verbose = TRUE, 
                            Agei = seq(95, 105, by = 5)),
                  regexp = NA)
 
   # Is sensitive to typos
-  expect_error(doHeaping(X = P1, fn = "Jdanovv"))
+  expect_error(do_heaping(X = P1, fn = "Jdanovv"))
 })
