@@ -12,13 +12,13 @@
 #' M <- c("Carrier-Farrag", "KKN", "Arriaga",
 #'        "United Nations", "Strong", "Zigzag", "MAV")
 #' 
-#' S1 <- doSmoothing(P5, method = M[1])
-#' S2 <- doSmoothing(P5, method = M[2])
-#' S3 <- doSmoothing(P5, method = M[3])
-#' S4 <- doSmoothing(P5, method = M[4])
-#' S5 <- doSmoothing(P5, method = M[5])
-#' S6 <- doSmoothing(P5, method = M[6])
-#' S7 <- doSmoothing(P5, method = M[7])
+#' S1 <- do_smoothing(P5, method = M[1])
+#' S2 <- do_smoothing(P5, method = M[2])
+#' S3 <- do_smoothing(P5, method = M[3])
+#' S4 <- do_smoothing(P5, method = M[4])
+#' S5 <- do_smoothing(P5, method = M[5])
+#' S6 <- do_smoothing(P5, method = M[6])
+#' S7 <- do_smoothing(P5, method = M[7])
 #' 
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
 #'                     "DataTypeName", "DataTypeID", "DataValue")
@@ -30,7 +30,7 @@
 #' 
 #' S
 #' @export
-doSmoothing <- function(X, 
+do_smoothing <- function(X, 
                         method = c("Carrier-Farrag", "KKN", "Arriaga",
                                    "United Nations", "Strong", "Zigzag", "MAV"),
                         ageMin = 10, 

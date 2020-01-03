@@ -29,8 +29,8 @@ for (i in c("Carrier-Farrag",
             "Zigzag", 
             "MAV")) { 
 
-  test_that(paste0("doSmoothing with ", i), {
-    O <- doSmoothing(X = I, method = i)
+  test_that(paste0("do_smoothing with ", i), {
+    O <- do_smoothing(X = I, method = i)
     validate_smoothing_method(I, O)
   })
 }

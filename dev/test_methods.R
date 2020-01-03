@@ -64,22 +64,22 @@ Q[, c("DataTypeName", "DataValue")]
 t(Q1)
 # "Additional arguments to control" -> Additional (optional) arguments to control *** DONE!
 # Q: if I add args in demotools does this message update automatically? *** YES!
-?doSmoothing
+?do_smoothing
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
 M <- c("Carrier-Farrag", "KKN", "Arriaga",
 		"United Nations", "Strong", "Zigzag","MAV")
 
 data.frame(P5)
-S1 <- doSmoothing(P5, method = M[1])
+S1 <- do_smoothing(P5, method = M[1])
 data.frame(S1)
 
-S2 <- doSmoothing(P5, method = M[2])
-S3 <- doSmoothing(P5, method = M[3])
-S4 <- doSmoothing(P5, method = M[4])
-S5 <- doSmoothing(P5, method = M[5])
-S6 <- doSmoothing(P5, method = M[6])
-S7 <- doSmoothing(P5, method = M[7]) # add MAV
+S2 <- do_smoothing(P5, method = M[2])
+S3 <- do_smoothing(P5, method = M[3])
+S4 <- do_smoothing(P5, method = M[4])
+S5 <- do_smoothing(P5, method = M[5])
+S6 <- do_smoothing(P5, method = M[6])
+S7 <- do_smoothing(P5, method = M[7]) # add MAV
 
 S1[, c("AgeStart", "DataTypeName", "DataValue")]
 S2[, c("AgeStart", "DataTypeName", "DataValue")]
