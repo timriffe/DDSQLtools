@@ -77,7 +77,7 @@ do_qualitychecks <- function(XY,
 #' @return Nothing. Just lets you pass through... or not.
 #' @keywords internal
 #' 
-validate_Input <- function(z) {
+validate_input <- function(z) {
   mismatch <- "Mismatch between the two datasets. "
   
   if (!identical(dim(z$XY), dim(z$XX))) {
