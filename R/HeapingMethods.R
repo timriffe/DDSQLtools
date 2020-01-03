@@ -36,22 +36,17 @@
 #' H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
 do_heaping <- function(X, 
-                      fn = c("Whipple", 
-                             "Myers", 
-                             "Bachi", 
-                             "CoaleLi", 
-                             "Noumbissi", 
-                             "Spoorenberg", 
-                             "ageRatioScore",
-                             "KannistoHeap", 
-                             "Jdanov"), 
-                      verbose = TRUE, 
-                      ...) {
-  
-  input <- as.list(environment())
-  arg_names <- c(names(input), names(list(...)))
-
-  AgeStart = AgeEnd <- NULL # hack CRAN note
+                       fn = c("Whipple", 
+                              "Myers", 
+                              "Bachi", 
+                              "CoaleLi", 
+                              "Noumbissi", 
+                              "Spoorenberg", 
+                              "ageRatioScore",
+                              "KannistoHeap", 
+                              "Jdanov"), 
+                       verbose = TRUE, 
+                       ...) {
   
   A   <- X$DataValue
   B   <- X$AgeStart

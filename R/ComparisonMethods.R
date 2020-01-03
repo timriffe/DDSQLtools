@@ -52,21 +52,23 @@
 #' # Example 4 - Compute the Mean Absolute Difference in age-ratios of survival
 #' # rates between 2 populations
 #' C6 <- do_compare(pop1 = lx.A, pop2 = lx.B, fn = "RDM")
+#' 
 #' @export
 do_compare <- function(pop1, 
-                      pop2, 
-                      fn = c("ID", "IRD", "ADM", "RDM"), 
-                      verbose = TRUE, ...) {
-  
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
   validate_input(input)
-  
+                       pop2, 
+                       fn = c("ID", "IRD", "ADM", "RDM"), 
+                       verbose = TRUE,
+                       ...) {
+
+  validate_input(pop1, pop2)
+
   A1 <- pop1$DataValue
   A2 <- pop2$DataValue
   B  <- pop1$AgeStart
   C  <- match.call()
-  # OAG <- is_OAG(pop1)
   fn  <- match.arg(fn)
   sex <- c("Male", "Female", "Both sexes")
   sex_id   <- if (pop1$SexID[1] == pop2$SexID[1]) pop1$SexID[1] else 3
