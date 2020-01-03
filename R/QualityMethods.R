@@ -32,7 +32,7 @@ do_qualitychecks <- function(XY,
   
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
-  validateInput(input)
+  validate_input(input)
   
   A1  <- XY$DataValue
   A2  <- XX$DataValue
@@ -77,7 +77,7 @@ do_qualitychecks <- function(XY,
 #' @return Nothing. Just lets you pass through... or not.
 #' @keywords internal
 #' 
-validateInput <- function(z) {
+validate_Input <- function(z) {
   mismatch <- "Mismatch between the two datasets. "
   
   if (!identical(dim(z$XY), dim(z$XX))) {

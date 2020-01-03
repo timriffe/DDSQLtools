@@ -60,7 +60,7 @@ doCompare <- function(pop1,
   
   input <- as.list(environment())
   arg_names <- c(names(input), names(list(...)))
-  validateInput(input)
+  validate_input(input)
   
   A1 <- pop1$DataValue
   A2 <- pop2$DataValue
