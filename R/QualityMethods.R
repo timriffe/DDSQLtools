@@ -13,16 +13,16 @@
 #' M5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' F5 <- DDSQLtools.data$Pop5_Egypt_F_DB
 #' 
-#' Q1 <- doQualityChecks(M5, F5, fn = "sexRatioScore")
-#' Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
-#' Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
+#' Q1 <- do_qualitychecks(M5, F5, fn = "sexRatioScore")
+#' Q2 <- do_qualitychecks(M5, F5, fn = "ageSexAccuracy")
+#' Q3 <- do_qualitychecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 #' 
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
 #'                     "DataTypeName", "DataTypeID", "DataValue")
 #' Q <- rbind(Q1, Q2, Q3)
 #' Q[, select_columns]
 #' @export
-doQualityChecks <- function(XY, 
+do_qualitychecks <- function(XY, 
                             XX, 
                             fn = c("sexRatioScore", 
                                    "ageSexAccuracy", 
@@ -71,9 +71,9 @@ doQualityChecks <- function(XY,
 
 
 
-#' Internal function that validates the input in \code{doQualityChecks} as
+#' Internal function that validates the input in \code{do_qualitychecks} as
 #' stop it if data is not alright
-#' @param z A list containing the input supplied in \code{doQualityChecks}.
+#' @param z A list containing the input supplied in \code{do_qualitychecks}.
 #' @return Nothing. Just lets you pass through... or not.
 #' @keywords internal
 #' 

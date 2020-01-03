@@ -2,19 +2,19 @@
 % Please edit documentation in R/QualityMethods.R
 \name{validateInput}
 \alias{validateInput}
-\title{Internal function that validates the input in \code{doQualityChecks} as
+\title{Internal function that validates the input in \code{do_qualitychecks} as
 stop it if data is not alright}
 \usage{
 validateInput(z)
 }
 \arguments{
-\item{z}{A list containing the input supplied in \code{doQualityChecks}.}
+\item{z}{A list containing the input supplied in \code{do_qualitychecks}.}
 }
 \value{
 Nothing. Just lets you pass through... or not.
 }
 \description{
-Internal function that validates the input in \code{doQualityChecks} as
+Internal function that validates the input in \code{do_qualitychecks} as
 stop it if data is not alright
 }
 \keyword{internal}

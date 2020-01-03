@@ -19,7 +19,7 @@ validate_heaping_method <- function(I, O) {
     expect_true(O$DataValue <= 1e3)
 }
 
-# doQualityChecks tests
+# do_qualitychecks tests
 for (i in c("Whipple", 
             "Myers", 
             "Bachi", 

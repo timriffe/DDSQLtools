@@ -50,13 +50,13 @@ H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 
 
 # -------------------------
-?doQualityChecks
+?do_qualitychecks
 M5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 F5 <- DDSQLtools.data$Pop5_Egypt_F_DB
 
-Q1 <- doQualityChecks(M5, F5, fn = "sexRatioScore")
-Q2 <- doQualityChecks(M5, F5, fn = "ageSexAccuracy")
-Q3 <- doQualityChecks(M5, F5, fn = "ageSexAccuracyDasGupta")
+Q1 <- do_qualitychecks(M5, F5, fn = "sexRatioScore")
+Q2 <- do_qualitychecks(M5, F5, fn = "ageSexAccuracy")
+Q3 <- do_qualitychecks(M5, F5, fn = "ageSexAccuracyDasGupta")
 
 Q <- rbind(Q1, Q2, Q3)
 Q[, c("DataTypeName", "DataValue")]

@@ -53,28 +53,28 @@ for (i in c("ID", "IRD") ) {
   })
 }
 
-# Tests doQualityChecks
+# Tests do_qualitychecks
 for (i in c("sexRatioScore", 
             "ageSexAccuracy", 
             "ageSexAccuracyDasGupta")) {
   
-  test_that(paste0("doQualityChecks works correctly with ", i), {
+  test_that(paste0("do_qualitychecks works correctly with ", i), {
 
     # Expect a message here;
     expect_message(
-      X5 <- doQualityChecks(XY = P5m, XX = P5f, fn = i)
+      X5 <- do_qualitychecks(XY = P5m, XX = P5f, fn = i)
     )
 
     # The same but no message here;
     expect_message(
-      X5 <- doQualityChecks(XY = P5m, XX = P5f, fn = i, verbose = FALSE),
+      X5 <- do_qualitychecks(XY = P5m, XX = P5f, fn = i, verbose = FALSE),
       regexp = NA
     )
 
     # Validate only for abridged data;
     validate_data(P1 = P5m, P2 = P5f, X5)
     # Expect error here.
-    expect_error(doQualityChecks(XY = P5m, XX = P1f, fn = i))
+    expect_error(do_qualitychecks(XY = P5m, XX = P1f, fn = i))
 
   })
   
