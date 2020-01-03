@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 14:25:16 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Age-Splitting Methods
 #' 
 #' @param X Input data. UN format.

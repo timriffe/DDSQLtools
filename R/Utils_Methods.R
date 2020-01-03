@@ -1,5 +1,3 @@
-
-
 #' Check whether the input data contains an open age interval 
 #' @inheritParams doSplitting
 #' @return Logical.

@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 12:54:00 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Age-Heaping Methods
 #' 
 #' @inheritParams doSplitting

@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 13:31:22 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Smoothing Populations in 5-year Age Groups
 #' 
 #' @param X Input data. UN format.

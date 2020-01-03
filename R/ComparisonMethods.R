@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 13:01:40 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Population Comparison
 #' 
 #' @param pop1 Input data for population 1. UN format;

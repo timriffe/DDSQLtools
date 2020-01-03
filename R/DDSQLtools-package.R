@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Wed Dec 12 16:14:01 2018
-# --------------------------------------------------- #
-
 # DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal 
 # data format
 

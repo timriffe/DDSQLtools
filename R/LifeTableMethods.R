@@ -1,10 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 13:00:52 2018
-# --------------------------------------------------- #
-
-
 #' Wrapper for Life Table Methods
 #' @inheritParams doSplitting
 #' @inherit doSplitting return
@@ -50,7 +43,3 @@ doLifeTable <- function(X,
   out <- formatOutputTable(X, G)
   return(out)
 }
-
-
-  
-  

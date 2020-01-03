@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sun Dec 16 13:01:00 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Performing Age-Sex Male-Female Data Quality Checks
 #' 
 #' @param XY Input data for male population. UN format.

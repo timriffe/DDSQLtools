@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 15:26:04 2018
-# --------------------------------------------------- #
-
 ##' Request data records directly from their ID
 ##'
 ##' @param ids a character vector of ID's that identify each data point
@@ -173,7 +167,7 @@ getRecordData <- function(save = FALSE, ...) {
 read_API <- function(type, save, ...){
   P <- linkGenerator(type = type, ...)
   # Temporary, just to check how the URL is constructed
-  ## print(P)
+  print(P)
 
   out <- rjson::fromJSON(file = P)
   ## print("URL saved")

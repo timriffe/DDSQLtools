@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Wed Nov 28 11:38:26 2018
-# --------------------------------------------------- #
-
 #' Wrapper for Extrapolating Old-Age Human Mortality Data Using 
 #' Various Mortality Models ("laws")
 #' @inheritParams DemoTools::lt_rule_m_extrapolate
