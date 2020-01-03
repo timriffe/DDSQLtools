@@ -144,3 +144,12 @@ Y <- getRecordData(dataProcessIds = "Census",
                    locAreaTypeIds = "Whole area",
                    subGroupIds = "Total or All groups",
                    isComplete = "Abridged")
+
+
+tst <- read_API("structureddatacriteria",
+                save = FALSE,
+                locIds = 4, # Afghanistan
+                indicatorIDs = 60,
+                includeDataIDs = "true"
+                )
+
