@@ -56,8 +56,8 @@ E <- doExtrapolate(X = DDSQLtools.data$Mx5,           # data - UN format
 E
 
 # Build 2 life table: 1st using the original data and the 2nd using the extended data
-LT1 <- doLifeTable(X = DDSQLtools.data$Mx5)
-LT2 <- doLifeTable(X = E)
+LT1 <- do_lifetable(X = DDSQLtools.data$Mx5)
+LT2 <- do_lifetable(X = E)
 
 LT1[LT1$IndicatorID == "ex", c("AgeStart", "DataValue")]
 LT2[LT2$IndicatorID == "ex", c("AgeStart", "DataValue")]

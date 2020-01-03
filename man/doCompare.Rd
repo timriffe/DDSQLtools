@@ -57,9 +57,9 @@ C[, select_columns]
 library(dplyr)
 Mx <- DDSQLtools.data$Mx5
 
-lx.A <- Mx \%>\% doLifeTable \%>\% filter(IndicatorID == "lx")
+lx.A <- Mx \%>\% do_lifetable \%>\% filter(IndicatorID == "lx")
 lx.B <- Mx \%>\% mutate(DataValue = DataValue * 0.98, SexID = 0) \%>\% 
-  doLifeTable \%>\% filter(IndicatorID == "lx")
+  do_lifetable \%>\% filter(IndicatorID == "lx")
 
 C5 <- doCompare(pop1 = lx.A, pop2 = lx.B, fn = "ADM")
 

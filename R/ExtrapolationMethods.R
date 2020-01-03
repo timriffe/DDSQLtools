@@ -1,8 +1,8 @@
 #' Wrapper for Extrapolating Old-Age Human Mortality Data Using 
 #' Various Mortality Models ("laws")
 #' @inheritParams DemoTools::lt_rule_m_extrapolate
-#' @inheritParams doLifeTable
-#' @inherit doLifeTable return
+#' @inheritParams do_lifetable
+#' @inherit do_lifetable return
 #' @source The function is based on the methods implemented in the 
 #' \code{MortalityLaws} R package.
 #' @seealso 
@@ -18,8 +18,8 @@
 #' E
 #' 
 #' # Build 2 life table: 1st using the original data and the 2nd using the extended data
-#' LT1 <- doLifeTable(X = DDSQLtools.data$Mx5)
-#' LT2 <- doLifeTable(X = E)
+#' LT1 <- do_lifetable(X = DDSQLtools.data$Mx5)
+#' LT2 <- do_lifetable(X = E)
 #' 
 #' LT1[LT1$IndicatorID == "ex", c("AgeStart", "DataValue")]
 #' LT2[LT2$IndicatorID == "ex", c("AgeStart", "DataValue")]

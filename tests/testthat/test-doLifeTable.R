@@ -18,14 +18,14 @@ validate_LT_method <- function(I, O) {
     # expect_true(O$DataValue >= 0)                
 }
 
-test_that("doLifeTable doesn't expect message", {
+test_that("do_lifetable doesn't expect message", {
   # Expect a message
   # Save result for use outside of this environment in
   # `validate_LT_method`.
-  expect_message(O <<- doLifeTable(X = I, verbose = TRUE))
+  expect_message(O <<- do_lifetable(X = I, verbose = TRUE))
 
   # Expect no message
-  expect_message(doLifeTable(X = I, verbose = FALSE), regexp = NA)
+  expect_message(do_lifetable(X = I, verbose = FALSE), regexp = NA)
 })
 
 validate_LT_method(I, O)  # validate

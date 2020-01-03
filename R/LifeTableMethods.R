@@ -4,9 +4,9 @@
 #' @seealso \code{\link[DemoTools]{LTabr}}
 #' @examples 
 #' mx <- DDSQLtools.data$Mx5
-#' doLifeTable(X = mx)
+#' do_lifetable(X = mx)
 #' @export
-doLifeTable <- function(X, 
+do_lifetable <- function(X, 
                         verbose = TRUE, 
                         ...) {
   
