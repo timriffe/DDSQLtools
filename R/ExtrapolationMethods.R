@@ -11,7 +11,7 @@
 #' @examples 
 #' # Example 1 - abridged data
 #' # Extrapolate old-age mortality data
-#' E <- doExtrapolate(X = DDSQLtools.data$Mx5,           # data - UN format 
+#' E <- do_extrapolate(X = DDSQLtools.data$Mx5,           # data - UN format 
 #'                    x_fit = c(75, 80, 85, 90),         # ages to be used in fitting
 #'                    x_extr = c(90, 95, 100, 105, 110), # ages for which the extrapolation is applied
 #'                    law = "kannisto")                  # the model
@@ -27,7 +27,7 @@
 #' dim(LT1)
 #' dim(LT2) # note the 2nd life table has few extra rows
 #' @export
-doExtrapolate <- function(X,
+do_extrapolate <- function(X,
                           x_fit,
                           x_extr,
                           law = "kannisto",

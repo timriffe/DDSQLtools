@@ -33,10 +33,10 @@ validate_data <- function(I, O) {
 }
 
 for (i in M) {
-  test_that(paste0("doExtrapolate with ", i), {
+  test_that(paste0("do_extrapolate with ", i), {
     # Expect a message here;
     expect_message(
-      E1 <- doExtrapolate(X = Mx5,
+      E1 <- do_extrapolate(X = Mx5,
                           x_fit = x1,
                           x_extr = x2,
                           law = i,
