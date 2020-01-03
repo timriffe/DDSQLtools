@@ -104,7 +104,7 @@ V2 <- do_splitting(P1, fn = "grabill")
 V3 <- do_splitting(P1, fn = "sprague") 
 
 
-# 1) make doComparePops()
+# 1) make do_comparePops()
 # calls IRDID.R functions, also UN sex compare, also LIFIT.R RDM, ADM (relative, absolute)
 
 # 2) make doLTabr , calling LTabr() (inside LTPOPDTH). That is a messy messy function, I'm afraid. 

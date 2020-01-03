@@ -24,9 +24,9 @@ validate_data <- function(P1, P2, X) {
     expect_true(X$DataValue <= 1e3)              
 }
 
-# Tests doCompare
+# Tests do_compare
 for (i in c("ID", "IRD") ) { 
-  test_that(paste0("doCompare works correctly with ", i), {
+  test_that(paste0("do_compare works correctly with ", i), {
 
     # IRD returns a message but ID does't. Here, by setting NULL, we let
     # expect_message know that we're expecing a message but with NA
@@ -35,12 +35,12 @@ for (i in c("ID", "IRD") ) {
 
     # Expect no message here;
     expect_message(
-      X1 <- doCompare(pop1 = P1m, pop2 = P1f, fn = i),
+      X1 <- do_compare(pop1 = P1m, pop2 = P1f, fn = i),
       regexp = msg
     )
     # Expect no message here;
     expect_message(
-      X5 <- doCompare(pop1 = P5m, pop2 = P5f, fn = i),
+      X5 <- do_compare(pop1 = P5m, pop2 = P5f, fn = i),
       regexp = msg
     )
 
@@ -49,7 +49,7 @@ for (i in c("ID", "IRD") ) {
     # Validate using abridged data;
     validate_data(P1 = P5m, P2 = P5f, X5)
     # Expect error here;
-    expect_error(doCompare(pop1 = P1m, pop2 = P5f, fn = i))
+    expect_error(do_compare(pop1 = P1m, pop2 = P5f, fn = i))
   })
 }
 

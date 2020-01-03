@@ -20,13 +20,13 @@
 #' P5m <- DDSQLtools.data$Pop5_Egypt_M_DB # 5-year age groups data
 #' P5f <- DDSQLtools.data$Pop5_Egypt_F_DB
 #' 
-#' C1 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "ID")
-#' C2 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "ID")
+#' C1 <- do_compare(pop1 = P1m, pop2 = P1f, fn = "ID")
+#' C2 <- do_compare(pop1 = P5m, pop2 = P5f, fn = "ID")
 #' 
 #' # ------------------------------------------
 #' # Example 2 - Compute the Index of relative difference between 2 populations
-#' C3 <- doCompare(pop1 = P1m, pop2 = P1f, fn = "IRD")
-#' C4 <- doCompare(pop1 = P5m, pop2 = P5f, fn = "IRD")
+#' C3 <- do_compare(pop1 = P1m, pop2 = P1f, fn = "IRD")
+#' C4 <- do_compare(pop1 = P5m, pop2 = P5f, fn = "IRD")
 #' 
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
 #'                     "DataTypeName", "DataTypeID", "DataValue")
@@ -46,14 +46,14 @@
 #' lx.B <- Mx %>% mutate(DataValue = DataValue * 0.98, SexID = 0) %>% 
 #'   do_lifetable %>% filter(IndicatorID == "lx")
 #' 
-#' C5 <- doCompare(pop1 = lx.A, pop2 = lx.B, fn = "ADM")
+#' C5 <- do_compare(pop1 = lx.A, pop2 = lx.B, fn = "ADM")
 #' 
 #' # ------------------------------------------
 #' # Example 4 - Compute the Mean Absolute Difference in age-ratios of survival
 #' # rates between 2 populations
-#' C6 <- doCompare(pop1 = lx.A, pop2 = lx.B, fn = "RDM")
+#' C6 <- do_compare(pop1 = lx.A, pop2 = lx.B, fn = "RDM")
 #' @export
-doCompare <- function(pop1, 
+do_compare <- function(pop1, 
                       pop2, 
                       fn = c("ID", "IRD", "ADM", "RDM"), 
                       verbose = TRUE, ...) {

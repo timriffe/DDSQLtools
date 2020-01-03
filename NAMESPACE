@@ -2,8 +2,8 @@
 
 export(check_values)
 export(controlOutputMsg2)
-export(doCompare)
 export(doExtrapolate)
+export(do_compare)
 export(do_heaping)
 export(do_lifetable)
 export(do_qualitychecks)
