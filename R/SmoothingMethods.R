@@ -2,9 +2,9 @@
 #' 
 #' @param X Input data. UN format.
 #' @inheritParams DemoTools::agesmth
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @inherit DemoTools::agesmth description details
-#' @inherit doSplitting return
+#' @inherit do_splitting return
 #' @seealso \code{\link[DemoTools]{agesmth}}
 #' @examples 
 #' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB

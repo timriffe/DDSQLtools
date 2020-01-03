@@ -86,22 +86,22 @@ S2[, c("AgeStart", "DataTypeName", "DataValue")]
 # would be nice to record not just agesmth, but also which method was used. *** DONE!
 # perhaps also note optional args with message like above. *** NOT NEEDED.
 
-?doSplitting
+?do_splitting
 
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
-W1 <- doSplitting(P5, fn = "beers") 
-W2 <- doSplitting(P5, fn = "grabill")
-W3 <- doSplitting(P5, fn = "sprague")
+W1 <- do_splitting(P5, fn = "beers") 
+W2 <- do_splitting(P5, fn = "grabill")
+W3 <- do_splitting(P5, fn = "sprague")
 
 W1[, c("DataTypeName", "DataValue")] # OK
 
 # Example 2 --- 1-year age group   
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 
-V1 <- doSplitting(P1, fn = "beers") 
-V2 <- doSplitting(P1, fn = "grabill") 
-V3 <- doSplitting(P1, fn = "sprague") 
+V1 <- do_splitting(P1, fn = "beers") 
+V2 <- do_splitting(P1, fn = "grabill") 
+V3 <- do_splitting(P1, fn = "sprague") 
 
 
 # 1) make doComparePops()

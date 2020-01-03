@@ -1,5 +1,5 @@
 #' Check whether the input data contains an open age interval
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @return Logical.
 #' @examples 
 #' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
@@ -15,7 +15,7 @@ is_OAG <- function(X){
 
 
 #' Prepare output table in wrap functions
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @param G The G object in wrap functions
 #' @keywords internal
 #' 
@@ -46,7 +46,7 @@ formatOutputTable <- function(X, G) {
 
 
 #' Print messages
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @keywords internal
 #' @export
 controlOutputMsg2 <- function(fn, arg_names) {

@@ -4,8 +4,8 @@
 #' @param XX Input data for female population. UN format.
 #' @param fn Method to be called from DemoTools. Available aternatives: 
 #' \code{"sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"}.
-#' @inheritParams doSplitting
-#' @inherit doSplitting return
+#' @inheritParams do_splitting
+#' @inherit do_splitting return
 #' @seealso \code{\link[DemoTools]{sexRatioScore}}, 
 #' \code{\link[DemoTools]{ageSexAccuracy}},
 #' \code{\link[DemoTools]{ageSexAccuracyDasGupta}}.

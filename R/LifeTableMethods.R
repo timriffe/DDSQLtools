@@ -1,7 +1,7 @@
 #' Wrapper for Life Table Methods
-#' @inheritParams doSplitting
-#' @inherit doSplitting return
 #' @seealso \code{\link[DemoTools]{LTabr}}
+#' @inheritParams do_splitting
+#' @inherit do_splitting return
 #' @examples 
 #' mx <- DDSQLtools.data$Mx5
 #' do_lifetable(X = mx)

@@ -4,8 +4,8 @@
 #' @param pop2 Input data for population 2. UN format;
 #' @param fn Method to be called from DemoTools. Available aternatives: 
 #' \code{"ID", "IRD", "ADM", "RDM"};
-#' @inheritParams doSplitting
-#' @inherit doSplitting return
+#' @inheritParams do_splitting
+#' @inherit do_splitting return
 #' @seealso 
 #' \code{\link[DemoTools]{ID}}, 
 #' \code{\link[DemoTools]{IRD}},

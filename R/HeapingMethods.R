@@ -1,6 +1,6 @@
 #' Wrapper for Age-Heaping Methods
 #' 
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @inheritParams DemoTools::Myers
 #' @seealso 
 #' \code{\link[DemoTools]{Whipple}},
