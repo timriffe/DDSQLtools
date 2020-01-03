@@ -51,16 +51,19 @@ doExtrapolate <- function(X,
                              x_extr = x_extr, 
                              law = law, 
                              ...)
+
+  age_names <- as.numeric(names(E$values))
   
-  G <- E$values %>% 
+  G <-
+    E$values %>% 
     as.data.frame() %>% 
     dplyr::rename(DataValue = ".") %>%  
-    mutate(AgeID = NA,
-           AgeStart = as.numeric(names(E$values)),
-           AgeSpan = NA,
-           AgeEnd = NA,
-           AgeMid = NA,
-           AgeLabel = NA,
+    mutate(AgeID = NA_real_,
+           AgeStart = age_names,
+           AgeSpan = age2int(age_names),
+           AgeEnd = NA_real_,
+           AgeMid = NA_real_,
+           AgeLabel = NA_real_,
            SexID = unique(X$SexID), 
            IndicatorID = unique(X$IndicatorID),
            DataTypeName = paste0("DemoTools::", fn),
