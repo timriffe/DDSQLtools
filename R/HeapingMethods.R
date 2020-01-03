@@ -56,7 +56,6 @@ do_heaping <- function(X,
   A   <- X$DataValue
   B   <- X$AgeStart
   C   <- match.call()
-  OAG <- is_OAG(X)
   fn  <- match.arg(fn)
   
   E <- switch(fn,
@@ -66,21 +65,22 @@ do_heaping <- function(X,
     CoaleLi = check_heaping_coale_li(A, B, ...),
     Noumbissi = check_heaping_noumbissi(A, B, ...),
     Spoorenberg = check_heaping_spoorenberg(A, B, ...),
-    ageRatioScore = ageRatioScore(A, B, OAG = OAG, ...),
+    ageRatioScore = ageRatioScore(A, B, OAG = is_OAG(X), ...),
     KannistoHeap = check_heaping_kannisto(A, B, ...),
     Jdanov = check_heaping_jdanov(A, B, ...)
   )
   
-  G <- data.frame(DataValue = E) %>%  
-        mutate(AgeID = NA,
-               AgeStart = min(X$AgeStart), 
-               AgeEnd = max(X$AgeEnd),
-               AgeMid = sum(X$AgeMid - X$AgeStart),
-               AgeSpan = AgeEnd - AgeStart, 
-               AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
-               DataTypeName = paste0("DemoTools::", fn),
-               DataTypeID = paste(deparse(C), collapse = ""),
-               ReferencePeriod = unique(X$ReferencePeriod))
+  G <-
+    data.frame(DataValue = E) %>%  
+    mutate(AgeID = NA,
+           AgeStart = min(X$AgeStart), 
+           AgeEnd = max(X$AgeEnd),
+           AgeMid = sum(X$AgeMid - X$AgeStart),
+           AgeSpan = AgeEnd - AgeStart, 
+           AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
+           DataTypeName = paste0("DemoTools::", fn),
+           DataTypeID = paste(deparse(C), collapse = ""),
+           ReferencePeriod = unique(X$ReferencePeriod))
   
   if (verbose) output_msg(fn, arg_names)
   out <- format_output(X, G)
