@@ -1,8 +1,7 @@
-## DATA
+# Data
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB # 1-year age groups data
 
 validate_heaping_method <- function(I, O) {
-  test_that("Test heaping methods", {
     # 1. We always expect an output;
     expect_output(print(O))
     # 2. Output should be a data.frame;
@@ -18,8 +17,6 @@ validate_heaping_method <- function(I, O) {
     # 7. If the value in DataValue is to large maybe somebody should come back
     # here and do a manual inspection.
     expect_true(O$DataValue <= 1e3)
-  })
-  
 }
 
 # doQualityChecks tests

@@ -2,7 +2,6 @@
 I <- DDSQLtools.data$Mx5
 
 validate_LT_method <- function(I, O) {
-  test_that("Test LifeTable methods", {
     # 1. We always expect an output;
     expect_output(print(O))
     # 2. Output should be a data.frame;
@@ -17,8 +16,6 @@ validate_LT_method <- function(I, O) {
     # 6. And positive?? There are NaN. The values should be tested in DemoTools,
     # this is just a wrapper.
     # expect_true(O$DataValue >= 0)                
-  })
-  
 }
 
 test_that("doLifeTable doesn't expect message", {

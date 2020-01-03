@@ -13,7 +13,6 @@ M <- c("kannisto",              # Models
 
 
 validate_data <- function(I, O) {
-  test_that("Test Wrapper Output", {
     # 1. The input should be positive;
     expect_true(all(I$DataValue >= 0))
     # 2. We always expect an output;
@@ -31,8 +30,6 @@ validate_data <- function(I, O) {
     # 8. If the value in DataValue is to large maybe somebody should come back
     # here and do a manual inspection.
     expect_true(all(O$DataValue <= 1e2))
-  })
-  
 }
 
 for (i in M) {
