@@ -42,9 +42,18 @@
 #' library(dplyr)
 #' Mx <- DDSQLtools.data$Mx5
 #' 
-#' lx.A <- Mx %>% do_lifetable %>% filter(IndicatorID == "lx")
-#' lx.B <- Mx %>% mutate(DataValue = DataValue * 0.98, SexID = 0) %>% 
-#'   do_lifetable %>% filter(IndicatorID == "lx")
+#' lx.A <-
+#'  Mx %>%
+#'   do_lifetable() %>%
+#'   filter(IndicatorID == "lx") %>%
+#'   mutate(AgeLabel = paste0(AgeStart, "-", lead(AgeStart)))
+#' 
+#' lx.B <-
+#'  Mx %>%
+#'   mutate(DataValue = DataValue * 0.98, SexID = 0) %>% 
+#'   do_lifetable() %>%
+#'   filter(IndicatorID == "lx") %>%
+#'   mutate(AgeLabel = paste0(AgeStart, "-", lead(AgeStart)))
 #' 
 #' C5 <- do_compare(pop1 = lx.A, pop2 = lx.B, fn = "ADM")
 #' 
