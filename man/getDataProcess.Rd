@@ -40,6 +40,8 @@ care, this is important! The following options are available: \itemize{
 Get information about available data-types (DataProcessTypeID)
 }
 \examples{
+\dontrun{
 D <- getDataProcess()
 D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
+}
 }

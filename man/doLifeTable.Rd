@@ -26,5 +26,5 @@ mx <- DDSQLtools.data$Mx5
 doLifeTable(X = mx)
 }
 \seealso{
-\code{\link[DemoTools]{LTabr}}
+\code{\link[DemoTools]{lt_abridged}}
 }

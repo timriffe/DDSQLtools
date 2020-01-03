@@ -1,10 +1,11 @@
-#' Check whether the input data contains an open age interval 
+#' Check whether the input data contains an open age interval
 #' @inheritParams doSplitting
 #' @return Logical.
 #' @examples 
 #' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' is_OAG(p5)
 #' @export
+
 is_OAG <- function(X){
   cond <- !(X$AgeLabel %in% c("Total", "Unknown")) # Check for "Total"
   Y    <- X[cond, ] 
@@ -65,11 +66,6 @@ controlOutputMsg2 <- function(fn, arg_names) {
             "\nCheck ?", fn, " for details and default values.\n")
   }
 }
-
-
-
-
-# ----------------------------------------------
 
 #' Utility functions for wrappers. Name and value checking, for example.
 #' 

@@ -29,7 +29,8 @@
 #' @details The link generator is based on the structure of the database 
 #' created by Dennis Butler (in late 2018). If the web address or the structure 
 #' of the database changes this will have to be updated as well.
-#' @examples 
+#' @examples
+#' \dontrun{
 #' # Link to country list
 #' L1 <- linkGenerator(type = "locations",
 #'                     addDefault = "false",
@@ -60,7 +61,7 @@
 #' # Link to data process type list
 #' L5 <- linkGenerator(type = "dataProcessTypes")
 #' L5
-#' @export
+#' }
 linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/", 
                            type,
                            ...) {
