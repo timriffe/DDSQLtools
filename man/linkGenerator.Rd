@@ -46,6 +46,7 @@ created by Dennis Butler (in late 2018). If the web address or the structure
 of the database changes this will have to be updated as well.
 }
 \examples{
+\dontrun{
 # Link to country list
 L1 <- linkGenerator(type = "locations",
                     addDefault = "false",
@@ -76,4 +77,5 @@ L4
 # Link to data process type list
 L5 <- linkGenerator(type = "dataProcessTypes")
 L5
+}
 }

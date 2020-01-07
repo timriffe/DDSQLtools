@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 12:14:32 2018
-# --------------------------------------------------- #
-
 #' API Link Generator Function
 #' @param server The path to the database. Default: 
 #' \code{"http://24.239.36.16:9654/un2/api/"};
@@ -35,7 +29,8 @@
 #' @details The link generator is based on the structure of the database 
 #' created by Dennis Butler (in late 2018). If the web address or the structure 
 #' of the database changes this will have to be updated as well.
-#' @examples 
+#' @examples
+#' \dontrun{
 #' # Link to country list
 #' L1 <- linkGenerator(type = "locations",
 #'                     addDefault = "false",
@@ -66,7 +61,7 @@
 #' # Link to data process type list
 #' L5 <- linkGenerator(type = "dataProcessTypes")
 #' L5
-#' @export
+#' }
 linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/", 
                            type,
                            ...) {
@@ -198,7 +193,7 @@ build_filter <- function(dataProcessIds = NULL,
   } else {
     out <- ""
   }
-  return(out)
+  out
 }
 
 

@@ -40,8 +40,11 @@ care, this is important! The following options are available: \itemize{
 Get information about available locations (LocID)
 }
 \examples{
+\dontrun{
 L <- getLocations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "false")
 L
+}
+
 }

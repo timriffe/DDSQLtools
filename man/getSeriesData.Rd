@@ -40,6 +40,7 @@ care, this is important! The following options are available: \itemize{
 Get information about available details for a given series of data
 }
 \examples{
+\dontrun{
 # You can provide all strings, all codes, or a combination of both
 G <- getSeriesData(dataProcessIds = 0:15, # possible processes
                    indicatorTypeIds = 25,    # M[x]
@@ -47,4 +48,5 @@ G <- getSeriesData(dataProcessIds = 0:15, # possible processes
                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
                    subGroupIds = 2)
 G
+}
 }

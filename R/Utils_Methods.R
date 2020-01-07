@@ -1,7 +1,5 @@
-
-
-#' Check whether the input data contains an open age interval 
-#' @inheritParams doSplitting
+#' Check whether the input data contains an open age interval
+#' @inheritParams do_splitting
 #' @return Logical.
 #' @examples 
 #' p5 <- DDSQLtools.data$Pop5_Egypt_M_DB
@@ -10,17 +8,17 @@
 is_OAG <- function(X){
   cond <- !(X$AgeLabel %in% c("Total", "Unknown")) # Check for "Total"
   Y    <- X[cond, ] 
-  out  <- any(Y$AgeSpan == -1)
-  return(out)
+  out  <- any(Y$AgeSpan == -1, na.rm = TRUE)
+  out
 }
 
 
 #' Prepare output table in wrap functions
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @param G The G object in wrap functions
 #' @keywords internal
 #' 
-formatOutputTable <- function(X, G) {
+format_output <- function(X, G) {
   H <- data.frame(matrix(NA, ncol = ncol(X), nrow = nrow(G)))
   colnames(H) <- colnames(X)
   CnameX <- colnames(X)
@@ -42,15 +40,14 @@ formatOutputTable <- function(X, G) {
     }
   }
   
-  return(as.tibble(H))
+  as_tibble(H)
 }
 
 
 #' Print messages
-#' @inheritParams doSplitting
+#' @inheritParams do_splitting
 #' @keywords internal
-#' @export
-controlOutputMsg2 <- function(fn, arg_names) {
+output_msg <- function(fn, arg_names) {
   # DemoTools arguments renamed or fed automatically in DDSQL functions
   args_ren <- c("Age", "Value", "OAG", "popmat", "Males", "Females", "mx", "x") 
   # DDSQLtools arguments
@@ -67,11 +64,6 @@ controlOutputMsg2 <- function(fn, arg_names) {
             "\nCheck ?", fn, " for details and default values.\n")
   }
 }
-
-
-
-
-# ----------------------------------------------
 
 #' Utility functions for wrappers. Name and value checking, for example.
 #' 
