@@ -32,10 +32,10 @@ install_github("timriffe/DDSQLtools")
 
 
 versionIncrement(
-		major = TRUE,       # only for releases
-		mid = FALSE,         # major functionality added
+		major = FALSE,         # only for releases
+		mid = TRUE,          # new functionality added
 		minor = FALSE,        # whenever documentation renewed, any patch, tweak, or fix
-		maxdigits = c(2,2,3),# maybe 4 required?
-		README = TRUE)       # update README dev version badge
+		maxdigits = c(2,2,3), # maybe 4 required?
+		README = TRUE)        # update README dev version badge
 
 
