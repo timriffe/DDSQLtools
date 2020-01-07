@@ -40,9 +40,12 @@ care, this is important! The following options are available: \itemize{
 Get information about available location types (LocAreaTypeID)
 }
 \examples{
+
+\dontrun{
 # Check what subgroups are available for:
 P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
                       locIds = "egypt",
                       isComplete = "abridged")
 P
+}
 }

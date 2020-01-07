@@ -1,9 +1,3 @@
-# --------------------------------------------------- #
-# Author: Marius D. Pascariu
-# License: CC-BY-NC 4.0
-# Last update: Sat Dec 15 15:26:04 2018
-# --------------------------------------------------- #
-
 ##' Request data records directly from their ID
 ##'
 ##' @param ids a character vector of ID's that identify each data point
@@ -49,11 +43,14 @@ extractData <- function(ids, save = FALSE) {
 
 #' Get information about available locations (LocID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
+#' \dontrun{
 #' L <- getLocations(addDefault = "false",
 #'                   includeDependencies = "false",
 #'                   includeFormerCountries = "false")
 #' L
+#' }
+#' 
 #' @export
 getLocations <- function(save = FALSE, ...) {
   
@@ -63,12 +60,15 @@ getLocations <- function(save = FALSE, ...) {
 
 #' Get information about available location types (LocAreaTypeID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
+#'
+#' \dontrun{
 #' # Check what subgroups are available for:
 #' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
 #'                       locIds = "egypt",
 #'                       isComplete = "abridged")
 #' P
+#' }
 #' @export
 getLocationTypes <- function(save = FALSE, ...) {
   
@@ -78,12 +78,15 @@ getLocationTypes <- function(save = FALSE, ...) {
 
 #' Get information about available sub-group-types (SubGroupTypeID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
+#' 
+#' \dontrun{
 #' # Check what subgroups are available for:
 #' S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
 #'                   locIds = 818,       # Egypt
 #'                   isComplete = 0)
 #' S
+#' }
 #' @export
 getSubGroups <- function(save = FALSE, ...) {
   
@@ -94,8 +97,10 @@ getSubGroups <- function(save = FALSE, ...) {
 #' Get information about available indicators (IndicatorTypeID)
 #' @inheritParams read_API
 #' @examples 
+#' \dontrun{
 #' I <- getIndicators(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
+#' }
 #' @export
 getIndicators <- function(save = FALSE, ...) {
   
@@ -105,8 +110,11 @@ getIndicators <- function(save = FALSE, ...) {
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples 
+#' \dontrun{
 #' D <- getDataProcess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
+#' }
+
 #' @export
 getDataProcess <- function(save = FALSE, ...) {
   
@@ -116,6 +124,7 @@ getDataProcess <- function(save = FALSE, ...) {
 #' Get information about available details for a given series of data
 #' @inheritParams read_API
 #' @examples
+#' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
 #' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
@@ -123,6 +132,7 @@ getDataProcess <- function(save = FALSE, ...) {
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
 #'                    subGroupIds = 2)
 #' G
+#' }
 #' @export
 getSeriesData <- function(save = FALSE, ...) {
   
@@ -173,7 +183,7 @@ getRecordData <- function(save = FALSE, ...) {
 read_API <- function(type, save, ...){
   P <- linkGenerator(type = type, ...)
   # Temporary, just to check how the URL is constructed
-  ## print(P)
+  print(P)
 
   out <- rjson::fromJSON(file = P)
   ## print("URL saved")

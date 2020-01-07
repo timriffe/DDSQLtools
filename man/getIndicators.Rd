@@ -40,6 +40,8 @@ care, this is important! The following options are available: \itemize{
 Get information about available indicators (IndicatorTypeID)
 }
 \examples{
+\dontrun{
 I <- getIndicators(addDefault = "false")
 I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
+}
 }
