@@ -59,8 +59,7 @@ do_smoothing <- function(X,
   C   <- match.call()
   OAG <- is_OAG(X)
   method <- match.arg(method)
-  if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)
-  
+  if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)  
   E <- smooth_age_5(Value = A, 
                     Age = B, 
                     method = method, 
