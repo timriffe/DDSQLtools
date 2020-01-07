@@ -31,15 +31,23 @@
 #' S
 #' @export
 do_smoothing <- function(X, 
-                        method = c("Carrier-Farrag", "KKN", "Arriaga",
-                                   "United Nations", "Strong", "Zigzag", "MAV"),
-                        ageMin = 10, 
-                        ageMax = 65, 
-                        n = 3,
-                        young.tail = c("Original", "Arriaga", "Strong", NA),
-                        old.tail = young.tail, 
-                        verbose = TRUE, 
-                        ...) {
+                         method = c("Carrier-Farrag",
+                                    "KKN",
+                                    "Arriaga",
+                                    "United Nations",
+                                    "Strong",
+                                    "Zigzag",
+                                    "MAV"),
+                         ageMin = 10, 
+                         ageMax = 65, 
+                         n = 3,
+                         young.tail = c("Original",
+                                        "Arriaga",
+                                        "Strong",
+                                        NA),
+                         old.tail = young.tail, 
+                         verbose = TRUE, 
+                         ...) {
   
   # input <- as.list(environment())
   # arg_names <- c(names(input), names(list(...)))
