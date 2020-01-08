@@ -1,7 +1,7 @@
 # DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal 
 # data format
 
-#' @import DemoTools Rdpack
+#' @import DemoTools
 #' @importFrom tibble as_tibble
 #' @importFrom methods formalArgs
 #' @importFrom rjson fromJSON
