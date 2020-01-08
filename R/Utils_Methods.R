@@ -40,7 +40,7 @@ format_output <- function(X, G) {
     }
   }
   
-  as_tibble(H)
+  tibble::as_tibble(H)
 }
 
 
