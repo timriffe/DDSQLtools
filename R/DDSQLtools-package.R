@@ -11,8 +11,6 @@
 # instead of "extra.mortality". For this reason, we export
 # DemoTools as a whole and do not refer to it with `DemoTools::`.
 #' @import DemoTools
-#' @importFrom rjson fromJSON
-#' @importFrom varhandle check.numeric
 #' @name DDSQLtools
 #' @docType package
 "_PACKAGE"

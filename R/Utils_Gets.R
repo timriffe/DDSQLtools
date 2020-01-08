@@ -207,7 +207,7 @@ build_filter <- function(dataProcessIds = NULL,
 #' @keywords internal
 format.numeric.colums <- function(X) {
   cn    <- colnames(X) 
-  isNum <- apply(X, 2, FUN = function(w) all(check.numeric(w)))
+  isNum <- apply(X, 2, FUN = function(w) all(varhandle::check.numeric(w)))
   X[isNum] <- lapply(X[, isNum], as.numeric)
 
   X
