@@ -53,7 +53,7 @@ output_msg <- function(fn, arg_names) {
   # DDSQLtools arguments
   args_DDSQL <- c(arg_names, args_ren)
   # DemoTools arguments
-  args_DT <- formalArgs(get(fn))
+  args_DT <- formalArgs(getExportedValue("DemoTools", fn))
   # Logical test
   L  <- !(args_DT %in% args_DDSQL)
   missing_args <- args_DT[L]
