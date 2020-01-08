@@ -151,7 +151,7 @@ build_filter <- function(dataProcessIds = NULL,
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
-  I <- environment() %>% as.list()
+  I <- as.list(environment())
   lookupParams <- list("locIds" = lookupLocIds,
                        "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
@@ -207,7 +207,7 @@ build_filter <- function(dataProcessIds = NULL,
 #' @keywords internal
 format.numeric.colums <- function(X) {
   cn    <- colnames(X) 
-  isNum <- apply(X, 2, FUN = function(w) all(check.numeric(w)))
+  isNum <- apply(X, 2, FUN = function(w) all(varhandle::check.numeric(w)))
   X[isNum] <- lapply(X[, isNum], as.numeric)
 
   X

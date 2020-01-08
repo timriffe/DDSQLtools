@@ -2,12 +2,12 @@
 Mx5 <- DDSQLtools.data$Mx5 
 x1  <- c(75, 80, 85, 90)        # ages to be used in fitting
 x2  <- c(90, 95, 100, 105, 110) # ages for which the extrapolation is applied
-M <- c("kannisto",              # Models
+M <- c("kannisto",
        "kannisto_makeham", 
-       "gompertz", 
-       "ggompertz", 
-       "makeham", 
-       "beard", 
+       "makeham",
+       "gompertz",
+       "ggompertz",
+       "beard",
        "beard_makeham", 
        "quadratic")
 
@@ -37,10 +37,10 @@ for (i in M) {
     # Expect a message here;
     expect_message(
       E1 <- do_extrapolate(X = Mx5,
-                          x_fit = x1,
-                          x_extr = x2,
-                          law = i,
-                          verbose = TRUE)
+                           x_fit = x1,
+                           x_extr = x2,
+                           law = i,
+                           verbose = TRUE)
     )
 
     validate_data(I = Mx5, O = E1)

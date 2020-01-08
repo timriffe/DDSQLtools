@@ -13,17 +13,13 @@ LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
     DemoTools (>= 1.5.3),
-    tidyr (>= 0.8.1),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
-    Rdpack (>= 0.8),
-    methods (>= 3.5.0),
     rjson (>= 0.2.20),
     varhandle (>= 2.0.3)
 Suggests: 
   covr (>= 3.1.0),
   testthat (>= 2.0.0)
-RdMacros: Rdpack
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
 RoxygenNote: 7.0.2

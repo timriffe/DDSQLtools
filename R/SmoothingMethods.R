@@ -48,19 +48,15 @@ do_smoothing <- function(X,
                          old.tail = young.tail, 
                          verbose = TRUE, 
                          ...) {
-  
-  # input <- as.list(environment())
-  # arg_names <- c(names(input), names(list(...)))
-  AgeStart = AgeSpan = AgeEnd <- NULL # hack CRAN note
-  
+    
   A <- X$DataValue
   B <- X$AgeStart
   names(A) <- B
   C   <- match.call()
   OAG <- is_OAG(X)
   method <- match.arg(method)
-  if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)
-  
+  if (!is.na(young.tail[1])) young.tail <- match.arg(young.tail)  
+
   E <- smooth_age_5(Value = A, 
                     Age = B, 
                     method = method, 
@@ -70,18 +66,21 @@ do_smoothing <- function(X,
                     n = n, 
                     young.tail = young.tail, 
                     old.tail = old.tail)
+
   E.age <- as.numeric(names(E))
   
-  G <- data.frame(DataValue = E) %>%
-        mutate(AgeID = NA,
-               AgeStart = E.age, 
-               AgeSpan = 5, 
-               AgeEnd = AgeStart + AgeSpan,
-               AgeMid = AgeStart + AgeSpan/2,
-               AgeLabel = X$AgeLabel,
-               DataTypeName = paste0("DemoTools::agesmth_", method),
-               DataTypeID = deparse(C),
-               ReferencePeriod = unique(X$ReferencePeriod)) 
+  AgeStart <- E.age
+  AgeSpan <- 5
+  G <- data.frame(DataValue = E,
+                  AgeID = NA,
+                  AgeStart = AgeStart, 
+                  AgeSpan = AgeSpan, 
+                  AgeEnd = AgeStart + AgeSpan,
+                  AgeMid = AgeStart + AgeSpan/2,
+                  AgeLabel = X$AgeLabel,
+                  DataTypeName = paste0("DemoTools::agesmth_", method),
+                  DataTypeID = deparse(C),
+                  ReferencePeriod = unique(X$ReferencePeriod)) 
   
   cx <- c("AgeSpan", "AgeEnd", "AgeMid", "AgeLabel")
   G[nrow(G), cx] <- X[nrow(X), cx]

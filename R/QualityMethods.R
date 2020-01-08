@@ -47,20 +47,22 @@ do_qualitychecks <- function(XY,
     ageSexAccuracy = ageSexAccuracy(A1, A2, Age = B, OAG = OAG,  ...),
     ageSexAccuracyDasGupta = ageSexAccuracyDasGupta(A1, A2, Age = B, OAG = OAG)
   )
+
   
-  AgeStart = AgeEnd <- NULL # hack CRAN note
-  G <- data.frame(DataValue = E) %>%
-        mutate(AgeID = NA,
-               AgeStart = min(XY$AgeStart), 
-               AgeEnd = max(XY$AgeEnd),
-               AgeMid = sum(XY$AgeMid - XY$AgeStart),
-               AgeSpan = AgeEnd - AgeStart, 
-               AgeLabel = paste0(AgeStart, "-", rev(XY$AgeLabel)[1]),
-               DataTypeName = paste0("DemoTools::", fn),
-               DataTypeID = paste(deparse(C), collapse = ""),
-               ReferencePeriod = unique(XY$ReferencePeriod),
-               SexID = sex_id,
-               SexName = sex_name)
+  G <-
+    within(data.frame(DataValue = E), {
+      AgeID <- NA_real_
+      AgeStart <- min(XY$AgeStart)
+      AgeEnd <- max(XY$AgeEnd)
+      AgeMid <- sum(XY$AgeMid - XY$AgeStart)
+      AgeSpan <- AgeEnd - AgeStart
+      AgeLabel <- paste0(AgeStart, "-", rev(XY$AgeLabel)[1])
+      DataTypeName <- paste0("DemoTools::", fn)
+      DataTypeID <- paste(deparse(C), collapse = "")
+      ReferencePeriod <- unique(XY$ReferencePeriod)
+      SexID <- sex_id
+      SexName <- sex_name
+    })
   
   if (verbose) output_msg(fn, names(C))
   out <- format_output(XY, G)
