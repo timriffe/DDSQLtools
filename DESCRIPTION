@@ -15,7 +15,6 @@ Imports:
     DemoTools (>= 1.5.3),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
-    methods (>= 3.5.0),
     rjson (>= 0.2.20),
     varhandle (>= 2.0.3)
 Suggests: 
