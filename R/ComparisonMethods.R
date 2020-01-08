@@ -88,18 +88,19 @@ do_compare <- function(pop1,
               )
   
   G <-
-    data.frame(DataValue = E) %>%
-    mutate(AgeID = NA,
-           AgeStart = min(pop1$AgeStart), 
-           AgeEnd = max(pop1$AgeEnd),
-           AgeMid = sum(pop1$AgeMid - pop1$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(pop1$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = paste(deparse(C), collapse = ""),
-           ReferencePeriod = unique(pop1$ReferencePeriod),
-           SexID = sex_id,
-           SexName = sex_name)
+    within(data.frame(DataValue = E), {
+      AgeID <- NA_real_
+      AgeStart <- min(pop1$AgeStart)
+      AgeEnd <- max(pop1$AgeEnd)
+      AgeMid <- sum(pop1$AgeMid - pop1$AgeStart)
+      AgeSpan <- AgeEnd - AgeStart
+      AgeLabel <- paste0(AgeStart, "-", rev(pop1$AgeLabel)[1])
+      DataTypeName <- paste0("DemoTools::", fn)
+      DataTypeID <- paste(deparse(C), collapse = "")
+      ReferencePeriod <- unique(pop1$ReferencePeriod)
+      SexID <- sex_id
+      SexName <- sex_name
+    })
   
   if (verbose) output_msg(fn, names(C))
   out <- format_output(pop1, G)

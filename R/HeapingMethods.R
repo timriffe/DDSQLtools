@@ -66,16 +66,17 @@ do_heaping <- function(X,
               )
 
   G <-
-    data.frame(DataValue = E) %>%  
-    mutate(AgeID = NA,
-           AgeStart = min(X$AgeStart), 
-           AgeEnd = max(X$AgeEnd),
-           AgeMid = sum(X$AgeMid - X$AgeStart),
-           AgeSpan = AgeEnd - AgeStart, 
-           AgeLabel = paste0(AgeStart, "-", rev(X$AgeLabel)[1]),
-           DataTypeName = paste0("DemoTools::", fn),
-           DataTypeID = paste(deparse(C), collapse = ""),
-           ReferencePeriod = unique(X$ReferencePeriod))
+    within(data.frame(DataValue = E), {
+      AgeID <- NA_real_
+      AgeStart <- min(X$AgeStart)
+      AgeEnd <- max(X$AgeEnd)
+      AgeMid <- sum(X$AgeMid - X$AgeStart)
+      AgeSpan <- AgeEnd - AgeStart
+      AgeLabel <- paste0(AgeStart, "-", rev(X$AgeLabel)[1])
+      DataTypeName <- paste0("DemoTools::", fn)
+      DataTypeID <- paste(deparse(C), collapse = "")
+      ReferencePeriod <- unique(X$ReferencePeriod)
+    })
   
   if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)

@@ -41,21 +41,25 @@ do_splitting <- function(X,
   names(A) <- B
   OAG <- is_OAG(X)
   fn  <- match.arg(fn)
-  fn <- paste0("graduate_", fn)
   C   <- match.call()
+
+  E <- switch(fn,
+              beers = graduate_beers(Value = A, Age = B, OAG = OAG, ...),
+              grabill = graduate_grabill(Value = A, Age = B, OAG = OAG, ...),
+              sprague = graduate_sprague(Value = A, Age = B, OAG = OAG, ...))
   
-  DTF <- get(fn)  # DemoTools Function
-  E   <- DTF(Value = A, Age = B, OAG = OAG, ...)
-  G   <- data.frame(DataValue = E) %>%
-          mutate(AgeID = NA,
-                 AgeStart = as.numeric(names(E)), 
-                 AgeSpan = 1, 
-                 AgeEnd = AgeStart + AgeSpan,
-                 AgeMid = AgeStart + AgeSpan/2,
-                 AgeLabel = AgeStart,
-                 DataTypeName = paste0("DemoTools::", fn),
-                 DataTypeID = paste(deparse(C), collapse = ""),
-                 ReferencePeriod = unique(X$ReferencePeriod)) 
+  G <-
+    within(data.frame(DataValue = E), {
+      AgeID <- NA_real_
+      AgeStart <- as.numeric(names(E))
+      AgeSpan <- 1
+      AgeEnd <- AgeStart + AgeSpan
+      AgeMid <- AgeStart + AgeSpan / 2
+      AgeLabel <- AgeStart
+      DataTypeName <- paste0("DemoTools::", fn)
+      DataTypeID <- paste(deparse(C), collapse = "")
+      ReferencePeriod <- unique(X$ReferencePeriod)
+    })
   
   if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)

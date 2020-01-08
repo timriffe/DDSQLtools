@@ -22,7 +22,7 @@ for (i in c("beers",
             "grabill", 
             "sprague")) { 
 
-  test_that(paste0("do_splitting works with", i), {
+  test_that(paste0("do_splitting works with ", i), {
     O1 <- do_splitting(X = I1, fn = i)
     O5 <- do_splitting(X = I5, fn = i)
     validate_splitting_method(I1, O1)
