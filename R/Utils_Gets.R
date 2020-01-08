@@ -151,7 +151,7 @@ build_filter <- function(dataProcessIds = NULL,
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
-  I <- environment() %>% as.list()
+  I <- as.list(environment())
   lookupParams <- list("locIds" = lookupLocIds,
                        "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
