@@ -13,7 +13,6 @@ LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
     DemoTools (>= 1.5.3),
-    tidyr (>= 0.8.1),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
     Rdpack (>= 0.8),
