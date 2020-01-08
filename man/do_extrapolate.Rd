@@ -9,7 +9,15 @@ The function is based on the methods implemented in the
 \code{MortalityLaws} R package.
 }
 \usage{
-do_extrapolate(X, x_fit, x_extr, law = "kannisto", verbose = TRUE, ...)
+do_extrapolate(
+  X,
+  x_fit,
+  x_extr,
+  law = c("kannisto", "kannisto_makeham", "makeham", "gompertz", "ggompertz", "beard",
+    "beard_makeham", "quadratic"),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{X}{Input data. UN format.}

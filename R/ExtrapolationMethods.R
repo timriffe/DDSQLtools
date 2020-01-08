@@ -28,16 +28,22 @@
 #' dim(LT2) # note the 2nd life table has few extra rows
 #' @export
 do_extrapolate <- function(X,
-                          x_fit,
-                          x_extr,
-                          law = "kannisto",
-                          verbose = TRUE,
-                          ...) {
+                           x_fit,
+                           x_extr,
+                           law = c("kannisto",
+                                   "kannisto_makeham", 
+                                   "makeham",
+                                   "gompertz",
+                                   "ggompertz",
+                                   "beard",
+                                   "beard_makeham", 
+                                   "quadratic"),
+                           verbose = TRUE,
+                           ...) {
   
   A   <- X$DataValue
   B   <- X$AgeStart
   C   <- match.call()
-  # OAG <- is_OAG(X)
   fn  <- "lt_rule_m_extrapolate"
   
   E <- lt_rule_m_extrapolate(mx = A, 
