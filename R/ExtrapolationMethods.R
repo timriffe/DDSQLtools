@@ -12,9 +12,10 @@
 #' # Example 1 - abridged data
 #' # Extrapolate old-age mortality data
 #' E <- do_extrapolate(X = DDSQLtools.data$Mx5,           # data - UN format 
-#'                    x_fit = c(75, 80, 85, 90),         # ages to be used in fitting
-#'                    x_extr = c(90, 95, 100, 105, 110), # ages for which the extrapolation is applied
-#'                    law = "kannisto")                  # the model
+#'                     x_fit = c(75, 80, 85, 90),         # ages to be used in fitting
+#'                     x_extr = c(90, 95, 100, 105, 110), # ages for which the extrapolation is applied
+#'                     law = "kannisto")                  # the model
+#' 
 #' E
 #' 
 #' # Build 2 life table: 1st using the original data and the 2nd using the extended data

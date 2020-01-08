@@ -37,10 +37,10 @@ for (i in M) {
     # Expect a message here;
     expect_message(
       E1 <- do_extrapolate(X = Mx5,
-                          x_fit = x1,
-                          x_extr = x2,
-                          law = i,
-                          verbose = TRUE)
+                           x_fit = x1,
+                           x_extr = x2,
+                           law = i,
+                           verbose = TRUE)
     )
 
     validate_data(I = Mx5, O = E1)
