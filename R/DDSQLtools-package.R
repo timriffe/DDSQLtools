@@ -2,7 +2,6 @@
 # data format
 
 #' @import DemoTools Rdpack
-#' @importFrom tidyr spread gather
 #' @importFrom dplyr select mutate %>% rename
 #' @importFrom tibble as_tibble
 #' @importFrom methods formalArgs
