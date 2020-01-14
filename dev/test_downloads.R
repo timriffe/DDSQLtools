@@ -31,7 +31,7 @@ I[, c("IndicatorTypeID", "Name", "ShortName")]
 D <- get_dataprocess()
 D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
-G <- getSeriesData(dataProcessIds = 2,    # Census
+G <- get_seriesdata(dataProcessIds = 2,    # Census
                    indicatorTypeIds = 8,  # Population
                    isComplete = 0,
                    locIds = 4,            # American Samoa

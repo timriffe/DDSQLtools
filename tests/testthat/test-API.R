@@ -51,7 +51,7 @@
 ## validate_read_API(I)  # validate
 
 ## # ------------------------------------------
-## G <- getSeriesData(dataProcessIds = 2,
+## G <- get_seriesdata(dataProcessIds = 2,
 ##                    indicatorTypeIds = 8,
 ##                    isComplete = 0,
 ##                    locIds = 4,

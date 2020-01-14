@@ -126,7 +126,7 @@ get_dataprocess <- function(save = FALSE, ...) {
 #' @examples
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
-#' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
+#' G <- get_seriesdata(dataProcessIds = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
 #'                    locIds = "Egypt",             # Egypt
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
@@ -134,7 +134,7 @@ get_dataprocess <- function(save = FALSE, ...) {
 #' G
 #' }
 #' @export
-getSeriesData <- function(save = FALSE, ...) {
+get_seriesdata <- function(save = FALSE, ...) {
   
   read_API("structureddataseries", save, ...)
 }
