@@ -26,4 +26,3 @@ Authors:
 }
 
 }
-\keyword{internal}
