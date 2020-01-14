@@ -10,9 +10,8 @@ init:
 install:
   ps: Bootstrap
 
-# Remove for now bc there is some problem reinstalling glue
 cache:
-#   packages
+  - C:\RLibrary
 
 # Adapt as necessary starting from here
 
