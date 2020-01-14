@@ -13,8 +13,9 @@
 ##' \dontrun{
 ##' extractData("35444654")
 ##' }
-##' 
-extractData <- function(ids, save = FALSE) {
+##'
+##' @keywords internal 
+extract_data <- function(ids, save = FALSE) {
   len_ids <- length(ids)
 
   if (len_ids > 200) {
