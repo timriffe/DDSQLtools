@@ -1,6 +1,6 @@
 #' API Link Generator Function
-#' @param server The path to the database. Default: 
-#' \code{"http://24.239.36.16:9654/un2/api/"};
+#' @param server The path to the database. Check if the "unpd_server" option is
+#' is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}
 #' @param type Type of data. Various options are available.
 #' @param ... Other arguments that might define the path to data. All arguments
 #' accept a numeric code which is interpreted as the code of the specific
@@ -63,9 +63,11 @@
 #' L5
 #' }
 #' @keywords internal
-linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/", 
-                           type,
-                           ...) {
+linkGenerator <- function(server = getOption("unpd_server",
+                                             "http://24.239.36.16:9654/un3/api/"
+                                             ), 
+                          type,
+                          ...) {
   
   types <- c("ages",
              "openAges",
