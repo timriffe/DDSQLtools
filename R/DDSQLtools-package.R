@@ -13,4 +13,5 @@
 #' @import DemoTools
 #' @name DDSQLtools
 #' @docType package
+#' @keywords internal
 "_PACKAGE"
