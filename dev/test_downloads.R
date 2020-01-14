@@ -40,7 +40,7 @@ G <- getSeriesData(dataProcessIds = 2,    # Census
                    subGroupIds = 2)       # Nationals only
 G
 
-X <- getRecordData(dataProcessIds = 2,   # Estimate
+X <- get_recorddata(dataProcessIds = 2,   # Estimate
                    indicatorTypeIds = 8, # Population by age and sex - abridged 
                    isComplete = 0,    # Age Distribution: Abridged
                    locIds = 818,         # Egypt
