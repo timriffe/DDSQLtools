@@ -18,10 +18,13 @@ Imports:
     rjson (>= 0.2.20),
     varhandle (>= 2.0.3)
 Suggests: 
-  covr (>= 3.1.0),
-  testthat (>= 2.0.0)
+    covr (>= 3.1.0),
+    testthat (>= 2.0.0),
+    knitr,
+    rmarkdown
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
 RoxygenNote: 7.0.2
 Remotes: timriffe/DemoTools
 Encoding: UTF-8
+VignetteBuilder: knitr
