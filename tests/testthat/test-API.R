@@ -41,7 +41,7 @@
 ## validate_read_API(L)  # validate
 
 ## # ------------------------------------------
-## P <- getLocationTypes(indicatorTypeIds = 8,  
+## P <- get_locationtypes(indicatorTypeIds = 8,  
 ##                       locIds = 818,
 ##                       isComplete = 0)
 ## validate_read_API(P)  # validate

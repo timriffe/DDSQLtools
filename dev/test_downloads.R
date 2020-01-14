@@ -19,7 +19,7 @@ L <- getLocations(addDefault = "false",
 L
 
 # Check what subgroups are available for:
-P <- getLocationTypes(indicatorTypeIds = 8,  # Population by age and sex indicator;
+P <- get_locationtypes(indicatorTypeIds = 8,  # Population by age and sex indicator;
                       locIds = 230,          # Venezuela
                       isComplete = 0)
 P

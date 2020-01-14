@@ -64,13 +64,13 @@ getLocations <- function(save = FALSE, ...) {
 #'
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
+#' P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
 #'                       locIds = "egypt",
 #'                       isComplete = "abridged")
 #' P
 #' }
 #' @export
-getLocationTypes <- function(save = FALSE, ...) {
+get_locationtypes <- function(save = FALSE, ...) {
   
   read_API("locareatypes", save, ...)
 }

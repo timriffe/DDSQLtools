@@ -28,7 +28,7 @@ care, this is important! The following options are available: \itemize{
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{getLocations}} function to see the available options;
   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-  Run the \code{\link{getLocationTypes}} function to see the available 
+  Run the \code{\link{get_locationtypes}} function to see the available 
   options;
   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
   \code{\link{getSubGroups}} function to see the available options;

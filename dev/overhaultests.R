@@ -104,7 +104,7 @@ library(magrittr);library(dplyr)
 
 # 
 # build_filter2(dataProcess="Register",Location=818, includeDependencies="true")
-# P <- getLocationTypes("LocAreaType",
+# P <- get_locationtypes("LocAreaType",
 #   indicatorType = 8, # Population by age and sex indicator;
 #   loc = 818,         # Egypt
 #   isComplete = 0)

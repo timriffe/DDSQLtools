@@ -18,7 +18,7 @@
 #'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
 #'   \code{\link{getLocations}} function to see the available options;
 #'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-#'   Run the \code{\link{getLocationTypes}} function to see the available 
+#'   Run the \code{\link{get_locationtypes}} function to see the available 
 #'   options;
 #'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
 #'   \code{\link{getSubGroups}} function to see the available options;
@@ -286,7 +286,7 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
   
-  inds <- getLocationTypes(locIds = paramList[["locIds"]],
+  inds <- get_locationtypes(locIds = paramList[["locIds"]],
                            indicatorTypeIds = paramList[["indicatorTypeIds"]],
                            isComplete = paramList[["isComplete"]])
 
@@ -295,7 +295,7 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Area Type(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check getLocationTypes()")
+         " not found. Check get_locationtypes()")
   }
   
   inds_code[["PK_LocAreaTypeID"]]
