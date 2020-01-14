@@ -56,7 +56,7 @@ build_filter(
 \item{includeFormerCountries}{Logical. Default: FALSE;}
 
 \item{dataProcess}{Data process ID as defined by the UNPD. Run the
-\code{\link{getDataProcess}} function to see the available options;
+\code{\link{get_dataprocess}} function to see the available options;
 TODOOOOOOOOOOOOO!!}
 
 \item{indicatorType}{Indicator type ID as defined by the UNPD. Run the

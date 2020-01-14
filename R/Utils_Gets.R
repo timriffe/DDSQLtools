@@ -8,7 +8,7 @@
 #' name as a string which is case insensitive (see examples). Handle with
 #' care, this is important! The following options are available: \itemize{
 #'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-#'   Run the \code{\link{getDataProcess}} function to see the available 
+#'   Run the \code{\link{get_dataprocess}} function to see the available 
 #'   options;
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
@@ -120,7 +120,7 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
 #' @param includeDependencies Logical. Default: FALSE;
 #' @param includeFormerCountries Logical. Default: FALSE;
 #' @param dataProcess Data process ID as defined by the UNPD. Run the
-#' \code{\link{getDataProcess}} function to see the available options;
+#' \code{\link{get_dataprocess}} function to see the available options;
 #' TODOOOOOOOOOOOOO!!
 #' @param indicatorType Indicator type ID as defined by the UNPD. Run the
 #' \code{\link{getIndicators}} function to see the available options;
@@ -305,7 +305,7 @@ lookupDataProcess <- function(paramStr, paramList) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
 
-  inds <- getDataProcess(locIds = paramList[["locIds"]],
+  inds <- get_dataprocess(locIds = paramList[["locIds"]],
                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
                          isComplete = paramList[["isComplete"]])
 
@@ -314,7 +314,7 @@ lookupDataProcess <- function(paramStr, paramList) {
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Data type(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check getDataProcess()")
+         " not found. Check get_dataprocess()")
   }
   
   inds_code[["PK_DataProcessTypeID"]]

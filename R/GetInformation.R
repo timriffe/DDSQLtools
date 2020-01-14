@@ -111,12 +111,12 @@ getIndicators <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' \dontrun{
-#' D <- getDataProcess()
+#' D <- get_dataprocess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' }
 
 #' @export
-getDataProcess <- function(save = FALSE, ...) {
+get_dataprocess <- function(save = FALSE, ...) {
   
   read_API("dataProcessTypes", save, ...)
 }
