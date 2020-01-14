@@ -13,7 +13,7 @@
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
 #'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-#'   Run the \code{\link{getIndicators}} function to see the available options;
+#'   Run the \code{\link{get_indicators}} function to see the available options;
 #'   \item{\code{isComplete}} -- isComplete;
 #'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
 #'   \code{\link{getLocations}} function to see the available options;
@@ -123,7 +123,7 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
 #' \code{\link{get_dataprocess}} function to see the available options;
 #' TODOOOOOOOOOOOOO!!
 #' @param indicatorType Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{getIndicators}} function to see the available options;
+#' \code{\link{get_indicators}} function to see the available options;
 #' @param locIds Location ID as defined by the UNPD. Run the
 #' \code{\link{getLocations}} function to see the available options;
 #' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
@@ -252,14 +252,14 @@ lookupIndicatorIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
   
-  inds <- getIndicators()
+  inds <- get_indicators()
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
   # The all statement is in case you provide 2 indicators, for example
   if (all(!tolower(paramStr_low) %in% tolower(inds_code$Name))) {
     stop("Location(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check getIndicators()")
+         " not found. Check get_indicators()")
   }
 
   inds_code[["PK_IndicatorTypeID"]]

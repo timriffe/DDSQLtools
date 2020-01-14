@@ -23,7 +23,7 @@ care, this is important! The following options are available: \itemize{
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{getIndicators}} function to see the available options;
+  Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{getLocations}} function to see the available options;

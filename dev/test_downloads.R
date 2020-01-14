@@ -24,7 +24,7 @@ P <- getLocationTypes(indicatorTypeIds = 8,  # Population by age and sex indicat
                       isComplete = 0)
 P
 
-I <- getIndicators(addDefault = "false")
+I <- get_indicators(addDefault = "false")
 I[, c("IndicatorTypeID", "Name", "ShortName")]
 
 

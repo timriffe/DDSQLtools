@@ -47,7 +47,7 @@
 ## validate_read_API(P)  # validate
 
 ## # ------------------------------------------
-## I <- getIndicators(addDefault = "false")
+## I <- get_indicators(addDefault = "false")
 ## validate_read_API(I)  # validate
 
 ## # ------------------------------------------
@@ -114,7 +114,7 @@
 ##                fixed = TRUE)
 
 ##   expect_error(getRecordData(indicatorTypeIds = "Wrong"),
-##                regexp = "Location(s) 'Wrong' not found. Check getIndicators()",
+##                regexp = "Location(s) 'Wrong' not found. Check get_indicators()",
 ##                fixed = TRUE)
 
 ##   expect_error(getRecordData(subGroupIds = "Wrong"),

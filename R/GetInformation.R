@@ -98,11 +98,11 @@ getSubGroups <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' \dontrun{
-#' I <- getIndicators(addDefault = "false")
+#' I <- get_indicators(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
-getIndicators <- function(save = FALSE, ...) {
+get_indicators <- function(save = FALSE, ...) {
   
   read_API("indicatortypes", save, ...)
 }
