@@ -25,33 +25,33 @@
 ## }
 
 ## # ------------------------------------------
-## D <- getDataProcess()
+## D <- get_dataprocess()
 ## validate_read_API(D)  # validate
 
 ## # ------------------------------------------
-## S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+## S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
 ##                   locIds = 818,          # Egypt
 ##                   isComplete = 0)
 ## validate_read_API(S)  # validate
 
 ## # ------------------------------------------
-## L <- getLocations(addDefault = "false",
+## L <- get_locations(addDefault = "false",
 ##                   includeDependencies = "false",
 ##                   includeFormerCountries = "false")
 ## validate_read_API(L)  # validate
 
 ## # ------------------------------------------
-## P <- getLocationTypes(indicatorTypeIds = 8,  
+## P <- get_locationtypes(indicatorTypeIds = 8,  
 ##                       locIds = 818,
 ##                       isComplete = 0)
 ## validate_read_API(P)  # validate
 
 ## # ------------------------------------------
-## I <- getIndicators(addDefault = "false")
+## I <- get_indicators(addDefault = "false")
 ## validate_read_API(I)  # validate
 
 ## # ------------------------------------------
-## G <- getSeriesData(dataProcessIds = 2,
+## G <- get_seriesdata(dataProcessIds = 2,
 ##                    indicatorTypeIds = 8,
 ##                    isComplete = 0,
 ##                    locIds = 4,
@@ -62,7 +62,7 @@
 ## validate_read_API(G)  # validate
 
 ## # ------------------------------------------
-## X <- getRecordData(dataProcessIds = 2,   # Census
+## X <- get_recorddata(dataProcessIds = 2,   # Census
 ##                    indicatorTypeIds = 8, # Population by age and sex - abridged 
 ##                    locIds = 818,         # Egypt
 ##                    locAreaTypeIds = 2,   # Whole area 
@@ -72,7 +72,7 @@
 ## validate_read_API(X)  # validate
 
 ## # Check whether it successfully accepts strings rather than codes
-## Y <- getRecordData(dataProcessIds = "Census",   # Estimate
+## Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
 ##                    indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged 
 ##                    locIds = "Egypt",         # Egypt
 ##                    locAreaTypeIds = "Whole area",   # Whole area 
@@ -82,7 +82,7 @@
 ## validate_read_API(Y)  # validate
 
 ## # Check whether it successfully mixed cases
-## mixed <- getRecordData(dataProcessIds = "census",   # Estimate
+## mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
 ##                        indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged 
 ##                        locIds = "egypt",         # Egypt
 ##                        locAreaTypeIds = "Whole area",   # Whole area 
@@ -93,7 +93,7 @@
 
 
 ## # mixed with codes
-## mixed_codes <- getRecordData(dataProcessIds = 2,   # Census
+## mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
 ##                              indicatorTypeIds = 8, # Population by age and sex - abridged 
 ##                              locIds = 818,         # Egypt
 ##                              locAreaTypeIds = "Whole area",   # Whole area 
@@ -102,26 +102,26 @@
 
 ## validate_read_API(mixed_codes)  # validate
 
-## test_that("getRecordData with codes gives same output with strings", {
+## test_that("get_recorddata with codes gives same output with strings", {
 ##   expect_equal(X, Y)
 ##   expect_equal(X, mixed)
 ##   expect_equal(X, mixed_codes)
 ## })
 
-## test_that("Looking up wrong input throws errors in getRecordData", {
-##   expect_error(getRecordData(locIds = "Wrong country"),
-##                regexp = "Location(s) 'Wrong country' not found. Check getLocations()",
+## test_that("Looking up wrong input throws errors in get_recorddata", {
+##   expect_error(get_recorddata(locIds = "Wrong country"),
+##                regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
 ##                fixed = TRUE)
 
-##   expect_error(getRecordData(indicatorTypeIds = "Wrong"),
-##                regexp = "Location(s) 'Wrong' not found. Check getIndicators()",
+##   expect_error(get_recorddata(indicatorTypeIds = "Wrong"),
+##                regexp = "Location(s) 'Wrong' not found. Check get_indicators()",
 ##                fixed = TRUE)
 
-##   expect_error(getRecordData(subGroupIds = "Wrong"),
-##                regexp = "Location(s) 'Wrong' not found. Check getSubGroups()",
+##   expect_error(get_recorddata(subGroupIds = "Wrong"),
+##                regexp = "Location(s) 'Wrong' not found. Check get_subgroups()",
 ##                fixed = TRUE)
 
-##   expect_error(getRecordData(isComplete = "Wrong"),
+##   expect_error(get_recorddata(isComplete = "Wrong"),
 ##                regexp = "IsComplete does not accept string 'Wrong'. Only 'abridged', 'complete', 'total'.",
 ##                fixed = TRUE)
 ## })

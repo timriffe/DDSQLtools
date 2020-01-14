@@ -18,20 +18,20 @@ product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{getDataProcess}} function to see the available 
+  Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{getIndicators}} function to see the available options;
+  Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-  \code{\link{getLocations}} function to see the available options;
+  \code{\link{get_locations}} function to see the available options;
   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-  Run the \code{\link{getLocationTypes}} function to see the available 
+  Run the \code{\link{get_locationtypes}} function to see the available 
   options;
   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-  \code{\link{getSubGroups}} function to see the available options;
+  \code{\link{get_subgroups}} function to see the available options;
   \item{\code{addDefault}} -- Logical. Default: FALSE;
   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
@@ -79,3 +79,4 @@ L5 <- linkGenerator(type = "dataProcessTypes")
 L5
 }
 }
+\keyword{internal}

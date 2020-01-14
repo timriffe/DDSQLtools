@@ -13,8 +13,9 @@
 ##' \dontrun{
 ##' extractData("35444654")
 ##' }
-##' 
-extractData <- function(ids, save = FALSE) {
+##'
+##' @keywords internal 
+extract_data <- function(ids, save = FALSE) {
   len_ids <- length(ids)
 
   if (len_ids > 200) {
@@ -45,14 +46,14 @@ extractData <- function(ids, save = FALSE) {
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
-#' L <- getLocations(addDefault = "false",
+#' L <- get_locations(addDefault = "false",
 #'                   includeDependencies = "false",
 #'                   includeFormerCountries = "false")
 #' L
 #' }
 #' 
 #' @export
-getLocations <- function(save = FALSE, ...) {
+get_locations <- function(save = FALSE, ...) {
   
   read_API("locations", save, ...)
 }
@@ -64,13 +65,13 @@ getLocations <- function(save = FALSE, ...) {
 #'
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' P <- getLocationTypes(indicatorTypeIds = 8, # Population by age and sex indicator;
+#' P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
 #'                       locIds = "egypt",
 #'                       isComplete = "abridged")
 #' P
 #' }
 #' @export
-getLocationTypes <- function(save = FALSE, ...) {
+get_locationtypes <- function(save = FALSE, ...) {
   
   read_API("locareatypes", save, ...)
 }
@@ -82,13 +83,13 @@ getLocationTypes <- function(save = FALSE, ...) {
 #' 
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+#' S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
 #'                   locIds = 818,       # Egypt
 #'                   isComplete = 0)
 #' S
 #' }
 #' @export
-getSubGroups <- function(save = FALSE, ...) {
+get_subgroups <- function(save = FALSE, ...) {
   
   read_API("subGroups", save, ...)
 }
@@ -98,11 +99,11 @@ getSubGroups <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' \dontrun{
-#' I <- getIndicators(addDefault = "false")
+#' I <- get_indicators(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
-getIndicators <- function(save = FALSE, ...) {
+get_indicators <- function(save = FALSE, ...) {
   
   read_API("indicatortypes", save, ...)
 }
@@ -111,12 +112,12 @@ getIndicators <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' \dontrun{
-#' D <- getDataProcess()
+#' D <- get_dataprocess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' }
 
 #' @export
-getDataProcess <- function(save = FALSE, ...) {
+get_dataprocess <- function(save = FALSE, ...) {
   
   read_API("dataProcessTypes", save, ...)
 }
@@ -126,7 +127,7 @@ getDataProcess <- function(save = FALSE, ...) {
 #' @examples
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
-#' G <- getSeriesData(dataProcessIds = 0:15, # possible processes
+#' G <- get_seriesdata(dataProcessIds = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
 #'                    locIds = "Egypt",             # Egypt
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
@@ -134,7 +135,7 @@ getDataProcess <- function(save = FALSE, ...) {
 #' G
 #' }
 #' @export
-getSeriesData <- function(save = FALSE, ...) {
+get_seriesdata <- function(save = FALSE, ...) {
   
   read_API("structureddataseries", save, ...)
 }
@@ -146,7 +147,7 @@ getSeriesData <- function(save = FALSE, ...) {
 #'
 #' \dontrun{
 #' #  You can provide all strings, all codes, or a combination of both
-#' Y <- getRecordData(dataProcessIds = "Census",
+#' Y <- get_recorddata(dataProcessIds = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
 #'                    locIds = "egypt", # all arguments are case insensitive
 #'                    locAreaTypeIds = "Whole area",
@@ -156,7 +157,7 @@ getSeriesData <- function(save = FALSE, ...) {
 #' head(Y)
 #'
 #' # Same thing only with codes
-#' X <- getRecordData(dataProcessIds = 2,   # Census
+#' X <- get_recorddata(dataProcessIds = 2,   # Census
 #'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
 #'                    locIds = 818,         # Egypt
 #'                    locAreaTypeIds = 2,   # Whole area 
@@ -167,7 +168,7 @@ getSeriesData <- function(save = FALSE, ...) {
 #' }
 #' 
 #' @export
-getRecordData <- function(save = FALSE, ...) {
+get_recorddata <- function(save = FALSE, ...) {
   
   read_API("structureddatarecords", save, ...)
 }
