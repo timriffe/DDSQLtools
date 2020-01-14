@@ -63,7 +63,7 @@ TODOOOOOOOOOOOOO!!}
 \code{\link{get_indicators}} function to see the available options;}
 
 \item{subGroup}{SubGroup ID as defined by the UNPD.
-Run the \code{\link{getSubGroups}} function to see the available options;}
+Run the \code{\link{get_subgroups}} function to see the available options;}
 }
 \description{
 Build the section of the path (link) responsible with filtering the data

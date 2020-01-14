@@ -21,7 +21,7 @@
 #'   Run the \code{\link{get_locationtypes}} function to see the available 
 #'   options;
 #'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-#'   \code{\link{getSubGroups}} function to see the available options;
+#'   \code{\link{get_subgroups}} function to see the available options;
 #'   \item{\code{addDefault}} -- Logical. Default: FALSE;
 #'   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
 #'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
@@ -129,7 +129,7 @@ linkGenerator <- function(server = "http://24.239.36.16:9654/un3/api/",
 #' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
 #' \code{\link{get_locations}} function to see the available options;
 #' @param subGroup SubGroup ID as defined by the UNPD.
-#' Run the \code{\link{getSubGroups}} function to see the available options;
+#' Run the \code{\link{get_subgroups}} function to see the available options;
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          startYear = NULL,
@@ -269,14 +269,14 @@ lookupSubGroupsIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
 
-  inds <- getSubGroups()
+  inds <- get_subgroups()
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
   # The all statement is in case you provide 2 indicators, for example
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Location(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check getSubGroups()")
+         " not found. Check get_subgroups()")
   }
 
   inds_code[["PK_SubGroupID"]]

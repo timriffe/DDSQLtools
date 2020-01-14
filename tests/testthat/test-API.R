@@ -29,7 +29,7 @@
 ## validate_read_API(D)  # validate
 
 ## # ------------------------------------------
-## S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+## S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
 ##                   locIds = 818,          # Egypt
 ##                   isComplete = 0)
 ## validate_read_API(S)  # validate
@@ -118,7 +118,7 @@
 ##                fixed = TRUE)
 
 ##   expect_error(get_recorddata(subGroupIds = "Wrong"),
-##                regexp = "Location(s) 'Wrong' not found. Check getSubGroups()",
+##                regexp = "Location(s) 'Wrong' not found. Check get_subgroups()",
 ##                fixed = TRUE)
 
 ##   expect_error(get_recorddata(isComplete = "Wrong"),

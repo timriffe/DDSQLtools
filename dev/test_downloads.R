@@ -8,7 +8,7 @@ library(DDSQLtools)
 library(tibble)
 
 # Check what subgroups are available for:
-S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
                   locIds = 818,          # Egypt
                   isComplete = 0)
 S

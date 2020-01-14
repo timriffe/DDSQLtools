@@ -31,7 +31,7 @@ care, this is important! The following options are available: \itemize{
   Run the \code{\link{get_locationtypes}} function to see the available 
   options;
   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-  \code{\link{getSubGroups}} function to see the available options;
+  \code{\link{get_subgroups}} function to see the available options;
   \item{\code{addDefault}} -- Logical. Default: FALSE;
   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
