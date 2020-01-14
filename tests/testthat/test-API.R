@@ -35,7 +35,7 @@
 ## validate_read_API(S)  # validate
 
 ## # ------------------------------------------
-## L <- getLocations(addDefault = "false",
+## L <- get_locations(addDefault = "false",
 ##                   includeDependencies = "false",
 ##                   includeFormerCountries = "false")
 ## validate_read_API(L)  # validate
@@ -110,7 +110,7 @@
 
 ## test_that("Looking up wrong input throws errors in getRecordData", {
 ##   expect_error(getRecordData(locIds = "Wrong country"),
-##                regexp = "Location(s) 'Wrong country' not found. Check getLocations()",
+##                regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
 ##                fixed = TRUE)
 
 ##   expect_error(getRecordData(indicatorTypeIds = "Wrong"),

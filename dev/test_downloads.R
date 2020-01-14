@@ -13,7 +13,7 @@ S <- getSubGroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
                   isComplete = 0)
 S
 
-L <- getLocations(addDefault = "false",
+L <- get_locations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "false")
 L

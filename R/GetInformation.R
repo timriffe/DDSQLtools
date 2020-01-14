@@ -45,14 +45,14 @@ extractData <- function(ids, save = FALSE) {
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
-#' L <- getLocations(addDefault = "false",
+#' L <- get_locations(addDefault = "false",
 #'                   includeDependencies = "false",
 #'                   includeFormerCountries = "false")
 #' L
 #' }
 #' 
 #' @export
-getLocations <- function(save = FALSE, ...) {
+get_locations <- function(save = FALSE, ...) {
   
   read_API("locations", save, ...)
 }

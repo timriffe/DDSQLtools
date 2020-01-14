@@ -10,7 +10,7 @@ library(tidyverse)
 # TypeofLocation is set to Whole Area, and urban rural are filtered out. They can be expicitly requested by the user though.
 
 # Works
-L <- getLocations(addDefault = "false",
+L <- get_locations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "true")
 
@@ -132,11 +132,11 @@ library(magrittr);library(dplyr)
 
 
 Y <- getRecordDataDetail(dataProcessIds = 2,
-                   indicatorTypeIds = 8,
-                   locIds = 818, 
-                   locAreaTypeIds = 2,
-                   subGroupIds = 2,
-                   isComplete = 0)
+                         indicatorTypeIds = 8,
+                         locIds = 818, 
+                         locAreaTypeIds = 2,
+                         subGroupIds = 2,
+                         isComplete = 0)
 
 Y <- getRecordData(dataProcessIds = "Census",
                    indicatorTypeIds = "Population by age and sex",

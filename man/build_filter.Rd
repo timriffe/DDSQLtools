@@ -42,10 +42,10 @@ build_filter(
 \item{isActive}{}
 
 \item{locIds}{Location ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
+\code{\link{get_locations}} function to see the available options;}
 
 \item{locAreaTypeIds}{Location area type ID as defined by the UNPD. Run the
-\code{\link{getLocations}} function to see the available options;}
+\code{\link{get_locations}} function to see the available options;}
 
 \item{subGroupIds}{}
 
