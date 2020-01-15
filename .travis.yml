@@ -14,7 +14,6 @@ before_install:
   - sudo apt-get install libcgal-dev
   - sudo apt-get install libx11-dev  
   
-
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   provider: script
