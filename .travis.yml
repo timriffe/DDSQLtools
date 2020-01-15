@@ -14,5 +14,12 @@ before_install:
   - sudo apt-get install libcgal-dev
   - sudo apt-get install libx11-dev  
   
+
+before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+deploy:
+  provider: script
+  script: Rscript -e 'pkgdown::deploy_site_github()'
+  skip_cleanup: true
+
 after_success:
-  - Rscript -e 'covr::codecov()'
+   - Rscript -e 'covr::codecov()'
