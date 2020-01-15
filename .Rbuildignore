@@ -10,3 +10,6 @@ devdata
 ^CODE_OF_CONDUCT.md$
 ^CONTRIBUTING.md$
 ^jorge_TODO.org$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
