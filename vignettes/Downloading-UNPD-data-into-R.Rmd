@@ -1,0 +1,166 @@
+---
+title: "Downloading UNPD data into R"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Downloading-UNPD-data-into-R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`DDSQLtools` is a package the aims to make downloading data from the UNPD SQL API into R easy. In this vignette we will discuss the different ways in which you can explore and download this data. First of all, make sure you have the latest version of `DDSQLtools` by installing it from Github:
+
+```{r, eval = FALSE}
+devtools::install_github("timriffe/DDSQLtools")
+```
+
+and then load the package:
+
+```{r setup}
+library(DDSQLtools)
+```
+
+## Quick recipes
+
+If you're already familiar with concepts from the UNPD SQL API, then you'll only have to interact with the `get_recorddata` function. For example, here's an attempt to get data on population by age and sex for Egypt for some different options:
+
+```{r, eval = FALSE}
+egypt_str <- get_recorddata(dataProcessIds = "Census",
+                            indicatorTypeIds = "Population by age and sex",
+                            locIds = "Egypt",
+                            locAreaTypeIds = "Whole area",
+                            subGroupIds = "Total or All groups",
+                            isComplete = "Abridged")
+
+```
+
+`get_recorddata` accepts either string names or codes. For example, this will return the same thing as above:
+
+```{r, eval = FALSE}
+egypt_num <- get_recorddata(dataProcessIds = 2,
+                            indicatorTypeIds = 8,
+                            locIds = 818, 
+                            locAreaTypeIds = 2,
+                            subGroupIds = 2,
+                            isComplete = 0)
+```
+
+Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to thesection `Exploring the UNPD SQL API from R` below). Here are a few examples that will get you up and running with the package:
+
+#### Population by age and sex with census data
+
+```{r}
+china <- get_recorddata(dataProcessIds = "Census",
+                        indicatorTypeIds = "Population by age and sex",
+                        locIds = "China",
+                        locAreaTypeIds = "Whole area",
+                        subGroupIds = "Total or All groups",
+                        isComplete = "Abridged")
+
+head(china)
+```
+
+#### Births by age of mother
+
+```{r, error = TRUE}
+get_recorddata(dataProcessIds = "Census",
+               indicatorTypeIds = "Births by age of mother",
+               locIds = "Togo",
+               locAreaTypeIds = "Whole area",
+               subGroupIds = "Total or All groups",
+               isComplete = "Abridged")
+
+```
+
+See the error? This means that using `"Census"` for this particular set of options that we've specified is not available. We can check other data processes using `get_dataprocess()`. After trying several different data processes, we see that the only available data process is `"Survey: cross-sectional survey (generic/national)"`:
+
+```{r }
+togo <- get_recorddata(dataProcessIds = "Survey: cross-sectional survey (generic/national)",
+                       indicatorTypeIds = "Births by age of mother",
+                       locIds = "Togo",
+                       locAreaTypeIds = "Whole area",
+                       subGroupIds = "Total or All groups",
+                       isComplete = "Abridged")
+
+head(togo)
+```
+
+#### Deaths by age and sex using register data
+
+```{r }
+oman <- get_recorddata(dataProcessIds = "Register",
+                       indicatorTypeIds = "Deaths by age and sex",
+                       locIds = "Oman",
+                       locAreaTypeIds = "Whole area",
+                       subGroupIds = "Total or All groups",
+                       isComplete = "Abridged")
+
+head(oman)
+```
+
+Currently the IP of the server is automatically set but can be changed simply by adding `options(unpd_server = "your server")` to the beginning of your script:
+
+```{r, eval = FALSE}
+# Change this to the desired server. This is the server
+# which is set by default.
+options(unpd_server = "http://24.239.36.16:9654/un3/api/")
+
+get_recorddata(dataProcessIds = "Register",
+               indicatorTypeIds = "Deaths by age and sex",
+               locIds = "Oman",
+               locAreaTypeIds = "Whole area",
+               subGroupIds = "Total or All groups",
+               isComplete = "Abridged")
+
+```
+
+## Exploring the UNPD SQL API from R
+
+The previous examples already assume you're familiar with the names of some of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
+
+* dataProcessIds = `get_dataprocess()`
+* indicatorTypeIds = `get_indicators()`
+* locIds = `get_locations()`
+* locAreaTypeIds = `get_locationtypes()`
+* subGroupIds = `get_subgroups()`
+* isComplete = `"Abridged"`, `"Complete"` or `"Total"`
+
+For example, to see all possible indicators:
+
+```{r, eval = FALSE}
+get_indicators()
+```
+
+Here we can see both the code and the name of the indicator. Both values are accepted by `get_recorddata`. Another example is getting the list of location types. `get_locationtypes()` will give you those:
+
+```{r}
+get_locationtypes()
+```
+
+In order to search for a specificic combination of values (`"Egypt"`, `"Deaths by age and sex"`, etc...), the process is only possible through trial and error. For example, if we wanted to explore `Deaths by age and sex` for `Oman`, we'd have to explore whether there is data for `Semi-rural` (`locAreaTypeIds`) and `Christian Orthodox` (`subGroupIds`). We're currently developing a new strategy for exploring country/indicator pairs that will be much easier to explore and extract the data.
+
+Let's try this example for `"Semi-rural"`:
+
+```{r, error = TRUE}
+get_recorddata(dataProcessIds = "Register",
+               indicatorTypeIds = "Deaths by age and sex",
+               locIds = "Oman",
+               locAreaTypeIds = "Semi-rural",
+               subGroupIds = "Total or All groups",
+               isComplete = "Abridged")
+```
+
+This error is just saying that the combination of data that you've specified is not available (in this case, `Semi-rural` is not available for register data on deaths by age and sex in `Oman` for all groups abridged). Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn't know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the [front end of the API](http://24.239.36.16:9654/un3/Web/index.html) and then use these in the request.
+
+Let's do one example. Follow the hyperlink and click on `"Get Started - Select Indicator & Country"`. Then select `"Deaths by age and sex"` -> `"Oman"`. All possible datasets for `Oman` and `"Deaths by age and sex"` will appear automatically. We can filter down the options that we're after in the left-most menu and use these values to populate our `get_recorddata` call. 
+
+Looking at the possible values of `"Type of location"`, only `"Whole area"` is available. This means that we can't specify `"Semi-rural"` (as we saw in the example above). Looking at `"Type of subgroup"`, the only available group is `Total or All groups`, meaning that we can't specify `"Christian Orthodox"` either.
+
+Using this strategy is much easier and less time consuming that trying out different values. As outlined above, this strategy will not be necessary in the near future as we develop a quick strategy for exploring data from R.
+

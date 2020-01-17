@@ -11,9 +11,15 @@ install:
   ps: Bootstrap
 
 cache:
-  packages
+  # - C:\RLibrary
 
 # Adapt as necessary starting from here
+environment:
+  global:
+    R_ARCH: x64
+    # Need to enable when installing GitHub dependency packages.
+    USE_RTOOLS: true
+    R_REMOTES_STANDALONE: true
 
 build_script:
   - travis-tool.sh install_deps

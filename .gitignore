@@ -6,4 +6,5 @@
 .Rproj.user
 .DS_Store
 /jorge_TODO.org
+inst/doc
 docs/

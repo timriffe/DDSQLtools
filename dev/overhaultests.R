@@ -10,7 +10,7 @@ library(tidyverse)
 # TypeofLocation is set to Whole Area, and urban rural are filtered out. They can be expicitly requested by the user though.
 
 # Works
-L <- getLocations(addDefault = "false",
+L <- get_locations(addDefault = "false",
                   includeDependencies = "false",
                   includeFormerCountries = "true")
 
@@ -104,7 +104,7 @@ library(magrittr);library(dplyr)
 
 # 
 # build_filter2(dataProcess="Register",Location=818, includeDependencies="true")
-# P <- getLocationTypes("LocAreaType",
+# P <- get_locationtypes("LocAreaType",
 #   indicatorType = 8, # Population by age and sex indicator;
 #   loc = 818,         # Egypt
 #   isComplete = 0)
@@ -131,14 +131,14 @@ library(magrittr);library(dplyr)
 # #filter(!(AgeSpan == -1 & AgeStart < max(AgeStart[AgeSpan == -1])))
 
 
-Y <- getRecordDataDetail(dataProcessIds = 2,
-                   indicatorTypeIds = 8,
-                   locIds = 818, 
-                   locAreaTypeIds = 2,
-                   subGroupIds = 2,
-                   isComplete = 0)
+Y <- get_recorddataDetail(dataProcessIds = 2,
+                         indicatorTypeIds = 8,
+                         locIds = 818, 
+                         locAreaTypeIds = 2,
+                         subGroupIds = 2,
+                         isComplete = 0)
 
-Y <- getRecordData(dataProcessIds = "Census",
+Y <- get_recorddata(dataProcessIds = "Census",
                    indicatorTypeIds = "Population by age and sex",
                    locIds = "Egypt",
                    locAreaTypeIds = "Whole area",
