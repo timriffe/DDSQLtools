@@ -184,7 +184,7 @@ get_recorddata <- function(save = FALSE, ...) {
 read_API <- function(type, save, ...){
   P <- linkGenerator(type = type, ...)
   # Temporary, just to check how the URL is constructed
-  print(P)
+  ## print(P)
 
   out <- rjson::fromJSON(file = P)
   ## print("URL saved")
