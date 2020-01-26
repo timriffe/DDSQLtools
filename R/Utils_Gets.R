@@ -12,7 +12,7 @@
 #'   options;
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
-#'   \item{\code{IndicatorTypeIDs}} -- Indicator type ID as defined by the UNPD. 
+#'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
 #'   Run the \code{\link{get_indicators}} function to see the available options;
 #'   \item{\code{isComplete}} -- isComplete;
 #'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
@@ -48,14 +48,14 @@
 #' # Link to location types (for Egypt)
 #' # With strings rather than codes
 #' L2 <- linkGenerator(type = "locAreaTypes",
-#'                     IndicatorTypeIDs = "Population by sex",
+#'                     indicatorTypeIds = "Population by sex",
 #'                     locIds = "Egypt",
 #'                     isComplete = "Abridged")
 #' L2
 #' 
 #' # Link to subgroup types (for Egypt)
 #' L3 <- linkGenerator(type = "subGroups",
-#'                     IndicatorTypeIDs = 8,
+#'                     indicatorTypeIds = 8,
 #'                     locIds = 818,
 #'                     isComplete = 0)
 #' L3
@@ -121,7 +121,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' @param endYear End year. Default: NULL;
 #' @param AgeStart 
 #' @param AgeEnd 
-#' @param IndicatorTypeIDs 
+#' @param indicatorTypeIds 
 #' @param isComplete isComplete;
 #' @param isActive 
 #' @param locIds 
@@ -148,7 +148,8 @@ build_filter <- function(DataProcessIDs = NULL,
                          endYear = NULL,
                          AgeStart = NULL,
                          AgeEnd = NULL,
-                         IndicatorTypeIDs = NULL,
+                         indicatorTypeIds = NULL,
+                         indicatorIDs = NULL,
                          isComplete = NULL,
                          isActive = NULL,
                          locIds = NULL,
@@ -172,7 +173,7 @@ build_filter <- function(DataProcessIDs = NULL,
   any_str <- any(vapply(x, is.character, FUN.VALUE = logical(1)))
 
   lookupParams <- list("locIds" = lookupLocIds,
-                       "IndicatorTypeIDs" = lookupIndicatorIds,
+                       "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
                        "subGroupIds" = lookupSubGroupsIds)
 
@@ -322,7 +323,7 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
   
   inds <- get_locationtypes(locIds = paramList[["locIds"]],
-                            IndicatorTypeIDs = paramList[["IndicatorTypeIDs"]],
+                            indicatorTypeIds = paramList[["indicatorTypeIds"]],
                             isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
@@ -341,7 +342,7 @@ lookupDataProcess <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
 
   inds <- get_dataprocess(locIds = paramList[["locIds"]],
-                          IndicatorTypeIDs = paramList[["IndicatorTypeIDs"]],
+                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
                           isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]

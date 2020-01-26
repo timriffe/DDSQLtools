@@ -21,7 +21,7 @@ care, this is important! The following options are available: \itemize{
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{IndicatorTypeIDs}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
@@ -43,7 +43,7 @@ Get information about available location types (LocAreaTypeID)
 
 \dontrun{
 # Check what subgroups are available for:
-P <- get_locationtypes(IndicatorTypeIDs = 8, # Population by age and sex indicator;
+P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
                       locIds = "egypt",
                       isComplete = "abridged")
 P

@@ -32,7 +32,7 @@ If you're already familiar with concepts from the UNPD SQL API, then you'll only
 
 ```{r, eval = FALSE}
 egypt_str <- get_recorddata(DataProcessIDs = "Census",
-                            IndicatorTypeIDs = "Population by age and sex",
+                            indicatorTypeIds = "Population by age and sex",
                             locIds = "Egypt",
                             locAreaTypeIds = "Whole area",
                             subGroupIds = "Total or All groups",
@@ -44,7 +44,7 @@ egypt_str <- get_recorddata(DataProcessIDs = "Census",
 
 ```{r, eval = FALSE}
 egypt_num <- get_recorddata(DataProcessIDs = 2,
-                            IndicatorTypeIDs = 8,
+                            indicatorTypeIds = 8,
                             locIds = 818, 
                             locAreaTypeIds = 2,
                             subGroupIds = 2,
@@ -57,7 +57,7 @@ Note that **using numeric codes is faster than using string names because we don
 
 ```{r}
 china <- get_recorddata(DataProcessIDs = "Census",
-                        IndicatorTypeIDs = "Population by age and sex",
+                        indicatorTypeIds = "Population by age and sex",
                         locIds = "China",
                         locAreaTypeIds = "Whole area",
                         subGroupIds = "Total or All groups",
@@ -70,7 +70,7 @@ head(china)
 
 ```{r, error = TRUE}
 get_recorddata(DataProcessIDs = "Census",
-               IndicatorTypeIDs = "Births by age of mother",
+               indicatorTypeIds = "Births by age of mother",
                locIds = "Togo",
                locAreaTypeIds = "Whole area",
                subGroupIds = "Total or All groups",
@@ -82,7 +82,7 @@ See the error? This means that using `"Census"` for this set of options is unava
 
 ```{r }
 togo <- get_recorddata(DataProcessIDs = "Survey: cross-sectional survey (generic/national)",
-                       IndicatorTypeIDs = "Births by age of mother",
+                       indicatorTypeIds = "Births by age of mother",
                        locIds = "Togo",
                        locAreaTypeIds = "Whole area",
                        subGroupIds = "Total or All groups",
@@ -95,7 +95,7 @@ head(togo)
 
 ```{r }
 oman <- get_recorddata(DataProcessIDs = "Register",
-                       IndicatorTypeIDs = "Deaths by age and sex",
+                       indicatorTypeIds = "Deaths by age and sex",
                        locIds = "Oman",
                        locAreaTypeIds = "Whole area",
                        subGroupIds = "Total or All groups",
@@ -115,7 +115,7 @@ Currently the IP of the server is automatically set but can be changed simply by
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
 get_recorddata(DataProcessIDs = "Register",
-               IndicatorTypeIDs = "Deaths by age and sex",
+               indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Whole area",
                subGroupIds = "Total or All groups",
@@ -128,7 +128,7 @@ get_recorddata(DataProcessIDs = "Register",
 The previous examples assume you're familiar with the names or codes of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
 
 * DataProcessIDs = `get_dataprocess()`
-* IndicatorTypeIDs = `get_indicators()`
+* indicatorTypeIds = `get_indicators()`
 * locIds = `get_locations()`
 * locAreaTypeIds = `get_locationtypes()`
 * subGroupIds = `get_subgroups()`
@@ -152,7 +152,7 @@ For now, let's try this example for `"Semi-rural"`:
 
 ```{r, error = TRUE}
 get_recorddata(DataProcessID = "Register",
-               IndicatorTypeIDs = "Deaths by age and sex",
+               indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Semi-rural",
                subGroupIds = "Total or All groups",

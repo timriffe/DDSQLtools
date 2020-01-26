@@ -21,7 +21,7 @@ care, this is important! The following options are available: \itemize{
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{IndicatorTypeIDs}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
@@ -43,7 +43,7 @@ Get information about available details for a given series of data
 \dontrun{
 # You can provide all strings, all codes, or a combination of both
 G <- get_seriesdata(DataProcessIDs = 0:15, # possible processes
-                   IndicatorTypeIDs = 25,    # M[x]
+                   indicatorTypeIds = 25,    # M[x]
                    locIds = "Egypt",             # Egypt
                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
                    subGroupIds = 2)

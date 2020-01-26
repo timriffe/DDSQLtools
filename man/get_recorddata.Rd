@@ -24,7 +24,7 @@ care, this is important! The following options are available: \itemize{
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{IndicatorTypeIDs}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
@@ -47,7 +47,7 @@ Download data from UNPD portal
 \dontrun{
 #  You can provide all strings, all codes, or a combination of both
 Y <- get_recorddata(DataProcessIDs = "Census",
-                   IndicatorTypeIDs = 8, # and support numeric of string names
+                   indicatorTypeIds = 8, # and support numeric of string names
                    locIds = "egypt", # all arguments are case insensitive
                    locAreaTypeIds = "Whole area",
                    subGroupIds = "Total or All groups",
@@ -57,7 +57,7 @@ head(Y)
 
 # Same thing only with codes
 X <- get_recorddata(DataProcessIDs = 2,   # Census
-                   IndicatorTypeIDs = 8, # Population by age and sex - abridged 
+                   indicatorTypeIds = 8, # Population by age and sex - abridged 
                    locIds = 818,         # Egypt
                    locAreaTypeIds = 2,   # Whole area 
                    subGroupIds = 2,      # Total or All groups

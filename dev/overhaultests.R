@@ -59,7 +59,7 @@ read_API2 <- function(type, save, ...){
 # see a pattern. 
 build_filter2 <- function(
   dataProcess = NULL, startYear = NULL, endYear = NULL, 
-  IndicatorTypeIDs = NULL, isComplete = NULL, locIds = NULL, LocAreaType = NULL, 
+  indicatorTypeIds = NULL, isComplete = NULL, locIds = NULL, LocAreaType = NULL, 
   SubGroup = NULL, addDefault = NULL, includeDependencies = NULL, 
   includeFormerCountries = NULL) {
   I <- environment() %>% as.list() %>% unlist()
@@ -73,28 +73,28 @@ build_filter2 <- function(
 }
 
 
-getCodes("locAreaTypes", locIds = 8,IndicatorTypeIDs = 8) # works
-getCodes("locAreaTypes", IndicatorTypeIDs = 8)            # fails
+getCodes("locAreaTypes", locIds = 8,indicatorTypeIds = 8) # works
+getCodes("locAreaTypes", indicatorTypeIds = 8)            # fails
 getCodes("locAreaTypes", locIds = 8)                      # fails
 getCodes("locAreaTypes")  
 getCodes("locareatypes")  
-getCodes("locAreaTypes", locIds = "4,8", IndicatorTypeIDs = 8)  
-"https://24.239.36.16:9654/un3/api/subGroups?endYear=2019&IndicatorTypeIDs=8&isComplete=0&locIds=4&startYear=1950"
-getCodes(type = "subGroups", endYear = 2019, IndicatorTypeIDs = 8, isComplete = 0, locIds= 4, startYear = 1950) # works
+getCodes("locAreaTypes", locIds = "4,8", indicatorTypeIds = 8)  
+"https://24.239.36.16:9654/un3/api/subGroups?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
+getCodes(type = "subGroups", endYear = 2019, indicatorTypeIds = 8, isComplete = 0, locIds= 4, startYear = 1950) # works
 getCodes(type = "subGroups", locIds = 4)                                          # fails
-getCodes(type = "subGroups", locIds = 4, IndicatorTypeIDs = 8)                    # works
-getCodes(type = "subGroups", locIds = 4, IndicatorTypeIDs = 8, startYear = 1980)  # works
+getCodes(type = "subGroups", locIds = 4, indicatorTypeIds = 8)                    # works
+getCodes(type = "subGroups", locIds = 4, indicatorTypeIds = 8, startYear = 1980)  # works
 getCodes(type="ages")
-"https://24.239.36.16:9654/un3/api/dataProcessTypes?endYear=2019&IndicatorTypeIDs=8&isComplete=0&locIds=4&startYear=1950"
-getCodes(type = "dataProcessTypes", endYear = 2019, IndicatorTypeIDs = 8, isComplete = 0, locIds= 4, startYear = 1950)
+"https://24.239.36.16:9654/un3/api/dataProcessTypes?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
+getCodes(type = "dataProcessTypes", endYear = 2019, indicatorTypeIds = 8, isComplete = 0, locIds= 4, startYear = 1950)
 
 # Next to test.
-# "http://24.239.36.16:9654/un3/api/locAreaTypes?endYear=2019&IndicatorTypeIDs=8&isComplete=0&locIds=4&startYear=1950"
+# "http://24.239.36.16:9654/un3/api/locAreaTypes?endYear=2019&indicatorTypeIds=8&isComplete=0&locIds=4&startYear=1950"
 # the below code implies this url: need new var names I think.
 # http://24.239.36.16:9654/un3/api/locationType?indicatorType=8&isComplete=0&loc=818
 library(magrittr);library(dplyr)
 # read_API2(type="locAreaTypes", 
-#           IndicatorTypeIDs = 8, 
+#           indicatorTypeIds = 8, 
 #          locIds = 8,        
 #          isComplete = 0,
 #          startYear=1980,
@@ -132,14 +132,14 @@ library(magrittr);library(dplyr)
 
 
 Y <- get_recorddataDetail(DataProcessIDs = 2,
-                         IndicatorTypeIDs = 8,
+                         indicatorTypeIds = 8,
                          locIds = 818, 
                          locAreaTypeIds = 2,
                          subGroupIds = 2,
                          isComplete = 0)
 
 Y <- get_recorddata(DataProcessIDs = "Census",
-                   IndicatorTypeIDs = "Population by age and sex",
+                   indicatorTypeIds = "Population by age and sex",
                    locIds = "Egypt",
                    locAreaTypeIds = "Whole area",
                    subGroupIds = "Total or All groups",
@@ -149,7 +149,7 @@ Y <- get_recorddata(DataProcessIDs = "Census",
 tst <- read_API("structureddatacriteria",
                 save = FALSE,
                 locIds = 4, # Afghanistan
-                IndicatorTypeIDs = 60,
+                indicatorIDs = 60,
                 includeDataIDs = "true"
                 )
 

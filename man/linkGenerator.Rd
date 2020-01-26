@@ -27,7 +27,7 @@ care, this is important! The following options are available: \itemize{
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
-  \item{\code{IndicatorTypeIDs}} -- Indicator type ID as defined by the UNPD. 
+  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{get_indicators}} function to see the available options;
   \item{\code{isComplete}} -- isComplete;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
@@ -68,14 +68,14 @@ L1
 # Link to location types (for Egypt)
 # With strings rather than codes
 L2 <- linkGenerator(type = "locAreaTypes",
-                    IndicatorTypeIDs = "Population by sex",
+                    indicatorTypeIds = "Population by sex",
                     locIds = "Egypt",
                     isComplete = "Abridged")
 L2
 
 # Link to subgroup types (for Egypt)
 L3 <- linkGenerator(type = "subGroups",
-                    IndicatorTypeIDs = 8,
+                    indicatorTypeIds = 8,
                     locIds = 818,
                     isComplete = 0)
 L3
