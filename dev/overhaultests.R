@@ -131,14 +131,14 @@ library(magrittr);library(dplyr)
 # #filter(!(AgeSpan == -1 & AgeStart < max(AgeStart[AgeSpan == -1])))
 
 
-Y <- get_recorddataDetail(dataProcessIds = 2,
+Y <- get_recorddataDetail(DataProcessIDs = 2,
                          indicatorTypeIds = 8,
                          locIds = 818, 
                          locAreaTypeIds = 2,
                          subGroupIds = 2,
                          isComplete = 0)
 
-Y <- get_recorddata(dataProcessIds = "Census",
+Y <- get_recorddata(DataProcessIDs = "Census",
                    indicatorTypeIds = "Population by age and sex",
                    locIds = "Egypt",
                    locAreaTypeIds = "Whole area",

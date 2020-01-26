@@ -16,7 +16,7 @@ accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+  \item{\code{DataProcessIDs}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
@@ -42,7 +42,7 @@ Get information about available details for a given series of data
 \examples{
 \dontrun{
 # You can provide all strings, all codes, or a combination of both
-G <- get_seriesdata(dataProcessIds = 0:15, # possible processes
+G <- get_seriesdata(DataProcessIDs = 0:15, # possible processes
                    indicatorTypeIds = 25,    # M[x]
                    locIds = "Egypt",             # Egypt
                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types

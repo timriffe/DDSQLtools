@@ -9,7 +9,7 @@ library(readxl)
 library(tidyverse)
 
 # Download Abridge Data
-P5 <- get_recorddata(dataProcessIds = 2,   # Estimate
+P5 <- get_recorddata(DataProcessIDs = 2,   # Estimate
                     indicatorTypeIds = 8, # Population by age and sex
                     locIds = 818,         # Egypt
                     locAreaTypeIds = 2,   # Whole area
@@ -31,7 +31,7 @@ dim(P5_F)
 
 
 # Download Single Age Data
-P1 <- get_recorddata(dataProcessIds = 2,   # Estimate
+P1 <- get_recorddata(DataProcessIDs = 2,   # Estimate
                     indicatorTypeIds = 8, # Population by age and sex
                     locIds = 818,         # Egypt
                     locAreaTypeIds = 2,   # Whole area

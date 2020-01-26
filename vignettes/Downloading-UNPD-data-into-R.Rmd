@@ -31,7 +31,7 @@ library(DDSQLtools)
 If you're already familiar with concepts from the UNPD SQL API, then you'll only have to interact with the `get_recorddata` function. For example, here's how to get data on population by age and sex for Egypt with different options:
 
 ```{r, eval = FALSE}
-egypt_str <- get_recorddata(dataProcessIds = "Census",
+egypt_str <- get_recorddata(DataProcessIDs = "Census",
                             indicatorTypeIds = "Population by age and sex",
                             locIds = "Egypt",
                             locAreaTypeIds = "Whole area",
@@ -43,7 +43,7 @@ egypt_str <- get_recorddata(dataProcessIds = "Census",
 `get_recorddata` accepts either string names or codes. For example, this will return the same thing as above:
 
 ```{r, eval = FALSE}
-egypt_num <- get_recorddata(dataProcessIds = 2,
+egypt_num <- get_recorddata(DataProcessIDs = 2,
                             indicatorTypeIds = 8,
                             locIds = 818, 
                             locAreaTypeIds = 2,
@@ -56,7 +56,7 @@ Note that **using numeric codes is faster than using string names because we don
 #### Population by age and sex with census data
 
 ```{r}
-china <- get_recorddata(dataProcessIds = "Census",
+china <- get_recorddata(DataProcessIDs = "Census",
                         indicatorTypeIds = "Population by age and sex",
                         locIds = "China",
                         locAreaTypeIds = "Whole area",
@@ -69,7 +69,7 @@ head(china)
 #### Births by age of mother
 
 ```{r, error = TRUE}
-get_recorddata(dataProcessIds = "Census",
+get_recorddata(DataProcessIDs = "Census",
                indicatorTypeIds = "Births by age of mother",
                locIds = "Togo",
                locAreaTypeIds = "Whole area",
@@ -81,7 +81,7 @@ get_recorddata(dataProcessIds = "Census",
 See the error? This means that using `"Census"` for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using `get_dataprocess()`). Since this is a trial and error process, we've nailed it down to `"Survey: cross-sectional survey (generic/national)"`:
 
 ```{r }
-togo <- get_recorddata(dataProcessIds = "Survey: cross-sectional survey (generic/national)",
+togo <- get_recorddata(DataProcessIDs = "Survey: cross-sectional survey (generic/national)",
                        indicatorTypeIds = "Births by age of mother",
                        locIds = "Togo",
                        locAreaTypeIds = "Whole area",
@@ -94,7 +94,7 @@ head(togo)
 #### Deaths by age and sex using register data
 
 ```{r }
-oman <- get_recorddata(dataProcessIds = "Register",
+oman <- get_recorddata(DataProcessIDs = "Register",
                        indicatorTypeIds = "Deaths by age and sex",
                        locIds = "Oman",
                        locAreaTypeIds = "Whole area",
@@ -114,7 +114,7 @@ Currently the IP of the server is automatically set but can be changed simply by
 # which is set by default.
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
-get_recorddata(dataProcessIds = "Register",
+get_recorddata(DataProcessIDs = "Register",
                indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Whole area",
@@ -127,7 +127,7 @@ get_recorddata(dataProcessIds = "Register",
 
 The previous examples assume you're familiar with the names or codes of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
 
-* dataProcessIds = `get_dataprocess()`
+* DataProcessIDs = `get_dataprocess()`
 * indicatorTypeIds = `get_indicators()`
 * locIds = `get_locations()`
 * locAreaTypeIds = `get_locationtypes()`
@@ -151,7 +151,7 @@ In order to search for a specificic combination of values (`"Egypt"`, `"Deaths b
 For now, let's try this example for `"Semi-rural"`:
 
 ```{r, error = TRUE}
-get_recorddata(dataProcessIds = "Register",
+get_recorddata(DataProcessID = "Register",
                indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Semi-rural",

@@ -4,8 +4,12 @@
 \alias{linkGenerator}
 \title{API Link Generator Function}
 \usage{
-linkGenerator(server = getOption("unpd_server",
-  "http://24.239.36.16:9654/un3/api/"), type, ...)
+linkGenerator(
+  server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
+  type,
+  verbose_print,
+  ...
+)
 }
 \arguments{
 \item{server}{The path to the database. Check if the "unpd_server" option is
@@ -18,7 +22,7 @@ accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+  \item{\code{DataProcessIDs}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;

@@ -31,7 +31,7 @@ I[, c("IndicatorTypeID", "Name", "ShortName")]
 D <- get_dataprocess()
 D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
-G <- get_seriesdata(dataProcessIds = 2,    # Census
+G <- get_seriesdata(DataProcessIDs = 2,    # Census
                    indicatorTypeIds = 8,  # Population
                    isComplete = 0,
                    locIds = 4,            # American Samoa
@@ -40,7 +40,7 @@ G <- get_seriesdata(dataProcessIds = 2,    # Census
                    subGroupIds = 2)       # Nationals only
 G
 
-X <- get_recorddata(dataProcessIds = 2,   # Estimate
+X <- get_recorddata(DataProcessIDs = 2,   # Estimate
                    indicatorTypeIds = 8, # Population by age and sex - abridged 
                    isComplete = 0,    # Age Distribution: Abridged
                    locIds = 818,         # Egypt

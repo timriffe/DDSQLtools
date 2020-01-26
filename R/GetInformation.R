@@ -139,7 +139,7 @@ get_dataprocess <- function(save = FALSE, ...) {
 #' @examples
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
-#' G <- get_seriesdata(dataProcessIds = 0:15, # possible processes
+#' G <- get_seriesdata(DataProcessIDs = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
 #'                    locIds = "Egypt",             # Egypt
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
@@ -161,7 +161,7 @@ get_seriesdata <- function(save = FALSE, ...) {
 #'
 #' \dontrun{
 #' #  You can provide all strings, all codes, or a combination of both
-#' Y <- get_recorddata(dataProcessIds = "Census",
+#' Y <- get_recorddata(DataProcessIDs = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
 #'                    locIds = "egypt", # all arguments are case insensitive
 #'                    locAreaTypeIds = "Whole area",
@@ -171,7 +171,7 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' head(Y)
 #'
 #' # Same thing only with codes
-#' X <- get_recorddata(dataProcessIds = 2,   # Census
+#' X <- get_recorddata(DataProcessIDs = 2,   # Census
 #'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
 #'                    locIds = 818,         # Egypt
 #'                    locAreaTypeIds = 2,   # Whole area 
