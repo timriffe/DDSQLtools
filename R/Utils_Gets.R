@@ -161,7 +161,12 @@ build_filter <- function(dataProcessIds = NULL,
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
-  I <- as.list(environment())
+  x <- as.list(environment())
+
+  # For later, to print the translated code query
+  # so the user gets the faster request
+  any_str <- any(vapply(x, is.character, FUN.VALUE = logical(1)))
+
   lookupParams <- list("locIds" = lookupLocIds,
                        "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
@@ -170,10 +175,10 @@ build_filter <- function(dataProcessIds = NULL,
   # Iteratire over each lookupParams and apply their correspoding lookup
   # function to translate strings such as Germany to the corresponding code.
   # Only available for the names in lookupParams
-  I[names(lookupParams)] <- mapply(
+  x[names(lookupParams)] <- mapply(
     function(fun, vec) fun(vec),
     lookupParams,
-    I[names(lookupParams)]
+    x[names(lookupParams)]
   )
 
   # Here we need a separate call to the same thing bc
@@ -182,23 +187,39 @@ build_filter <- function(dataProcessIds = NULL,
   extraParams <- list("locAreaTypeIds" = lookupAreaTypeIds,
                       "dataProcessIds" = lookupDataProcess)
 
-  I[names(extraParams)] <- mapply(
+  x[names(extraParams)] <- mapply(
     function(fun, vec, ...) fun(vec, ...),
     extraParams,
-    I[names(extraParams)],
+    x[names(extraParams)],
     # I pass the already translated parameter list
     # to avoid retranslating stuff like locations, etc...
     # This can save time in querying API
-    MoreArgs = list(paramList = I)
+    MoreArgs = list(paramList = x)
   )
 
-  if (length(I) > 0) {
-    # Collapse multiple ids to parameters
-    I <- vapply(I, paste0, collapse = ",", FUN.VALUE = character(1))
-    # and exclude the empty ones
-    I <- I[I != ""]
+  if (length(x) > 0) {
+
+    if (any_str) {
+      # Print call for easier requests
+      collapsed_x <- lapply(x, function(i) {
+        if (length(i) > 1) paste0("c(", paste0(i, collapse = ", "), ")") else i
+      })
+      
+      mockup <- unlist(collapsed_x)
+      res <- paste0("get_recorddata(",
+                    paste0(names(mockup), " = ", mockup, collapse = ", "),
+                    ")")
+      cat("If you run the same query again, use the one below (faster): \n ",
+          res)
+
+    }
     
-    S   <- paste(paste(names(I), I, sep = "="), collapse="&")
+    # Collapse multiple ids to parameters
+    x <- vapply(x, paste0, collapse = ",", FUN.VALUE = character(1))
+    # and exclude the empty ones
+    x <- x[x != ""]
+    
+    S   <- paste(paste(names(x), x, sep = "="), collapse="&")
     out <- paste0("?", S)
   } else {
     out <- ""
@@ -297,8 +318,8 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
   
   inds <- get_locationtypes(locIds = paramList[["locIds"]],
-                           indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                           isComplete = paramList[["isComplete"]])
+                            indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                            isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
   # The all statement is in case you provide 2 area types, for example
@@ -316,8 +337,8 @@ lookupDataProcess <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
 
   inds <- get_dataprocess(locIds = paramList[["locIds"]],
-                         indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                         isComplete = paramList[["isComplete"]])
+                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                          isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
   # The all statement is in case you provide 2 area types, for example
