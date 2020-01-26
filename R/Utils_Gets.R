@@ -27,8 +27,15 @@
 #'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
 #'   }
 #' @details The link generator is based on the structure of the database 
-#' created by Dennis Butler (in late 2018). If the web address or the structure 
-#' of the database changes this will have to be updated as well.
+#' created by Dennis Butler (in late 2018). To change the server used to make
+#' the requests, set this at the beginning of your script:
+#' options(unpd_server = "fill this out").
+#'
+#' When requesting data from the structured data format (usually called from
+#' \code{\link{get_recorddata}}), the columns \code{TimeStart} and \code{TimeEnd}
+#' are returned with format \code{DD/MM/YYYY}, where \code{DD} are days, \code{MM}
+#' are months and \code{YYYY} are years.
+#' 
 #' @examples
 #' \dontrun{
 #' # Link to country list

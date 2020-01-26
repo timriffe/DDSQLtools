@@ -4,13 +4,8 @@
 \alias{do_qualitychecks}
 \title{Wrapper for Performing Age-Sex Male-Female Data Quality Checks}
 \usage{
-do_qualitychecks(
-  XY,
-  XX,
-  fn = c("sexRatioScore", "ageSexAccuracy", "ageSexAccuracyDasGupta"),
-  verbose = TRUE,
-  ...
-)
+do_qualitychecks(XY, XX, fn = c("sexRatioScore", "ageSexAccuracy",
+  "ageSexAccuracyDasGupta"), verbose = TRUE, ...)
 }
 \arguments{
 \item{XY}{Input data for male population. UN format.}

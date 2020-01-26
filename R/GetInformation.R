@@ -169,9 +169,13 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' 
 #' @export
 get_recorddata <- function(save = FALSE, ...) {
-  
-  read_API("structureddatarecords", save, ...)
+  res <- read_API("structureddatarecords", save, ...)
+  res$TimeStart <- chr_to_date(res$TimeStart)
+  res$TimeEnd <- chr_to_date(res$TimeEnd)
+  res
 }
+
+
 
 
 
@@ -204,4 +208,11 @@ read_API <- function(type, save, ...){
                                                        type))
   }
   out
+}
+
+
+chr_to_date <- function(x) {
+  x <- gsub("\\s{1}.+$", "", x)
+  x <- format(as.Date(x, format = "%m/%d/%Y"), format = "%d/%m/%Y")
+  x
 }
