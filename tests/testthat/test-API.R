@@ -3,7 +3,8 @@ test_that("The linkGenerator() works fine", {
   L <- linkGenerator(type = "structureddatarecords",
                      locIds = 4,
                      indicatorTypeIds = 8,
-                     dataProcessIds = c(2, 6))
+                     dataProcessIds = c(2, 6),
+                     verbose_print = FALSE)
   
   expect_output(print(L))                          # 1. Always expect an output;
   expect_true(is.character(L))                     # 2. The output is of the class "character";
@@ -212,4 +213,17 @@ test_that("extract_data returns the correct data when link is too long", {
     }, logical(1))
 
   expect_true(all(all_test))
+})
+
+# The res data frame is resued from above
+test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY", {
+  expect_type(res$TimeStart, "character")
+  expect_type(res$TimeEnd, "character")
+
+  # Here I'm testing that days, months and years have 2, 2 and 4
+  # digits. The total is 8 plus the two slashes. Here we make sure
+  # that we always have 10 characters.
+  expect_equal(10, unique(nchar(res$TimeStart)))
+  expect_equal(10, unique(nchar(res$TimeEnd)))
+
 })

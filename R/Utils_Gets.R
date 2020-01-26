@@ -74,6 +74,7 @@ linkGenerator <- function(server = getOption("unpd_server",
                                              "http://24.239.36.16:9654/un3/api/"
                                              ), 
                           type,
+                          verbose_print,
                           ...) {
   
   types <- c("ages",
@@ -108,7 +109,7 @@ linkGenerator <- function(server = getOption("unpd_server",
              "dataEntryCount")
   
   type  <- match.arg(tolower(type), choices = tolower(types))
-  query <- build_filter(...)
+  query <- build_filter(..., verbose = verbose_print)
   link  <- paste0(server, type, query)
   link
 }
@@ -140,6 +141,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' \code{\link{get_locations}} function to see the available options;
 #' @param subGroup SubGroup ID as defined by the UNPD.
 #' Run the \code{\link{get_subgroups}} function to see the available options;
+#' @param verbose whether to print the optimized code for get_recorddata
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          startYear = NULL,
@@ -157,11 +159,14 @@ build_filter <- function(dataProcessIds = NULL,
                          addDefault = NULL,
                          includeDependencies = NULL, 
                          includeFormerCountries = NULL,
-                         includeDataIDs = NULL) {
+                         includeDataIDs = NULL,
+                         verbose) {
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
   x <- as.list(environment())
+  # Exclude verbose option
+  x <- x[!names(x) == "verbose"]
 
   # For later, to print the translated code query
   # so the user gets the faster request
@@ -199,7 +204,7 @@ build_filter <- function(dataProcessIds = NULL,
 
   if (length(x) > 0) {
 
-    if (any_str) {
+    if (verbose && any_str) {
       # Print call for easier requests
       collapsed_x <- lapply(x, function(i) {
         if (length(i) > 1) paste0("c(", paste0(i, collapse = ", "), ")") else i
