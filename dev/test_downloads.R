@@ -8,7 +8,7 @@ library(DDSQLtools)
 library(tibble)
 
 # Check what subgroups are available for:
-S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+S <- get_subgroups(IndicatorTypeIDs = 8,  # Population by age and sex indicator;
                   locIds = 818,          # Egypt
                   isComplete = 0)
 S
@@ -19,7 +19,7 @@ L <- get_locations(addDefault = "false",
 L
 
 # Check what subgroups are available for:
-P <- get_locationtypes(indicatorTypeIds = 8,  # Population by age and sex indicator;
+P <- get_locationtypes(IndicatorTypeIDs = 8,  # Population by age and sex indicator;
                       locIds = 230,          # Venezuela
                       isComplete = 0)
 P
@@ -32,7 +32,7 @@ D <- get_dataprocess()
 D[,c("PK_DataProcessTypeID","Name","ShortName")]
 
 G <- get_seriesdata(DataProcessIDs = 2,    # Census
-                   indicatorTypeIds = 8,  # Population
+                   IndicatorTypeIDs = 8,  # Population
                    isComplete = 0,
                    locIds = 4,            # American Samoa
                    locAreaTypeIds = 2,    #
@@ -41,7 +41,7 @@ G <- get_seriesdata(DataProcessIDs = 2,    # Census
 G
 
 X <- get_recorddata(DataProcessIDs = 2,   # Estimate
-                   indicatorTypeIds = 8, # Population by age and sex - abridged 
+                   IndicatorTypeIDs = 8, # Population by age and sex - abridged 
                    isComplete = 0,    # Age Distribution: Abridged
                    locIds = 818,         # Egypt
                    locAreaTypeIds = 2,   # Whole area 
@@ -59,13 +59,13 @@ L1
 # Link to location types (for Egypt)
 L2 <- linkGenerator(type = "locationType",
                     locIds = 818,
-                    indicatorTypeIds = "8,9,10",
+                    IndicatorTypeIDs = "8,9,10",
                     isComplete = 0)
 L2
 
 # Link to subgroup types (for Egypt)
 L3 <- linkGenerator(type = "subGroup",
-                    indicatorTypeIds = 8,
+                    IndicatorTypeIDs = 8,
                     locIds = 818,
                     isComplete = 0)
 L3

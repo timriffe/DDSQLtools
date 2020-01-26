@@ -10,8 +10,7 @@ build_filter(
   endYear = NULL,
   AgeStart = NULL,
   AgeEnd = NULL,
-  indicatorTypeIds = NULL,
-  indicatorIDs = NULL,
+  IndicatorTypeIDs = NULL,
   isComplete = NULL,
   isActive = NULL,
   locIds = NULL,
@@ -36,7 +35,7 @@ build_filter(
 
 \item{AgeEnd}{}
 
-\item{indicatorTypeIds}{}
+\item{IndicatorTypeIDs}{}
 
 \item{isComplete}{isComplete;}
 

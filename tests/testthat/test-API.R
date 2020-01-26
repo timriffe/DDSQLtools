@@ -2,7 +2,7 @@ test_that("The linkGenerator() works fine", {
   
   L <- linkGenerator(type = "structureddatarecords",
                      locIds = 4,
-                     indicatorTypeIds = 8,
+                     IndicatorTypeIDs = 8,
                      DataProcessIDs = c(2, 6),
                      verbose_print = FALSE)
   
@@ -30,7 +30,7 @@ D <- get_dataprocess()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
-S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+S <- get_subgroups(IndicatorTypeIDs = 8,  # Population by age and sex indicator;
                    locIds = 818,          # Egypt
                    isComplete = 0)
 validate_read_API(S)  # validate
@@ -42,7 +42,7 @@ L <- get_locations(addDefault = "false",
 validate_read_API(L)  # validate
 
 # ------------------------------------------
-P <- get_locationtypes(indicatorTypeIds = 8,  
+P <- get_locationtypes(IndicatorTypeIDs = 8,  
                        locIds = 818,
                        isComplete = 0)
 validate_read_API(P)  # validate
@@ -53,7 +53,7 @@ validate_read_API(I)  # validate
 
 # ------------------------------------------
 G <- get_seriesdata(DataProcessIDs = 2,
-                    indicatorTypeIds = 8,
+                    IndicatorTypeIDs = 8,
                     isComplete = 0,
                     locIds = 4,
                     locAreaTypeIds = 2,
@@ -64,7 +64,7 @@ validate_read_API(G)  # validate
 
 # ------------------------------------------
 X <- get_recorddata(DataProcessIDs = 2,   # Census
-                    indicatorTypeIds = 8, # Population by age and sex - abridged 
+                    IndicatorTypeIDs = 8, # Population by age and sex - abridged 
                     locIds = 818,         # Egypt
                     locAreaTypeIds = 2,   # Whole area 
                     subGroupIds = 2,      # Total or All groups
@@ -74,7 +74,7 @@ validate_read_API(X)  # validate
 
 # Check whether it successfully accepts strings rather than codes
 Y <- get_recorddata(DataProcessIDs = "Census",   # Estimate
-                    indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged 
+                    IndicatorTypeIDs = "Population by age and sex", # Population by age and sex - abridged 
                     locIds = "Egypt",         # Egypt
                     locAreaTypeIds = "Whole area",   # Whole area 
                     subGroupIds = "Total or All groups",      # Total or All groups
@@ -84,7 +84,7 @@ validate_read_API(Y)  # validate
 
 # Check whether it successfully mixed cases
 mixed <- get_recorddata(DataProcessIDs = "census",   # Estimate
-                        indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged 
+                        IndicatorTypeIDs = "population by age and sex", # Population by age and sex - abridged 
                         locIds = "egypt",         # Egypt
                         locAreaTypeIds = "Whole area",   # Whole area 
                         subGroupIds = "Total or All groups",      # Total or All groups
@@ -95,7 +95,7 @@ validate_read_API(mixed)  # validate
 
 # mixed with codes
 mixed_codes <- get_recorddata(DataProcessIDs = 2,   # Census
-                              indicatorTypeIds = 8, # Population by age and sex - abridged 
+                              IndicatorTypeIDs = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
                               subGroupIds = "Total or All groups",      # Total or All groups
@@ -107,7 +107,7 @@ validate_read_API(mixed_codes)  # validate
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
 mixed_codes <- get_recorddata(DataProcessIDs = 2,   # Census
-                              indicatorTypeIds = 8, # Population by age and sex - abridged 
+                              IndicatorTypeIDs = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
                               subGroupIds = "Total or All groups",      # Total or All groups
@@ -123,7 +123,7 @@ test_that("get_recorddata returns error when setting wrong server", {
   expect_error(
     suppressWarnings(
       get_recorddata(DataProcessIDs = 2,   # Census
-                     indicatorTypeIds = 8, # Population by age and sex - abridged 
+                     IndicatorTypeIDs = 8, # Population by age and sex - abridged 
                      locIds = 818,         # Egypt
                      locAreaTypeIds = "Whole area",   # Whole area 
                      subGroupIds = "Total or All groups",      # Total or All groups
@@ -144,7 +144,7 @@ test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/M
   res <- get_recorddata(DataProcessIDs = 9, # Register
                         startYear = 1920,
                         endYear = 2020,
-                        indicatorTypeIds = 14, # Births by sex
+                        IndicatorTypeIDs = 14, # Births by sex
                         isComplete = 2, # Total
                         locIds = 28, # Antigua and Barbuda
                         locAreaTypeIds = 2, # Whole area
@@ -167,7 +167,7 @@ test_that("Looking up wrong input throws errors in get_recorddata", {
                regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
                fixed = TRUE)
 
-  expect_error(get_recorddata(indicatorTypeIds = "Wrong"),
+  expect_error(get_recorddata(IndicatorTypeIDs = "Wrong"),
                regexp = "Location(s) 'Wrong' not found. Check get_indicators()",
                fixed = TRUE)
 
@@ -196,7 +196,7 @@ test_that("extract_data returns the correct data when link is too long", {
   tst <- read_API("structureddatacriteria",
                   save = FALSE,
                   locIds = 4, # Afghanistan
-                  indicatorIDs = c(60, 58), # Two indicators
+                  IndicatorTypeIDs = c(60, 58), # Two indicators
                   includeDataIDs = "true"
                   )
 

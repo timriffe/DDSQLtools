@@ -77,7 +77,7 @@ get_locations <- function(save = FALSE, ...) {
 #'
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
+#' P <- get_locationtypes(IndicatorTypeIDs = 8, # Population by age and sex indicator;
 #'                       locIds = "egypt",
 #'                       isComplete = "abridged")
 #' P
@@ -95,7 +95,7 @@ get_locationtypes <- function(save = FALSE, ...) {
 #' 
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
+#' S <- get_subgroups(IndicatorTypeIDs = 8,  # Population by age and sex indicator;
 #'                   locIds = 818,       # Egypt
 #'                   isComplete = 0)
 #' S
@@ -140,7 +140,7 @@ get_dataprocess <- function(save = FALSE, ...) {
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
 #' G <- get_seriesdata(DataProcessIDs = 0:15, # possible processes
-#'                    indicatorTypeIds = 25,    # M[x]
+#'                    IndicatorTypeIDs = 25,    # M[x]
 #'                    locIds = "Egypt",             # Egypt
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
 #'                    subGroupIds = 2)
@@ -162,7 +162,7 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' \dontrun{
 #' #  You can provide all strings, all codes, or a combination of both
 #' Y <- get_recorddata(DataProcessIDs = "Census",
-#'                    indicatorTypeIds = 8, # and support numeric of string names
+#'                    IndicatorTypeIDs = 8, # and support numeric of string names
 #'                    locIds = "egypt", # all arguments are case insensitive
 #'                    locAreaTypeIds = "Whole area",
 #'                    subGroupIds = "Total or All groups",
@@ -172,7 +172,7 @@ get_seriesdata <- function(save = FALSE, ...) {
 #'
 #' # Same thing only with codes
 #' X <- get_recorddata(DataProcessIDs = 2,   # Census
-#'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
+#'                    IndicatorTypeIDs = 8, # Population by age and sex - abridged 
 #'                    locIds = 818,         # Egypt
 #'                    locAreaTypeIds = 2,   # Whole area 
 #'                    subGroupIds = 2,      # Total or All groups
