@@ -4,7 +4,7 @@
 \alias{read_API}
 \title{Download data}
 \usage{
-read_API(type, save, verbose = FALSE, ...)
+read_API(type, save, ...)
 }
 \arguments{
 \item{type}{Type of data. Various options are available.}
@@ -18,7 +18,7 @@ accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{DataProcessIDs}} -- Data process ID as defined by the UNPD. 
+  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;

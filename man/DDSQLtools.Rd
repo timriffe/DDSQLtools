@@ -17,12 +17,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Tim Riffe \email{tim.riffe@gmail.com} (\href{https://orcid.org/0000-0002-2673-4622}{ORCID})
+\strong{Maintainer}: Tim Riffe \email{tim.riffe@gmail.com} (0000-0002-2673-4622)
 
 Authors:
 \itemize{
-  \item Marius D. Pascariu (\href{https://orcid.org/0000-0002-2568-6489}{ORCID})
-  \item Jorge Cimentada (\href{https://orcid.org/0000-0001-5594-1156}{ORCID})
+  \item Marius D. Pascariu (0000-0002-2568-6489)
+  \item Jorge Cimentada (0000-0001-5594-1156)
 }
 
 }

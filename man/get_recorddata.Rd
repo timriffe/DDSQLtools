@@ -4,22 +4,19 @@
 \alias{get_recorddata}
 \title{Download data from UNPD portal}
 \usage{
-get_recorddata(save = FALSE, verbose = TRUE, ...)
+get_recorddata(save = FALSE, ...)
 }
 \arguments{
 \item{save}{Logical. Choose whether or not to save the data in an external 
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
-\item{verbose}{Whether to print the translated query from strings to digits
-for faster queries. By default set to TRUE.}
-
 \item{...}{Other arguments that might define the path to data. All arguments
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{DataProcessIDs}} -- Data process ID as defined by the UNPD. 
+  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
@@ -46,7 +43,7 @@ Download data from UNPD portal
 
 \dontrun{
 #  You can provide all strings, all codes, or a combination of both
-Y <- get_recorddata(DataProcessIDs = "Census",
+Y <- get_recorddata(dataProcessIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
                    locIds = "egypt", # all arguments are case insensitive
                    locAreaTypeIds = "Whole area",
@@ -56,7 +53,7 @@ Y <- get_recorddata(DataProcessIDs = "Census",
 head(Y)
 
 # Same thing only with codes
-X <- get_recorddata(DataProcessIDs = 2,   # Census
+X <- get_recorddata(dataProcessIds = 2,   # Census
                    indicatorTypeIds = 8, # Population by age and sex - abridged 
                    locIds = 818,         # Egypt
                    locAreaTypeIds = 2,   # Whole area 

@@ -7,7 +7,7 @@
 #' product requested. Alternatively, you can supply the equivalent product
 #' name as a string which is case insensitive (see examples). Handle with
 #' care, this is important! The following options are available: \itemize{
-#'   \item{\code{DataProcessIDs}} -- Data process ID as defined by the UNPD. 
+#'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
 #'   Run the \code{\link{get_dataprocess}} function to see the available 
 #'   options;
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
@@ -116,7 +116,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 
 
 #' Build the section of the path (link) responsible with filtering the data
-#' @param DataProcessIDs 
+#' @param dataProcessIds 
 #' @param startYear Start year. Default: NULL;
 #' @param endYear End year. Default: NULL;
 #' @param AgeStart 
@@ -143,7 +143,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' Run the \code{\link{get_subgroups}} function to see the available options;
 #' @param verbose whether to print the optimized code for get_recorddata
 #' @keywords internal
-build_filter <- function(DataProcessIDs = NULL,
+build_filter <- function(dataProcessIds = NULL,
                          startYear = NULL,
                          endYear = NULL,
                          AgeStart = NULL,
@@ -190,7 +190,7 @@ build_filter <- function(DataProcessIDs = NULL,
   # I reuse the translated parameters defined above
   # to make queries in the endpoints below
   extraParams <- list("locAreaTypeIds" = lookupAreaTypeIds,
-                      "DataProcessIDs" = lookupDataProcess)
+                      "dataProcessIds" = lookupDataProcess)
 
   x[names(extraParams)] <- mapply(
     function(fun, vec, ...) fun(vec, ...),

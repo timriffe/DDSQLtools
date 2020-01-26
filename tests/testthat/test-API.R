@@ -3,7 +3,7 @@ test_that("The linkGenerator() works fine", {
   L <- linkGenerator(type = "structureddatarecords",
                      locIds = 4,
                      indicatorTypeIds = 8,
-                     DataProcessIDs = c(2, 6),
+                     dataProcessIds = c(2, 6),
                      verbose_print = FALSE)
   
   expect_output(print(L))                          # 1. Always expect an output;
@@ -52,7 +52,7 @@ I <- get_indicators(addDefault = "false")
 validate_read_API(I)  # validate
 
 # ------------------------------------------
-G <- get_seriesdata(DataProcessIDs = 2,
+G <- get_seriesdata(dataProcessIds = 2,
                     indicatorTypeIds = 8,
                     isComplete = 0,
                     locIds = 4,
@@ -63,7 +63,7 @@ G <- get_seriesdata(DataProcessIDs = 2,
 validate_read_API(G)  # validate
 
 # ------------------------------------------
-X <- get_recorddata(DataProcessIDs = 2,   # Census
+X <- get_recorddata(dataProcessIds = 2,   # Census
                     indicatorTypeIds = 8, # Population by age and sex - abridged 
                     locIds = 818,         # Egypt
                     locAreaTypeIds = 2,   # Whole area 
@@ -73,7 +73,7 @@ X <- get_recorddata(DataProcessIDs = 2,   # Census
 validate_read_API(X)  # validate
 
 # Check whether it successfully accepts strings rather than codes
-Y <- get_recorddata(DataProcessIDs = "Census",   # Estimate
+Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
                     indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged 
                     locIds = "Egypt",         # Egypt
                     locAreaTypeIds = "Whole area",   # Whole area 
@@ -83,7 +83,7 @@ Y <- get_recorddata(DataProcessIDs = "Census",   # Estimate
 validate_read_API(Y)  # validate
 
 # Check whether it successfully mixed cases
-mixed <- get_recorddata(DataProcessIDs = "census",   # Estimate
+mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
                         indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged 
                         locIds = "egypt",         # Egypt
                         locAreaTypeIds = "Whole area",   # Whole area 
@@ -94,7 +94,7 @@ validate_read_API(mixed)  # validate
 
 
 # mixed with codes
-mixed_codes <- get_recorddata(DataProcessIDs = 2,   # Census
+mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
@@ -106,7 +106,7 @@ validate_read_API(mixed_codes)  # validate
 # After changing the unpd server
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
-mixed_codes <- get_recorddata(DataProcessIDs = 2,   # Census
+mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
@@ -122,7 +122,7 @@ test_that("get_recorddata returns error when setting wrong server", {
 
   expect_error(
     suppressWarnings(
-      get_recorddata(DataProcessIDs = 2,   # Census
+      get_recorddata(dataProcessIds = 2,   # Census
                      indicatorTypeIds = 8, # Population by age and sex - abridged 
                      locIds = 818,         # Egypt
                      locAreaTypeIds = "Whole area",   # Whole area 
@@ -141,7 +141,7 @@ test_that("get_recorddata with codes gives same output with strings", {
 })
 
 test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/MM/YYYY formats", {
-  res <- get_recorddata(DataProcessIDs = 9, # Register
+  res <- get_recorddata(dataProcessIds = 9, # Register
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 14, # Births by sex
