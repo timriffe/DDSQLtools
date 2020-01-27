@@ -4,9 +4,13 @@
 \alias{do_heaping}
 \title{Wrapper for Age-Heaping Methods}
 \usage{
-do_heaping(X, fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi",
-  "Spoorenberg", "ageRatioScore", "KannistoHeap", "Jdanov"),
-  verbose = TRUE, ...)
+do_heaping(
+  X,
+  fn = c("Whipple", "Myers", "Bachi", "CoaleLi", "Noumbissi", "Spoorenberg",
+    "ageRatioScore", "KannistoHeap", "Jdanov"),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{X}{Input data. UN format.}

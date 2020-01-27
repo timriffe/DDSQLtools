@@ -4,8 +4,12 @@
 \alias{linkGenerator}
 \title{API Link Generator Function}
 \usage{
-linkGenerator(server = getOption("unpd_server",
-  "http://24.239.36.16:9654/un3/api/"), type, ...)
+linkGenerator(
+  server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
+  type,
+  verbose_print,
+  ...
+)
 }
 \arguments{
 \item{server}{The path to the database. Check if the "unpd_server" option is

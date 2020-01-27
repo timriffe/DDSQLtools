@@ -4,10 +4,18 @@
 \alias{do_smoothing}
 \title{Wrapper for Smoothing Populations in 5-year Age Groups}
 \usage{
-do_smoothing(X, method = c("Carrier-Farrag", "KKN", "Arriaga",
-  "United Nations", "Strong", "Zigzag", "MAV"), ageMin = 10,
-  ageMax = 65, n = 3, young.tail = c("Original", "Arriaga", "Strong",
-  NA), old.tail = young.tail, verbose = TRUE, ...)
+do_smoothing(
+  X,
+  method = c("Carrier-Farrag", "KKN", "Arriaga", "United Nations", "Strong", "Zigzag",
+    "MAV"),
+  ageMin = 10,
+  ageMax = 65,
+  n = 3,
+  young.tail = c("Original", "Arriaga", "Strong", NA),
+  old.tail = young.tail,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{X}{Input data. UN format.}

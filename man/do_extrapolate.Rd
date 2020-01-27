@@ -9,9 +9,15 @@ The function is based on the methods implemented in the
 \code{MortalityLaws} R package.
 }
 \usage{
-do_extrapolate(X, x_fit, x_extr, law = c("kannisto", "kannisto_makeham",
-  "makeham", "gompertz", "ggompertz", "beard", "beard_makeham",
-  "quadratic"), verbose = TRUE, ...)
+do_extrapolate(
+  X,
+  x_fit,
+  x_extr,
+  law = c("kannisto", "kannisto_makeham", "makeham", "gompertz", "ggompertz", "beard",
+    "beard_makeham", "quadratic"),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{X}{Input data. UN format.}
@@ -37,7 +43,8 @@ The following options are available: \itemize{
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
-\item{...}{Other arguments to be passed on to other methods and functions.}
+\item{...}{Other arguments to be passed on to the
+\code{\link[MortalityLaws]{MortalityLaw}} function.}
 }
 \value{
 A data.frame having the same number of columns as input data. 
