@@ -21,7 +21,8 @@ build_filter(
   addDefault = NULL,
   includeDependencies = NULL,
   includeFormerCountries = NULL,
-  includeDataIDs = NULL
+  includeDataIDs = NULL,
+  verbose
 )
 }
 \arguments{
@@ -54,6 +55,8 @@ build_filter(
 \item{includeDependencies}{Logical. Default: FALSE;}
 
 \item{includeFormerCountries}{Logical. Default: FALSE;}
+
+\item{verbose}{whether to print the optimized code for get_recorddata}
 
 \item{dataProcess}{Data process ID as defined by the UNPD. Run the
 \code{\link{get_dataprocess}} function to see the available options;

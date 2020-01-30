@@ -27,8 +27,15 @@
 #'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
 #'   }
 #' @details The link generator is based on the structure of the database 
-#' created by Dennis Butler (in late 2018). If the web address or the structure 
-#' of the database changes this will have to be updated as well.
+#' created by Dennis Butler (in late 2018). To change the server used to make
+#' the requests, set this at the beginning of your script:
+#' options(unpd_server = "fill this out").
+#'
+#' When requesting data from the structured data format (usually called from
+#' \code{\link{get_recorddata}}), the columns \code{TimeStart} and \code{TimeEnd}
+#' are returned with format \code{DD/MM/YYYY}, where \code{DD} are days, \code{MM}
+#' are months and \code{YYYY} are years.
+#' 
 #' @examples
 #' \dontrun{
 #' # Link to country list
@@ -67,6 +74,7 @@ linkGenerator <- function(server = getOption("unpd_server",
                                              "http://24.239.36.16:9654/un3/api/"
                                              ), 
                           type,
+                          verbose_print,
                           ...) {
   
   types <- c("ages",
@@ -101,7 +109,7 @@ linkGenerator <- function(server = getOption("unpd_server",
              "dataEntryCount")
   
   type  <- match.arg(tolower(type), choices = tolower(types))
-  query <- build_filter(...)
+  query <- build_filter(..., verbose = verbose_print)
   link  <- paste0(server, type, query)
   link
 }
@@ -133,6 +141,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' \code{\link{get_locations}} function to see the available options;
 #' @param subGroup SubGroup ID as defined by the UNPD.
 #' Run the \code{\link{get_subgroups}} function to see the available options;
+#' @param verbose whether to print the optimized code for get_recorddata
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          startYear = NULL,
@@ -150,11 +159,19 @@ build_filter <- function(dataProcessIds = NULL,
                          addDefault = NULL,
                          includeDependencies = NULL, 
                          includeFormerCountries = NULL,
-                         includeDataIDs = NULL) {
+                         includeDataIDs = NULL,
+                         verbose) {
 
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
-  I <- as.list(environment())
+  x <- as.list(environment())
+  # Exclude verbose option
+  x <- x[!names(x) == "verbose"]
+
+  # For later, to print the translated code query
+  # so the user gets the faster request
+  any_str <- any(vapply(x, is.character, FUN.VALUE = logical(1)))
+
   lookupParams <- list("locIds" = lookupLocIds,
                        "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
@@ -163,10 +180,10 @@ build_filter <- function(dataProcessIds = NULL,
   # Iteratire over each lookupParams and apply their correspoding lookup
   # function to translate strings such as Germany to the corresponding code.
   # Only available for the names in lookupParams
-  I[names(lookupParams)] <- mapply(
+  x[names(lookupParams)] <- mapply(
     function(fun, vec) fun(vec),
     lookupParams,
-    I[names(lookupParams)]
+    x[names(lookupParams)]
   )
 
   # Here we need a separate call to the same thing bc
@@ -175,23 +192,39 @@ build_filter <- function(dataProcessIds = NULL,
   extraParams <- list("locAreaTypeIds" = lookupAreaTypeIds,
                       "dataProcessIds" = lookupDataProcess)
 
-  I[names(extraParams)] <- mapply(
+  x[names(extraParams)] <- mapply(
     function(fun, vec, ...) fun(vec, ...),
     extraParams,
-    I[names(extraParams)],
+    x[names(extraParams)],
     # I pass the already translated parameter list
     # to avoid retranslating stuff like locations, etc...
     # This can save time in querying API
-    MoreArgs = list(paramList = I)
+    MoreArgs = list(paramList = x)
   )
 
-  if (length(I) > 0) {
-    # Collapse multiple ids to parameters
-    I <- vapply(I, paste0, collapse = ",", FUN.VALUE = character(1))
-    # and exclude the empty ones
-    I <- I[I != ""]
+  if (length(x) > 0) {
+
+    if (verbose && any_str) {
+      # Print call for easier requests
+      collapsed_x <- lapply(x, function(i) {
+        if (length(i) > 1) paste0("c(", paste0(i, collapse = ", "), ")") else i
+      })
+      
+      mockup <- unlist(collapsed_x)
+      res <- paste0("get_recorddata(",
+                    paste0(names(mockup), " = ", mockup, collapse = ", "),
+                    ")")
+      cat("If you run the same query again, use the one below (faster): \n ",
+          res)
+
+    }
     
-    S   <- paste(paste(names(I), I, sep = "="), collapse="&")
+    # Collapse multiple ids to parameters
+    x <- vapply(x, paste0, collapse = ",", FUN.VALUE = character(1))
+    # and exclude the empty ones
+    x <- x[x != ""]
+    
+    S   <- paste(paste(names(x), x, sep = "="), collapse="&")
     out <- paste0("?", S)
   } else {
     out <- ""
@@ -290,8 +323,8 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
   
   inds <- get_locationtypes(locIds = paramList[["locIds"]],
-                           indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                           isComplete = paramList[["isComplete"]])
+                            indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                            isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
   # The all statement is in case you provide 2 area types, for example
@@ -309,8 +342,8 @@ lookupDataProcess <- function(paramStr, paramList) {
   paramStr_low <- tolower(paramStr)
 
   inds <- get_dataprocess(locIds = paramList[["locIds"]],
-                         indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                         isComplete = paramList[["isComplete"]])
+                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                          isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
   # The all statement is in case you provide 2 area types, for example

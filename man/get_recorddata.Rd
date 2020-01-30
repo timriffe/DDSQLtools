@@ -4,12 +4,15 @@
 \alias{get_recorddata}
 \title{Download data from UNPD portal}
 \usage{
-get_recorddata(save = FALSE, ...)
+get_recorddata(save = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{save}{Logical. Choose whether or not to save the data in an external 
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
+
+\item{verbose}{Whether to print the translated query from strings to digits
+for faster queries. By default set to TRUE.}
 
 \item{...}{Other arguments that might define the path to data. All arguments
 accept a numeric code which is interpreted as the code of the specific

@@ -4,7 +4,7 @@
 \alias{read_API}
 \title{Download data}
 \usage{
-read_API(type, save, ...)
+read_API(type, save, verbose = FALSE, ...)
 }
 \arguments{
 \item{type}{Type of data. Various options are available.}

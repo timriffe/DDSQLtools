@@ -29,15 +29,27 @@ extract_data <- function(ids, save = FALSE) {
         seq_ch <- values[i:(i + 1)]
         if (i > 1) seq_ch[1] <- seq_ch[1] + 1
         id_chunk <- ids[seq_ch[1]:seq_ch[2]]
-        read_API("structureddatarecords", save = save, ids = id_chunk)
+        read_API("structureddatarecords",
+                 save = save,
+                 verbose = FALSE,
+                 ids = id_chunk)
       })
 
     collapsed_res <- do.call(rbind, all_res)
+    collapsed_res$TimeStart <- chr_to_date(collapsed_res$TimeStart)
+    collapsed_res$TimeEnd <- chr_to_date(collapsed_res$TimeEnd)
+
     return(collapsed_res)
   }
 
   cat(paste0("\r\r Reading chunks: [0/1]"))  
-  collapsed_res <- read_API("structureddatarecords", save = save, ids = ids)
+  collapsed_res <- read_API("structureddatarecords",
+                            save = save,
+                            verbose = FALSE,
+                            ids = ids)
+
+  collapsed_res$TimeStart <- chr_to_date(collapsed_res$TimeStart)
+  collapsed_res$TimeEnd <- chr_to_date(collapsed_res$TimeEnd)
   cat(paste0("\r\r Reading chunks: [1/1]"))
   collapsed_res
 }
@@ -143,6 +155,8 @@ get_seriesdata <- function(save = FALSE, ...) {
 
 #' Download data from UNPD portal
 #' @inheritParams read_API
+#' @param verbose Whether to print the translated query from strings to digits
+#' for faster queries. By default set to TRUE.
 #' @examples
 #'
 #' \dontrun{
@@ -168,11 +182,12 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' }
 #' 
 #' @export
-get_recorddata <- function(save = FALSE, ...) {
-  
-  read_API("structureddatarecords", save, ...)
+get_recorddata <- function(save = FALSE, verbose = TRUE, ...) {
+  res <- read_API("structureddatarecords", save, verbose = verbose, ...)
+  res$TimeStart <- chr_to_date(res$TimeStart)
+  res$TimeEnd <- chr_to_date(res$TimeEnd)
+  res
 }
-
 
 
 #' Download data
@@ -181,10 +196,10 @@ get_recorddata <- function(save = FALSE, ...) {
 #' \code{FALSE};
 #' @inheritParams linkGenerator
 #' @keywords internal
-read_API <- function(type, save, ...){
-  P <- linkGenerator(type = type, ...)
+read_API <- function(type, save, verbose = FALSE, ...){
+  P <- linkGenerator(type = type, verbose_print = verbose, ...)
   # Temporary, just to check how the URL is constructed
-  ## print(P)
+  print(P)
 
   out <- rjson::fromJSON(file = P)
   ## print("URL saved")
@@ -204,4 +219,11 @@ read_API <- function(type, save, ...){
                                                        type))
   }
   out
+}
+
+
+chr_to_date <- function(x) {
+  x <- gsub("\\s{1}.+$", "", x)
+  x <- format(as.Date(x, format = "%m/%d/%Y"), format = "%d/%m/%Y")
+  x
 }
