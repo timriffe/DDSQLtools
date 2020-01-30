@@ -120,148 +120,155 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4">                        <span class="dt">locAreaTypeIds =</span> <span class="st">"Whole area"</span>,</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">                        <span class="dt">subGroupIds =</span> <span class="st">"Total or All groups"</span>,</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">                        <span class="dt">isComplete =</span> <span class="st">"Abridged"</span>)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(china)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 1           117433293   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 2           117434176   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 3           123607584   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 4           117434397   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 5           123607585   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 6           117433832   156             2                     0          58</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; 1             927             0     1   700                    2           37</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 2             927             0     1   702                    2           37</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 3             927             0     1   702                    2           37</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 4             927             0     1   703                    2           37</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 5             927             0     1   703                    2           37</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 6             927             0     1   704                    2           37</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 1            1         58             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; 2            1         58             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; 3            1        134             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 4            1         58             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; 5            1        134             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; 6            1         58             40                 5            10</span></a>
-<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt; 1             0 515277500       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; 2             0  57026300       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; 3             0  57026340       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; 4             0  67837940       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; 5             0  67837980       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; 6             0  63804580       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
-<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt;   LocName RegID      RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; 1   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt; 2   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; 3   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; 4   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; 5   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; 6   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
-<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;                       SubGroupName                        IndicatorName</span></a>
-<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group Population by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
-<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; 1        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; 2        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt; 3        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; 4        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt; 5        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; 6        Population5                 2          Census      Census</span></a>
-<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt;     DataCatalogName DataCatalogShortName ReferencePeriod ReferenceYearStart</span></a>
-<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt; 1 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt; 2 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt; 3 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="co">#&gt; 4 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co">#&gt; 5 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co">#&gt; 6 China 1982 Census          1982 Census            1982               1982</span></a>
-<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="co">#&gt;   ReferenceYearEnd ReferenceYearMid       FieldWorkStart         FieldWorkEnd</span></a>
-<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="co">#&gt; 1             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="co">#&gt; 2             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-82" data-line-number="82"><span class="co">#&gt; 3             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-83" data-line-number="83"><span class="co">#&gt; 4             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-84" data-line-number="84"><span class="co">#&gt; 5             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-85" data-line-number="85"><span class="co">#&gt; 6             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb5-86" data-line-number="86"><span class="co">#&gt;   FieldWorkMiddle DataCatalogNote DataSourceAuthor DataSourceYear</span></a>
-<a class="sourceLine" id="cb5-87" data-line-number="87"><span class="co">#&gt; 1        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-88" data-line-number="88"><span class="co">#&gt; 2        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-89" data-line-number="89"><span class="co">#&gt; 3        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-90" data-line-number="90"><span class="co">#&gt; 4        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-91" data-line-number="91"><span class="co">#&gt; 5        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-92" data-line-number="92"><span class="co">#&gt; 6        1982.499              NA             UNSD           1984</span></a>
-<a class="sourceLine" id="cb5-93" data-line-number="93"><span class="co">#&gt;         DataSourceName DataSourceShortName DataStatusName</span></a>
-<a class="sourceLine" id="cb5-94" data-line-number="94"><span class="co">#&gt; 1 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-95" data-line-number="95"><span class="co">#&gt; 2 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-96" data-line-number="96"><span class="co">#&gt; 3 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-97" data-line-number="97"><span class="co">#&gt; 4 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-98" data-line-number="98"><span class="co">#&gt; 5 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-99" data-line-number="99"><span class="co">#&gt; 6 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb5-100" data-line-number="100"><span class="co">#&gt;   StatisticalConceptName SexName AgeUnit AgeStart AgeEnd AgeSpan AgeMid</span></a>
-<a class="sourceLine" id="cb5-101" data-line-number="101"><span class="co">#&gt; 1               De-facto    Male    Year        0     -1      -1   -1.0</span></a>
-<a class="sourceLine" id="cb5-102" data-line-number="102"><span class="co">#&gt; 2               De-facto    Male    Year        5     10       5    7.5</span></a>
-<a class="sourceLine" id="cb5-103" data-line-number="103"><span class="co">#&gt; 3               De-facto    Male    Year        5     10       5    7.5</span></a>
-<a class="sourceLine" id="cb5-104" data-line-number="104"><span class="co">#&gt; 4               De-facto    Male    Year       10     15       5   12.5</span></a>
-<a class="sourceLine" id="cb5-105" data-line-number="105"><span class="co">#&gt; 5               De-facto    Male    Year       10     15       5   12.5</span></a>
-<a class="sourceLine" id="cb5-106" data-line-number="106"><span class="co">#&gt; 6               De-facto    Male    Year       15     20       5   17.5</span></a>
-<a class="sourceLine" id="cb5-107" data-line-number="107"><span class="co">#&gt;   AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
-<a class="sourceLine" id="cb5-108" data-line-number="108"><span class="co">#&gt; 1    Total               3            Direct</span></a>
-<a class="sourceLine" id="cb5-109" data-line-number="109"><span class="co">#&gt; 2      5-9               3            Direct</span></a>
-<a class="sourceLine" id="cb5-110" data-line-number="110"><span class="co">#&gt; 3      5-9               3            Direct</span></a>
-<a class="sourceLine" id="cb5-111" data-line-number="111"><span class="co">#&gt; 4    10-14               3            Direct</span></a>
-<a class="sourceLine" id="cb5-112" data-line-number="112"><span class="co">#&gt; 5    10-14               3            Direct</span></a>
-<a class="sourceLine" id="cb5-113" data-line-number="113"><span class="co">#&gt; 6    15-19               3            Direct</span></a>
-<a class="sourceLine" id="cb5-114" data-line-number="114"><span class="co">#&gt;                                                             DataTypeName</span></a>
-<a class="sourceLine" id="cb5-115" data-line-number="115"><span class="co">#&gt; 1                                              Population by age and sex</span></a>
-<a class="sourceLine" id="cb5-116" data-line-number="116"><span class="co">#&gt; 2                                              Population by age and sex</span></a>
-<a class="sourceLine" id="cb5-117" data-line-number="117"><span class="co">#&gt; 3 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
-<a class="sourceLine" id="cb5-118" data-line-number="118"><span class="co">#&gt; 4                                              Population by age and sex</span></a>
-<a class="sourceLine" id="cb5-119" data-line-number="119"><span class="co">#&gt; 5 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
-<a class="sourceLine" id="cb5-120" data-line-number="120"><span class="co">#&gt; 6                                              Population by age and sex</span></a>
-<a class="sourceLine" id="cb5-121" data-line-number="121"><span class="co">#&gt;        ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
-<a class="sourceLine" id="cb5-122" data-line-number="122"><span class="co">#&gt; 1 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-123" data-line-number="123"><span class="co">#&gt; 2 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-124" data-line-number="124"><span class="co">#&gt; 3 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-125" data-line-number="125"><span class="co">#&gt; 4 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-126" data-line-number="126"><span class="co">#&gt; 5 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-127" data-line-number="127"><span class="co">#&gt; 6 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb5-128" data-line-number="128"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
-<a class="sourceLine" id="cb5-129" data-line-number="129"><span class="co">#&gt; 1 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-130" data-line-number="130"><span class="co">#&gt; 2 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-131" data-line-number="131"><span class="co">#&gt; 3 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-132" data-line-number="132"><span class="co">#&gt; 4 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-133" data-line-number="133"><span class="co">#&gt; 5 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-134" data-line-number="134"><span class="co">#&gt; 6 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb5-135" data-line-number="135"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
-<a class="sourceLine" id="cb5-136" data-line-number="136"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-137" data-line-number="137"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-138" data-line-number="138"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-139" data-line-number="139"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-140" data-line-number="140"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-141" data-line-number="141"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb5-142" data-line-number="142"><span class="co">#&gt;              TimeStart              TimeEnd TimeDuration TimeMid TimeLabel</span></a>
-<a class="sourceLine" id="cb5-143" data-line-number="143"><span class="co">#&gt; 1 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a>
-<a class="sourceLine" id="cb5-144" data-line-number="144"><span class="co">#&gt; 2 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a>
-<a class="sourceLine" id="cb5-145" data-line-number="145"><span class="co">#&gt; 3 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a>
-<a class="sourceLine" id="cb5-146" data-line-number="146"><span class="co">#&gt; 4 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a>
-<a class="sourceLine" id="cb5-147" data-line-number="147"><span class="co">#&gt; 5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a>
-<a class="sourceLine" id="cb5-148" data-line-number="148"><span class="co">#&gt; 6 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM            0  1982.5      1982</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; If you run the same query again, use the one below (faster): </span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;   get_recorddata(dataProcessIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(china)</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; 1           117433293   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 2           117434176   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 3           123607584   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 4           117434397   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 5           123607585   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 6           117433832   156             2                     0          58</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 1             927             0     1   700                    2           37</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; 2             927             0     1   702                    2           37</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; 3             927             0     1   702                    2           37</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 4             927             0     1   703                    2           37</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; 5             927             0     1   703                    2           37</span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; 6             927             0     1   704                    2           37</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt; 1            1         58             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; 2            1         58             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; 3            1        134             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; 4            1         58             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; 5            1        134             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; 6            1         58             40                 5            10</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; 1             0 515277500       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; 2             0  57026300       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; 3             0  57026340       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; 4             0  67837940       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; 5             0  67837980       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; 6             0  63804580       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt;   LocName RegID      RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt; 1   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt; 2   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt; 3   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; 4   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; 5   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; 6   China   906 Eastern Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt;                       SubGroupName                        IndicatorName</span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; 1 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; 2 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt; 3 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; 4 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt; 5 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; 6 Total / All groups / Whole group Population by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
+<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt; 1        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt; 2        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt; 3        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="co">#&gt; 4        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co">#&gt; 5        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co">#&gt; 6        Population5                 2          Census      Census</span></a>
+<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="co">#&gt;     DataCatalogName DataCatalogShortName ReferencePeriod ReferenceYearStart</span></a>
+<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="co">#&gt; 1 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="co">#&gt; 2 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-82" data-line-number="82"><span class="co">#&gt; 3 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-83" data-line-number="83"><span class="co">#&gt; 4 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-84" data-line-number="84"><span class="co">#&gt; 5 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-85" data-line-number="85"><span class="co">#&gt; 6 China 1982 Census          1982 Census            1982               1982</span></a>
+<a class="sourceLine" id="cb5-86" data-line-number="86"><span class="co">#&gt;   ReferenceYearEnd ReferenceYearMid       FieldWorkStart         FieldWorkEnd</span></a>
+<a class="sourceLine" id="cb5-87" data-line-number="87"><span class="co">#&gt; 1             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-88" data-line-number="88"><span class="co">#&gt; 2             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-89" data-line-number="89"><span class="co">#&gt; 3             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-90" data-line-number="90"><span class="co">#&gt; 4             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-91" data-line-number="91"><span class="co">#&gt; 5             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-92" data-line-number="92"><span class="co">#&gt; 6             1982           1982.5 7/1/1982 12:00:00 AM 7/1/1982 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb5-93" data-line-number="93"><span class="co">#&gt;   FieldWorkMiddle DataCatalogNote DataSourceAuthor DataSourceYear</span></a>
+<a class="sourceLine" id="cb5-94" data-line-number="94"><span class="co">#&gt; 1        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-95" data-line-number="95"><span class="co">#&gt; 2        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-96" data-line-number="96"><span class="co">#&gt; 3        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-97" data-line-number="97"><span class="co">#&gt; 4        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-98" data-line-number="98"><span class="co">#&gt; 5        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-99" data-line-number="99"><span class="co">#&gt; 6        1982.499              NA             UNSD           1984</span></a>
+<a class="sourceLine" id="cb5-100" data-line-number="100"><span class="co">#&gt;         DataSourceName DataSourceShortName DataStatusName</span></a>
+<a class="sourceLine" id="cb5-101" data-line-number="101"><span class="co">#&gt; 1 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-102" data-line-number="102"><span class="co">#&gt; 2 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-103" data-line-number="103"><span class="co">#&gt; 3 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-104" data-line-number="104"><span class="co">#&gt; 4 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-105" data-line-number="105"><span class="co">#&gt; 5 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-106" data-line-number="106"><span class="co">#&gt; 6 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb5-107" data-line-number="107"><span class="co">#&gt;   StatisticalConceptName SexName AgeUnit AgeStart AgeEnd AgeSpan AgeMid</span></a>
+<a class="sourceLine" id="cb5-108" data-line-number="108"><span class="co">#&gt; 1               De-facto    Male    Year        0     -1      -1   -1.0</span></a>
+<a class="sourceLine" id="cb5-109" data-line-number="109"><span class="co">#&gt; 2               De-facto    Male    Year        5     10       5    7.5</span></a>
+<a class="sourceLine" id="cb5-110" data-line-number="110"><span class="co">#&gt; 3               De-facto    Male    Year        5     10       5    7.5</span></a>
+<a class="sourceLine" id="cb5-111" data-line-number="111"><span class="co">#&gt; 4               De-facto    Male    Year       10     15       5   12.5</span></a>
+<a class="sourceLine" id="cb5-112" data-line-number="112"><span class="co">#&gt; 5               De-facto    Male    Year       10     15       5   12.5</span></a>
+<a class="sourceLine" id="cb5-113" data-line-number="113"><span class="co">#&gt; 6               De-facto    Male    Year       15     20       5   17.5</span></a>
+<a class="sourceLine" id="cb5-114" data-line-number="114"><span class="co">#&gt;   AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
+<a class="sourceLine" id="cb5-115" data-line-number="115"><span class="co">#&gt; 1    Total               3            Direct</span></a>
+<a class="sourceLine" id="cb5-116" data-line-number="116"><span class="co">#&gt; 2      5-9               3            Direct</span></a>
+<a class="sourceLine" id="cb5-117" data-line-number="117"><span class="co">#&gt; 3      5-9               3            Direct</span></a>
+<a class="sourceLine" id="cb5-118" data-line-number="118"><span class="co">#&gt; 4    10-14               3            Direct</span></a>
+<a class="sourceLine" id="cb5-119" data-line-number="119"><span class="co">#&gt; 5    10-14               3            Direct</span></a>
+<a class="sourceLine" id="cb5-120" data-line-number="120"><span class="co">#&gt; 6    15-19               3            Direct</span></a>
+<a class="sourceLine" id="cb5-121" data-line-number="121"><span class="co">#&gt;                                                             DataTypeName</span></a>
+<a class="sourceLine" id="cb5-122" data-line-number="122"><span class="co">#&gt; 1                                              Population by age and sex</span></a>
+<a class="sourceLine" id="cb5-123" data-line-number="123"><span class="co">#&gt; 2                                              Population by age and sex</span></a>
+<a class="sourceLine" id="cb5-124" data-line-number="124"><span class="co">#&gt; 3 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
+<a class="sourceLine" id="cb5-125" data-line-number="125"><span class="co">#&gt; 4                                              Population by age and sex</span></a>
+<a class="sourceLine" id="cb5-126" data-line-number="126"><span class="co">#&gt; 5 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
+<a class="sourceLine" id="cb5-127" data-line-number="127"><span class="co">#&gt; 6                                              Population by age and sex</span></a>
+<a class="sourceLine" id="cb5-128" data-line-number="128"><span class="co">#&gt;        ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
+<a class="sourceLine" id="cb5-129" data-line-number="129"><span class="co">#&gt; 1 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-130" data-line-number="130"><span class="co">#&gt; 2 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-131" data-line-number="131"><span class="co">#&gt; 3 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-132" data-line-number="132"><span class="co">#&gt; 4 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-133" data-line-number="133"><span class="co">#&gt; 5 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-134" data-line-number="134"><span class="co">#&gt; 6 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb5-135" data-line-number="135"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
+<a class="sourceLine" id="cb5-136" data-line-number="136"><span class="co">#&gt; 1 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-137" data-line-number="137"><span class="co">#&gt; 2 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-138" data-line-number="138"><span class="co">#&gt; 3 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-139" data-line-number="139"><span class="co">#&gt; 4 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-140" data-line-number="140"><span class="co">#&gt; 5 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-141" data-line-number="141"><span class="co">#&gt; 6 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb5-142" data-line-number="142"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
+<a class="sourceLine" id="cb5-143" data-line-number="143"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-144" data-line-number="144"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-145" data-line-number="145"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-146" data-line-number="146"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-147" data-line-number="147"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-148" data-line-number="148"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb5-149" data-line-number="149"><span class="co">#&gt;    TimeStart    TimeEnd TimeDuration TimeMid TimeLabel</span></a>
+<a class="sourceLine" id="cb5-150" data-line-number="150"><span class="co">#&gt; 1 01/07/1982 01/07/1982            0  1982.5      1982</span></a>
+<a class="sourceLine" id="cb5-151" data-line-number="151"><span class="co">#&gt; 2 01/07/1982 01/07/1982            0  1982.5      1982</span></a>
+<a class="sourceLine" id="cb5-152" data-line-number="152"><span class="co">#&gt; 3 01/07/1982 01/07/1982            0  1982.5      1982</span></a>
+<a class="sourceLine" id="cb5-153" data-line-number="153"><span class="co">#&gt; 4 01/07/1982 01/07/1982            0  1982.5      1982</span></a>
+<a class="sourceLine" id="cb5-154" data-line-number="154"><span class="co">#&gt; 5 01/07/1982 01/07/1982            0  1982.5      1982</span></a>
+<a class="sourceLine" id="cb5-155" data-line-number="155"><span class="co">#&gt; 6 01/07/1982 01/07/1982            0  1982.5      1982</span></a></code></pre></div>
 </div>
 <div id="births-by-age-of-mother" class="section level4">
 <h4 class="hasAnchor">
@@ -272,7 +279,12 @@
 <a class="sourceLine" id="cb6-4" data-line-number="4">               <span class="dt">locAreaTypeIds =</span> <span class="st">"Whole area"</span>,</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">               <span class="dt">subGroupIds =</span> <span class="st">"Total or All groups"</span>,</a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">               <span class="dt">isComplete =</span> <span class="st">"Abridged"</span>)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; Error in fun(vec, ...): Data type(s) 'Census' not found. Check get_dataprocess()</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; Error in fun(vec, ...): Data type(s) 'Census' not found. Check get_dataprocess()</span></a></code></pre></div>
 <p>See the error? This means that using <code>"Census"</code> for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using <code><a href="https://rdrr.io/pkg/DDSQLtools/man/get_dataprocess.html">get_dataprocess()</a></code>). Since this is a trial and error process, we’ve nailed it down to <code>"Survey: cross-sectional survey (generic/national)"</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">togo &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/DDSQLtools/man/get_recorddata.html">get_recorddata</a></span>(<span class="dt">dataProcessIds =</span> <span class="st">"Survey: cross-sectional survey (generic/national)"</span>,</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">                       <span class="dt">indicatorTypeIds =</span> <span class="st">"Births by age of mother"</span>,</a>
@@ -280,148 +292,155 @@
 <a class="sourceLine" id="cb7-4" data-line-number="4">                       <span class="dt">locAreaTypeIds =</span> <span class="st">"Whole area"</span>,</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">                       <span class="dt">subGroupIds =</span> <span class="st">"Total or All groups"</span>,</a>
 <a class="sourceLine" id="cb7-6" data-line-number="6">                       <span class="dt">isComplete =</span> <span class="st">"Abridged"</span>)</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(togo)</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; 1           122092170   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; 2            80596190   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; 3           122092171   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; 4            80596183   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 5           122092172   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 6            80596187   768             2                     0         170</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 1         5019753             0     3   303                    5           19</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2         5019753             0     3   304                    5           19</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 3         5019753             0     3   304                    5           19</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 4         5019753             0     3   305                    5           19</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 5         5019753             0     3   305                    5           19</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; 6         5019753             0     3   306                    5           19</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
-<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; 1            1        134             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; 2            1         16             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; 3            1        134             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; 4            1         16             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; 5            1        134             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt; 6            1         16             40                 5            10</span></a>
-<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; 1             0         0       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt; 2             0      7150       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt; 3             0      7150       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; 4             0     21910       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; 5             0     21910       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; 6             0     25305       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
-<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt;   LocName RegID        RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; 1    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; 2    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; 3    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; 4    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; 5    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; 6    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
-<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
-<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-56" data-line-number="56"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-57" data-line-number="57"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb7-58" data-line-number="58"><span class="co">#&gt;                       SubGroupName                              IndicatorName</span></a>
-<a class="sourceLine" id="cb7-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
-<a class="sourceLine" id="cb7-65" data-line-number="65"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
-<a class="sourceLine" id="cb7-66" data-line-number="66"><span class="co">#&gt; 1             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-67" data-line-number="67"><span class="co">#&gt; 2             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-68" data-line-number="68"><span class="co">#&gt; 3             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-69" data-line-number="69"><span class="co">#&gt; 4             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-70" data-line-number="70"><span class="co">#&gt; 5             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-71" data-line-number="71"><span class="co">#&gt; 6             Births                11          Survey      Survey</span></a>
-<a class="sourceLine" id="cb7-72" data-line-number="72"><span class="co">#&gt;                   DataCatalogName DataCatalogShortName ReferencePeriod</span></a>
-<a class="sourceLine" id="cb7-73" data-line-number="73"><span class="co">#&gt; 1 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-74" data-line-number="74"><span class="co">#&gt; 2 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-75" data-line-number="75"><span class="co">#&gt; 3 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-76" data-line-number="76"><span class="co">#&gt; 4 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-77" data-line-number="77"><span class="co">#&gt; 5 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-78" data-line-number="78"><span class="co">#&gt; 6 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
-<a class="sourceLine" id="cb7-79" data-line-number="79"><span class="co">#&gt;   ReferenceYearStart ReferenceYearEnd ReferenceYearMid         FieldWorkStart</span></a>
-<a class="sourceLine" id="cb7-80" data-line-number="80"><span class="co">#&gt; 1               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-81" data-line-number="81"><span class="co">#&gt; 2               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-82" data-line-number="82"><span class="co">#&gt; 3               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-83" data-line-number="83"><span class="co">#&gt; 4               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-84" data-line-number="84"><span class="co">#&gt; 5               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-85" data-line-number="85"><span class="co">#&gt; 6               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
-<a class="sourceLine" id="cb7-86" data-line-number="86"><span class="co">#&gt;             FieldWorkEnd FieldWorkMiddle DataCatalogNote DataSourceAuthor</span></a>
-<a class="sourceLine" id="cb7-87" data-line-number="87"><span class="co">#&gt; 1 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-88" data-line-number="88"><span class="co">#&gt; 2 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-89" data-line-number="89"><span class="co">#&gt; 3 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-90" data-line-number="90"><span class="co">#&gt; 4 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-91" data-line-number="91"><span class="co">#&gt; 5 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-92" data-line-number="92"><span class="co">#&gt; 6 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
-<a class="sourceLine" id="cb7-93" data-line-number="93"><span class="co">#&gt;   DataSourceYear       DataSourceName DataSourceShortName DataStatusName</span></a>
-<a class="sourceLine" id="cb7-94" data-line-number="94"><span class="co">#&gt; 1           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-95" data-line-number="95"><span class="co">#&gt; 2           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-96" data-line-number="96"><span class="co">#&gt; 3           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-97" data-line-number="97"><span class="co">#&gt; 4           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-98" data-line-number="98"><span class="co">#&gt; 5           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-99" data-line-number="99"><span class="co">#&gt; 6           1966 Demographic Yearbook                 DYB          Final</span></a>
-<a class="sourceLine" id="cb7-100" data-line-number="100"><span class="co">#&gt;   StatisticalConceptName    SexName AgeUnit AgeStart AgeEnd AgeSpan AgeMid</span></a>
-<a class="sourceLine" id="cb7-101" data-line-number="101"><span class="co">#&gt; 1     Year of occurrence Both sexes    Year       10     15       5   12.5</span></a>
-<a class="sourceLine" id="cb7-102" data-line-number="102"><span class="co">#&gt; 2     Year of occurrence Both sexes    Year       15     20       5   17.5</span></a>
-<a class="sourceLine" id="cb7-103" data-line-number="103"><span class="co">#&gt; 3     Year of occurrence Both sexes    Year       15     20       5   17.5</span></a>
-<a class="sourceLine" id="cb7-104" data-line-number="104"><span class="co">#&gt; 4     Year of occurrence Both sexes    Year       20     25       5   22.5</span></a>
-<a class="sourceLine" id="cb7-105" data-line-number="105"><span class="co">#&gt; 5     Year of occurrence Both sexes    Year       20     25       5   22.5</span></a>
-<a class="sourceLine" id="cb7-106" data-line-number="106"><span class="co">#&gt; 6     Year of occurrence Both sexes    Year       25     30       5   27.5</span></a>
-<a class="sourceLine" id="cb7-107" data-line-number="107"><span class="co">#&gt;   AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
-<a class="sourceLine" id="cb7-108" data-line-number="108"><span class="co">#&gt; 1    10-14               3            Direct</span></a>
-<a class="sourceLine" id="cb7-109" data-line-number="109"><span class="co">#&gt; 2    15-19               3            Direct</span></a>
-<a class="sourceLine" id="cb7-110" data-line-number="110"><span class="co">#&gt; 3    15-19               3            Direct</span></a>
-<a class="sourceLine" id="cb7-111" data-line-number="111"><span class="co">#&gt; 4    20-24               3            Direct</span></a>
-<a class="sourceLine" id="cb7-112" data-line-number="112"><span class="co">#&gt; 5    20-24               3            Direct</span></a>
-<a class="sourceLine" id="cb7-113" data-line-number="113"><span class="co">#&gt; 6    25-29               3            Direct</span></a>
-<a class="sourceLine" id="cb7-114" data-line-number="114"><span class="co">#&gt;                                                             DataTypeName</span></a>
-<a class="sourceLine" id="cb7-115" data-line-number="115"><span class="co">#&gt; 1 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
-<a class="sourceLine" id="cb7-116" data-line-number="116"><span class="co">#&gt; 2                                                                 Direct</span></a>
-<a class="sourceLine" id="cb7-117" data-line-number="117"><span class="co">#&gt; 3 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
-<a class="sourceLine" id="cb7-118" data-line-number="118"><span class="co">#&gt; 4                                                                 Direct</span></a>
-<a class="sourceLine" id="cb7-119" data-line-number="119"><span class="co">#&gt; 5 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
-<a class="sourceLine" id="cb7-120" data-line-number="120"><span class="co">#&gt; 6                                                                 Direct</span></a>
-<a class="sourceLine" id="cb7-121" data-line-number="121"><span class="co">#&gt;        ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
-<a class="sourceLine" id="cb7-122" data-line-number="122"><span class="co">#&gt; 1 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-123" data-line-number="123"><span class="co">#&gt; 2 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-124" data-line-number="124"><span class="co">#&gt; 3 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-125" data-line-number="125"><span class="co">#&gt; 4 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-126" data-line-number="126"><span class="co">#&gt; 5 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-127" data-line-number="127"><span class="co">#&gt; 6 Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb7-128" data-line-number="128"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
-<a class="sourceLine" id="cb7-129" data-line-number="129"><span class="co">#&gt; 1 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-130" data-line-number="130"><span class="co">#&gt; 2 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-131" data-line-number="131"><span class="co">#&gt; 3 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-132" data-line-number="132"><span class="co">#&gt; 4 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-133" data-line-number="133"><span class="co">#&gt; 5 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-134" data-line-number="134"><span class="co">#&gt; 6 Not applicable (Direct)                Fair            3             CR</span></a>
-<a class="sourceLine" id="cb7-135" data-line-number="135"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
-<a class="sourceLine" id="cb7-136" data-line-number="136"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-137" data-line-number="137"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-138" data-line-number="138"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-139" data-line-number="139"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-140" data-line-number="140"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-141" data-line-number="141"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb7-142" data-line-number="142"><span class="co">#&gt;              TimeStart                TimeEnd TimeDuration TimeMid TimeLabel</span></a>
-<a class="sourceLine" id="cb7-143" data-line-number="143"><span class="co">#&gt; 1 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a>
-<a class="sourceLine" id="cb7-144" data-line-number="144"><span class="co">#&gt; 2 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a>
-<a class="sourceLine" id="cb7-145" data-line-number="145"><span class="co">#&gt; 3 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a>
-<a class="sourceLine" id="cb7-146" data-line-number="146"><span class="co">#&gt; 4 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a>
-<a class="sourceLine" id="cb7-147" data-line-number="147"><span class="co">#&gt; 5 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a>
-<a class="sourceLine" id="cb7-148" data-line-number="148"><span class="co">#&gt; 6 1/1/1961 12:00:00 AM 12/31/1961 12:00:00 AM            1  1961.5        NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; If you run the same query again, use the one below (faster): </span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;   get_recorddata(dataProcessIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(togo)</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 1           122092170   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2            80596190   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 3           122092171   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 4            80596183   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 5           122092172   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; 6            80596187   768             2                     0         170</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
+<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; 1         5019753             0     3   303                    5           19</span></a>
+<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; 2         5019753             0     3   304                    5           19</span></a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; 3         5019753             0     3   304                    5           19</span></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; 4         5019753             0     3   305                    5           19</span></a>
+<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; 5         5019753             0     3   305                    5           19</span></a>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt; 6         5019753             0     3   306                    5           19</span></a>
+<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; 1            1        134             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt; 2            1         16             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt; 3            1        134             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; 4            1         16             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; 5            1        134             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; 6            1         16             40                 5            10</span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; 1             0         0       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; 2             0      7150       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; 3             0      7150       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; 4             0     21910       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; 5             0     21910       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; 6             0     25305       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
+<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt;   LocName RegID        RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; 1    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; 2    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="co">#&gt; 3    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="co">#&gt; 4    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-56" data-line-number="56"><span class="co">#&gt; 5    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-57" data-line-number="57"><span class="co">#&gt; 6    Togo   914 Western Africa    903   Africa      Whole area              2</span></a>
+<a class="sourceLine" id="cb7-58" data-line-number="58"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
+<a class="sourceLine" id="cb7-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb7-65" data-line-number="65"><span class="co">#&gt;                       SubGroupName                              IndicatorName</span></a>
+<a class="sourceLine" id="cb7-66" data-line-number="66"><span class="co">#&gt; 1 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-67" data-line-number="67"><span class="co">#&gt; 2 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-68" data-line-number="68"><span class="co">#&gt; 3 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-69" data-line-number="69"><span class="co">#&gt; 4 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-70" data-line-number="70"><span class="co">#&gt; 5 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-71" data-line-number="71"><span class="co">#&gt; 6 Total / All groups / Whole group Births by age of mother (and sex of child)</span></a>
+<a class="sourceLine" id="cb7-72" data-line-number="72"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
+<a class="sourceLine" id="cb7-73" data-line-number="73"><span class="co">#&gt; 1             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-74" data-line-number="74"><span class="co">#&gt; 2             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-75" data-line-number="75"><span class="co">#&gt; 3             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-76" data-line-number="76"><span class="co">#&gt; 4             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-77" data-line-number="77"><span class="co">#&gt; 5             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-78" data-line-number="78"><span class="co">#&gt; 6             Births                11          Survey      Survey</span></a>
+<a class="sourceLine" id="cb7-79" data-line-number="79"><span class="co">#&gt;                   DataCatalogName DataCatalogShortName ReferencePeriod</span></a>
+<a class="sourceLine" id="cb7-80" data-line-number="80"><span class="co">#&gt; 1 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-81" data-line-number="81"><span class="co">#&gt; 2 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-82" data-line-number="82"><span class="co">#&gt; 3 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-83" data-line-number="83"><span class="co">#&gt; 4 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-84" data-line-number="84"><span class="co">#&gt; 5 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-85" data-line-number="85"><span class="co">#&gt; 6 Togo 1961 Enquête démographique              1961 ED            1961</span></a>
+<a class="sourceLine" id="cb7-86" data-line-number="86"><span class="co">#&gt;   ReferenceYearStart ReferenceYearEnd ReferenceYearMid         FieldWorkStart</span></a>
+<a class="sourceLine" id="cb7-87" data-line-number="87"><span class="co">#&gt; 1               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-88" data-line-number="88"><span class="co">#&gt; 2               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-89" data-line-number="89"><span class="co">#&gt; 3               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-90" data-line-number="90"><span class="co">#&gt; 4               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-91" data-line-number="91"><span class="co">#&gt; 5               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-92" data-line-number="92"><span class="co">#&gt; 6               1961             1961           1961.5 12/11/1961 12:00:00 AM</span></a>
+<a class="sourceLine" id="cb7-93" data-line-number="93"><span class="co">#&gt;             FieldWorkEnd FieldWorkMiddle DataCatalogNote DataSourceAuthor</span></a>
+<a class="sourceLine" id="cb7-94" data-line-number="94"><span class="co">#&gt; 1 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-95" data-line-number="95"><span class="co">#&gt; 2 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-96" data-line-number="96"><span class="co">#&gt; 3 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-97" data-line-number="97"><span class="co">#&gt; 4 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-98" data-line-number="98"><span class="co">#&gt; 5 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-99" data-line-number="99"><span class="co">#&gt; 6 12/11/1961 12:00:00 AM        1961.945              NA             UNSD</span></a>
+<a class="sourceLine" id="cb7-100" data-line-number="100"><span class="co">#&gt;   DataSourceYear       DataSourceName DataSourceShortName DataStatusName</span></a>
+<a class="sourceLine" id="cb7-101" data-line-number="101"><span class="co">#&gt; 1           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-102" data-line-number="102"><span class="co">#&gt; 2           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-103" data-line-number="103"><span class="co">#&gt; 3           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-104" data-line-number="104"><span class="co">#&gt; 4           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-105" data-line-number="105"><span class="co">#&gt; 5           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-106" data-line-number="106"><span class="co">#&gt; 6           1966 Demographic Yearbook                 DYB          Final</span></a>
+<a class="sourceLine" id="cb7-107" data-line-number="107"><span class="co">#&gt;   StatisticalConceptName    SexName AgeUnit AgeStart AgeEnd AgeSpan AgeMid</span></a>
+<a class="sourceLine" id="cb7-108" data-line-number="108"><span class="co">#&gt; 1     Year of occurrence Both sexes    Year       10     15       5   12.5</span></a>
+<a class="sourceLine" id="cb7-109" data-line-number="109"><span class="co">#&gt; 2     Year of occurrence Both sexes    Year       15     20       5   17.5</span></a>
+<a class="sourceLine" id="cb7-110" data-line-number="110"><span class="co">#&gt; 3     Year of occurrence Both sexes    Year       15     20       5   17.5</span></a>
+<a class="sourceLine" id="cb7-111" data-line-number="111"><span class="co">#&gt; 4     Year of occurrence Both sexes    Year       20     25       5   22.5</span></a>
+<a class="sourceLine" id="cb7-112" data-line-number="112"><span class="co">#&gt; 5     Year of occurrence Both sexes    Year       20     25       5   22.5</span></a>
+<a class="sourceLine" id="cb7-113" data-line-number="113"><span class="co">#&gt; 6     Year of occurrence Both sexes    Year       25     30       5   27.5</span></a>
+<a class="sourceLine" id="cb7-114" data-line-number="114"><span class="co">#&gt;   AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
+<a class="sourceLine" id="cb7-115" data-line-number="115"><span class="co">#&gt; 1    10-14               3            Direct</span></a>
+<a class="sourceLine" id="cb7-116" data-line-number="116"><span class="co">#&gt; 2    15-19               3            Direct</span></a>
+<a class="sourceLine" id="cb7-117" data-line-number="117"><span class="co">#&gt; 3    15-19               3            Direct</span></a>
+<a class="sourceLine" id="cb7-118" data-line-number="118"><span class="co">#&gt; 4    20-24               3            Direct</span></a>
+<a class="sourceLine" id="cb7-119" data-line-number="119"><span class="co">#&gt; 5    20-24               3            Direct</span></a>
+<a class="sourceLine" id="cb7-120" data-line-number="120"><span class="co">#&gt; 6    25-29               3            Direct</span></a>
+<a class="sourceLine" id="cb7-121" data-line-number="121"><span class="co">#&gt;                                                             DataTypeName</span></a>
+<a class="sourceLine" id="cb7-122" data-line-number="122"><span class="co">#&gt; 1 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
+<a class="sourceLine" id="cb7-123" data-line-number="123"><span class="co">#&gt; 2                                                                 Direct</span></a>
+<a class="sourceLine" id="cb7-124" data-line-number="124"><span class="co">#&gt; 3 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
+<a class="sourceLine" id="cb7-125" data-line-number="125"><span class="co">#&gt; 4                                                                 Direct</span></a>
+<a class="sourceLine" id="cb7-126" data-line-number="126"><span class="co">#&gt; 5 Direct (standard abridged age groups computed - Unknown redistributed)</span></a>
+<a class="sourceLine" id="cb7-127" data-line-number="127"><span class="co">#&gt; 6                                                                 Direct</span></a>
+<a class="sourceLine" id="cb7-128" data-line-number="128"><span class="co">#&gt;        ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
+<a class="sourceLine" id="cb7-129" data-line-number="129"><span class="co">#&gt; 1 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-130" data-line-number="130"><span class="co">#&gt; 2 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-131" data-line-number="131"><span class="co">#&gt; 3 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-132" data-line-number="132"><span class="co">#&gt; 4 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-133" data-line-number="133"><span class="co">#&gt; 5 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-134" data-line-number="134"><span class="co">#&gt; 6 Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb7-135" data-line-number="135"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
+<a class="sourceLine" id="cb7-136" data-line-number="136"><span class="co">#&gt; 1 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-137" data-line-number="137"><span class="co">#&gt; 2 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-138" data-line-number="138"><span class="co">#&gt; 3 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-139" data-line-number="139"><span class="co">#&gt; 4 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-140" data-line-number="140"><span class="co">#&gt; 5 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-141" data-line-number="141"><span class="co">#&gt; 6 Not applicable (Direct)                Fair            3             CR</span></a>
+<a class="sourceLine" id="cb7-142" data-line-number="142"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
+<a class="sourceLine" id="cb7-143" data-line-number="143"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-144" data-line-number="144"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-145" data-line-number="145"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-146" data-line-number="146"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-147" data-line-number="147"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-148" data-line-number="148"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb7-149" data-line-number="149"><span class="co">#&gt;    TimeStart    TimeEnd TimeDuration TimeMid TimeLabel</span></a>
+<a class="sourceLine" id="cb7-150" data-line-number="150"><span class="co">#&gt; 1 01/01/1961 31/12/1961            1  1961.5        NA</span></a>
+<a class="sourceLine" id="cb7-151" data-line-number="151"><span class="co">#&gt; 2 01/01/1961 31/12/1961            1  1961.5        NA</span></a>
+<a class="sourceLine" id="cb7-152" data-line-number="152"><span class="co">#&gt; 3 01/01/1961 31/12/1961            1  1961.5        NA</span></a>
+<a class="sourceLine" id="cb7-153" data-line-number="153"><span class="co">#&gt; 4 01/01/1961 31/12/1961            1  1961.5        NA</span></a>
+<a class="sourceLine" id="cb7-154" data-line-number="154"><span class="co">#&gt; 5 01/01/1961 31/12/1961            1  1961.5        NA</span></a>
+<a class="sourceLine" id="cb7-155" data-line-number="155"><span class="co">#&gt; 6 01/01/1961 31/12/1961            1  1961.5        NA</span></a></code></pre></div>
 </div>
 <div id="deaths-by-age-and-sex-using-register-data" class="section level4">
 <h4 class="hasAnchor">
@@ -432,134 +451,141 @@
 <a class="sourceLine" id="cb8-4" data-line-number="4">                       <span class="dt">locAreaTypeIds =</span> <span class="st">"Whole area"</span>,</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">                       <span class="dt">subGroupIds =</span> <span class="st">"Total or All groups"</span>,</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">                       <span class="dt">isComplete =</span> <span class="st">"Abridged"</span>)</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(oman)</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; 1           113147882   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; 2           113148230   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; 3           113149420   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt; 4           113149508   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; 5           113149237   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; 6           113148409   512             2                     0         194</span></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt; 1             944             0     3   331                    5           56</span></a>
-<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt; 2             944             0     3   398                    5           56</span></a>
-<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt; 3             944             0     3  3154                    5           56</span></a>
-<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="co">#&gt; 4             944             0     3  3242                    5           56</span></a>
-<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; 5             944             0     3  3263                    5           56</span></a>
-<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt; 6             945             0     3   331                    5           56</span></a>
-<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
-<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt; 1            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt; 2            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt; 3            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt; 4            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt; 5            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt; 6            1         16             40                 4            10</span></a>
-<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt; 1             0        56       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt; 2             0      2440       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt; 3             0        67       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co">#&gt; 4             0       286       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt; 5             0      1645       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt; 6             0        59       0  1             0                 0</span></a>
-<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
-<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
-<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt;   LocName RegID      RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
-<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; 1    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="co">#&gt; 2    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co">#&gt; 3    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-48" data-line-number="48"><span class="co">#&gt; 4    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-49" data-line-number="49"><span class="co">#&gt; 5    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-50" data-line-number="50"><span class="co">#&gt; 6    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
-<a class="sourceLine" id="cb8-51" data-line-number="51"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
-<a class="sourceLine" id="cb8-52" data-line-number="52"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-53" data-line-number="53"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-54" data-line-number="54"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-55" data-line-number="55"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-56" data-line-number="56"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-57" data-line-number="57"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
-<a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt;                       SubGroupName                    IndicatorName</span></a>
-<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
-<a class="sourceLine" id="cb8-65" data-line-number="65"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
-<a class="sourceLine" id="cb8-66" data-line-number="66"><span class="co">#&gt; 1            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-67" data-line-number="67"><span class="co">#&gt; 2            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-68" data-line-number="68"><span class="co">#&gt; 3            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-69" data-line-number="69"><span class="co">#&gt; 4            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-70" data-line-number="70"><span class="co">#&gt; 5            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-71" data-line-number="71"><span class="co">#&gt; 6            Deaths5                 9        Register          VR</span></a>
-<a class="sourceLine" id="cb8-72" data-line-number="72"><span class="co">#&gt;      DataCatalogName DataCatalogShortName ReferencePeriod ReferenceYearStart</span></a>
-<a class="sourceLine" id="cb8-73" data-line-number="73"><span class="co">#&gt; 1 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-74" data-line-number="74"><span class="co">#&gt; 2 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-75" data-line-number="75"><span class="co">#&gt; 3 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-76" data-line-number="76"><span class="co">#&gt; 4 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-77" data-line-number="77"><span class="co">#&gt; 5 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-78" data-line-number="78"><span class="co">#&gt; 6 Vital Registration             Register           1980-               1980</span></a>
-<a class="sourceLine" id="cb8-79" data-line-number="79"><span class="co">#&gt;   ReferenceYearEnd ReferenceYearMid FieldWorkStart FieldWorkEnd FieldWorkMiddle</span></a>
-<a class="sourceLine" id="cb8-80" data-line-number="80"><span class="co">#&gt; 1               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-81" data-line-number="81"><span class="co">#&gt; 2               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-82" data-line-number="82"><span class="co">#&gt; 3               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-83" data-line-number="83"><span class="co">#&gt; 4               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-84" data-line-number="84"><span class="co">#&gt; 5               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-85" data-line-number="85"><span class="co">#&gt; 6               NA               NA             NA           NA              NA</span></a>
-<a class="sourceLine" id="cb8-86" data-line-number="86"><span class="co">#&gt;   DataCatalogNote DataSourceAuthor DataSourceYear       DataSourceName</span></a>
-<a class="sourceLine" id="cb8-87" data-line-number="87"><span class="co">#&gt; 1              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-88" data-line-number="88"><span class="co">#&gt; 2              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-89" data-line-number="89"><span class="co">#&gt; 3              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-90" data-line-number="90"><span class="co">#&gt; 4              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-91" data-line-number="91"><span class="co">#&gt; 5              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-92" data-line-number="92"><span class="co">#&gt; 6              NA             UNSD           2003 Demographic Yearbook</span></a>
-<a class="sourceLine" id="cb8-93" data-line-number="93"><span class="co">#&gt;   DataSourceShortName DataStatusName StatisticalConceptName    SexName AgeUnit</span></a>
-<a class="sourceLine" id="cb8-94" data-line-number="94"><span class="co">#&gt; 1                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-95" data-line-number="95"><span class="co">#&gt; 2                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-96" data-line-number="96"><span class="co">#&gt; 3                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-97" data-line-number="97"><span class="co">#&gt; 4                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-98" data-line-number="98"><span class="co">#&gt; 5                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-99" data-line-number="99"><span class="co">#&gt; 6                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
-<a class="sourceLine" id="cb8-100" data-line-number="100"><span class="co">#&gt;   AgeStart AgeEnd AgeSpan AgeMid AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
-<a class="sourceLine" id="cb8-101" data-line-number="101"><span class="co">#&gt; 1        1      5       4    3.0      1-4               3            Direct</span></a>
-<a class="sourceLine" id="cb8-102" data-line-number="102"><span class="co">#&gt; 2        0     -1      -1   -1.0    Total               3            Direct</span></a>
-<a class="sourceLine" id="cb8-103" data-line-number="103"><span class="co">#&gt; 3        5     15      10   10.0     5-14               3            Direct</span></a>
-<a class="sourceLine" id="cb8-104" data-line-number="104"><span class="co">#&gt; 4       15     45      30   30.0    15-44               3            Direct</span></a>
-<a class="sourceLine" id="cb8-105" data-line-number="105"><span class="co">#&gt; 5       45      0      -1   72.5      45+               3            Direct</span></a>
-<a class="sourceLine" id="cb8-106" data-line-number="106"><span class="co">#&gt; 6        1      5       4    3.0      1-4               3            Direct</span></a>
-<a class="sourceLine" id="cb8-107" data-line-number="107"><span class="co">#&gt;   DataTypeName      ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
-<a class="sourceLine" id="cb8-108" data-line-number="108"><span class="co">#&gt; 1       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-109" data-line-number="109"><span class="co">#&gt; 2       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-110" data-line-number="110"><span class="co">#&gt; 3       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-111" data-line-number="111"><span class="co">#&gt; 4       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-112" data-line-number="112"><span class="co">#&gt; 5       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-113" data-line-number="113"><span class="co">#&gt; 6       Direct Not applicable                   15         Not applicable</span></a>
-<a class="sourceLine" id="cb8-114" data-line-number="114"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
-<a class="sourceLine" id="cb8-115" data-line-number="115"><span class="co">#&gt; 1 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-116" data-line-number="116"><span class="co">#&gt; 2 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-117" data-line-number="117"><span class="co">#&gt; 3 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-118" data-line-number="118"><span class="co">#&gt; 4 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-119" data-line-number="119"><span class="co">#&gt; 5 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-120" data-line-number="120"><span class="co">#&gt; 6 Not applicable (Direct)                 Low            3             CR</span></a>
-<a class="sourceLine" id="cb8-121" data-line-number="121"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
-<a class="sourceLine" id="cb8-122" data-line-number="122"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-123" data-line-number="123"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-124" data-line-number="124"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-125" data-line-number="125"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-126" data-line-number="126"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-127" data-line-number="127"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
-<a class="sourceLine" id="cb8-128" data-line-number="128"><span class="co">#&gt;              TimeStart              TimeEnd TimeDuration TimeMid TimeLabel</span></a>
-<a class="sourceLine" id="cb8-129" data-line-number="129"><span class="co">#&gt; 1 7/1/1999 12:00:00 AM 7/1/1999 12:00:00 AM            0  1999.5      1999</span></a>
-<a class="sourceLine" id="cb8-130" data-line-number="130"><span class="co">#&gt; 2 7/1/1999 12:00:00 AM 7/1/1999 12:00:00 AM            0  1999.5      1999</span></a>
-<a class="sourceLine" id="cb8-131" data-line-number="131"><span class="co">#&gt; 3 7/1/1999 12:00:00 AM 7/1/1999 12:00:00 AM            0  1999.5      1999</span></a>
-<a class="sourceLine" id="cb8-132" data-line-number="132"><span class="co">#&gt; 4 7/1/1999 12:00:00 AM 7/1/1999 12:00:00 AM            0  1999.5      1999</span></a>
-<a class="sourceLine" id="cb8-133" data-line-number="133"><span class="co">#&gt; 5 7/1/1999 12:00:00 AM 7/1/1999 12:00:00 AM            0  1999.5      1999</span></a>
-<a class="sourceLine" id="cb8-134" data-line-number="134"><span class="co">#&gt; 6 7/1/2000 12:00:00 AM 7/1/2000 12:00:00 AM            0  2000.5      2000</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; If you run the same query again, use the one below (faster): </span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;   get_recorddata(dataProcessIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(oman)</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;   PK_StructuredDataID LocID LocAreaTypeID SubGroupCombinationID IndicatorID</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt; 1           113147882   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt; 2           113148230   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt; 3           113149420   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="co">#&gt; 4           113149508   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; 5           113149237   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt; 6           113148409   512             2                     0         194</span></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt;   TimeReferenceID DataCatalogID SexID AgeID StatisticalConceptID DataSourceID</span></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt; 1             944             0     3   331                    5           56</span></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt; 2             944             0     3   398                    5           56</span></a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt; 3             944             0     3  3154                    5           56</span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt; 4             944             0     3  3242                    5           56</span></a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt; 5             944             0     3  3263                    5           56</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt; 6             945             0     3   331                    5           56</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;   DataStatusID DataTypeID ModelPatternID DataReliabilityID PeriodGroupID</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt; 1            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt; 2            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt; 3            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co">#&gt; 4            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt; 5            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt; 6            1         16             40                 4            10</span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;   StaffMemberID DataValue agesort id PK_SubGroupID PK_SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; 1             0        56       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; 2             0      2440       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; 3             0        67       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt; 4             0       286       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; 5             0      1645       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; 6             0        59       0  1             0                 0</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt;   PK_DataProcessID PK_DataProcessTypeID FootNoteID LocTypeID LocTypeName</span></a>
+<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; 1                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="co">#&gt; 2                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co">#&gt; 3                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-48" data-line-number="48"><span class="co">#&gt; 4                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-49" data-line-number="49"><span class="co">#&gt; 5                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-50" data-line-number="50"><span class="co">#&gt; 6                0                    0          0         5     Country</span></a>
+<a class="sourceLine" id="cb8-51" data-line-number="51"><span class="co">#&gt;   LocName RegID      RegName AreaID AreaName LocAreaTypeName SubGroupTypeID</span></a>
+<a class="sourceLine" id="cb8-52" data-line-number="52"><span class="co">#&gt; 1    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-53" data-line-number="53"><span class="co">#&gt; 2    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-54" data-line-number="54"><span class="co">#&gt; 3    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-55" data-line-number="55"><span class="co">#&gt; 4    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-56" data-line-number="56"><span class="co">#&gt; 5    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-57" data-line-number="57"><span class="co">#&gt; 6    Oman   922 Western Asia    935     Asia      Whole area              2</span></a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt;                   SubGroupTypeName SubGroupTypeSortOrder SubGroupID1</span></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt; 1 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt; 2 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt; 3 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt; 4 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-63" data-line-number="63"><span class="co">#&gt; 5 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-64" data-line-number="64"><span class="co">#&gt; 6 Total / All groups / Whole group                     3           2</span></a>
+<a class="sourceLine" id="cb8-65" data-line-number="65"><span class="co">#&gt;                       SubGroupName                    IndicatorName</span></a>
+<a class="sourceLine" id="cb8-66" data-line-number="66"><span class="co">#&gt; 1 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-67" data-line-number="67"><span class="co">#&gt; 2 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-68" data-line-number="68"><span class="co">#&gt; 3 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-69" data-line-number="69"><span class="co">#&gt; 4 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-70" data-line-number="70"><span class="co">#&gt; 5 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-71" data-line-number="71"><span class="co">#&gt; 6 Total / All groups / Whole group Deaths by age and sex - abridged</span></a>
+<a class="sourceLine" id="cb8-72" data-line-number="72"><span class="co">#&gt;   IndicatorShortName DataProcessTypeID DataProcessType DataProcess</span></a>
+<a class="sourceLine" id="cb8-73" data-line-number="73"><span class="co">#&gt; 1            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-74" data-line-number="74"><span class="co">#&gt; 2            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-75" data-line-number="75"><span class="co">#&gt; 3            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-76" data-line-number="76"><span class="co">#&gt; 4            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-77" data-line-number="77"><span class="co">#&gt; 5            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-78" data-line-number="78"><span class="co">#&gt; 6            Deaths5                 9        Register          VR</span></a>
+<a class="sourceLine" id="cb8-79" data-line-number="79"><span class="co">#&gt;      DataCatalogName DataCatalogShortName ReferencePeriod ReferenceYearStart</span></a>
+<a class="sourceLine" id="cb8-80" data-line-number="80"><span class="co">#&gt; 1 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-81" data-line-number="81"><span class="co">#&gt; 2 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-82" data-line-number="82"><span class="co">#&gt; 3 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-83" data-line-number="83"><span class="co">#&gt; 4 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-84" data-line-number="84"><span class="co">#&gt; 5 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-85" data-line-number="85"><span class="co">#&gt; 6 Vital Registration             Register           1980-               1980</span></a>
+<a class="sourceLine" id="cb8-86" data-line-number="86"><span class="co">#&gt;   ReferenceYearEnd ReferenceYearMid FieldWorkStart FieldWorkEnd FieldWorkMiddle</span></a>
+<a class="sourceLine" id="cb8-87" data-line-number="87"><span class="co">#&gt; 1               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-88" data-line-number="88"><span class="co">#&gt; 2               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-89" data-line-number="89"><span class="co">#&gt; 3               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-90" data-line-number="90"><span class="co">#&gt; 4               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-91" data-line-number="91"><span class="co">#&gt; 5               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-92" data-line-number="92"><span class="co">#&gt; 6               NA               NA             NA           NA              NA</span></a>
+<a class="sourceLine" id="cb8-93" data-line-number="93"><span class="co">#&gt;   DataCatalogNote DataSourceAuthor DataSourceYear       DataSourceName</span></a>
+<a class="sourceLine" id="cb8-94" data-line-number="94"><span class="co">#&gt; 1              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-95" data-line-number="95"><span class="co">#&gt; 2              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-96" data-line-number="96"><span class="co">#&gt; 3              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-97" data-line-number="97"><span class="co">#&gt; 4              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-98" data-line-number="98"><span class="co">#&gt; 5              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-99" data-line-number="99"><span class="co">#&gt; 6              NA             UNSD           2003 Demographic Yearbook</span></a>
+<a class="sourceLine" id="cb8-100" data-line-number="100"><span class="co">#&gt;   DataSourceShortName DataStatusName StatisticalConceptName    SexName AgeUnit</span></a>
+<a class="sourceLine" id="cb8-101" data-line-number="101"><span class="co">#&gt; 1                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-102" data-line-number="102"><span class="co">#&gt; 2                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-103" data-line-number="103"><span class="co">#&gt; 3                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-104" data-line-number="104"><span class="co">#&gt; 4                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-105" data-line-number="105"><span class="co">#&gt; 5                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-106" data-line-number="106"><span class="co">#&gt; 6                 DYB          Final     Year of occurrence Both sexes    Year</span></a>
+<a class="sourceLine" id="cb8-107" data-line-number="107"><span class="co">#&gt;   AgeStart AgeEnd AgeSpan AgeMid AgeLabel DataTypeGroupID DataTypeGroupName</span></a>
+<a class="sourceLine" id="cb8-108" data-line-number="108"><span class="co">#&gt; 1        1      5       4    3.0      1-4               3            Direct</span></a>
+<a class="sourceLine" id="cb8-109" data-line-number="109"><span class="co">#&gt; 2        0     -1      -1   -1.0    Total               3            Direct</span></a>
+<a class="sourceLine" id="cb8-110" data-line-number="110"><span class="co">#&gt; 3        5     15      10   10.0     5-14               3            Direct</span></a>
+<a class="sourceLine" id="cb8-111" data-line-number="111"><span class="co">#&gt; 4       15     45      30   30.0    15-44               3            Direct</span></a>
+<a class="sourceLine" id="cb8-112" data-line-number="112"><span class="co">#&gt; 5       45      0      -1   72.5      45+               3            Direct</span></a>
+<a class="sourceLine" id="cb8-113" data-line-number="113"><span class="co">#&gt; 6        1      5       4    3.0      1-4               3            Direct</span></a>
+<a class="sourceLine" id="cb8-114" data-line-number="114"><span class="co">#&gt;   DataTypeName      ModelType ModelPatternFamilyID ModelPatternFamilyName</span></a>
+<a class="sourceLine" id="cb8-115" data-line-number="115"><span class="co">#&gt; 1       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-116" data-line-number="116"><span class="co">#&gt; 2       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-117" data-line-number="117"><span class="co">#&gt; 3       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-118" data-line-number="118"><span class="co">#&gt; 4       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-119" data-line-number="119"><span class="co">#&gt; 5       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-120" data-line-number="120"><span class="co">#&gt; 6       Direct Not applicable                   15         Not applicable</span></a>
+<a class="sourceLine" id="cb8-121" data-line-number="121"><span class="co">#&gt;          ModelPatternName DataReliabilityName PeriodTypeID PeriodTypeName</span></a>
+<a class="sourceLine" id="cb8-122" data-line-number="122"><span class="co">#&gt; 1 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-123" data-line-number="123"><span class="co">#&gt; 2 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-124" data-line-number="124"><span class="co">#&gt; 3 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-125" data-line-number="125"><span class="co">#&gt; 4 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-126" data-line-number="126"><span class="co">#&gt; 5 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-127" data-line-number="127"><span class="co">#&gt; 6 Not applicable (Direct)                 Low            3             CR</span></a>
+<a class="sourceLine" id="cb8-128" data-line-number="128"><span class="co">#&gt;   PeriodGroupName PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit</span></a>
+<a class="sourceLine" id="cb8-129" data-line-number="129"><span class="co">#&gt; 1  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-130" data-line-number="130"><span class="co">#&gt; 2  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-131" data-line-number="131"><span class="co">#&gt; 3  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-132" data-line-number="132"><span class="co">#&gt; 4  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-133" data-line-number="133"><span class="co">#&gt; 5  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-134" data-line-number="134"><span class="co">#&gt; 6  Not applicable          NA        NA         NA           NA     NA     year</span></a>
+<a class="sourceLine" id="cb8-135" data-line-number="135"><span class="co">#&gt;    TimeStart    TimeEnd TimeDuration TimeMid TimeLabel</span></a>
+<a class="sourceLine" id="cb8-136" data-line-number="136"><span class="co">#&gt; 1 01/07/1999 01/07/1999            0  1999.5      1999</span></a>
+<a class="sourceLine" id="cb8-137" data-line-number="137"><span class="co">#&gt; 2 01/07/1999 01/07/1999            0  1999.5      1999</span></a>
+<a class="sourceLine" id="cb8-138" data-line-number="138"><span class="co">#&gt; 3 01/07/1999 01/07/1999            0  1999.5      1999</span></a>
+<a class="sourceLine" id="cb8-139" data-line-number="139"><span class="co">#&gt; 4 01/07/1999 01/07/1999            0  1999.5      1999</span></a>
+<a class="sourceLine" id="cb8-140" data-line-number="140"><span class="co">#&gt; 5 01/07/1999 01/07/1999            0  1999.5      1999</span></a>
+<a class="sourceLine" id="cb8-141" data-line-number="141"><span class="co">#&gt; 6 01/07/2000 01/07/2000            0  2000.5      2000</span></a></code></pre></div>
 </div>
 <div id="change-the-ip-of-the-unpd-sql-api" class="section level4">
 <h4 class="hasAnchor">
@@ -599,48 +625,49 @@
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/DDSQLtools/man/get_indicators.html">get_indicators</a></span>()</a></code></pre></div>
 <p>Here we can see both the <strong>code</strong> and the <strong>name</strong> of the indicator. Both values are accepted by <code>get_recorddata</code>. Another example is getting the list of location types. <code><a href="https://rdrr.io/pkg/DDSQLtools/man/get_locationtypes.html">get_locationtypes()</a></code> will give you those:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/DDSQLtools/man/get_locationtypes.html">get_locationtypes</a></span>()</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt;    PK_LocAreaTypeID                           Name</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; 1                 0 Unknown location type/category</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 2                 1                 Not applicable</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; 3                 2                     Whole area</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; 4                 3                          Urban</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; 5                 4                          Rural</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 6                 5                     Semi-rural</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 7                 6                     Semi-urban</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 8                20                Reporting Areas</span></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; 9                30                           Part</span></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; 10               35 Selected Urban and Rural Areas</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt; 11               41           Selected Rural Areas</span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; 12               51           Selected Urban Areas</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; 13               70                         Cities</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt;                         ShortName                       LongName SortOrder</span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; 1  Unknown location type/category Unknown location type/category         1</span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; 2                  Not applicable                 Not applicable         2</span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; 3                      Whole area                     Whole area         3</span></a>
-<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="co">#&gt; 4                     Urban areas                    Urban areas         4</span></a>
-<a class="sourceLine" id="cb11-21" data-line-number="21"><span class="co">#&gt; 5                     Rural areas                    Rural areas         5</span></a>
-<a class="sourceLine" id="cb11-22" data-line-number="22"><span class="co">#&gt; 6                      Semi-rural                     Semi-rural         6</span></a>
-<a class="sourceLine" id="cb11-23" data-line-number="23"><span class="co">#&gt; 7                      Semi-urban                     Semi-urban         7</span></a>
-<a class="sourceLine" id="cb11-24" data-line-number="24"><span class="co">#&gt; 8                 Reporting Areas                Reporting Areas         8</span></a>
-<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="co">#&gt; 9                            Part                           Part         9</span></a>
-<a class="sourceLine" id="cb11-26" data-line-number="26"><span class="co">#&gt; 10 Selected Urban and Rural Areas Selected Urban and Rural Areas        10</span></a>
-<a class="sourceLine" id="cb11-27" data-line-number="27"><span class="co">#&gt; 11           Selected Rural Areas           Selected Rural Areas        11</span></a>
-<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="co">#&gt; 12           Selected Urban Areas           Selected Urban Areas        12</span></a>
-<a class="sourceLine" id="cb11-29" data-line-number="29"><span class="co">#&gt; 13                         Cities                         Cities        13</span></a>
-<a class="sourceLine" id="cb11-30" data-line-number="30"><span class="co">#&gt;          Description isActive isDefault</span></a>
-<a class="sourceLine" id="cb11-31" data-line-number="31"><span class="co">#&gt; 1                       FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-32" data-line-number="32"><span class="co">#&gt; 2                       FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-33" data-line-number="33"><span class="co">#&gt; 3        Formerly 23     TRUE      TRUE</span></a>
-<a class="sourceLine" id="cb11-34" data-line-number="34"><span class="co">#&gt; 4        Formerly 16     TRUE     FALSE</span></a>
-<a class="sourceLine" id="cb11-35" data-line-number="35"><span class="co">#&gt; 5        Formerly 17     TRUE     FALSE</span></a>
-<a class="sourceLine" id="cb11-36" data-line-number="36"><span class="co">#&gt; 6        Formerly 21    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-37" data-line-number="37"><span class="co">#&gt; 7        Formerly 22    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-38" data-line-number="38"><span class="co">#&gt; 8  WHO-DB subdiv=A20    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-39" data-line-number="39"><span class="co">#&gt; 9  WHO-DB subdiv=A30    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-40" data-line-number="40"><span class="co">#&gt; 10 WHO-DB subdiv=A35    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-41" data-line-number="41"><span class="co">#&gt; 11 WHO-DB subdiv=A41    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-42" data-line-number="42"><span class="co">#&gt; 12 WHO-DB subdiv=A51    FALSE     FALSE</span></a>
-<a class="sourceLine" id="cb11-43" data-line-number="43"><span class="co">#&gt; 13 WHO-DB subdiv=A70    FALSE     FALSE</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?"</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt;    PK_LocAreaTypeID                           Name</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 1                 0 Unknown location type/category</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; 2                 1                 Not applicable</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; 3                 2                     Whole area</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; 4                 3                          Urban</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 5                 4                          Rural</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 6                 5                     Semi-rural</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 7                 6                     Semi-urban</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; 8                20                Reporting Areas</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; 9                30                           Part</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt; 10               35 Selected Urban and Rural Areas</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; 11               41           Selected Rural Areas</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; 12               51           Selected Urban Areas</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt; 13               70                         Cities</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt;                         ShortName                       LongName SortOrder</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; 1  Unknown location type/category Unknown location type/category         1</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; 2                  Not applicable                 Not applicable         2</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="co">#&gt; 3                      Whole area                     Whole area         3</span></a>
+<a class="sourceLine" id="cb11-21" data-line-number="21"><span class="co">#&gt; 4                     Urban areas                    Urban areas         4</span></a>
+<a class="sourceLine" id="cb11-22" data-line-number="22"><span class="co">#&gt; 5                     Rural areas                    Rural areas         5</span></a>
+<a class="sourceLine" id="cb11-23" data-line-number="23"><span class="co">#&gt; 6                      Semi-rural                     Semi-rural         6</span></a>
+<a class="sourceLine" id="cb11-24" data-line-number="24"><span class="co">#&gt; 7                      Semi-urban                     Semi-urban         7</span></a>
+<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="co">#&gt; 8                 Reporting Areas                Reporting Areas         8</span></a>
+<a class="sourceLine" id="cb11-26" data-line-number="26"><span class="co">#&gt; 9                            Part                           Part         9</span></a>
+<a class="sourceLine" id="cb11-27" data-line-number="27"><span class="co">#&gt; 10 Selected Urban and Rural Areas Selected Urban and Rural Areas        10</span></a>
+<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="co">#&gt; 11           Selected Rural Areas           Selected Rural Areas        11</span></a>
+<a class="sourceLine" id="cb11-29" data-line-number="29"><span class="co">#&gt; 12           Selected Urban Areas           Selected Urban Areas        12</span></a>
+<a class="sourceLine" id="cb11-30" data-line-number="30"><span class="co">#&gt; 13                         Cities                         Cities        13</span></a>
+<a class="sourceLine" id="cb11-31" data-line-number="31"><span class="co">#&gt;          Description isActive isDefault</span></a>
+<a class="sourceLine" id="cb11-32" data-line-number="32"><span class="co">#&gt; 1                       FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-33" data-line-number="33"><span class="co">#&gt; 2                       FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-34" data-line-number="34"><span class="co">#&gt; 3        Formerly 23     TRUE      TRUE</span></a>
+<a class="sourceLine" id="cb11-35" data-line-number="35"><span class="co">#&gt; 4        Formerly 16     TRUE     FALSE</span></a>
+<a class="sourceLine" id="cb11-36" data-line-number="36"><span class="co">#&gt; 5        Formerly 17     TRUE     FALSE</span></a>
+<a class="sourceLine" id="cb11-37" data-line-number="37"><span class="co">#&gt; 6        Formerly 21    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-38" data-line-number="38"><span class="co">#&gt; 7        Formerly 22    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-39" data-line-number="39"><span class="co">#&gt; 8  WHO-DB subdiv=A20    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-40" data-line-number="40"><span class="co">#&gt; 9  WHO-DB subdiv=A30    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-41" data-line-number="41"><span class="co">#&gt; 10 WHO-DB subdiv=A35    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-42" data-line-number="42"><span class="co">#&gt; 11 WHO-DB subdiv=A41    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-43" data-line-number="43"><span class="co">#&gt; 12 WHO-DB subdiv=A51    FALSE     FALSE</span></a>
+<a class="sourceLine" id="cb11-44" data-line-number="44"><span class="co">#&gt; 13 WHO-DB subdiv=A70    FALSE     FALSE</span></a></code></pre></div>
 <p>In order to search for a specificic combination of values (<code>"Egypt"</code>, <code>"Deaths by age and sex"</code>, etc…), the process is only possible through trial and error. For example, if we wanted to explore <code>Deaths by age and sex</code> for <code>Oman</code>, we’d have to explore whether there is data for <code>Semi-rural</code> (<code>locAreaTypeIds</code>) and <code>Christian Orthodox</code> (<code>subGroupIds</code>). Since this exploration process is a bit cumbersome, we’re currently developing a new strategy for exploring country/indicator pairs that will be more intuitive.</p>
 <p>For now, let’s try this example for <code>"Semi-rural"</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/DDSQLtools/man/get_recorddata.html">get_recorddata</a></span>(<span class="dt">dataProcessIds =</span> <span class="st">"Register"</span>,</a>
@@ -649,7 +676,11 @@
 <a class="sourceLine" id="cb12-4" data-line-number="4">               <span class="dt">locAreaTypeIds =</span> <span class="st">"Semi-rural"</span>,</a>
 <a class="sourceLine" id="cb12-5" data-line-number="5">               <span class="dt">subGroupIds =</span> <span class="st">"Total or All groups"</span>,</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">               <span class="dt">isComplete =</span> <span class="st">"Abridged"</span>)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; Error in fun(vec, ...): Area Type(s) 'Semi-rural' not found. Check get_locationtypes()</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; Error in fun(vec, ...): Area Type(s) 'Semi-rural' not found. Check get_locationtypes()</span></a></code></pre></div>
 <p>This error is just saying that the combination of data that you’ve specified is not available (in this case, <code>Semi-rural</code> is not available for register data on deaths by age and sex in <code>Oman</code> for all groups abridged).</p>
 <p>Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn’t know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the <a href="http://24.239.36.16:9654/un3/Web/index.html">front end of the API</a> and then use these in the request.</p>
 <p>Let’s do one example. Follow the hyperlink and click on <code>"Get Started - Select Indicator &amp; Country"</code>. Then select <code>"Deaths by age and sex"</code> -&gt; <code>"Oman"</code>. All possible datasets for <code>Oman</code> and <code>"Deaths by age and sex"</code> will appear automatically. We can filter down the options in the left-most menu and use these values to populate our <code>get_recorddata</code> call.</p>
