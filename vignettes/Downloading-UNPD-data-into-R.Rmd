@@ -123,12 +123,117 @@ get_recorddata(dataProcessIds = "Register",
 
 ```
 
+#### Downloading many countries
+
+Due to the nature of the UNPD API, it's not possible to download over 30 countries in the same API request. For example, if we wanted to download data on these countries:
+
+```{r, eval = FALSE, error = TRUE}
+
+myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
+                 376, 662, 670, 642, 84, 188, 442, 100,
+                 192, 170, 414, 616, 320, 480, 218,
+                 818, 222, 300, 558, 40, 52, 348, 470,
+                 620, 702, 858, 56, 780, 388, 246, 352,
+                 591, 144, 862)
+
+get_recorddata(dataProcessIds = "Register",
+               indicatorTypeIds = "Deaths by age and sex",
+               locIds = myLocations,
+               locAreaTypeIds = "Whole area",
+               subGroupIds = "Total or All groups",
+               isComplete = "Abridged",
+               startYear = 1920,
+               endYear = 2020)
+
+```
+
+You'll get an error saying that `DDSQLtools` could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thinkg you want to do is to copy the **optimized query** printed by `get_recorddata` that already translated the string codes to numbers.
+
+##### Using base R
+
+```{r, echo = FALSE, eval = FALSE}
+myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
+                 376, 662, 670, 642, 84, 188, 442, 100,
+                 192, 170, 414, 616, 320, 480, 218,
+                 818, 222, 300, 558, 40, 52, 348, 470,
+                 620, 702, 858, 56, 780, 388, 246, 352,
+                 591, 144, 862)
+
+# Here replace with number of desired chunk of countries
+n_chunks <- 3
+chunk_groups <- rep(1:n_chunks, length.out = length(myLocations))
+cnty_groups <- split(myLocations, chunk_groups)
+
+# Loop through each chunk of countries with `lapply`
+deaths <- lapply(cnty_groups, function(x) {
+
+  res <- get_recorddata(dataProcessIds = 9,
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 20,
+                        isComplete = 0,
+                        locIds = x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+
+  # Informative message to keep track of which chunk
+  # of countries have been completed.
+  cat("Countries", paste0(x, collapse = ", "), "done")
+  res
+})
+
+# Row-bind all the data frames into one data frame
+deaths <- do.call(rbind, deaths)
+head(deaths)
+```
+
+##### Using the tidyverse
+```{r, echo = FALSE, eval = FALSE}
+library(tidyverse)
+
+myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
+                 376, 662, 670, 642, 84, 188, 442, 100,
+                 192, 170, 414, 616, 320, 480, 218,
+                 818, 222, 300, 558, 40, 52, 348, 470,
+                 620, 702, 858, 56, 780, 388, 246, 352,
+                 591, 144, 862)
+
+n_chunks <- 3
+chunk_groups <- rep(1:n_chunks, length.out = length(myLocations))
+
+cnty_groups <- split(myLocations, chunk_groups)
+
+# Loop through each location with `purrr`
+deaths <- map(cnty_groups, ~ {
+
+  res <- get_recorddata(dataProcessIds = 9,
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 20,
+                        isComplete = 0,
+                        locIds = .x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+
+  cat("Countries", paste0(x, collapse = ", "), " done")
+  res
+})
+
+deaths <-
+  deaths %>%
+  bind_rows() %>%
+  as_tibble()
+
+deaths
+```
+
+
 ## Exploring the UNPD SQL API from R
 
 The previous examples assume you're familiar with the names or codes of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
 
 * dataProcessIds = `get_dataprocess()`
-* indicatorTypeIds = `get_indicators()`
+* indicatorTypeIds = `get_indicatortypes()`
 * locIds = `get_locations()`
 * locAreaTypeIds = `get_locationtypes()`
 * subGroupIds = `get_subgroups()`
@@ -137,7 +242,7 @@ The previous examples assume you're familiar with the names or codes of the para
 For example, to see all possible indicator types:
 
 ```{r, eval = FALSE}
-get_indicators()
+get_indicatortypes()
 ```
 
 Here we can see both the **code** and the **name** of the indicator. Both values are accepted by `get_recorddata`. Another example is getting the list of location types. `get_locationtypes()` will give you those:
