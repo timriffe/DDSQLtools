@@ -63,7 +63,7 @@ build_filter(
 TODOOOOOOOOOOOOO!!}
 
 \item{indicatorType}{Indicator type ID as defined by the UNPD. Run the
-\code{\link{get_indicators}} function to see the available options;}
+\code{\link{get_indicatortypes}} function to see the available options;}
 
 \item{subGroup}{SubGroup ID as defined by the UNPD.
 Run the \code{\link{get_subgroups}} function to see the available options;}

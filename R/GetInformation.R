@@ -111,14 +111,28 @@ get_subgroups <- function(save = FALSE, ...) {
 #' @inheritParams read_API
 #' @examples 
 #' \dontrun{
+#' I <- get_indicatortypes(addDefault = "false")
+#' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
+#' }
+#' @export
+get_indicatortypes <- function(save = FALSE, ...) {
+  
+  read_API("indicatortypes", save, ...)
+}
+
+#' Get information about available indicators (IndicatorID)
+#' @inheritParams read_API
+#' @examples 
+#' \dontrun{
 #' I <- get_indicators(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
 get_indicators <- function(save = FALSE, ...) {
   
-  read_API("indicatortypes", save, ...)
+  read_API("indicators", save, ...)
 }
+
 
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API

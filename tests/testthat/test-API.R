@@ -48,6 +48,10 @@ P <- get_locationtypes(indicatorTypeIds = 8,
 validate_read_API(P)  # validate
 
 # ------------------------------------------
+IT <- get_indicatortypes(addDefault = "false")
+validate_read_API(IT)  # validate
+
+# ------------------------------------------
 I <- get_indicators(addDefault = "false")
 validate_read_API(I)  # validate
 
@@ -168,7 +172,7 @@ test_that("Looking up wrong input throws errors in get_recorddata", {
                fixed = TRUE)
 
   expect_error(get_recorddata(indicatorTypeIds = "Wrong"),
-               regexp = "Location(s) 'Wrong' not found. Check get_indicators()",
+               regexp = "Location(s) 'Wrong' not found. Check get_indicatortypes()",
                fixed = TRUE)
 
   expect_error(get_recorddata(subGroupIds = "Wrong"),

@@ -13,7 +13,7 @@
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
 #'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_indicators}} function to see the available options;
+#'   Run the \code{\link{get_indicatortypes}} function to see the available options;
 #'   \item{\code{isComplete}} -- isComplete;
 #'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
 #'   \code{\link{get_locations}} function to see the available options;
@@ -134,7 +134,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' \code{\link{get_dataprocess}} function to see the available options;
 #' TODOOOOOOOOOOOOO!!
 #' @param indicatorType Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{get_indicators}} function to see the available options;
+#' \code{\link{get_indicatortypes}} function to see the available options;
 #' @param locIds Location ID as defined by the UNPD. Run the
 #' \code{\link{get_locations}} function to see the available options;
 #' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
@@ -224,7 +224,7 @@ build_filter <- function(dataProcessIds = NULL,
     # and exclude the empty ones
     x <- x[x != ""]
     
-    S   <- paste(paste(names(x), x, sep = "="), collapse="&")
+    S   <- paste(paste(names(x), x, sep = "="), collapse = "&")
     out <- paste0("?", S)
   } else {
     out <- ""
@@ -288,14 +288,14 @@ lookupIndicatorIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
   
-  inds <- get_indicators()
+  inds <- get_indicatortypes()
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
   # The all statement is in case you provide 2 indicators, for example
   if (all(!tolower(paramStr_low) %in% tolower(inds_code$Name))) {
     stop("Location(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check get_indicators()")
+         " not found. Check get_indicatortypes()")
   }
 
   inds_code[["PK_IndicatorTypeID"]]
