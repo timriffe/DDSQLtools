@@ -198,11 +198,40 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' @export
 get_recorddata <- function(save = FALSE, verbose = TRUE, ...) {
   res <- read_API("structureddatarecords", save, verbose = verbose, ...)
+
+  # Make sure dates are in 00/00/0000 format
+  # Note that the result is not of class date
+  # but of chr!
   res$TimeStart <- chr_to_date(res$TimeStart)
   res$TimeEnd <- chr_to_date(res$TimeEnd)
+
+  # Loop through name and id names
+  # and save the labelled character
+  # to the Name columns
+  res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
+    # Extract the columns from the df
+    nm_vec <- res[, nm]
+    id_vec <- res[, id]
+    
+    if (length(unique(nm_vec)) != length(unique(id_vec))) {
+      stop("Column ", nm, " and ", id, " have different ",
+           "unique values. Please report the exact same call that ",
+           "raised this error at https://github.com/timriffe/DDSQLtools/issues")
+    }
+
+    # Set names of id to names to pass it to labelled
+    # with correct labels
+    vct_nm <- setNames(unique(nm_vec), unique(id_vec))
+
+    # Create name column with ID as labels
+    haven::labelled(nm_vec, labels = vct_nm)
+  }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+  ## # Exclude ID columns
+  res <- res[!grepl(paste(values_env$id_to_fact, collapse = "|"), names(res))]
+
   res
 }
-
 
 #' Download data
 #' @param save Logical. Choose whether or not to save the data in an external 
@@ -234,7 +263,6 @@ read_API <- function(type, save, verbose = FALSE, ...){
   }
   out
 }
-
 
 chr_to_date <- function(x) {
   x <- gsub("\\s{1}.+$", "", x)

@@ -372,3 +372,28 @@ lookupIsCompleteIds <- function(paramStr) {
 
   res
 }
+
+values_env <- new.env()
+
+# Columns to turn into labelled factors
+values_env$id_to_fact <- c(AreaName = "AreaID",
+                           DataCatalogName = "DataCatalogID",
+                           DataReliabilityName = "DataReliabilityID",
+                           SubGroupName = "PK_SubGroupID",
+                           ## DataSourceName = "DataSourceID",
+                           DataStatusName = "DataStatusID", 
+                           DataTypeName = "DataTypeID",
+                           DataTypeGroupName = "DataTypeGroupID", 
+                           IndicatorName = "IndicatorID",
+                           LocName = "LocID",
+                           LocAreaTypeName = "LocAreaTypeID", 
+                           LocTypeName = "LocTypeID",
+                           ModelPatternName = "ModelPatternID", 
+                           ModelPatternFamilyName = "ModelPatternFamilyID",
+                           PeriodGroupName = "PeriodGroupID", 
+                           PeriodTypeName = "PeriodTypeID",
+                           RegName = "RegID",
+                           SexName = "SexID", 
+                           StatisticalConceptName = "StatisticalConceptID",
+                           SubGroupTypeName = "SubGroupTypeID"
+                           )
