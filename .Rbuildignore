@@ -13,3 +13,5 @@ devdata
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^doc$
+^Meta$

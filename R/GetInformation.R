@@ -221,7 +221,7 @@ get_recorddata <- function(save = FALSE, verbose = TRUE, ...) {
 
     # Set names of id to names to pass it to labelled
     # with correct labels
-    vct_nm <- setNames(unique(nm_vec), unique(id_vec))
+    vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
 
     # Create name column with ID as labels
     haven::labelled(nm_vec, labels = vct_nm)
@@ -265,7 +265,7 @@ read_API <- function(type, save, verbose = FALSE, ...){
 }
 
 chr_to_date <- function(x) {
-  x <- gsub("\\s{1}.+$", "", x)
-  x <- format(as.Date(x, format = "%m/%d/%Y"), format = "%d/%m/%Y")
+  x <- gsub("T.+$", "", x)
+  x <- format(as.Date(x, format = "%F"), format = "%d/%m/%Y")
   x
 }

@@ -159,7 +159,6 @@ validate_date <- function(res) {
   # Test that the structure is 2 digits / 2 digits / 4 digits
   expect_true(all(grepl("[0-9]{2}/[0-9]{2}/[0-9]{4}", res$TimeStart)))
   expect_true(all(grepl("[0-9]{2}/[0-9]{2}/[0-9]{4}", res$TimeEnd)))
-
 }
 
 test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/MM/YYYY formats", {
