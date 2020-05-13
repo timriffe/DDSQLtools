@@ -15,7 +15,7 @@
 ##' }
 ##'
 ##' @keywords internal 
-extract_data <- function(ids, save = FALSE) {
+extract_data <- function(ids, save_file = FALSE) {
   len_ids <- length(ids)
 
   if (len_ids > 200) {
@@ -30,7 +30,7 @@ extract_data <- function(ids, save = FALSE) {
         if (i > 1) seq_ch[1] <- seq_ch[1] + 1
         id_chunk <- ids[seq_ch[1]:seq_ch[2]]
         read_API("structureddatarecords",
-                 save = save,
+                 save_file = save_file,
                  verbose = FALSE,
                  ids = id_chunk)
       })
@@ -44,7 +44,7 @@ extract_data <- function(ids, save = FALSE) {
 
   cat(paste0("\r\r Reading chunks: [0/1]"))  
   collapsed_res <- read_API("structureddatarecords",
-                            save = save,
+                            save_file = save_file,
                             verbose = FALSE,
                             ids = ids)
 
@@ -65,9 +65,9 @@ extract_data <- function(ids, save = FALSE) {
 #' }
 #' 
 #' @export
-get_locations <- function(save = FALSE, ...) {
+get_locations <- function(save_file = FALSE, ...) {
   
-  read_API("locations", save, ...)
+  read_API("locations", save_file, ...)
 }
 
 
@@ -83,9 +83,9 @@ get_locations <- function(save = FALSE, ...) {
 #' P
 #' }
 #' @export
-get_locationtypes <- function(save = FALSE, ...) {
+get_locationtypes <- function(save_file = FALSE, ...) {
   
-  read_API("locareatypes", save, ...)
+  read_API("locareatypes", save_file, ...)
 }
 
 
@@ -101,9 +101,9 @@ get_locationtypes <- function(save = FALSE, ...) {
 #' S
 #' }
 #' @export
-get_subgroups <- function(save = FALSE, ...) {
+get_subgroups <- function(save_file = FALSE, ...) {
   
-  read_API("subGroups", save, ...)
+  read_API("subGroups", save_file, ...)
 }
 
 
@@ -115,9 +115,9 @@ get_subgroups <- function(save = FALSE, ...) {
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
-get_indicatortypes <- function(save = FALSE, ...) {
+get_indicatortypes <- function(save_file = FALSE, ...) {
   
-  read_API("indicatortypes", save, ...)
+  read_API("indicatortypes", save_file, ...)
 }
 
 #' Get information about available indicators (IndicatorID)
@@ -128,9 +128,9 @@ get_indicatortypes <- function(save = FALSE, ...) {
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
-get_indicators <- function(save = FALSE, ...) {
+get_indicators <- function(save_file = FALSE, ...) {
   
-  read_API("indicators", save, ...)
+  read_API("indicators", save_file, ...)
 }
 
 
@@ -143,9 +143,9 @@ get_indicators <- function(save = FALSE, ...) {
 #' }
 
 #' @export
-get_dataprocess <- function(save = FALSE, ...) {
+get_dataprocess <- function(save_file = FALSE, ...) {
   
-  read_API("dataProcessTypes", save, ...)
+  read_API("dataProcessTypes", save_file, ...)
 }
 
 #' Get information about available details for a given series of data
@@ -161,16 +161,24 @@ get_dataprocess <- function(save = FALSE, ...) {
 #' G
 #' }
 #' @export
-get_seriesdata <- function(save = FALSE, ...) {
+get_seriesdata <- function(save_file = FALSE, ...) {
   
-  read_API("structureddataseries", save, ...)
+  read_API("structureddataseries", save_file, ...)
 }
-
 
 #' Download data from UNPD portal
 #' @inheritParams read_API
 #' @param verbose Whether to print the translated query from strings to digits
 #' for faster queries. By default set to TRUE.
+#'
+#' @details
+#' Once the data is read from the API, some transformations are applied:
+#'
+#' \itemize{
+#' \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are convert to labelled factors with \code{\link[haven]{labelled}}}
+#' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
+#' }
+#' 
 #' @examples
 #'
 #' \dontrun{
@@ -196,8 +204,11 @@ get_seriesdata <- function(save = FALSE, ...) {
 #' }
 #' 
 #' @export
-get_recorddata <- function(save = FALSE, verbose = TRUE, ...) {
-  res <- read_API("structureddatarecords", save, verbose = verbose, ...)
+get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
+  res <- read_API("structureddatarecords",
+                  save_file = save_file,
+                  verbose = verbose,
+                  ...)
 
   # Make sure dates are in 00/00/0000 format
   # Note that the result is not of class date
@@ -228,18 +239,18 @@ get_recorddata <- function(save = FALSE, verbose = TRUE, ...) {
   }, names(values_env$id_to_fact), values_env$id_to_fact)
 
   ## # Exclude ID columns
-  res <- res[!grepl(paste(values_env$id_to_fact, collapse = "|"), names(res))]
+  res <- res[values_env$col_order]
 
   res
 }
 
 #' Download data
-#' @param save Logical. Choose whether or not to save the data in an external 
+#' @param save_file Logical. Choose whether or not to save the data in an external 
 #' \code{.Rdata} file in the working directory. Default: 
 #' \code{FALSE};
 #' @inheritParams linkGenerator
 #' @keywords internal
-read_API <- function(type, save, verbose = FALSE, ...){
+read_API <- function(type, save_file, verbose = FALSE, ...) {
   P <- linkGenerator(type = type, verbose_print = verbose, ...)
   # Temporary, just to check how the URL is constructed
   print(P)
@@ -257,7 +268,7 @@ read_API <- function(type, save, verbose = FALSE, ...){
 
   out <- format.numeric.colums(out)
 
-  if (save) {
+  if (save_file) {
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
   }

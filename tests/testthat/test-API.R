@@ -231,9 +231,9 @@ test_that("extract_data returns the correct data when link is too long", {
   }
 
   tst <- read_API("structureddatacriteria",
-                  save = FALSE,
+                  save_file = FALSE,
                   locIds = 4, # Afghanistan
-                  indicatorIDs = c(60, 58), # Two indicators
+                  indicatorIds = c(60, 58), # Two indicators
                   includeDataIDs = "true"
                   )
 
@@ -263,4 +263,30 @@ test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY
   expect_equal(10, unique(nchar(res$TimeStart)))
   expect_equal(10, unique(nchar(res$TimeEnd)))
 
+})
+
+test_that("isComplete is set to 'Total' by default", {
+  myLocations <- 28
+  # A request without specifying `isComplete`
+
+  births <- get_recorddata(dataProcessIds = 9,
+                           startYear = 1920,
+                           endYear = 2020,
+                           indicatorTypeIds = 14,
+                           locIds = myLocations,
+                           locAreaTypeIds = 2,
+                           subGroupIds = 2)
+
+  # Same request specifying that it's complete is set to 'Total' (2)
+  births_iscomplete <- get_recorddata(dataProcessIds = 9,
+                                      startYear = 1920,
+                                      endYear = 2020,
+                                      indicatorTypeIds = 14,
+                                      isComplete = 2,
+                                      locIds = myLocations,
+                                      locAreaTypeIds = 2,
+                                      subGroupIds = 2)
+
+  # Both results are the same
+  expect_identical(births, births_iscomplete)
 })

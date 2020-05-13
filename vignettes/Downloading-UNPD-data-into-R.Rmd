@@ -149,6 +149,8 @@ get_recorddata(dataProcessIds = "Register",
 
 You'll get an error saying that `DDSQLtools` could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thinkg you want to do is to copy the **optimized query** printed by `get_recorddata` that already translated the string codes to numbers.
 
+After that, you need to loop through groups of countries and make requests for each group separately. Below is the same example using base R and the `tidyverse`. On average, downloading these countries takes between 25 to 30 minutes.
+
 ##### Using base R
 
 ```{r, echo = FALSE, eval = FALSE}

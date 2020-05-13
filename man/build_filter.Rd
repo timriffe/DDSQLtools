@@ -11,7 +11,7 @@ build_filter(
   AgeStart = NULL,
   AgeEnd = NULL,
   indicatorTypeIds = NULL,
-  indicatorIDs = NULL,
+  indicatorIds = NULL,
   isComplete = NULL,
   isActive = NULL,
   locIds = NULL,

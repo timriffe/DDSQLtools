@@ -1,0 +1,319 @@
+# Make sure to install both
+
+# devtools::install_github("timriffe/DDSQLtools")
+library(DDSQLtools)
+
+## options(unpd_server = "24.239.36.16/")
+
+# install.packages("tictoc")
+library(tictoc)
+
+############################# issue 1 #########################################
+###############################################################################
+
+# Issue 1: Patrick tried downloading all of the countries (42)
+# in a single call to the API and it crashed.
+
+# Jorge: This was because there is a limit to the length
+# of the API string. We can only query a maximum of 30 countries. I've
+# added examples in the vignette showing that when exceeding 30 countries
+# users should use `lapply` or the `tidyverse` equivalent. Also added
+# this in the documentation of `get_recorddata`.
+# TODO: when 30 is confirmed, add this number in the documentation
+# of get_recorddata and in the vignette
+
+myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84,
+                 188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222,
+                 300, 558, 40, 52, 348) # 470, 620, 702, 858, 56, 780, 388, 246, 352, 591, 144, 862)
+tic()
+deaths <- get_recorddata(dataProcessIds = "Register",
+                         indicatorTypeIds = "Deaths by age and sex",
+                         locIds = myLocations,
+                         locAreaTypeIds = "Whole area",
+                         subGroupIds = "Total or All groups",
+                         isComplete = "Abridged",
+                         startYear = 1920,
+                         endYear = 2020)
+toc()
+
+deaths2 <- get_recorddata(dataProcessIds = 9, startYear = 1920, endYear = 2020, indicatorTypeIds = 20, isComplete = 0, locIds = c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84, 188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222, 300, 558, 40, 52, 348, 470), locAreaTypeIds = 2, subGroupIds = 2)
+
+# Doesn't work (only adds one location)
+myLocations <- c(28)#492,570,674,308,96,196,8,376,662,670,642,84,188,442,100,192,170,414,616,320,480,218,818,222,300,558,40,52,348,470,591)
+
+deaths <- get_recorddata(dataProcessIds = "Register",
+                         indicatorTypeIds = "Deaths by age and sex",
+                         locIds = myLocations,
+                         locAreaTypeIds = "Whole area",
+                         subGroupIds = "Total or All groups",
+                         isComplete = "Abridged",
+                         startYear = 1920,
+                         endYear = 2020)
+
+
+############################# issue 2 #########################################
+###############################################################################
+
+# Issue 2: Patrick tried downloading all of the countries
+# in issue 1 (around 42 countries) in a loop and it takes
+# a long time.
+
+# Jorge: This was because we were using a loop rather
+# than an lapply call. I've added examples on the vignette
+# on how to do this with base R and tidyverse examples,
+# giving recommendations to the users to use lapply
+# whenever the number of countries exceeds 30. In my benchmarks,
+# it takes about 26 minutes rather than half a day.
+
+# All your locations
+myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84,
+                 188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222,
+                 300, 558, 40, 52, 348, 470, 620, 702, 858, 56, 780, 388, 246,
+                 352, 591, 144, 862)
+
+tic()
+# Loop through each location with `lapply`
+deaths <- lapply(myLocations, function(x) {
+  # Measure time of beginning
+  tic()
+
+  res <- get_recorddata(dataProcessIds = 9,
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 20,
+                        isComplete = 0,
+                        locIds = x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+
+  # Print time it took to make the request
+  cat("Country", x, ":")
+  toc()
+
+  # return the result
+  res
+})
+toc()
+
+# It took 26 minutes
+
+# Merge all separate country data frames into
+# one data frame.
+deaths_bind <- do.call(rbind, deaths)
+deaths_bind
+
+############################# issue 3 #########################################
+###############################################################################
+
+# Issue 3: Patrick says we should be able to request
+# the data without specifying isComplete.
+
+# Jorge/Dennis: We've fixed this. isComplete is now set
+# to 'Total' by default, so there's no need to specify it.
+
+n_chunks <- 3
+chunk_groups <- rep(1:n_chunks, length.out = length(myLocations))
+cnty_groups <- split(myLocations, chunk_groups)
+
+# A request without specifying `isComplete`
+births <- lapply(cnty_groups, function(x) {
+
+  tic()
+  res <- get_recorddata(dataProcessIds = 9,
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 14,
+                        locIds = x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+  cat("Country", x, ": ")
+  toc()
+
+  res
+})
+
+# Same request specifying that it's complete
+births_iscomplete <- lapply(cnty_groups, function(x) {
+
+  tic()
+  res <- get_recorddata(dataProcessIds = 9,
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 14,
+                        isComplete = 2,
+                        locIds = x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+  cat("Country", x, ": ")
+  toc()
+
+  res
+})
+
+# Each request takes about 2 minutes
+births_bind <- do.call(rbind, births)
+births_iscomplete_bind <- do.call(rbind, births_iscomplete)
+
+# Both results are the same
+identical(births_bind, births_iscomplete_bind)
+
+head(births_bind)
+
+############################# issue 4 #########################################
+###############################################################################
+
+# Issue 4: get_indicators()
+# Should return the list of IndicatorID, IndicatorTypeID is something else to group IndicatorID.
+# But some of this convention currently is probably related to the API itself with Dennis, so we need to review/discuss about it.
+# Actually the list of fields to get back should be:
+# ComponentID, ComponentName, IndicatorTypeID (not labeled PK_IndicatorTypeID), IndicatorTypeName, IndicatorID IndicatorName, IndicatorShortName, SortOrder, Description
+# IndicatorShortName and Description  right now are NA!
+
+# Jorge:
+# Dennis seems to have implemented a fix to do this in the new endpoint
+# indicatorindicatortypes but it doesn't work.
+# http://24.239.36.16:9654/un3/api/indicatorindicatortypes?
+
+# Why are some of these columnas complete NA? Make sure that it comes from the API
+# or R.
+
+get_iitypes <- function(save_file = FALSE, ...) {
+  read_API("indicatorindicatortypes", save_file, ...)
+}
+
+
+############################# issue 5 #########################################
+###############################################################################
+
+# Issue 5: Patrick says that we should be able to pass both the IndicatorID
+# and the IndicatorTypeID to structureddatarecords.
+
+# Jorge: If the indicatorId only differentiates between abridged and complete,
+# I think I can build some internally to search for the indicatorIds based
+# on the isComplete parameter. However, if indicatorIds is expected to
+# have more categories or more flexibility, then we'll probably need
+# a new endpoint as Dennis mentions in the end of his comment.
+
+# Internal for Jorge:
+# get_indicators()[c("Name", "IndicatorTypeID")]
+# The only difference between indicators is whether it's abridged or complete
+# Except for Probability of dying. If it's still complete or abridged,
+# you could create a look such that whe the indicatorid is supplied,
+# you can translate it to either abridged or complete and pass it to
+# isComplete. However, we need to confirm whether the only difference
+# is abridged and complete
+
+############################# issue 6 #########################################
+###############################################################################
+
+# Where is created SeriesID? What does it mean? What is it really measuring and is
+# stable?
+
+# For this we need a call because it's a bit unclear to me.
+
+############################# issue 7 #########################################
+###############################################################################
+
+# This already comes form the API as 0. For example, search for "DataCatalogID"
+# in this request: http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
+
+# For this we need a call because it's a bit unclear to me.
+
+############################# issue 8 #########################################
+###############################################################################
+
+# Issue 8: TimeStart and TimeEnd should be date objects
+# with consistent format (DD/MM/YYY).
+
+# Jorge: This is now implemented in `get_recorddata` and added
+# to it's documentation. Any user interested in this can see
+# the format of the data by just typing ?get_recorddata
+# Just want to confirm with Dennis that the format that is coming
+# from the API is YYYY-MM-DD
+
+res <- get_recorddata(dataProcessIds = "Census",
+                      startYear = 1920,
+                      endYear = 2020,
+                      indicatorTypeIds = 7, 
+                      isComplete = "Total",
+                      locIds = "Denmark",
+                      locAreaTypeIds = "Whole area",
+                      subGroupIds = "Total or All groups")
+
+unique(res$TimeStart)
+unique(res$TimeEnd)
+
+############################# issue 9 #########################################
+###############################################################################
+
+# Issue 9: TimeStart and TimeEnd sometimes have the same
+# date and TimeDuration = 0. We will correct our SQL database
+
+# Jorge: As of 13th of May 2020, this hasn't been fixed.
+# See the result from below:
+
+res <- get_recorddata(dataProcessIds = "Census",
+                      startYear = 1920,
+                      endYear = 2020,
+                      indicatorTypeIds = 7, 
+                      isComplete = "Total",
+                      locIds = "Denmark",
+                      locAreaTypeIds = "Whole area",
+                      subGroupIds = "Total or All groups")
+
+head(res[c("TimeStart", "TimeEnd", "TimeDuration")])
+
+############################# issue 10 ########################################
+###############################################################################
+
+# Issue 10: The order of the columns is not consistent.
+
+# Jorge: I've remove most _ID columns to their name columns
+# which are now supposed to be factors. This reduced
+# the total number of columns to 70. Moreover,
+# the order of columns now reflects the order
+# in the frontend API. Let me know if the order
+# can be improved.
+
+# For example
+res <- get_recorddata(dataProcessIds = "Census",
+                      startYear = 1920,
+                      endYear = 2020,
+                      indicatorTypeIds = 7, 
+                      isComplete = "Total",
+                      locIds = "Denmark",
+                      locAreaTypeIds = "Whole area",
+                      subGroupIds = "Total or All groups")
+
+# IndicatorName and IndicatorNameID are now summarized into
+# indicatorName as a 'haven labelled factor'. 
+res$IndicatorName
+
+############################# issue 11 ########################################
+###############################################################################
+
+# Issue 11: convention for fieldnames and their use in the various R function
+# options/parameters: I think that right now you follow the style provided
+# through the SQL/API, right?  If so it is OK.
+
+# Jorge: Yes, we're following the API conventions. If needed, let us know and
+# we'll switch.
+
+############################# issue 12 ########################################
+###############################################################################
+
+# Issue 12: Get from SQL/API extra set of SortOrder fields for selected set of
+# fields:
+# * Sex
+# * Age
+# * DataProcess
+# * DataProcessType
+# * DataStatus
+# * StatisticalConcept
+# * DataReliability
+# * DataType
+# * DataSource
+
+# Jorge/Dennis: Dennis asks for which specific structured data endpoints.
+# I think this applies to all structured data endpoints but Patrick
+# might have in mind particular end points.
