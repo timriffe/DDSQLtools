@@ -4,12 +4,12 @@
 \alias{read_API}
 \title{Download data}
 \usage{
-read_API(type, save, verbose = FALSE, ...)
+read_API(type, save_file, verbose = FALSE, ...)
 }
 \arguments{
 \item{type}{Type of data. Various options are available.}
 
-\item{save}{Logical. Choose whether or not to save the data in an external 
+\item{save_file}{Logical. Choose whether or not to save the data in an external 
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 
@@ -24,8 +24,8 @@ care, this is important! The following options are available: \itemize{
   \item{\code{startYear}} -- Start year. Default: NULL;
   \item{\code{endYear}} -- End year. Default: NULL;
   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{get_indicators}} function to see the available options;
-  \item{\code{isComplete}} -- isComplete;
+  Run the \code{\link{get_indicatortypes}} function to see the available options;
+  \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{get_locations}} function to see the available options;
   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 

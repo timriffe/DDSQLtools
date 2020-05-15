@@ -10,7 +10,8 @@ test_that("The linkGenerator() works fine", {
   expect_true(is.character(L))                     # 2. The output is of the class "character";
   expect_error(linkGenerator(wrong_argument = 1))  # 3. Does not work with whatever argument in "...";
   expect_error(linkGenerator(type = "countryy"))   # 4. Is sensitive to typos;
-  expect_equal(length(strsplit(L, split = " ")[[1]]), 1) # 5. Expect no spaces in the string. 
+  expect_equal(length(strsplit(L, split = " ")[[1]]), 1) # 5. Expect no spaces in the string.
+
 })
 
 
@@ -46,6 +47,10 @@ P <- get_locationtypes(indicatorTypeIds = 8,
                        locIds = 818,
                        isComplete = 0)
 validate_read_API(P)  # validate
+
+# ------------------------------------------
+IT <- get_indicatortypes(addDefault = "false")
+validate_read_API(IT)  # validate
 
 # ------------------------------------------
 I <- get_indicators(addDefault = "false")
@@ -140,6 +145,22 @@ test_that("get_recorddata with codes gives same output with strings", {
   expect_equal(X, mixed_codes)
 })
 
+
+validate_date <- function(res) {
+  expect_type(res$TimeStart, "character")
+  expect_type(res$TimeEnd, "character")
+
+  # Here I'm testing that days, months and years have 2, 2 and 4
+  # digits. The total is 8 plus the two slashes. Here we make sure
+  # that we always have 10 characters.
+  expect_equal(10, unique(nchar(res$TimeStart)))
+  expect_equal(10, unique(nchar(res$TimeEnd)))
+
+  # Test that the structure is 2 digits / 2 digits / 4 digits
+  expect_true(all(grepl("[0-9]{2}/[0-9]{2}/[0-9]{4}", res$TimeStart)))
+  expect_true(all(grepl("[0-9]{2}/[0-9]{2}/[0-9]{4}", res$TimeEnd)))
+}
+
 test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/MM/YYYY formats", {
   res <- get_recorddata(dataProcessIds = 9, # Register
                         startYear = 1920,
@@ -150,17 +171,33 @@ test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/M
                         locAreaTypeIds = 2, # Whole area
                         subGroupIds = 2) # Total
 
-  expect_type(res$TimeStart, "character")
-  expect_type(res$TimeEnd, "character")
-
-  # Here I'm testing that days, months and years have 2, 2 and 4
-  # digits. The total is 8 plus the two slashes. Here we make sure
-  # that we always have 10 characters.
-  expect_equal(10, unique(nchar(res$TimeStart)))
-  expect_equal(10, unique(nchar(res$TimeEnd)))
-
+  validate_date(res)
 })
 
+
+test_that("get_recorddata transforms Name columns to labels", {
+  res <- get_recorddata(dataProcessIds = 9, # Register
+                        startYear = 1920,
+                        endYear = 2020,
+                        indicatorTypeIds = 14, # Births by sex
+                        isComplete = 2, # Total
+                        locIds = 28, # Antigua and Barbuda
+                        locAreaTypeIds = 2, # Whole area
+                        subGroupIds = 2) # Total
+
+  subset_names <- res[names(values_env$id_to_fact)]
+  
+  expect_true(
+    all(
+      vapply(subset_names, function(x) inherits(x, "haven_labelled"),
+             FUN.VALUE = logical(1)))
+  )
+
+  ## TODO
+  ## You might want to add another test that checks that the ID
+  ## in the label is a numeric and and value is a character
+  ## to make sure you never mix them up.
+})
 
 test_that("Looking up wrong input throws errors in get_recorddata", {
   expect_error(get_recorddata(locIds = "Wrong country"),
@@ -168,7 +205,7 @@ test_that("Looking up wrong input throws errors in get_recorddata", {
                fixed = TRUE)
 
   expect_error(get_recorddata(indicatorTypeIds = "Wrong"),
-               regexp = "Location(s) 'Wrong' not found. Check get_indicators()",
+               regexp = "Location(s) 'Wrong' not found. Check get_indicatortypes()",
                fixed = TRUE)
 
   expect_error(get_recorddata(subGroupIds = "Wrong"),
@@ -194,9 +231,9 @@ test_that("extract_data returns the correct data when link is too long", {
   }
 
   tst <- read_API("structureddatacriteria",
-                  save = FALSE,
+                  save_file = FALSE,
                   locIds = 4, # Afghanistan
-                  indicatorIDs = c(60, 58), # Two indicators
+                  indicatorIds = c(60, 58), # Two indicators
                   includeDataIDs = "true"
                   )
 
@@ -226,4 +263,30 @@ test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY
   expect_equal(10, unique(nchar(res$TimeStart)))
   expect_equal(10, unique(nchar(res$TimeEnd)))
 
+})
+
+test_that("isComplete is set to 'Total' by default", {
+  myLocations <- 28
+  # A request without specifying `isComplete`
+
+  births <- get_recorddata(dataProcessIds = 9,
+                           startYear = 1920,
+                           endYear = 2020,
+                           indicatorTypeIds = 14,
+                           locIds = myLocations,
+                           locAreaTypeIds = 2,
+                           subGroupIds = 2)
+
+  # Same request specifying that it's complete is set to 'Total' (2)
+  births_iscomplete <- get_recorddata(dataProcessIds = 9,
+                                      startYear = 1920,
+                                      endYear = 2020,
+                                      indicatorTypeIds = 14,
+                                      isComplete = 2,
+                                      locIds = myLocations,
+                                      locAreaTypeIds = 2,
+                                      subGroupIds = 2)
+
+  # Both results are the same
+  expect_identical(births, births_iscomplete)
 })

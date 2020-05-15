@@ -1,5 +1,6 @@
 # DDSQLtools
 
+[![R build status](https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg)](https://github.com/timriffe/DDSQLtools)
 [![Build Status](https://travis-ci.org/timriffe/DDSQLtools.svg?branch=master)](https://travis-ci.org/timriffe/DDSQLtools)
 [![Build status](https://ci.appveyor.com/api/projects/status/79gd3yfnim3m6m5v?svg=true)](https://ci.appveyor.com/project/timriffe/ddsqltools)
 [![codecov](https://codecov.io/gh/timriffe/DDSQLtools/branch/master/graph/badge.svg)](https://codecov.io/gh/timriffe/DDSQLtools) 

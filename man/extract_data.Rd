@@ -4,12 +4,12 @@
 \alias{extract_data}
 \title{Request data records directly from their ID}
 \usage{
-extract_data(ids, save = FALSE)
+extract_data(ids, save_file = FALSE)
 }
 \arguments{
 \item{ids}{a character vector of ID's that identify each data point}
 
-\item{save}{Logical. Choose whether or not to save the data in an external 
+\item{save_file}{Logical. Choose whether or not to save the data in an external 
 \code{.Rdata} file in the working directory. Default: 
 \code{FALSE};}
 }

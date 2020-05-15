@@ -13,8 +13,8 @@
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
 #'   \item{\code{endYear}} -- End year. Default: NULL;
 #'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_indicators}} function to see the available options;
-#'   \item{\code{isComplete}} -- isComplete;
+#'   Run the \code{\link{get_indicatortypes}} function to see the available options;
+#'   \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
 #'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
 #'   \code{\link{get_locations}} function to see the available options;
 #'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
@@ -90,7 +90,8 @@ linkGenerator <- function(server = getOption("unpd_server",
              "DataTypes",
              "DefaultKeys",
              "Indicators",
-             "IndicatorTypes",
+             "Indicatortypes",
+             ## "IndicatorIndicatortypes",
              "locAreaTypes",
              "Locations",
              "PeriodGroups",
@@ -134,7 +135,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' \code{\link{get_dataprocess}} function to see the available options;
 #' TODOOOOOOOOOOOOO!!
 #' @param indicatorType Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{get_indicators}} function to see the available options;
+#' \code{\link{get_indicatortypes}} function to see the available options;
 #' @param locIds Location ID as defined by the UNPD. Run the
 #' \code{\link{get_locations}} function to see the available options;
 #' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
@@ -149,7 +150,7 @@ build_filter <- function(dataProcessIds = NULL,
                          AgeStart = NULL,
                          AgeEnd = NULL,
                          indicatorTypeIds = NULL,
-                         indicatorIDs = NULL,
+                         indicatorIds = NULL,
                          isComplete = NULL,
                          isActive = NULL,
                          locIds = NULL,
@@ -224,7 +225,7 @@ build_filter <- function(dataProcessIds = NULL,
     # and exclude the empty ones
     x <- x[x != ""]
     
-    S   <- paste(paste(names(x), x, sep = "="), collapse="&")
+    S   <- paste(paste(names(x), x, sep = "="), collapse = "&")
     out <- paste0("?", S)
   } else {
     out <- ""
@@ -288,14 +289,14 @@ lookupIndicatorIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
   
-  inds <- get_indicators()
+  inds <- get_indicatortypes()
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
   # The all statement is in case you provide 2 indicators, for example
   if (all(!tolower(paramStr_low) %in% tolower(inds_code$Name))) {
     stop("Location(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check get_indicators()")
+         " not found. Check get_indicatortypes()")
   }
 
   inds_code[["PK_IndicatorTypeID"]]
@@ -372,3 +373,99 @@ lookupIsCompleteIds <- function(paramStr) {
 
   res
 }
+
+values_env <- new.env()
+
+# Columns to turn into labelled factors
+values_env$id_to_fact <- c(AreaName = "AreaID",
+                           ## DataCatalogName = "DataCatalogID",
+                           DataReliabilityName = "DataReliabilityID",
+                           SubGroupName = "PK_SubGroupID",
+                           ## DataSourceName = "DataSourceID",
+                           DataStatusName = "DataStatusID", 
+                           DataTypeName = "DataTypeID",
+                           DataTypeGroupName = "DataTypeGroupID", 
+                           IndicatorName = "IndicatorID",
+                           LocName = "LocID",
+                           LocAreaTypeName = "LocAreaTypeID", 
+                           LocTypeName = "LocTypeID",
+                           ModelPatternName = "ModelPatternID", 
+                           ModelPatternFamilyName = "ModelPatternFamilyID",
+                           PeriodGroupName = "PeriodGroupID", 
+                           PeriodTypeName = "PeriodTypeID",
+                           RegName = "RegID",
+                           SexName = "SexID", 
+                           StatisticalConceptName = "StatisticalConceptID",
+                           SubGroupTypeName = "SubGroupTypeID"
+                           )
+
+values_env$col_order <- c("IndicatorName",
+                          "LocName",
+                          "PK_StructuredDataID",
+                          "LocTypeName",
+                          "RegName",
+                          "AreaName",
+                          "LocAreaTypeName",
+                          "SubGroupTypeName",
+                          "SubGroupID1",
+                          "SubGroupName",
+                          "SubGroupCombinationID",
+                          "SubGroupTypeSortOrder",
+                          "IndicatorShortName",
+                          "DataCatalogID",
+                          "DataProcessTypeID",
+                          "PK_DataProcessTypeID",
+                          "DataProcessType",
+                          "PK_DataProcessID",
+                          "DataProcess",
+                          "DataCatalogName",
+                          "DataCatalogShortName",
+                          "ReferencePeriod",
+                          "ReferenceYearStart",
+                          "ReferenceYearEnd",
+                          "ReferenceYearMid",
+                          "FieldWorkStart",
+                          "FieldWorkEnd",
+                          "FieldWorkMiddle",
+                          "DataCatalogNote",
+                          "DataSourceID",
+                          "DataSourceAuthor",
+                          "DataSourceYear",
+                          "DataSourceName",
+                          "DataSourceShortName",
+                          "DataStatusName",
+                          "StatisticalConceptName",
+                          "SexName",
+                          "AgeID",
+                          "AgeUnit",
+                          "AgeStart",
+                          "AgeEnd",
+                          "AgeSpan",
+                          "AgeMid",
+                          "AgeLabel",
+                          "agesort",
+                          "DataTypeGroupName",
+                          "DataTypeName",
+                          "ModelType",
+                          "ModelPatternFamilyName",
+                          "ModelPatternName",
+                          "DataReliabilityName",
+                          "PeriodTypeName",
+                          "PeriodGroupName",
+                          "PeriodStart",
+                          "PeriodEnd",
+                          "PeriodSpan",
+                          "PeriodMiddle",
+                          "Weight",
+                          "TimeReferenceID",
+                          "TimeUnit",
+                          "TimeStart",
+                          "TimeEnd",
+                          "TimeDuration",
+                          "TimeMid",
+                          "TimeLabel",
+                          "StaffMemberID",
+                          "FootNoteID",
+                          "id",
+                          "SeriesID",
+                          "DataValue")

@@ -20,7 +20,7 @@ do_smoothing(
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{method}{character string. Options include \code{"Carrier-Farrag"},\code{"Arriaga"},\code{"Karup-King-Newton"},\code{"United Nations"}, \code{"Strong"}, and \code{"Zigzag"}. See details. Default \code{"Carrier-Farrag"}.}
+\item{method}{character string. Options include \code{"Carrier-Farrag"},\code{"Arriaga"},\code{"KKN"},\code{"United Nations"}, \code{"Strong"}, and \code{"Zigzag"}. See details. Default \code{"Carrier-Farrag"}.}
 
 \item{ageMin}{integer. The lowest age included included in intermediate adjustment. Default 10. Only relevant for Strong method.}
 
@@ -48,7 +48,7 @@ of values in the youngest and oldest age groups for the Carrier-Farrag, Karup-Ki
 and United Nations methods.
 }
 \details{
-The Carrier-Farrag, Karup-King-Newton, and Arriaga methods do not modify the totals
+The Carrier-Farrag, Karup-King-Newton (KKN), and Arriaga methods do not modify the totals
 in each 10-year age group, whereas the United Nations, Strong, Zigzag, and moving average (MAV) methods do. The age intervals
 of input data could be any integer structure (single, abridged, 5-year, other), but
 output is always in 5-year age groups. All methods except the United Nations and MAV methods

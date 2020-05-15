@@ -13,3 +13,6 @@ devdata
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^doc$
+^Meta$
+^\.github/workflows/R-CMD-check\.yaml$
