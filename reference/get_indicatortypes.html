@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request data records directly from their ID — extract_data • DDSQLtools</title>
+<title>Get information about available indicators (IndicatorTypeID) — get_indicatortypes • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Request data records directly from their ID — extract_data" />
-<meta property="og:description" content="Request data records directly from their ID" />
+<meta property="og:title" content="Get information about available indicators (IndicatorTypeID) — get_indicatortypes" />
+<meta property="og:description" content="Get information about available indicators (IndicatorTypeID)" />
 
 
 
@@ -120,44 +120,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request data records directly from their ID</h1>
+    <h1>Get information about available indicators (IndicatorTypeID)</h1>
     <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/GetInformation.R'><code>R/GetInformation.R</code></a></small>
-    <div class="hidden name"><code>extract_data.Rd</code></div>
+    <div class="hidden name"><code>get_indicatortypes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Request data records directly from their ID</p>
+    <p>Get information about available indicators (IndicatorTypeID)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_data</span>(<span class='no'>ids</span>, <span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_indicatortypes</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>ids</th>
-      <td><p>a character vector of ID's that identify each data point</p></td>
-    </tr>
     <tr>
       <th>save_file</th>
       <td><p>Logical. Choose whether or not to save the data in an external 
 <code>.Rdata</code> file in the working directory. Default: 
 <code>FALSE</code>;</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
+care, this is important! The following options are available:</p><ul>
+<li><p><code>dataProcessIds</code> -- Data process ID as defined by the UNPD. 
+  Run the <code>get_dataprocess</code> function to see the available 
+  options;</p></li>
+<li><p><code>startYear</code> -- Start year. Default: NULL;</p></li>
+<li><p><code>endYear</code> -- End year. Default: NULL;</p></li>
+<li><p><code>indicatorTypeIds</code> -- Indicator type ID as defined by the UNPD. 
+  Run the <code>get_indicatortypes</code> function to see the available options;</p></li>
+<li><p><code>isComplete</code> -- isComplete is set to `2` ('Total') by default on the API;</p></li>
+<li><p><code>locIds</code> -- Location ID as defined by the UNPD. Run the
+  <code>get_locations</code> function to see the available options;</p></li>
+<li><p><code>locAreaTypeIds</code> -- Location area type ID as defined by the UNPD. 
+  Run the <code>get_locationtypes</code> function to see the available 
+  options;</p></li>
+<li><p><code>subGroupIds</code> -- SubGroup ID as defined by the UNPD. Run the 
+  <code>get_subgroups</code> function to see the available options;</p></li>
+<li><p><code>addDefault</code> -- Logical. Default: FALSE;</p></li>
+<li><p><code>includeDependencies</code> -- Logical. Default: FALSE;</p></li>
+<li><p><code>includeFormerCountries</code> -- Logical. Default: FALSE.</p></li>
+</ul></td>
+    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A data frame with the same rows as the number of ID's containing
-the data values for that specific ID.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># TODO: Add good example once the data filtering of all data available</span>
-<span class='co'># is ready.</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>extractData</span>(<span class='st'>"35444654"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'>get_indicatortypes</span>(<span class='kw'>addDefault</span> <span class='kw'>=</span> <span class='st'>"false"</span>)
+<span class='no'>I</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"PK_IndicatorTypeID"</span>, <span class='st'>"Name"</span>, <span class='st'>"ShortName"</span>)]
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
