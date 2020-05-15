@@ -3,8 +3,6 @@
 # devtools::install_github("timriffe/DDSQLtools")
 library(DDSQLtools)
 
-## options(unpd_server = "24.239.36.16/")
-
 # install.packages("tictoc")
 library(tictoc)
 
@@ -159,6 +157,22 @@ identical(births_bind, births_iscomplete_bind)
 
 head(births_bind)
 
+## get_rd <- function(save_file = FALSE, verbose = TRUE, ...) {
+##   read_API("structuredDataRecordsAdditional",
+##            save_file = save_file,
+##            verbose = verbose,
+##            ...)
+## }
+
+## res <- get_rd(dataProcessIds = 9,
+##               startYear = 1920,
+##               endYear = 2020,
+##               indicatorTypeIds = 14,
+##               isComplete = 2,
+##               locIds = 28,
+##               locAreaTypeIds = 2,
+##               subGroupIds = 2)
+
 ############################# issue 4 #########################################
 ###############################################################################
 
@@ -203,6 +217,8 @@ get_iitypes <- function(save_file = FALSE, ...) {
 # isComplete. However, we need to confirm whether the only difference
 # is abridged and complete
 
+# TODO: send an example where all of these fields are empty
+
 ############################# issue 6 #########################################
 ###############################################################################
 
@@ -211,11 +227,14 @@ get_iitypes <- function(save_file = FALSE, ...) {
 
 # For this we need a call because it's a bit unclear to me.
 
+# Dennis just needs to delete the two internal keys the ID and the PK_ID
+
 ############################# issue 7 #########################################
 ###############################################################################
 
 # This already comes form the API as 0. For example, search for "DataCatalogID"
-# in this request: http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
+# in this request:
+# http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
 
 # For this we need a call because it's a bit unclear to me.
 
@@ -299,6 +318,10 @@ res$IndicatorName
 # Jorge: Yes, we're following the API conventions. If needed, let us know and
 # we'll switch.
 
+# TODO: when Dennis adds the sortOrder, just add the sortorder after
+# the equivalent column name. The most elegant thing would be to
+# put them as an extra attribute into the haven factor.
+
 ############################# issue 12 ########################################
 ###############################################################################
 
@@ -317,3 +340,61 @@ res$IndicatorName
 # Jorge/Dennis: Dennis asks for which specific structured data endpoints.
 # I think this applies to all structured data endpoints but Patrick
 # might have in mind particular end points.
+
+############################# Summary of points ###############################
+###############################################################################
+
+## I've made a full recap of all 12 points and flagged the complete ones and the incomplete ones:
+
+## Issue 1: Fixed
+##  * Patrick tried downloading all of the countries (42) in a single call to the API and it crashed.
+## * Jorge: This was because there is a limit to the length of the API string. We can only query a maximum of 30 countries. I've added examples in the vignette showing that when exceeding 30 countries users should use `lapply` or the `tidyverse` equivalent. Also added this in the documentation of `get_recorddata`.
+
+## Issue 2: Fixed* Patrick tried downloading all of the countries in issue 1 (around 42 countries) in a loop and it takes a long time.
+## * Jorge: This was because we were using a loop rather than an lapply call. I've added examples on the vignette on how to do this with base R and tidyverse examples, giving recommendations to the users to use lapply whenever the number of countries exceeds 30. In my benchmarks, it takes about 26 minutes rather than half a day.
+
+## Issue 3: Fixed* Patrick says we should be able to request the data without specifying isComplete.
+## * Jorge: We've fixed this. isComplete is now set to 'Total' by default, so there's no need to specify it.
+
+## Issue 4: TODO
+## * Patrick says get_indicators() should return the list of IndicatorID as IndicatorTypeID is something else to group IndicatorID. But some of this convention currently is probably related to the API itself with Dennis, so we need to review/discuss about it. Actually the list of fields to get back should be: ComponentID, ComponentName, IndicatorTypeID (not labeled PK_IndicatorTypeID), IndicatorTypeName, IndicatorID IndicatorName, IndicatorShortName, SortOrder, Description IndicatorShortName and Description  right now are NA!
+## * Jorge: Dennis seems to have implemented a fix to do this in the new endpoint indicatorindicatortypes but it's not up to date right now: http://24.239.36.16:9654/un3/api/indicatorindicatortypes?
+
+## Issue 5: TODO* Patrick says that we should be able to pass both the IndicatorID and the IndicatorTypeID to structureddatarecords.
+## * Jorge: If the indicatorId only differentiates between abridged and complete, I think I can build some internally to search for the indicatorIds based on the isComplete parameter. However, if indicatorIds is expected to have more categories or more flexibility, then we'll probably need a new endpoint as Dennis mentioned.
+
+## Issue 6: TODO
+## * Patrick: The recordset returned in R includes some fields that either should not be there, or should be labelled differently, and in any case currently have only 0 while they should have real values:
+## agesort id PK_SubGroupID PK_SubGroupTypeID PK_DataProcessID PK_DataProcessTypeID
+## For ages, SQL has already a field for SortOrder.
+## For id, it is unclear what this is about. I presume it refers to dynamic IDs created by the SQL/API. Currently it is only with 0 in R, and in anycase it shoud be a more meaningful name if it refers to a series ID, may be SeriesID.  Ideally it would be best if such SeriesID would be stable and between different queries return the same ID for the same specific combination of keys.  I don’t think it is currently the case.
+## PK_SubGroupID PK_SubGroupTypeID PK_DataProcessTypeID: these fields are unenecssary since you have the right version without PK_ prefix already with the right values
+## DataProcessID is missing and PK_DataProcessID currently has 0 and should not appear.
+## All SQL fields with PK_ prefix must be simplified without PK_ prefix.
+## * Jorge: For this one we need to discuss because it's not clear what the next step to fix this is. We probably need to iterate what the best solution is for the design of the API.
+
+## Issue 7: TODO
+## Patrick: DataCatalogID is only currently returning 0 which should never happen.  The value should always be > 0.Jorge: Same as issue 6. Dennis has an extensive response which suggests that this more related to the design of the API. We need to discuss this in our talk.
+
+## Issue 8: Fixed
+## * Patrick: TimeStart and TimeEnd should be date objects with consistent format (DD/MM/YYY).
+## * Jorge: This is now implemented in `get_recorddata` and added to it's documentation. Any user interested in this can see the format of the data by just typing ?get_recorddata. @Dennis, just to confirm 100%, the date format coming from the API is YYYY-MM-DD?
+## Issue 9: TODOPatrick: TimeStart and TimeEnd sometimes have the same date and TimeDuration = 0. We will correct our SQL databaseJorge: As of today, this still happens.
+## Issue 10: Fixed
+## * Patrick: The order of the columns is not consistent.
+## * Jorge: I've remove most _ID columns to their equivalent _Name columns which are now haven labelled factors. This reduced the total number of columns to 70. Moreover, the order of columns now reflects the order in the frontend API. Let me know if the order can be improved. I've included a section in the vignette of the package showing how to work with these factors to see the equivalent values/strings. These have examples in base R and `tidyverse`.
+## Issue 11: FixedPatrick: convention for fieldnames and their use in the various R function options/parameters: I think that right now you follow the style provided through the SQL/API, right?  If so it is OK.
+## Jorge: Yes, we're following the API conventions
+## Issue 12: TODO
+## Patric: We need from SQL/API extra set of SortOrder fields for selected set of fields:
+## * Sex
+## * Age
+## * DataProcess
+## * DataProcessType
+## * DataStatus
+## * StatisticalConcept
+## * DataReliability
+## * DataType
+## * DataSource
+
+## Jorge: Dennis asks which specific structured data endpoints need this. I think this applies to all structured data endpoints but Patrick might have in mind particular end points.

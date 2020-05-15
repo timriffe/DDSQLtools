@@ -153,7 +153,7 @@ After that, you need to loop through groups of countries and make requests for e
 
 ##### Using base R
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, eval = FALSE}
 myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
                  376, 662, 670, 642, 84, 188, 442, 100,
                  192, 170, 414, 616, 320, 480, 218,
@@ -190,7 +190,7 @@ head(deaths)
 ```
 
 ##### Using the tidyverse
-```{r, echo = FALSE, eval = FALSE}
+```{r, eval = FALSE}
 library(tidyverse)
 
 myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
