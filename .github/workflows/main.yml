@@ -105,6 +105,10 @@ jobs:
           sudo apt install ccache libcurl4-openssl-dev
           mkdir -p ~/.R && echo -e 'CC=ccache gcc -std=gnu99\nCXX=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
 
+      - name: "Install XQuartz on macOS"
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+
       # install ccache and write config file
       # mirror the setup described in https://github.com/rmacoslib/r-macos-rtools
       - name: "[macOS] ccache"
