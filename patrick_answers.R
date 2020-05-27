@@ -236,7 +236,8 @@ get_iitypes <- function(save_file = FALSE, ...) {
 # in this request:
 # http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
 
-# For this we need a call because it's a bit unclear to me.
+# Jorge: This is already fixed. I've added a test checking that
+# DataCatalogID is never NA
 
 ############################# issue 8 #########################################
 ###############################################################################
