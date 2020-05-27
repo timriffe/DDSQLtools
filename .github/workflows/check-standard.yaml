@@ -36,6 +36,10 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install XQuartz on macOS
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+
       - name: Query dependencies
         run: |
           install.packages('remotes', repos = "http://cran.us.r-project.org")
@@ -77,6 +81,3 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
-      - name: Install XQuartz on macOS
-        if: runner.os == 'macOS'
-        run: brew cask install xquartz
