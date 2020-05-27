@@ -68,6 +68,7 @@ jobs:
           r["CRAN"] <- "http://cran.r-project.org" 
           options(repos=r)
           install.packages(c("ungroup", "MortalityLaws"))
+          remotes::install_github("timriffe/DemoTools")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
