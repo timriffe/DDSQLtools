@@ -72,7 +72,7 @@ jobs:
           r <- getOption("repos")
           r["CRAN"] <- "http://cran.r-project.org" 
           options(repos=r)
-          install.packages(c("ungroup", "MortalityLaws"))
+          install.packages("MortalityLaws")
           remotes::install_github("timriffe/DemoTools")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
