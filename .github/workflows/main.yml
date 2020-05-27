@@ -111,7 +111,11 @@ jobs:
 
       - name: "[Linux] rgl external software"
         if: runner.os == 'Linux'
-        run: sudo apt-get install libglu1-mesa-dev
+        run: |
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libfreetype6-dev
+          sudo apt-get install libftgl-dev
+          sudo apt-get install mesa-common-dev
 
       # install ccache and write config file
       # mirror the setup described in https://github.com/rmacoslib/r-macos-rtools
