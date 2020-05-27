@@ -112,7 +112,7 @@ jobs:
           sudo apt install ccache libcurl4-openssl-dev
           mkdir -p ~/.R && echo -e 'CC=ccache gcc -std=gnu99\nCXX=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
 
-      - name: "[Linux] ccache"
+      - name: "[Linux] rgl external software"
         if: runner.os == 'Linux'
         run: sudo apt install apt-libglu1-mesa-dev
 
