@@ -27,7 +27,7 @@ Suggests:
     tidyverse
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Remotes: timriffe/DemoTools
 Encoding: UTF-8
 VignetteBuilder: knitr
