@@ -74,6 +74,9 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date '+%d-%m')"
 
+      - name: "Set CRAN repo in .Rprofile"
+        run echo "options(repos = c(CRAN = 'https://cran.rstudio.com'))" >.Rprofile
+
       - name: "[Cache] Prepare weekly timestamp for cache"
         if: runner.os != 'Windows'
         id: datew
