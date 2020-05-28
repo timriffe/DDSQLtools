@@ -26,6 +26,12 @@ validate_read_API <- function(Z) {
   })
 }
 
+validate_recordddata <- function(x) {
+  validate_read_API(x)  # validate
+  # Test there aren't any NA in DataCatalogID
+  expect_true(!any(is.na(x$DataCatalogID)))
+}
+
 # ------------------------------------------
 D <- get_dataprocess()
 validate_read_API(D)  # validate
@@ -75,7 +81,7 @@ X <- get_recorddata(dataProcessIds = 2,   # Census
                     subGroupIds = 2,      # Total or All groups
                     isComplete = 0)       # Age Distribution: Abridged
 
-validate_read_API(X)  # validate
+validate_recordddata(X)  # validate
 
 # Check whether it successfully accepts strings rather than codes
 Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
@@ -85,7 +91,7 @@ Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
                     subGroupIds = "Total or All groups",      # Total or All groups
                     isComplete = "Abridged")       # Age Distribution: Abridged
 
-validate_read_API(Y)  # validate
+validate_recordddata(Y)
 
 # Check whether it successfully mixed cases
 mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
@@ -95,8 +101,7 @@ mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
                         subGroupIds = "Total or All groups",      # Total or All groups
                         isComplete = "Abridged")       # Age Distribution: Abridged
 
-validate_read_API(mixed)  # validate
-
+validate_recordddata(mixed)  # validate
 
 # mixed with codes
 mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
@@ -106,7 +111,7 @@ mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
                               subGroupIds = "Total or All groups",      # Total or All groups
                               isComplete = "Abridged")       # Age Distribution: Abridged
 
-validate_read_API(mixed_codes)  # validate
+validate_recordddata(mixed_codes)  # validate
 
 # After changing the unpd server
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
@@ -118,7 +123,7 @@ mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
                               subGroupIds = "Total or All groups",      # Total or All groups
                               isComplete = "Abridged")       # Age Distribution: Abridged
 
-validate_read_API(mixed_codes)  # validate
+validate_recordddata(mixed_codes)  # validate
 
 
 test_that("get_recorddata returns error when setting wrong server", {

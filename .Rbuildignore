@@ -16,3 +16,6 @@ devdata
 ^doc$
 ^Meta$
 ^\.github/workflows/R-CMD-check\.yaml$
+^\.github$
+^\.ccache$
+^tic\.R$

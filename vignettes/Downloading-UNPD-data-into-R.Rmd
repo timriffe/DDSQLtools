@@ -31,6 +31,7 @@ library(DDSQLtools)
 If you're already familiar with concepts from the UNPD SQL API, then you'll only have to interact with the `get_recorddata` function. For example, here's how to get data on population by age and sex for Egypt with different options:
 
 ```{r, eval = FALSE}
+
 egypt_str <- get_recorddata(dataProcessIds = "Census",
                             indicatorTypeIds = "Population by age and sex",
                             locIds = "Egypt",
@@ -43,12 +44,14 @@ egypt_str <- get_recorddata(dataProcessIds = "Census",
 `get_recorddata` accepts either string names or codes. For example, this will return the same thing as above:
 
 ```{r, eval = FALSE}
+
 egypt_num <- get_recorddata(dataProcessIds = 2,
                             indicatorTypeIds = 8,
                             locIds = 818, 
                             locAreaTypeIds = 2,
                             subGroupIds = 2,
                             isComplete = 0)
+
 ```
 
 Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to the section `Exploring the UNPD SQL API from R` below). Here are a few other examples:
@@ -153,7 +156,7 @@ After that, you need to loop through groups of countries and make requests for e
 
 ##### Using base R
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, eval = FALSE}
 myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
                  376, 662, 670, 642, 84, 188, 442, 100,
                  192, 170, 414, 616, 320, 480, 218,
@@ -190,7 +193,7 @@ head(deaths)
 ```
 
 ##### Using the tidyverse
-```{r, echo = FALSE, eval = FALSE}
+```{r, eval = FALSE}
 library(tidyverse)
 
 myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,

@@ -1,8 +1,6 @@
 # DDSQLtools
 
 [![R build status](https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg)](https://github.com/timriffe/DDSQLtools)
-[![Build Status](https://travis-ci.org/timriffe/DDSQLtools.svg?branch=master)](https://travis-ci.org/timriffe/DDSQLtools)
-[![Build status](https://ci.appveyor.com/api/projects/status/79gd3yfnim3m6m5v?svg=true)](https://ci.appveyor.com/project/timriffe/ddsqltools)
 [![codecov](https://codecov.io/gh/timriffe/DDSQLtools/branch/master/graph/badge.svg)](https://codecov.io/gh/timriffe/DDSQLtools) 
 [![](https://img.shields.io/badge/devel%20version-01.02.000-yellow.svg)](https://github.com/timriffe/DDSQLtools)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -21,7 +19,7 @@ library(devtools)
 install_github("timriffe/DDSQLtools")
 ```
 
-(if either of the first two icons at the top of this README are red, then this might not be working at the moment. You can assume we're fixing it. If they're green, then it'll probably work.)
+(if the first incon of this README is red, then this might not be working at the moment. You can assume we're fixing it. If it's green, then it'll probably work.)
 
 If you are a random visiting demographer then you probably would rather check out the [DemoTools](https://github.com/timriffe/DemoTools) package.
 
