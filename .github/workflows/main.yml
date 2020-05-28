@@ -140,16 +140,16 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] Install"
-        if: runner.os != 'Windows'
-        run: |
-          export DISPLAY=:99
-          Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
-
         # Windows cannot have export DISPLAY=:99
       - name: "[Stage] Install - Windows"
         if: runner.os == 'Windows'
         run: |
+          Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
+
+      - name: "[Stage] Install - other OS"
+        if: runner.os != 'Windows'
+        run: |
+          export DISPLAY=:99
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
@@ -167,11 +167,11 @@ jobs:
           export DISPLAY=:99
           Rscript -e 'tic::script()'
 
-      - name: "[Stage] Script"
+      - name: "[Stage] Script - other OS"
         if: runner.os != 'macOS'
         run: Rscript -e 'tic::script()'
 
-      - name: "[Stage] After Success"
+      - name: "[Stage] After Success - other OS"
         if: matrix.config.os != 'macOS-latest' && matrix.config.r != 'release'
         run: |
           Rscript -e "tic::after_success()"
@@ -192,7 +192,7 @@ jobs:
         run: |
           Rscript -e "tic::before_deploy()"
 
-      - name: "[Stage] Deploy"
+      - name: "[Stage] Deploy - other OS"
         if: matrix.config.os != 'macOS-latest' && matrix.config.r != 'release'
         run: Rscript -e "tic::deploy()"
 
