@@ -167,6 +167,7 @@ jobs:
           Rscript -e 'tic::script()'
 
       - name: "[Stage] Script"
+        if: runner.os != 'macOS'
         run: Rscript -e 'tic::script()'
 
       - name: "[Stage] After Success"
