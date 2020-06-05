@@ -213,7 +213,7 @@ Different numbers of rows. UN format.</p>
 
 <span class='no'>lx.A</span> <span class='kw'>&lt;-</span>
  <span class='no'>Mx</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_lifetable</span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"lx"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>AgeLabel</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span>(<span class='no'>AgeStart</span>)))</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
@@ -221,7 +221,7 @@ Different numbers of rows. UN format.</p>
 <span class='no'>lx.B</span> <span class='kw'>&lt;-</span>
  <span class='no'>Mx</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>DataValue</span> <span class='kw'>=</span> <span class='no'>DataValue</span> * <span class='fl'>0.98</span>, <span class='kw'>SexID</span> <span class='kw'>=</span> <span class='fl'>0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_lifetable</span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"lx"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>AgeLabel</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span>(<span class='no'>AgeStart</span>)))</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
