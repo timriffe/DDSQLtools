@@ -59,6 +59,10 @@ IT <- get_indicatortypes(addDefault = "false")
 validate_read_API(IT)  # validate
 
 # ------------------------------------------
+IT <- get_iitypes(addDefault = "false")
+validate_read_API(IT)  # validate
+
+# ------------------------------------------
 I <- get_indicators(addDefault = "false")
 validate_read_API(I)  # validate
 

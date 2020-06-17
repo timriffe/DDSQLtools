@@ -129,8 +129,25 @@ get_indicatortypes <- function(save_file = FALSE, ...) {
 #' }
 #' @export
 get_indicators <- function(save_file = FALSE, ...) {
-  
   read_API("indicators", save_file, ...)
+}
+
+#' Get information about available indicators (IndicatorID) and indicatortypeids (IndicatorTypeId)
+#' @inheritParams read_API
+#' @examples 
+#' \dontrun{
+#' I <- get_iitypes()
+#' I
+#'
+#' only_itypes <- get_iitypes(indicatorTypeIds = 6)
+#' only_itypes
+#' 
+#' components <- get_iitypes(componentIds = 4)
+#' components
+#' }
+#' @export
+get_iitypes <- function(save_file = FALSE, ...) {
+  read_API("indicatorindicatortypes", save_file, ...)
 }
 
 

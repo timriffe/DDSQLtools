@@ -12,6 +12,7 @@ build_filter(
   AgeEnd = NULL,
   indicatorTypeIds = NULL,
   indicatorIds = NULL,
+  componentIds = NULL,
   isComplete = NULL,
   isActive = NULL,
   locIds = NULL,
