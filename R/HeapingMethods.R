@@ -1,17 +1,19 @@
 #' Wrapper for Age-Heaping Methods
 #' 
 #' @inheritParams do_splitting
-#' @inheritParams DemoTools::Myers
-#' @seealso 
-#' \code{\link[DemoTools]{Whipple}},
-#' \code{\link[DemoTools]{Myers}},
-#' \code{\link[DemoTools]{Bachi}},
-#' \code{\link[DemoTools]{CoaleLi}},
-#' \code{\link[DemoTools]{Noumbissi}},
-#' \code{\link[DemoTools]{Spoorenberg}},
+#' @inheritParams DemoTools::check_heaping_myers
+#' @seealso
+#' 
+#' \code{\link[DemoTools]{check_heaping_whipple}},
+#' \code{\link[DemoTools]{check_heaping_myers}},
+#' \code{\link[DemoTools]{check_heaping_bachi}},
+#' \code{\link[DemoTools]{check_heaping_coale_li}},
+#' \code{\link[DemoTools]{check_heaping_noumbissi}},
+#' \code{\link[DemoTools]{check_heaping_spoorenberg}},
 #' \code{\link[DemoTools]{ageRatioScore}},
-#' \code{\link[DemoTools]{KannistoHeap}},
-#' \code{\link[DemoTools]{Jdanov}}.
+#' \code{\link[DemoTools]{check_heaping_kannisto}},
+#' \code{\link[DemoTools]{check_heaping_jdanov}}.
+#' 
 #' @examples 
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 #' 

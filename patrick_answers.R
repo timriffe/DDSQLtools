@@ -188,13 +188,18 @@ head(births_bind)
 # indicatorindicatortypes but it doesn't work.
 # http://24.239.36.16:9654/un3/api/indicatorindicatortypes?
 
-# Why are some of these columnas complete NA? Make sure that it comes from the API
-# or R.
+# Jorge:
+# Dennis fixed indicatorindicatortypes and now it works.
+# Below some examples:
 
-get_iitypes <- function(save_file = FALSE, ...) {
-  read_API("indicatorindicatortypes", save_file, ...)
-}
+# Get all indicatorid and indicatortypeids
+res1 <- as_tibble(get_iitypes())
 
+# Filter the indicatorTypeIds
+res1 <- as_tibble(get_iitypes(indicatorTypeIds = 6))
+
+# Filter the indicatorIds
+res1 <- as_tibble(get_iitypes(componentIds = 4))
 
 ############################# issue 5 #########################################
 ###############################################################################
@@ -221,6 +226,13 @@ get_iitypes <- function(save_file = FALSE, ...) {
 
 ############################# issue 6 #########################################
 ###############################################################################
+
+Y <- get_recorddata(dataProcessIds = "Census",
+                   indicatorTypeIds = 8, # and support numeric of string names
+                   locIds = "egypt", # all arguments are case insensitive
+                   locAreaTypeIds = "Whole area",
+                   subGroupIds = "Total or All groups",
+                   isComplete = "Abridged")
 
 # Where is created SeriesID? What does it mean? What is it really measuring and is
 # stable?
