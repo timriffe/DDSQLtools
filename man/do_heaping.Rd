@@ -50,13 +50,13 @@ H1 <- do_heaping(P1, fn = "Whipple", verbose = FALSE)
 H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 }
 \seealso{
-\code{\link[DemoTools]{Whipple}},
-\code{\link[DemoTools]{Myers}},
-\code{\link[DemoTools]{Bachi}},
-\code{\link[DemoTools]{CoaleLi}},
-\code{\link[DemoTools]{Noumbissi}},
-\code{\link[DemoTools]{Spoorenberg}},
+\code{\link[DemoTools]{check_heaping_whipple}},
+\code{\link[DemoTools]{check_heaping_myers}},
+\code{\link[DemoTools]{check_heaping_bachi}},
+\code{\link[DemoTools]{check_heaping_coale_li}},
+\code{\link[DemoTools]{check_heaping_noumbissi}},
+\code{\link[DemoTools]{check_heaping_spoorenberg}},
 \code{\link[DemoTools]{ageRatioScore}},
-\code{\link[DemoTools]{KannistoHeap}},
-\code{\link[DemoTools]{Jdanov}}.
+\code{\link[DemoTools]{check_heaping_kannisto}},
+\code{\link[DemoTools]{check_heaping_jdanov}}.
 }

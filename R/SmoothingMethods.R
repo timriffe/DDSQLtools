@@ -1,11 +1,11 @@
 #' Wrapper for Smoothing Populations in 5-year Age Groups
 #' 
 #' @param X Input data. UN format.
-#' @inheritParams DemoTools::agesmth
+#' @inheritParams DemoTools::smooth_age_5
 #' @inheritParams do_splitting
-#' @inherit DemoTools::agesmth description details
+#' @inherit DemoTools::smooth_age_5 description details
 #' @inherit do_splitting return
-#' @seealso \code{\link[DemoTools]{agesmth}}
+#' @seealso \code{\link[DemoTools]{smooth_age_5}}
 #' @examples 
 #' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' 

@@ -92,5 +92,5 @@ dimnames(S) <- list(Age = S1$AgeLabel, SmoothingMethod = M)
 S
 }
 \seealso{
-\code{\link[DemoTools]{agesmth}}
+\code{\link[DemoTools]{smooth_age_5}}
 }

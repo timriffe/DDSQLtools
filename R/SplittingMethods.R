@@ -8,10 +8,12 @@
 #' @param ... Other arguments to be passed on to other methods and functions.
 #' @return A data.frame having the same number of columns as input data. 
 #' Different numbers of rows. UN format.
-#' @seealso \code{\link[DemoTools]{beers}}, 
-#' \code{\link[DemoTools]{grabill}}, 
-#' \code{\link[DemoTools]{sprague}}.
-#' @examples 
+#' @seealso \code{\link[DemoTools]{graduate_beers}}, 
+#' \code{\link[DemoTools]{graduate_grabill}}, 
+#' \code{\link[DemoTools]{graduate_sprague}}.
+#' 
+#' @examples
+#' 
 #' # Example 1 --- Abridged data
 #' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 #' 
@@ -28,8 +30,10 @@
 #' 
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
 #'                     "DataTypeName", "DataTypeID", "DataValue")
+#' 
 #' W1[, select_columns]
 #' V1[, select_columns]
+#' 
 #' @export
 do_splitting <- function(X, 
                         fn = c("beers", "grabill", "sprague"), 

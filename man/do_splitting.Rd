@@ -25,6 +25,7 @@ Different numbers of rows. UN format.
 Wrapper for Age-Splitting Methods
 }
 \examples{
+
 # Example 1 --- Abridged data
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
@@ -41,11 +42,13 @@ V3 <- do_splitting(P1, fn = "sprague")
 
 select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
                     "DataTypeName", "DataTypeID", "DataValue")
+
 W1[, select_columns]
 V1[, select_columns]
+
 }
 \seealso{
-\code{\link[DemoTools]{beers}}, 
-\code{\link[DemoTools]{grabill}}, 
-\code{\link[DemoTools]{sprague}}.
+\code{\link[DemoTools]{graduate_beers}}, 
+\code{\link[DemoTools]{graduate_grabill}}, 
+\code{\link[DemoTools]{graduate_sprague}}.
 }
