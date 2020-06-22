@@ -160,12 +160,13 @@ as the method is applied. Set <code>verbose = FALSE</code> to silent the functio
 Different numbers of rows. UN format.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_beers.html'>beers</a></code>, 
-<code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_grabill.html'>grabill</a></code>, 
-<code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_sprague.html'>sprague</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_beers.html'>graduate_beers</a></code>, 
+<code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_grabill.html'>graduate_grabill</a></code>, 
+<code><a href='https://rdrr.io/pkg/DemoTools/man/graduate_sprague.html'>graduate_sprague</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1 --- Abridged data</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># Example 1 --- Abridged data</span>
 <span class='no'>P5</span> <span class='kw'>&lt;-</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Pop5_Egypt_M_DB</span>
 
 <span class='no'>W1</span> <span class='kw'>&lt;-</span> <span class='fu'>do_splitting</span>(<span class='no'>P5</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"beers"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::beers method:</span>
@@ -183,6 +184,7 @@ Different numbers of rows. UN format.</p>
 
 <span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
+
 <span class='no'>W1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 76 x 8
 #&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName  DataTypeID      DataValue
 #&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
@@ -209,7 +211,8 @@ Different numbers of rows. UN format.</p>
 #&gt;  8    NA        7    7.5      8        7 DemoTools::b… "do_splitting(…   785215.
 #&gt;  9    NA        8    8.5      9        8 DemoTools::b… "do_splitting(…   784908.
 #&gt; 10    NA        9    9.5     10        9 DemoTools::b… "do_splitting(…   786405.
-#&gt; # … with 86 more rows</div></pre>
+#&gt; # … with 86 more rows</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
