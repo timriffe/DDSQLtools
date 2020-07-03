@@ -233,7 +233,7 @@ validate_read_API(res)
 test_that("extract_data returns the correct data when link is too long", {
   test_res <- function(res, ids) {
     all(
-      all(ids %in% res$PK_StructuredDataID),
+      all(ids %in% res$StructuredDataID),
       nrow(res) == length(ids),
       all(table(res$PK_StructuredDataID) == 1)
     )
