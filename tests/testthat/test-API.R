@@ -78,6 +78,24 @@ G <- get_seriesdata(dataProcessIds = 2,
 validate_read_API(G)  # validate
 
 # ------------------------------------------
+
+test_that("get_iitypes can subset correctly", {
+  # No need to test each argument separately
+  # otherwise the tests run the risk of running for
+  # longer and longer.
+
+  # Here I'm testing all argument combined. If they
+  # work, it should be the same  
+  x <- get_iitypes(componentIds = 4,
+                   indicatorTypeIds = 38,
+                   indicatorIds = 323)
+  expect_equal(unique(x[["IndicatorType.ComponentID"]]), 4)
+  expect_equal(unique(x[["IndicatorType.PK_IndicatorTypeID"]]), 38)
+  expect_equal(unique(x[["PK_IndicatorID"]]), 323)
+})
+
+
+# ------------------------------------------
 X <- get_recorddata(dataProcessIds = 2,   # Census
                     indicatorTypeIds = 8, # Population by age and sex - abridged 
                     locIds = 818,         # Egypt
