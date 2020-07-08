@@ -343,3 +343,35 @@ Looking at the possible values of `"Type of location"`, only `"Whole area"` is a
 
 Using this strategy is much easier and less time consuming that trying out different values. As outlined above, this strategy will not be necessary in the near future as we develop a quick strategy for exploring data from R.
 
+## Exploring indicators
+
+To explore all possicle indicatorIds, indicatorTypeIds and components, `get_iitypes` can be of use. Although `get_indicators` and `get_indicatortypes` are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That's where `get_iitypes` comes in. For example:
+
+```{r}
+all_iitypes <- get_iitypes()
+head(all_iitypes)
+```
+
+The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of `get_iitypes` is that you can select any of the with the function:
+
+```{r}
+get_iitypes(indicatorIds = 239)
+```
+
+```{r}
+get_iitypes(indicatorTypeIds = 2)
+```
+
+or ComponentIds:
+
+```{r }
+get_iitypes(componentIds = 4)
+```
+
+Although this is handy for exploration, what's even more handy is the combination of parameters:
+
+```{r}
+get_iitypes(componentIds = 4, indicatorTypeIds = 38)
+```
+
+This approach to exploring indicators is much more rich that selecting indicators manually with the  `get_*` functions.

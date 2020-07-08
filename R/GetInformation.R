@@ -141,6 +141,9 @@ get_indicators <- function(save_file = FALSE, ...) {
 #'
 #' only_itypes <- get_iitypes(indicatorTypeIds = 6)
 #' only_itypes
+#'
+#' only_iids <- get_iitypes(indicatorIds = 229)
+#' only_iids
 #' 
 #' components <- get_iitypes(componentIds = 4)
 #' components
