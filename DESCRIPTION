@@ -28,6 +28,6 @@ Suggests:
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
 RoxygenNote: 7.1.0
-Remotes: timriffe/DemoTools
+Remotes: github::timriffe/DemoTools
 Encoding: UTF-8
 VignetteBuilder: knitr
