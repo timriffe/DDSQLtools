@@ -225,7 +225,7 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #' 
 #' @export
 get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
-  res <- read_API("structureddatarecords",
+  res <- read_API("structureddatarecordsadditional",
                   save_file = save_file,
                   verbose = verbose,
                   ...)
