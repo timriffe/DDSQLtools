@@ -77,6 +77,10 @@ jobs:
       - name: "Set CRAN repo in .Rprofile"
         run: echo "options(repos = c(CRAN = 'https://cran.rstudio.com'))" >.Rprofile
 
+      - name: "Install dev version of DemoTools"
+        run: |
+            Rscript -e "install.packages('devtools'); devtools::install_github('timriffe/DemoTools')"
+          
       - name: "Install XQuartz on macOS"
         if: runner.os == 'macOS'
         run: brew cask install xquartz
