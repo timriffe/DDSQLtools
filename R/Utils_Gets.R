@@ -146,6 +146,7 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' @param verbose whether to print the optimized code for get_recorddata
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
+                         dataProcessTypeIds = NULL,
                          startYear = NULL,
                          endYear = NULL,
                          AgeStart = NULL,
@@ -193,7 +194,8 @@ build_filter <- function(dataProcessIds = NULL,
   # I reuse the translated parameters defined above
   # to make queries in the endpoints below
   extraParams <- list("locAreaTypeIds" = lookupAreaTypeIds,
-                      "dataProcessIds" = lookupDataProcess)
+                      "dataProcessIds" = lookupDataProcess,
+                      "dataProcessTypeIds" = lookupDataProcess)
 
   x[names(extraParams)] <- mapply(
     function(fun, vec, ...) fun(vec, ...),

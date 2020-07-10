@@ -107,3 +107,32 @@ do_compare <- function(pop1,
   out  
 
 }
+
+
+## res <- get_recorddata(dataProcessTypeIds = 2,
+##                       startYear = 1920,
+##                       endYear = 2020,
+##                       indicatorIds = 58,
+##                       isComplete = 0,
+##                       locIds = 4,
+##                       locAreaTypeIds = 2,
+##                       subGroupIds = 2)
+
+## additional <- get_recorddata(dataProcessTypeIds = "Survey: cross-sectional survey (generic/national)",
+##                        indicatorTypeIds = "Births by age of mother",
+##                        locIds = "Togo",
+##                        locAreaTypeIds = "Whole area",
+##                        subGroupIds = "Total or All groups",
+##                        isComplete = "Abridged")
+
+
+## normal <- get_recorddata(dataProcessIds = "Survey: cross-sectional survey (generic/national)",
+##                        indicatorTypeIds = "Births by age of mother",
+##                        locIds = "Togo",
+##                        locAreaTypeIds = "Whole area",
+##                        subGroupIds = "Total or All groups",
+##                        isComplete = "Abridged")
+
+## tstt <- data.frame(add_res = sort(additional$SeriesID),
+##                    normal_res = sort(normal$SeriesID),
+##                    tes = sort(additional$SeriesID) == sort(normal$SeriesID))

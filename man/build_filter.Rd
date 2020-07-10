@@ -6,6 +6,7 @@
 \usage{
 build_filter(
   dataProcessIds = NULL,
+  dataProcessTypeIds = NULL,
   startYear = NULL,
   endYear = NULL,
   AgeStart = NULL,
