@@ -185,7 +185,13 @@ Different numbers of rows. UN format.</p>
 <span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
 
-<span class='no'>W1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 76 x 8
+<span class='no'>W1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 76 x 8
 #&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName  DataTypeID      DataValue
 #&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
 #&gt;  1    NA        0    0.5      1        0 DemoTools::b… "do_splitting(…   791622.
@@ -198,7 +204,13 @@ Different numbers of rows. UN format.</p>
 #&gt;  8    NA        7    7.5      8        7 DemoTools::b… "do_splitting(…   784243.
 #&gt;  9    NA        8    8.5      9        8 DemoTools::b… "do_splitting(…   783937.
 #&gt; 10    NA        9    9.5     10        9 DemoTools::b… "do_splitting(…   785433.
-#&gt; # … with 66 more rows</div><div class='input'><span class='no'>V1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 96 x 8
+#&gt; # … with 66 more rows</div><div class='input'><span class='no'>V1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 96 x 8
 #&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName  DataTypeID      DataValue
 #&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
 #&gt;  1    NA        0    0.5      1        0 DemoTools::b… "do_splitting(…   792579.

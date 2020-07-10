@@ -191,7 +191,13 @@ Different numbers of rows. UN format.</p>
 <span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
 <span class='no'>C</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>C1</span>, <span class='no'>C2</span>, <span class='no'>C3</span>, <span class='no'>C4</span>)
-<span class='no'>C</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 4 x 8
+<span class='no'>C</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 4 x 8
 #&gt;   AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName  DataTypeID       DataValue
 #&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;                &lt;dbl&gt;
 #&gt; 1    NA        0   52.5     99 0-99+    DemoTools::ID "do_compare(pop…      5.18

@@ -161,7 +161,13 @@ Different numbers of rows. UN format.</p>
     <pre class="examples"><div class='input'><span class='no'>mx</span> <span class='kw'>&lt;-</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Mx5</span>
 <span class='fu'>do_lifetable</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>mx</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
-#&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='output co'>#&gt; # A tibble: 180 x 13
+#&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 180 x 13
 #&gt;    LocID ReferencePeriod DataValue AgeStart AgeSpan SexID IndicatorID DataTypeID
 #&gt;    &lt;int&gt;           &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     
 #&gt;  1   328            1993   0.0297         0       1     1 nMx         do_lifeta…

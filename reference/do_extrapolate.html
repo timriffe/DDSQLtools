@@ -209,7 +209,13 @@ Different numbers of rows. UN format.</p>
                     <span class='kw'>law</span> <span class='kw'>=</span> <span class='st'>"kannisto"</span>)                  <span class='co'># the model</span></div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_rule_m_extrapolate method:</span>
 #&gt; <span class='message'>opt.method ...</span>
 #&gt; <span class='message'>Check ?lt_rule_m_extrapolate for details and default values.</span></div><div class='input'>
-<span class='no'>E</span></div><div class='output co'>#&gt; # A tibble: 24 x 13
+<span class='no'>E</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 24 x 13
 #&gt;    LocID ReferencePeriod DataValue AgeStart AgeSpan SexID IndicatorID DataTypeID
 #&gt;    &lt;int&gt;           &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     
 #&gt;  1   328            1993   0.0297         0       1     1 nMx         "do_extra…
@@ -230,7 +236,13 @@ Different numbers of rows. UN format.</p>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'><span class='no'>LT2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>E</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'>
-<span class='no'>LT1</span>[<span class='no'>LT1</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; # A tibble: 20 x 2
+<span class='no'>LT1</span>[<span class='no'>LT1</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 20 x 2
 #&gt;    AgeStart DataValue
 #&gt;       &lt;int&gt;     &lt;dbl&gt;
 #&gt;  1        0     42.0 
@@ -252,7 +264,13 @@ Different numbers of rows. UN format.</p>
 #&gt; 17       75      2.85
 #&gt; 18       80      2.75
 #&gt; 19       85      2.65
-#&gt; 20       90      2.62</div><div class='input'><span class='no'>LT2</span>[<span class='no'>LT2</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; # A tibble: 24 x 2
+#&gt; 20       90      2.62</div><div class='input'><span class='no'>LT2</span>[<span class='no'>LT2</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 24 x 2
 #&gt;    AgeStart DataValue
 #&gt;       &lt;int&gt;     &lt;dbl&gt;
 #&gt;  1        0      42.0

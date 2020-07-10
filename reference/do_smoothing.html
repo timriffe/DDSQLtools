@@ -231,7 +231,13 @@ compare the results from a variety of methods.</p>
 
 <span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
-<span class='no'>S1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 16 x 8
+<span class='no'>S1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 16 x 8
 #&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName    DataTypeID    DataValue
 #&gt;    &lt;lgl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
 #&gt;  1 NA           0    2.5      5 0-4      DemoTools::age… do_smoothing…  3951843 

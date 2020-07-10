@@ -712,6 +712,13 @@
 <span class="co"># separately, `tibble` print boths things together.</span>
 <span class="no">res_tb</span> <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
+<span class="co">#&gt; Warning: `...` is not empty.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; We detected these problematic arguments:</span>
+<span class="co">#&gt; * `needs_dots`</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName   LocTypeName RegName    AreaName   LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;chr+lbl&gt;     &lt;chr+lbl&gt; &lt;chr+lbl&gt;   &lt;chr+lbl&gt;  &lt;chr+lbl&gt;  &lt;chr+lbl&gt;      </span>
@@ -739,6 +746,13 @@
   <span class="co"># You can extract just the ID</span>
   <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="st">"labels"</span>) <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
+<span class="co">#&gt; Warning: `...` is not empty.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; We detected these problematic arguments:</span>
+<span class="co">#&gt; * `needs_dots`</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
@@ -763,6 +777,13 @@
   <span class="co"># Or just the values</span>
   <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="st">"values"</span>) <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
+<span class="co">#&gt; Warning: `...` is not empty.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; We detected these problematic arguments:</span>
+<span class="co">#&gt; * `needs_dots`</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
