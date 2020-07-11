@@ -19,7 +19,7 @@ accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+  \item{\code{dataProcessTypeIds}} -- Data process ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
   \item{\code{startYear}} -- Start year. Default: NULL;
@@ -54,7 +54,7 @@ Once the data is read from the API, some transformations are applied:
 
 \dontrun{
 #  You can provide all strings, all codes, or a combination of both
-Y <- get_recorddata(dataProcessIds = "Census",
+Y <- get_recorddata(dataProcessTypeIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
                    locIds = "egypt", # all arguments are case insensitive
                    locAreaTypeIds = "Whole area",
@@ -64,7 +64,7 @@ Y <- get_recorddata(dataProcessIds = "Census",
 head(Y)
 
 # Same thing only with codes
-X <- get_recorddata(dataProcessIds = 2,   # Census
+X <- get_recorddata(dataProcessTypeIds = 2,   # Census
                    indicatorTypeIds = 8, # Population by age and sex - abridged 
                    locIds = 818,         # Egypt
                    locAreaTypeIds = 2,   # Whole area 

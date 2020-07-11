@@ -24,7 +24,7 @@ myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84,
                  188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222,
                  300, 558, 40, 52, 348) # 470, 620, 702, 858, 56, 780, 388, 246, 352, 591, 144, 862)
 tic()
-deaths <- get_recorddata(dataProcessIds = "Register",
+deaths <- get_recorddata(dataProcessTypeIds = "Register",
                          indicatorTypeIds = "Deaths by age and sex",
                          locIds = myLocations,
                          locAreaTypeIds = "Whole area",
@@ -34,12 +34,12 @@ deaths <- get_recorddata(dataProcessIds = "Register",
                          endYear = 2020)
 toc()
 
-deaths2 <- get_recorddata(dataProcessIds = 9, startYear = 1920, endYear = 2020, indicatorTypeIds = 20, isComplete = 0, locIds = c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84, 188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222, 300, 558, 40, 52, 348, 470), locAreaTypeIds = 2, subGroupIds = 2)
+deaths2 <- get_recorddata(dataProcessTypeIds = 9, startYear = 1920, endYear = 2020, indicatorTypeIds = 20, isComplete = 0, locIds = c(28, 492, 570, 674, 308, 96, 196, 8, 376, 662, 670, 642, 84, 188, 442, 100, 192, 170, 414, 616, 320, 480, 218, 818, 222, 300, 558, 40, 52, 348, 470), locAreaTypeIds = 2, subGroupIds = 2)
 
 # Doesn't work (only adds one location)
 myLocations <- c(28)#492,570,674,308,96,196,8,376,662,670,642,84,188,442,100,192,170,414,616,320,480,218,818,222,300,558,40,52,348,470,591)
 
-deaths <- get_recorddata(dataProcessIds = "Register",
+deaths <- get_recorddata(dataProcessTypeIds = "Register",
                          indicatorTypeIds = "Deaths by age and sex",
                          locIds = myLocations,
                          locAreaTypeIds = "Whole area",
@@ -75,7 +75,7 @@ deaths <- lapply(myLocations, function(x) {
   # Measure time of beginning
   tic()
 
-  res <- get_recorddata(dataProcessIds = 9,
+  res <- get_recorddata(dataProcessTypeIds = 9,
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 20,
@@ -117,7 +117,7 @@ cnty_groups <- split(myLocations, chunk_groups)
 births <- lapply(cnty_groups, function(x) {
 
   tic()
-  res <- get_recorddata(dataProcessIds = 9,
+  res <- get_recorddata(dataProcessTypeIds = 9,
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 14,
@@ -134,7 +134,7 @@ births <- lapply(cnty_groups, function(x) {
 births_iscomplete <- lapply(cnty_groups, function(x) {
 
   tic()
-  res <- get_recorddata(dataProcessIds = 9,
+  res <- get_recorddata(dataProcessTypeIds = 9,
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 14,
@@ -164,7 +164,7 @@ head(births_bind)
 ##            ...)
 ## }
 
-## res <- get_rd(dataProcessIds = 9,
+## res <- get_rd(dataProcessTypeIds = 9,
 ##               startYear = 1920,
 ##               endYear = 2020,
 ##               indicatorTypeIds = 14,
@@ -227,7 +227,7 @@ res1 <- as_tibble(get_iitypes(componentIds = 4))
 ############################# issue 6 #########################################
 ###############################################################################
 
-Y <- get_recorddata(dataProcessIds = "Census",
+Y <- get_recorddata(dataProcessTypeIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
                    locIds = "egypt", # all arguments are case insensitive
                    locAreaTypeIds = "Whole area",
@@ -246,7 +246,7 @@ Y <- get_recorddata(dataProcessIds = "Census",
 
 # This already comes form the API as 0. For example, search for "DataCatalogID"
 # in this request:
-# http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
+# http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=9&startYear=1920&endYear=2020&indicatorTypeIds=14&isComplete=2&locIds=28&locAreaTypeIds=2&subGroupIds=2
 
 # Jorge: This is already fixed. I've added a test checking that
 # DataCatalogID is never NA
@@ -263,7 +263,7 @@ Y <- get_recorddata(dataProcessIds = "Census",
 # Just want to confirm with Dennis that the format that is coming
 # from the API is YYYY-MM-DD
 
-res <- get_recorddata(dataProcessIds = "Census",
+res <- get_recorddata(dataProcessTypeIds = "Census",
                       startYear = 1920,
                       endYear = 2020,
                       indicatorTypeIds = 7, 
@@ -284,7 +284,7 @@ unique(res$TimeEnd)
 # Jorge: As of 13th of May 2020, this hasn't been fixed.
 # See the result from below:
 
-res <- get_recorddata(dataProcessIds = "Census",
+res <- get_recorddata(dataProcessTypeIds = "Census",
                       startYear = 1920,
                       endYear = 2020,
                       indicatorTypeIds = 7, 
@@ -308,7 +308,7 @@ head(res[c("TimeStart", "TimeEnd", "TimeDuration")])
 # can be improved.
 
 # For example
-res <- get_recorddata(dataProcessIds = "Census",
+res <- get_recorddata(dataProcessTypeIds = "Census",
                       startYear = 1920,
                       endYear = 2020,
                       indicatorTypeIds = 7, 

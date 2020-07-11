@@ -7,7 +7,7 @@
 #' product requested. Alternatively, you can supply the equivalent product
 #' name as a string which is case insensitive (see examples). Handle with
 #' care, this is important! The following options are available: \itemize{
-#'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+#'   \item{\code{dataProcessTypeIds}} -- Data process ID as defined by the UNPD. 
 #'   Run the \code{\link{get_dataprocess}} function to see the available 
 #'   options;
 #'   \item{\code{startYear}} -- Start year. Default: NULL;
@@ -118,32 +118,61 @@ linkGenerator <- function(server = getOption("unpd_server",
 
 
 #' Build the section of the path (link) responsible with filtering the data
+#' # TODO: Describe each of the parameters in detail.
+#' 
 #' @param dataProcessIds 
+#' @param dataProcessTypeIds Data process ID as defined by the UNPD. Run
+#' \code{\link{get_dataprocess}} to see the available options
 #' @param startYear Start year. Default: NULL;
 #' @param endYear End year. Default: NULL;
 #' @param AgeStart 
 #' @param AgeEnd 
-#' @param indicatorTypeIds 
+#' @param indicatorTypeIds Indicator type ID as defined by the UNPD. Run the
+#' \code{\link{get_indicatortypes}} function to see the available options;
+#' @param indicatorIds 
+#' @param componentIds 
 #' @param isComplete isComplete;
 #' @param isActive 
-#' @param locIds 
-#' @param locAreaTypeIds 
-#' @param subGroupIds 
+#' @param locIds Location ID as defined by the UNPD. Run
+#' \code{\link{get_locations}} to see the available options;
+#' @param ids 
+#' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run
+#' \code{\link{get_locations}} to see the available options.
+#' 
+#' @param subGroupIds SubGroup ID as defined by the UNPD. Run
+#' \code{\link{get_subgroups}} to see the available options;
 #' @param addDefault Logical. Default: FALSE;
 #' @param includeDependencies Logical. Default: FALSE;
 #' @param includeFormerCountries Logical. Default: FALSE;
-#' @param dataProcess Data process ID as defined by the UNPD. Run the
-#' \code{\link{get_dataprocess}} function to see the available options;
-#' TODOOOOOOOOOOOOO!!
-#' @param indicatorType Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{get_indicatortypes}} function to see the available options;
-#' @param locIds Location ID as defined by the UNPD. Run the
-#' \code{\link{get_locations}} function to see the available options;
-#' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run the
-#' \code{\link{get_locations}} function to see the available options;
-#' @param subGroup SubGroup ID as defined by the UNPD.
-#' Run the \code{\link{get_subgroups}} function to see the available options;
+#' @param includeDataIDs 
 #' @param verbose whether to print the optimized code for get_recorddata
+#' @param server The path to the database. Check if the "unpd_server" option is
+#' is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}
+#' @param type Type of data. Various options are available.
+#' @param ... Other arguments that might define the path to data. All arguments
+#' accept a numeric code which is interpreted as the code of the specific
+#' product requested. Alternatively, you can supply the equivalent product
+#' name as a string which is case insensitive (see examples). Handle with
+#' care, this is important! The following options are available: \itemize{
+#'   \item{\code{dataProcessTypeIds}} -- Data process ID as defined by the UNPD. 
+#'   Run the \code{\link{get_dataprocess}} function to see the available 
+#'   options;
+#'   \item{\code{startYear}} -- Start year. Default: NULL;
+#'   \item{\code{endYear}} -- End year. Default: NULL;
+#'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
+#'   Run the \code{\link{get_indicatortypes}} function to see the available options;
+#'   \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
+#'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
+#'   \code{\link{get_locations}} function to see the available options;
+#'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
+#'   Run the \code{\link{get_locationtypes}} function to see the available 
+#'   options;
+#'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
+#'   \code{\link{get_subgroups}} function to see the available options;
+#'   \item{\code{addDefault}} -- Logical. Default: FALSE;
+#'   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
+#'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
+#'   }
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          dataProcessTypeIds = NULL,
@@ -236,7 +265,6 @@ build_filter <- function(dataProcessIds = NULL,
   }
   out
 }
-
 
 
 #' Format data from character to numeric
