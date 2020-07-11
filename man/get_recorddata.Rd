@@ -18,35 +18,61 @@ for faster queries. By default set to TRUE.}
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available: \itemize{
-  \item{\code{dataProcessTypeIds}} -- Data process ID as defined by the UNPD. 
+care, this is important! The following options are available:
+
+\itemize{
+  \item{\code{dataProcessTypeIds}} -- Data process Type ID as defined by the UNPD. 
   Run the \code{\link{get_dataprocess}} function to see the available 
   options;
+
+  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
+  Run the \code{\link{get_dataprocessid}} function to see the available 
+  options;
+
   \item{\code{startYear}} -- Start year. Default: NULL;
+
   \item{\code{endYear}} -- End year. Default: NULL;
+
   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
   Run the \code{\link{get_indicatortypes}} function to see the available options;
+
+  \item{\code{indicatorIds}} -- Indicator ID as defined by the UNPD. 
+  Run the \code{\link{get_iitypes}} function to see the available options;
+
   \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
+
   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
   \code{\link{get_locations}} function to see the available options;
+
   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
   Run the \code{\link{get_locationtypes}} function to see the available 
   options;
+
   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
   \code{\link{get_subgroups}} function to see the available options;
+
   \item{\code{addDefault}} -- Logical. Default: FALSE;
+
   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
+
   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
+
   }}
 }
 \description{
 Download data from UNPD portal
 }
 \details{
+\code{get_recorddata} allows the user to supply string names for all
+arguments that have equivalent \code{get_*} functions. For example,
+\code{get_iitypes} for \code{indicatorIds}. The string used for all
+of these arguments should be the one from the column \code{Name} in
+the response from the \code{get_*} functions.
+
 Once the data is read from the API, some transformations are applied:
 
 \itemize{
-\item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are convert to labelled factors with \code{\link[haven]{labelled}}}
+\item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
 \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
 }
 }

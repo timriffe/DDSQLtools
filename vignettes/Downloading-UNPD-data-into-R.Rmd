@@ -54,7 +54,9 @@ egypt_num <- get_recorddata(dataProcessTypeIds = 2,
 
 ```
 
-Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to the section `Exploring the UNPD SQL API from R` below). Here are a few other examples:
+Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to the section `Exploring the UNPD SQL API from R` below). If you want to figure out which names to use, each of these arguments has an equivalent lookup function. For example, for figuring out the possible values in `locIds`, use `get_locations()`. You can see all arguments and their equivalent lookup functions in the documentation of `?get_recorddata`. Do note that these lookup functions have both the `'Name'` and a `'ShortName'` of each value. The translation will only accept string names from the `'Name'` column.
+
+Here are a few other examples:
 
 #### Population by age and sex with census data
 

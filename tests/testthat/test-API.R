@@ -125,6 +125,18 @@ mixed <- get_recorddata(dataProcessTypeIds = "census",   # Estimate
 
 validate_recordddata(mixed)  # validate
 
+# Check whether we can translate with dataProcessIds
+mixed_dataid <- get_recorddata(dataProcessIds = "Population and Housing Census",
+                               startYear = 1920,
+                               endYear = 2020,
+                               indicatorIds = 58,
+                               isComplete = 0,
+                               locIds = 4,
+                               locAreaTypeIds = 2,
+                               subGroupIds = 2)
+
+validate_recordddata(mixed_dataid)  # validate
+
 # mixed with codes
 mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
