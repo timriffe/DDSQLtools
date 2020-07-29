@@ -2,19 +2,19 @@
 #' 
 #' @param pop1 Input data for population 1. UN format;
 #' @param pop2 Input data for population 2. UN format;
-#' @param fn Method to be called from DemoTools. Available aternatives: 
+#' @param fn Method to be called from DemoTools. Available aternatives:
 #' \code{"ID", "IRD", "ADM", "RDM"};
 #' @inheritParams do_splitting
 #' @inherit do_splitting return
-#' @seealso 
-#' \code{\link[DemoTools]{ID}}, 
+#' @seealso
+#' \code{\link[DemoTools]{ID}},
 #' \code{\link[DemoTools]{IRD}},
 #' \code{\link[DemoTools]{ADM}},
 #' \code{\link[DemoTools]{RDM}}.
-#' @examples 
+#' @examples
 #' # ------------------------------------------
 #' # Example 1 - Compute the Index of dissimilarity between 2 populations
-#' 
+#'
 #' P1m <- DDSQLtools.data$Pop1_Egypt_M_DB # 1-year age groups data
 #' P1f <- DDSQLtools.data$Pop1_Egypt_F_DB
 #' P5m <- DDSQLtools.data$Pop5_Egypt_M_DB # 5-year age groups data
@@ -104,6 +104,7 @@ do_compare <- function(pop1,
   
   if (verbose) output_msg(fn, names(C))
   out <- format_output(pop1, G)
-  out  
+  out
 
 }
+
