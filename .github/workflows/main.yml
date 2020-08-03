@@ -23,7 +23,7 @@ jobs:
           # use a different tic template type if you do not want to build on all listed platforms
           - { os: windows-latest, r: "release" }
           - { os: macOS-latest, r: "release", pkgdown: "true" }
-          - { os: macOS-latest, r: "devel" }
+          # - { os: macOS-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
 
     env:
@@ -112,7 +112,7 @@ jobs:
       - name: "[Linux] rgl external software"
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev libv8-dev
 
       # install ccache and write config file
       # mirror the setup described in https://github.com/rmacoslib/r-macos-rtools
