@@ -29,16 +29,16 @@ Wrapper for Age-Splitting Methods
 # Example 1 --- Abridged data
 P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
 
-W1 <- do_splitting(P5, fn = "beers") 
+W1 <- do_splitting(P5, fn = "beers")
 W2 <- do_splitting(P5, fn = "grabill")
 W3 <- do_splitting(P5, fn = "sprague")
 
-# Example 2 --- 1-year age groups   
+# Example 2 --- 1-year age groups
 P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
 
-V1 <- do_splitting(P1, fn = "beers") 
-V2 <- do_splitting(P1, fn = "grabill") 
-V3 <- do_splitting(P1, fn = "sprague") 
+V1 <- do_splitting(P1, fn = "beers")
+V2 <- do_splitting(P1, fn = "grabill")
+V3 <- do_splitting(P1, fn = "sprague")
 
 select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
                     "DataTypeName", "DataTypeID", "DataValue")

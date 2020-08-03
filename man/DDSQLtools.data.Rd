@@ -9,7 +9,7 @@ An object of class \code{list} of length 5.
 }
 \source{
 The population counts were downloade using the \code{get_recorddata()}
-function. The life table was imported from a file called 
+function. The life table was imported from a file called
 \code{LTabr_error1.csv}.
 }
 \usage{

@@ -1,4 +1,4 @@
-# DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal 
+# DDSQLtools: Wrappers for DemoTools functions to work with UNPD SQL internal
 # data format
 
 # Do not remove DemoTools from here. If you refer
@@ -13,5 +13,5 @@
 #' @import DemoTools
 #' @name DDSQLtools
 #' @docType package
-#' @keywords internal 
+#' @keywords internal
 "_PACKAGE"

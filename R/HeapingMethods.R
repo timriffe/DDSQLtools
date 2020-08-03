@@ -37,28 +37,28 @@
 #' # ... or by specifying all arguments
 #' H1 <- do_heaping(P1, fn = "Whipple", ageMin = 10, ageMax = 90, digit = 1)
 #' @export
-do_heaping <- function(X, 
-                       fn = c("Whipple", 
-                              "Myers", 
-                              "Bachi", 
-                              "CoaleLi", 
-                              "Noumbissi", 
-                              "Spoorenberg", 
+do_heaping <- function(X,
+                       fn = c("Whipple",
+                              "Myers",
+                              "Bachi",
+                              "CoaleLi",
+                              "Noumbissi",
+                              "Spoorenberg",
                               "ageRatioScore",
-                              "KannistoHeap", 
-                              "Jdanov"), 
-                       verbose = TRUE, 
+                              "KannistoHeap",
+                              "Jdanov"),
+                       verbose = TRUE,
                        ...) {
-  
+
   A   <- X$DataValue
   B   <- X$AgeStart
   C   <- match.call()
   fn  <- match.arg(fn)
-  
+
   E <- switch(fn,
               Whipple = check_heaping_whipple(A, B, ...),
-              Myers = check_heaping_myers(A, B, ...), 
-              Bachi = check_heaping_bachi(A, B, ...), 
+              Myers = check_heaping_myers(A, B, ...),
+              Bachi = check_heaping_bachi(A, B, ...),
               CoaleLi = check_heaping_coale_li(A, B, ...),
               Noumbissi = check_heaping_noumbissi(A, B, ...),
               Spoorenberg = check_heaping_spoorenberg(A, B, ...),
@@ -66,6 +66,18 @@ do_heaping <- function(X,
               KannistoHeap = check_heaping_kannisto(A, B, ...),
               Jdanov = check_heaping_jdanov(A, B, ...)
               )
+
+  fn <- switch(fn,
+               Whipple = "check_heaping_whipple",
+               Myers = "check_heaping_myers",
+               Bachi = "check_heaping_bachi",
+               CoaleLi = "check_heaping_coale_li",
+               Noumbissi = "check_heaping_noumbissi",
+               Spoorenberg = "check_heaping_spoorenberg",
+               ageRatioScore = "ageRatioScore",
+               KannistoHeap = "check_heaping_kannisto",
+               Jdanov = "check_heaping_jdanov"
+               )
 
   G <-
     within(data.frame(DataValue = E), {
@@ -79,7 +91,7 @@ do_heaping <- function(X,
       DataTypeID <- paste(deparse(C), collapse = "")
       ReferencePeriod <- unique(X$ReferencePeriod)
     })
-  
+
   if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)
   out
