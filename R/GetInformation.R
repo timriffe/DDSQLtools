@@ -161,19 +161,30 @@ get_iitypes <- function(save_file = FALSE, ...) {
 #' D <- get_dataprocess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' }
-
 #' @export
 get_dataprocess <- function(save_file = FALSE, ...) {
-  
   read_API("dataProcessTypes", save_file, ...)
 }
+
+#' Get information about available data-types (DataProcessID and DataProcessTypeID)
+#' @inheritParams read_API
+#' @examples 
+#' \dontrun{
+#' D <- get_dataprocessid()
+#' D[, c("PK_DataProcessID", "Name", "ShortName")]
+#' }
+#' @export
+get_dataprocessid <- function(save_file = FALSE, ...) {
+  read_API("dataProcesses", save_file, ...)
+}
+
 
 #' Get information about available details for a given series of data
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
-#' G <- get_seriesdata(dataProcessIds = 0:15, # possible processes
+#' G <- get_seriesdata(dataProcessTypeIds = 0:15, # possible processes
 #'                    indicatorTypeIds = 25,    # M[x]
 #'                    locIds = "Egypt",             # Egypt
 #'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
@@ -182,7 +193,6 @@ get_dataprocess <- function(save_file = FALSE, ...) {
 #' }
 #' @export
 get_seriesdata <- function(save_file = FALSE, ...) {
-  
   read_API("structureddataseries", save_file, ...)
 }
 
@@ -192,10 +202,17 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #' for faster queries. By default set to TRUE.
 #'
 #' @details
+#'
+#' \code{get_recorddata} allows the user to supply string names for all
+#' arguments that have equivalent \code{get_*} functions. For example,
+#' \code{get_iitypes} for \code{indicatorIds}. The string used for all
+#' of these arguments should be the one from the column \code{Name} in
+#' the response from the \code{get_*} functions.
+#' 
 #' Once the data is read from the API, some transformations are applied:
 #'
 #' \itemize{
-#' \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are convert to labelled factors with \code{\link[haven]{labelled}}}
+#' \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
 #' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
 #' }
 #' 
@@ -203,7 +220,7 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #'
 #' \dontrun{
 #' #  You can provide all strings, all codes, or a combination of both
-#' Y <- get_recorddata(dataProcessIds = "Census",
+#' Y <- get_recorddata(dataProcessTypeIds = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
 #'                    locIds = "egypt", # all arguments are case insensitive
 #'                    locAreaTypeIds = "Whole area",
@@ -213,7 +230,7 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #' head(Y)
 #'
 #' # Same thing only with codes
-#' X <- get_recorddata(dataProcessIds = 2,   # Census
+#' X <- get_recorddata(dataProcessTypeIds = 2,   # Census
 #'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
 #'                    locIds = 818,         # Egypt
 #'                    locAreaTypeIds = 2,   # Whole area 

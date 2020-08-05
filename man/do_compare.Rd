@@ -11,7 +11,7 @@ do_compare(pop1, pop2, fn = c("ID", "IRD", "ADM", "RDM"), verbose = TRUE, ...)
 
 \item{pop2}{Input data for population 2. UN format;}
 
-\item{fn}{Method to be called from DemoTools. Available aternatives: 
+\item{fn}{Method to be called from DemoTools. Available aternatives:
 \code{"ID", "IRD", "ADM", "RDM"};}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
@@ -79,7 +79,7 @@ C6 <- do_compare(pop1 = lx.A, pop2 = lx.B, fn = "RDM")
 
 }
 \seealso{
-\code{\link[DemoTools]{ID}}, 
+\code{\link[DemoTools]{ID}},
 \code{\link[DemoTools]{IRD}},
 \code{\link[DemoTools]{ADM}},
 \code{\link[DemoTools]{RDM}}.

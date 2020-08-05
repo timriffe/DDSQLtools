@@ -32,7 +32,7 @@ If you're already familiar with concepts from the UNPD SQL API, then you'll only
 
 ```{r, eval = FALSE}
 
-egypt_str <- get_recorddata(dataProcessIds = "Census",
+egypt_str <- get_recorddata(dataProcessTypeIds = "Census",
                             indicatorTypeIds = "Population by age and sex",
                             locIds = "Egypt",
                             locAreaTypeIds = "Whole area",
@@ -45,7 +45,7 @@ egypt_str <- get_recorddata(dataProcessIds = "Census",
 
 ```{r, eval = FALSE}
 
-egypt_num <- get_recorddata(dataProcessIds = 2,
+egypt_num <- get_recorddata(dataProcessTypeIds = 2,
                             indicatorTypeIds = 8,
                             locIds = 818, 
                             locAreaTypeIds = 2,
@@ -54,12 +54,14 @@ egypt_num <- get_recorddata(dataProcessIds = 2,
 
 ```
 
-Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to the section `Exploring the UNPD SQL API from R` below). Here are a few other examples:
+Note that **using numeric codes is faster than using string names because we don't have to make code translations behind the scenes** (if you're unsure what these codes mean, please refer to the section `Exploring the UNPD SQL API from R` below). If you want to figure out which names to use, each of these arguments has an equivalent lookup function. For example, for figuring out the possible values in `locIds`, use `get_locations()`. You can see all arguments and their equivalent lookup functions in the documentation of `?get_recorddata`. Do note that these lookup functions have both the `'Name'` and a `'ShortName'` of each value. The translation will only accept string names from the `'Name'` column.
+
+Here are a few other examples:
 
 #### Population by age and sex with census data
 
 ```{r}
-china <- get_recorddata(dataProcessIds = "Census",
+china <- get_recorddata(dataProcessTypeIds = "Census",
                         indicatorTypeIds = "Population by age and sex",
                         locIds = "China",
                         locAreaTypeIds = "Whole area",
@@ -72,7 +74,7 @@ head(china)
 #### Births by age of mother
 
 ```{r, error = TRUE}
-get_recorddata(dataProcessIds = "Census",
+get_recorddata(dataProcessTypeIds = "Census",
                indicatorTypeIds = "Births by age of mother",
                locIds = "Togo",
                locAreaTypeIds = "Whole area",
@@ -84,7 +86,7 @@ get_recorddata(dataProcessIds = "Census",
 See the error? This means that using `"Census"` for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using `get_dataprocess()`). Since this is a trial and error process, we've nailed it down to `"Survey: cross-sectional survey (generic/national)"`:
 
 ```{r }
-togo <- get_recorddata(dataProcessIds = "Survey: cross-sectional survey (generic/national)",
+togo <- get_recorddata(dataProcessTypeIds = "Survey: cross-sectional survey (generic/national)",
                        indicatorTypeIds = "Births by age of mother",
                        locIds = "Togo",
                        locAreaTypeIds = "Whole area",
@@ -97,7 +99,7 @@ head(togo)
 #### Deaths by age and sex using register data
 
 ```{r }
-oman <- get_recorddata(dataProcessIds = "Register",
+oman <- get_recorddata(dataProcessTypeIds = "Register",
                        indicatorTypeIds = "Deaths by age and sex",
                        locIds = "Oman",
                        locAreaTypeIds = "Whole area",
@@ -117,7 +119,7 @@ Currently the IP of the server is automatically set but can be changed simply by
 # which is set by default.
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
-get_recorddata(dataProcessIds = "Register",
+get_recorddata(dataProcessTypeIds = "Register",
                indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Whole area",
@@ -139,7 +141,7 @@ myLocations <- c(28, 492, 570, 674, 308, 96, 196, 8,
                  620, 702, 858, 56, 780, 388, 246, 352,
                  591, 144, 862)
 
-get_recorddata(dataProcessIds = "Register",
+get_recorddata(dataProcessTypeIds = "Register",
                indicatorTypeIds = "Deaths by age and sex",
                locIds = myLocations,
                locAreaTypeIds = "Whole area",
@@ -172,7 +174,7 @@ cnty_groups <- split(myLocations, chunk_groups)
 # Loop through each chunk of countries with `lapply`
 deaths <- lapply(cnty_groups, function(x) {
 
-  res <- get_recorddata(dataProcessIds = 9,
+  res <- get_recorddata(dataProcessTypeIds = 9,
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 20,
@@ -211,7 +213,7 @@ cnty_groups <- split(myLocations, chunk_groups)
 # Loop through each location with `purrr`
 deaths <- map(cnty_groups, ~ {
 
-  res <- get_recorddata(dataProcessIds = 9,
+  res <- get_recorddata(dataProcessTypeIds = 9,
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 20,
@@ -239,7 +241,7 @@ Whenever you download some data, you'll see that there are several columns that 
 First, let's get some data:
 
 ```{r }
-res <- get_recorddata(dataProcessIds = 9, # Register
+res <- get_recorddata(dataProcessTypeIds = 9, # Register
                       startYear = 1920,
                       endYear = 2020,
                       indicatorTypeIds = 14, # Births by sex
@@ -301,7 +303,7 @@ res_tb %>%
 
 The previous examples assume you're familiar with the names or codes of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
 
-* dataProcessIds = `get_dataprocess()`
+* dataProcessTypeIds = `get_dataprocess()`
 * indicatorTypeIds = `get_indicatortypes()`
 * locIds = `get_locations()`
 * locAreaTypeIds = `get_locationtypes()`
@@ -325,7 +327,7 @@ In order to search for a specificic combination of values (`"Egypt"`, `"Deaths b
 For now, let's try this example for `"Semi-rural"`:
 
 ```{r, error = TRUE}
-get_recorddata(dataProcessIds = "Register",
+get_recorddata(dataProcessTypeIds = "Register",
                indicatorTypeIds = "Deaths by age and sex",
                locIds = "Oman",
                locAreaTypeIds = "Semi-rural",

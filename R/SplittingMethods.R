@@ -13,33 +13,33 @@
 #' \code{\link[DemoTools]{graduate_sprague}}.
 #' 
 #' @examples
-#' 
+#'
 #' # Example 1 --- Abridged data
 #' P5 <- DDSQLtools.data$Pop5_Egypt_M_DB
-#' 
-#' W1 <- do_splitting(P5, fn = "beers") 
+#'
+#' W1 <- do_splitting(P5, fn = "beers")
 #' W2 <- do_splitting(P5, fn = "grabill")
 #' W3 <- do_splitting(P5, fn = "sprague")
-#' 
-#' # Example 2 --- 1-year age groups   
+#'
+#' # Example 2 --- 1-year age groups
 #' P1 <- DDSQLtools.data$Pop1_Egypt_M_DB
-#' 
-#' V1 <- do_splitting(P1, fn = "beers") 
-#' V2 <- do_splitting(P1, fn = "grabill") 
-#' V3 <- do_splitting(P1, fn = "sprague") 
-#' 
+#'
+#' V1 <- do_splitting(P1, fn = "beers")
+#' V2 <- do_splitting(P1, fn = "grabill")
+#' V3 <- do_splitting(P1, fn = "sprague")
+#'
 #' select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
 #'                     "DataTypeName", "DataTypeID", "DataValue")
-#' 
+#'
 #' W1[, select_columns]
 #' V1[, select_columns]
-#' 
+#'
 #' @export
-do_splitting <- function(X, 
-                        fn = c("beers", "grabill", "sprague"), 
-                        verbose = TRUE, 
+do_splitting <- function(X,
+                        fn = c("beers", "grabill", "sprague"),
+                        verbose = TRUE,
                         ...) {
-  
+
   A <- X$DataValue
   B <- X$AgeStart
   names(A) <- B
@@ -51,7 +51,8 @@ do_splitting <- function(X,
               beers = graduate_beers(Value = A, Age = B, OAG = OAG, ...),
               grabill = graduate_grabill(Value = A, Age = B, OAG = OAG, ...),
               sprague = graduate_sprague(Value = A, Age = B, OAG = OAG, ...))
-  
+
+  fn <- paste0("graduate_", fn)
   G <-
     within(data.frame(DataValue = E), {
       AgeID <- NA_real_
@@ -64,7 +65,7 @@ do_splitting <- function(X,
       DataTypeID <- paste(deparse(C), collapse = "")
       ReferencePeriod <- unique(X$ReferencePeriod)
     })
-  
+ 
   if (verbose) output_msg(fn, names(C))
   out <- format_output(X, G)
   out

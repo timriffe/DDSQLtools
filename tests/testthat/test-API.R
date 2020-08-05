@@ -3,7 +3,7 @@ test_that("The linkGenerator() works fine", {
   L <- linkGenerator(type = "structureddatarecords",
                      locIds = 4,
                      indicatorTypeIds = 8,
-                     dataProcessIds = c(2, 6),
+                     dataProcessTypeIds = c(2, 6),
                      verbose_print = FALSE)
   
   expect_output(print(L))                          # 1. Always expect an output;
@@ -67,7 +67,7 @@ I <- get_indicators(addDefault = "false")
 validate_read_API(I)  # validate
 
 # ------------------------------------------
-G <- get_seriesdata(dataProcessIds = 2,
+G <- get_seriesdata(dataProcessTypeIds = 2,
                     indicatorTypeIds = 8,
                     isComplete = 0,
                     locIds = 4,
@@ -96,7 +96,7 @@ test_that("get_iitypes can subset correctly", {
 
 
 # ------------------------------------------
-X <- get_recorddata(dataProcessIds = 2,   # Census
+X <- get_recorddata(dataProcessTypeIds = 2,   # Census
                     indicatorTypeIds = 8, # Population by age and sex - abridged 
                     locIds = 818,         # Egypt
                     locAreaTypeIds = 2,   # Whole area 
@@ -106,7 +106,7 @@ X <- get_recorddata(dataProcessIds = 2,   # Census
 validate_recordddata(X)  # validate
 
 # Check whether it successfully accepts strings rather than codes
-Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
+Y <- get_recorddata(dataProcessTypeIds = "Census",   # Estimate
                     indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged 
                     locIds = "Egypt",         # Egypt
                     locAreaTypeIds = "Whole area",   # Whole area 
@@ -116,7 +116,7 @@ Y <- get_recorddata(dataProcessIds = "Census",   # Estimate
 validate_recordddata(Y)
 
 # Check whether it successfully mixed cases
-mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
+mixed <- get_recorddata(dataProcessTypeIds = "census",   # Estimate
                         indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged 
                         locIds = "egypt",         # Egypt
                         locAreaTypeIds = "Whole area",   # Whole area 
@@ -125,8 +125,20 @@ mixed <- get_recorddata(dataProcessIds = "census",   # Estimate
 
 validate_recordddata(mixed)  # validate
 
+# Check whether we can translate with dataProcessIds
+mixed_dataid <- get_recorddata(dataProcessIds = "Population and Housing Census",
+                               startYear = 1920,
+                               endYear = 2020,
+                               indicatorIds = 58,
+                               isComplete = 0,
+                               locIds = 4,
+                               locAreaTypeIds = 2,
+                               subGroupIds = 2)
+
+validate_recordddata(mixed_dataid)  # validate
+
 # mixed with codes
-mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
+mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
@@ -138,7 +150,7 @@ validate_recordddata(mixed_codes)  # validate
 # After changing the unpd server
 options(unpd_server = "http://24.239.36.16:9654/un3/api/")
 
-mixed_codes <- get_recorddata(dataProcessIds = 2,   # Census
+mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
                               locIds = 818,         # Egypt
                               locAreaTypeIds = "Whole area",   # Whole area 
@@ -154,7 +166,7 @@ test_that("get_recorddata returns error when setting wrong server", {
 
   expect_error(
     suppressWarnings(
-      get_recorddata(dataProcessIds = 2,   # Census
+      get_recorddata(dataProcessTypeIds = 2,   # Census
                      indicatorTypeIds = 8, # Population by age and sex - abridged 
                      locIds = 818,         # Egypt
                      locAreaTypeIds = "Whole area",   # Whole area 
@@ -189,7 +201,7 @@ validate_date <- function(res) {
 }
 
 test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/MM/YYYY formats", {
-  res <- get_recorddata(dataProcessIds = 9, # Register
+  res <- get_recorddata(dataProcessTypeIds = 9, # Register
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 14, # Births by sex
@@ -203,7 +215,7 @@ test_that("get_recorddata transforms TimeStart/TimeEnd to Date objects with DD/M
 
 
 test_that("get_recorddata transforms Name columns to labels", {
-  res <- get_recorddata(dataProcessIds = 9, # Register
+  res <- get_recorddata(dataProcessTypeIds = 9, # Register
                         startYear = 1920,
                         endYear = 2020,
                         indicatorTypeIds = 14, # Births by sex
@@ -296,7 +308,7 @@ test_that("isComplete is set to 'Total' by default", {
   myLocations <- 28
   # A request without specifying `isComplete`
 
-  births <- get_recorddata(dataProcessIds = 9,
+  births <- get_recorddata(dataProcessTypeIds = 9,
                            startYear = 1920,
                            endYear = 2020,
                            indicatorTypeIds = 14,
@@ -305,7 +317,7 @@ test_that("isComplete is set to 'Total' by default", {
                            subGroupIds = 2)
 
   # Same request specifying that it's complete is set to 'Total' (2)
-  births_iscomplete <- get_recorddata(dataProcessIds = 9,
+  births_iscomplete <- get_recorddata(dataProcessTypeIds = 9,
                                       startYear = 1920,
                                       endYear = 2020,
                                       indicatorTypeIds = 14,
