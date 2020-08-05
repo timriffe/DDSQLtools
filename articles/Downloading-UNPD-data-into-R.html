@@ -98,7 +98,7 @@
 <a href="#quick-recipes" class="anchor"></a>Quick recipes</h2>
 <p>If you’re already familiar with concepts from the UNPD SQL API, then you’ll only have to interact with the <code>get_recorddata</code> function. For example, here’s how to get data on population by age and sex for Egypt with different options:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r">
-<span class="no">egypt_str</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
+<span class="no">egypt_str</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
                             <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Population by age and sex"</span>,
                             <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Egypt"</span>,
                             <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -106,17 +106,18 @@
                             <span class="kw">isComplete</span> <span class="kw">=</span> <span class="st">"Abridged"</span>)</pre></body></html></div>
 <p><code>get_recorddata</code> accepts either string names or codes. For example, this will return the same thing as above:</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r">
-<span class="no">egypt_num</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="fl">2</span>,
+<span class="no">egypt_num</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="fl">2</span>,
                             <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="fl">8</span>,
                             <span class="kw">locIds</span> <span class="kw">=</span> <span class="fl">818</span>,
                             <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="fl">2</span>,
                             <span class="kw">subGroupIds</span> <span class="kw">=</span> <span class="fl">2</span>,
                             <span class="kw">isComplete</span> <span class="kw">=</span> <span class="fl">0</span>)</pre></body></html></div>
-<p>Note that <strong>using numeric codes is faster than using string names because we don’t have to make code translations behind the scenes</strong> (if you’re unsure what these codes mean, please refer to the section <code>Exploring the UNPD SQL API from R</code> below). Here are a few other examples:</p>
+<p>Note that <strong>using numeric codes is faster than using string names because we don’t have to make code translations behind the scenes</strong> (if you’re unsure what these codes mean, please refer to the section <code>Exploring the UNPD SQL API from R</code> below). If you want to figure out which names to use, each of these arguments has an equivalent lookup function. For example, for figuring out the possible values in <code>locIds</code>, use <code><a href="../reference/get_locations.html">get_locations()</a></code>. You can see all arguments and their equivalent lookup functions in the documentation of <code><a href="../reference/get_recorddata.html">?get_recorddata</a></code>. Do note that these lookup functions have both the <code>'Name'</code> and a <code>'ShortName'</code> of each value. The translation will only accept string names from the <code>'Name'</code> column.</p>
+<p>Here are a few other examples:</p>
 <div id="population-by-age-and-sex-with-census-data" class="section level4">
 <h4 class="hasAnchor">
 <a href="#population-by-age-and-sex-with-census-data" class="anchor"></a>Population by age and sex with census data</h4>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">china</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">china</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
                         <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Population by age and sex"</span>,
                         <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"China"</span>,
                         <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -128,7 +129,7 @@
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span>
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">china</span>)
 <span class="co">#&gt;                          IndicatorName LocName StructuredDataID LocTypeName</span>
@@ -254,7 +255,7 @@
 <div id="births-by-age-of-mother" class="section level4">
 <h4 class="hasAnchor">
 <a href="#births-by-age-of-mother" class="anchor"></a>Births by age of mother</h4>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Census"</span>,
                <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Births by age of mother"</span>,
                <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Togo"</span>,
                <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -267,7 +268,7 @@
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
 <span class="co">#&gt; Error in fun(vec, ...): Data type(s) 'Census' not found. Check get_dataprocess()</span></pre></body></html></div>
 <p>See the error? This means that using <code>"Census"</code> for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using <code><a href="../reference/get_dataprocess.html">get_dataprocess()</a></code>). Since this is a trial and error process, we’ve nailed it down to <code>"Survey: cross-sectional survey (generic/national)"</code>:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">togo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Survey: cross-sectional survey (generic/national)"</span>,
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">togo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Survey: cross-sectional survey (generic/national)"</span>,
                        <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Births by age of mother"</span>,
                        <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Togo"</span>,
                        <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -279,7 +280,7 @@
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">togo</span>)
 <span class="co">#&gt;                                IndicatorName LocName StructuredDataID</span>
@@ -412,7 +413,7 @@
 <div id="deaths-by-age-and-sex-using-register-data" class="section level4">
 <h4 class="hasAnchor">
 <a href="#deaths-by-age-and-sex-using-register-data" class="anchor"></a>Deaths by age and sex using register data</h4>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">oman</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">oman</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
                        <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Deaths by age and sex"</span>,
                        <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Oman"</span>,
                        <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -424,7 +425,7 @@
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span>
 <span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">oman</span>)
 <span class="co">#&gt;                      IndicatorName LocName StructuredDataID LocTypeName</span>
@@ -548,7 +549,7 @@
 <span class="co"># which is set by default.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">unpd_server</span> <span class="kw">=</span> <span class="st">"http://24.239.36.16:9654/un3/api/"</span>)
 
-<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
+<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
                <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Deaths by age and sex"</span>,
                <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Oman"</span>,
                <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -567,7 +568,7 @@
                  <span class="fl">620</span>, <span class="fl">702</span>, <span class="fl">858</span>, <span class="fl">56</span>, <span class="fl">780</span>, <span class="fl">388</span>, <span class="fl">246</span>, <span class="fl">352</span>,
                  <span class="fl">591</span>, <span class="fl">144</span>, <span class="fl">862</span>)
 
-<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
+<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
                <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Deaths by age and sex"</span>,
                <span class="kw">locIds</span> <span class="kw">=</span> <span class="no">myLocations</span>,
                <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Whole area"</span>,
@@ -595,7 +596,7 @@
 <span class="co"># Loop through each chunk of countries with `lapply`</span>
 <span class="no">deaths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">cnty_groups</span>, <span class="kw">function</span>(<span class="no">x</span>) {
 
-  <span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="fl">9</span>,
+  <span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="fl">9</span>,
                         <span class="kw">startYear</span> <span class="kw">=</span> <span class="fl">1920</span>,
                         <span class="kw">endYear</span> <span class="kw">=</span> <span class="fl">2020</span>,
                         <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="fl">20</span>,
@@ -634,7 +635,7 @@
 <span class="co"># Loop through each location with `purrr`</span>
 <span class="no">deaths</span> <span class="kw">&lt;-</span> <span class="fu">map</span>(<span class="no">cnty_groups</span>, ~ {
 
-  <span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="fl">9</span>,
+  <span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="fl">9</span>,
                         <span class="kw">startYear</span> <span class="kw">=</span> <span class="fl">1920</span>,
                         <span class="kw">endYear</span> <span class="kw">=</span> <span class="fl">2020</span>,
                         <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="fl">20</span>,
@@ -660,7 +661,7 @@
 <a href="#identifying-id-and-names-of-values" class="anchor"></a>Identifying ID and Names of values</h4>
 <p>Whenever you download some data, you’ll see that there are several columns that end with <code>Name</code>. This columns contain, for example, the name of the location (<code>LocName</code>) or the name of the subgroup (<code>SubGroupNam</code>). To be able to see the equivalent ID of these names, there are two different strategies using the <code>haven</code> package.</p>
 <p>First, let’s get some data:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="fl">9</span>, <span class="co"># Register</span>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="fl">9</span>, <span class="co"># Register</span>
                       <span class="kw">startYear</span> <span class="kw">=</span> <span class="fl">1920</span>,
                       <span class="kw">endYear</span> <span class="kw">=</span> <span class="fl">2020</span>,
                       <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="co"># Births by sex</span>
@@ -668,7 +669,7 @@
                       <span class="kw">locIds</span> <span class="kw">=</span> <span class="fl">28</span>, <span class="co"># Antigua and Barbuda</span>
                       <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="co"># Whole area</span>
                       <span class="kw">subGroupIds</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="co"># Total</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessIds=9&amp;startYear=1920&amp;endYear=2020&amp;indicatorTypeIds=14&amp;isComplete=2&amp;locIds=28&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=9&amp;startYear=1920&amp;endYear=2020&amp;indicatorTypeIds=14&amp;isComplete=2&amp;locIds=28&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span></pre></body></html></div>
 </div>
 <div id="base-r" class="section level4">
 <h4 class="hasAnchor">
@@ -700,8 +701,8 @@
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>)
 <span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</span>
 <span class="co">#&gt; ✔ ggplot2 3.3.2     ✔ purrr   0.3.4</span>
-<span class="co">#&gt; ✔ tibble  3.0.2     ✔ dplyr   1.0.0</span>
-<span class="co">#&gt; ✔ tidyr   1.1.0     ✔ stringr 1.4.0</span>
+<span class="co">#&gt; ✔ tibble  3.0.3     ✔ dplyr   1.0.1</span>
+<span class="co">#&gt; ✔ tidyr   1.1.1     ✔ stringr 1.4.0</span>
 <span class="co">#&gt; ✔ readr   1.3.1     ✔ forcats 0.5.0</span>
 <span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
@@ -712,13 +713,6 @@
 <span class="co"># separately, `tibble` print boths things together.</span>
 <span class="no">res_tb</span> <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName   LocTypeName RegName    AreaName   LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;chr+lbl&gt;     &lt;chr+lbl&gt; &lt;chr+lbl&gt;   &lt;chr+lbl&gt;  &lt;chr+lbl&gt;  &lt;chr+lbl&gt;      </span>
@@ -746,13 +740,6 @@
   <span class="co"># You can extract just the ID</span>
   <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="st">"labels"</span>) <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
@@ -777,13 +764,6 @@
   <span class="co"># Or just the values</span>
   <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="st">"values"</span>) <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"Name"</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 140 x 22</span>
 <span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
 <span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
@@ -811,7 +791,7 @@
 <a href="#exploring-the-unpd-sql-api-from-r" class="anchor"></a>Exploring the UNPD SQL API from R</h2>
 <p>The previous examples assume you’re familiar with the names or codes of the parameters of the API: locations, subgroups, etc… Whenever you don’t know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent <code>get_*</code> function to extract all possible values. The current list is:</p>
 <ul>
-<li>dataProcessIds = <code><a href="../reference/get_dataprocess.html">get_dataprocess()</a></code>
+<li>dataProcessTypeIds = <code><a href="../reference/get_dataprocess.html">get_dataprocess()</a></code>
 </li>
 <li>indicatorTypeIds = <code><a href="../reference/get_indicatortypes.html">get_indicatortypes()</a></code>
 </li>
@@ -873,7 +853,7 @@
 <span class="co">#&gt; 13 WHO-DB subdiv=A70    FALSE     FALSE</span></pre></body></html></div>
 <p>In order to search for a specificic combination of values (<code>"Egypt"</code>, <code>"Deaths by age and sex"</code>, etc…), the process is only possible through trial and error. For example, if we wanted to explore <code>Deaths by age and sex</code> for <code>Oman</code>, we’d have to explore whether there is data for <code>Semi-rural</code> (<code>locAreaTypeIds</code>) and <code>Christian Orthodox</code> (<code>subGroupIds</code>). Since this exploration process is a bit cumbersome, we’re currently developing a new strategy for exploring country/indicator pairs that will be more intuitive.</p>
 <p>For now, let’s try this example for <code>"Semi-rural"</code>:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span>(<span class="kw">dataProcessTypeIds</span> <span class="kw">=</span> <span class="st">"Register"</span>,
                <span class="kw">indicatorTypeIds</span> <span class="kw">=</span> <span class="st">"Deaths by age and sex"</span>,
                <span class="kw">locIds</span> <span class="kw">=</span> <span class="st">"Oman"</span>,
                <span class="kw">locAreaTypeIds</span> <span class="kw">=</span> <span class="st">"Semi-rural"</span>,

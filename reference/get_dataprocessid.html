@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download data from UNPD portal — get_recorddata • DDSQLtools</title>
+<title>Get information about available data-types (DataProcessID and DataProcessTypeID) — get_dataprocessid • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download data from UNPD portal — get_recorddata" />
-<meta property="og:description" content="Download data from UNPD portal" />
+<meta property="og:title" content="Get information about available data-types (DataProcessID and DataProcessTypeID) — get_dataprocessid" />
+<meta property="og:description" content="Get information about available data-types (DataProcessID and DataProcessTypeID)" />
 
 
 
@@ -120,16 +120,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download data from UNPD portal</h1>
+    <h1>Get information about available data-types (DataProcessID and DataProcessTypeID)</h1>
     <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/GetInformation.R'><code>R/GetInformation.R</code></a></small>
-    <div class="hidden name"><code>get_recorddata.Rd</code></div>
+    <div class="hidden name"><code>get_dataprocessid.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download data from UNPD portal</p>
+    <p>Get information about available data-types (DataProcessID and DataProcessTypeID)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_recorddata</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_dataprocessid</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,11 +139,6 @@
       <td><p>Logical. Choose whether or not to save the data in an external 
 <code>.Rdata</code> file in the working directory. Default: 
 <code>FALSE</code>;</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Whether to print the translated query from strings to digits
-for faster queries. By default set to TRUE.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -157,7 +152,7 @@ care, this is important! The following options are available:</p>
   Run the <code><a href='get_dataprocess.html'>get_dataprocess</a></code> function to see the available 
   options;</p></li>
 <li><p><code>dataProcessIds</code> -- Data process ID as defined by the UNPD. 
-  Run the <code><a href='get_dataprocessid.html'>get_dataprocessid</a></code> function to see the available 
+  Run the <code>get_dataprocessid</code> function to see the available 
   options;</p></li>
 <li><p><code>startYear</code> -- Start year. Default: NULL;</p></li>
 <li><p><code>endYear</code> -- End year. Default: NULL;</p></li>
@@ -180,42 +175,11 @@ care, this is important! The following options are available:</p>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>get_recorddata</code> allows the user to supply string names for all
-arguments that have equivalent <code>get_*</code> functions. For example,
-<code>get_iitypes</code> for <code>indicatorIds</code>. The string used for all
-of these arguments should be the one from the column <code>Name</code> in
-the response from the <code>get_*</code> functions.</p>
-<p>Once the data is read from the API, some transformations are applied:</p>
-<ul>
-<li><p>Columns <code>AreaName</code>, <code>DataReliabilityName</code>, <code>SubGroupName</code>, <code>DataStatusName</code>, <code>DataTypeName</code>, <code>DataTypeGroupName</code>, <code>IndicatorName</code>, <code>LocName</code>, <code>LocAreaTypeName</code>, <code>LocTypeName</code>, <code>ModelPatternName</code>, <code>ModelPatternFamilyName</code>, <code>PeriodGroupName</code>, <code>PeriodTypeName</code>, <code>RegName</code>, <code>SexName</code>, <code>StatisticalConceptName</code>, <code>SubGroupTypeName</code> are converted to labelled factors with <code><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></code></p></li>
-<li><p><code>TimeStart</code> and <code>TimeEnd</code> are returned with format <code>'DD/MM/YYYY'</code></p></li>
-</ul>
-
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'>#  You can provide all strings, all codes, or a combination of both</span>
-<span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='fu'>get_recorddata</span>(<span class='kw'>dataProcessTypeIds</span> <span class='kw'>=</span> <span class='st'>"Census"</span>,
-                   <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
-                   <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='st'>"egypt"</span>, <span class='co'># all arguments are case insensitive</span>
-                   <span class='kw'>locAreaTypeIds</span> <span class='kw'>=</span> <span class='st'>"Whole area"</span>,
-                   <span class='kw'>subGroupIds</span> <span class='kw'>=</span> <span class='st'>"Total or All groups"</span>,
-                   <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='st'>"Abridged"</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>Y</span>)
-
-<span class='co'># Same thing only with codes</span>
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>get_recorddata</span>(<span class='kw'>dataProcessTypeIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,   <span class='co'># Census</span>
-                   <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged </span>
-                   <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='fl'>818</span>,         <span class='co'># Egypt</span>
-                   <span class='kw'>locAreaTypeIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,   <span class='co'># Whole area </span>
-                   <span class='kw'>subGroupIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,      <span class='co'># Total or All groups</span>
-                   <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='fl'>0</span>)       <span class='co'># Age Distribution: Abridged</span>
-
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>X</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>D</span> <span class='kw'>&lt;-</span> <span class='fu'>get_dataprocessid</span>()
+<span class='no'>D</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"PK_DataProcessID"</span>, <span class='st'>"Name"</span>, <span class='st'>"ShortName"</span>)]
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

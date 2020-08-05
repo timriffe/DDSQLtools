@@ -188,13 +188,7 @@ Different numbers of rows. UN format.</p>
 <span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
 <span class='no'>Q</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>Q1</span>, <span class='no'>Q2</span>, <span class='no'>Q3</span>)
-<span class='no'>Q</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 3 x 8
+<span class='no'>Q</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 3 x 8
 #&gt;   AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName   DataTypeID      DataValue
 #&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;               &lt;dbl&gt;
 #&gt; 1    NA        0     50     75 0-75+    DemoTools::se… "do_qualityche…      4.91

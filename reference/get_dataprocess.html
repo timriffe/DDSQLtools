@@ -146,14 +146,20 @@
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:</p><ul>
-<li><p><code>dataProcessIds</code> -- Data process ID as defined by the UNPD. 
+care, this is important! The following options are available:</p>
+<ul>
+<li><p><code>dataProcessTypeIds</code> -- Data process Type ID as defined by the UNPD. 
   Run the <code>get_dataprocess</code> function to see the available 
+  options;</p></li>
+<li><p><code>dataProcessIds</code> -- Data process ID as defined by the UNPD. 
+  Run the <code><a href='get_dataprocessid.html'>get_dataprocessid</a></code> function to see the available 
   options;</p></li>
 <li><p><code>startYear</code> -- Start year. Default: NULL;</p></li>
 <li><p><code>endYear</code> -- End year. Default: NULL;</p></li>
 <li><p><code>indicatorTypeIds</code> -- Indicator type ID as defined by the UNPD. 
   Run the <code><a href='get_indicatortypes.html'>get_indicatortypes</a></code> function to see the available options;</p></li>
+<li><p><code>indicatorIds</code> -- Indicator ID as defined by the UNPD. 
+  Run the <code><a href='get_iitypes.html'>get_iitypes</a></code> function to see the available options;</p></li>
 <li><p><code>isComplete</code> -- isComplete is set to `2` ('Total') by default on the API;</p></li>
 <li><p><code>locIds</code> -- Location ID as defined by the UNPD. Run the
   <code><a href='get_locations.html'>get_locations</a></code> function to see the available options;</p></li>
