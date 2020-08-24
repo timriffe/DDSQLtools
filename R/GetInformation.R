@@ -260,7 +260,7 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
     # Extract the columns from the df
     nm_vec <- res[, nm]
     id_vec <- res[, id]
-    
+
     if (length(unique(nm_vec)) != length(unique(id_vec))) {
       stop("Column ", nm, " and ", id, " have different ",
            "unique values. Please report the exact same call that ",
@@ -275,7 +275,7 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
     haven::labelled(nm_vec, labels = vct_nm)
   }, names(values_env$id_to_fact), values_env$id_to_fact)
 
-  ## # Exclude ID columns
+  ## # Exclude some ID columns
   res <- res[values_env$col_order]
 
   res

@@ -12,7 +12,7 @@ License: file LICENSE
 LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
-    DemoTools (>= 1.7.0),
+    DemoTools (>= 1.8.0),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
     rjson (>= 0.2.20),
