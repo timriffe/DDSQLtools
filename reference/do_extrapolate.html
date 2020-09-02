@@ -226,9 +226,9 @@ Different numbers of rows. UN format.</p>
 #&gt; #   AgeLabel &lt;dbl&gt;, AgeMid &lt;dbl&gt;, AgeEnd &lt;dbl&gt;, AgeID &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Build 2 life table: 1st using the original data and the 2nd using the extended data</span>
 <span class='no'>LT1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Mx5</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
-#&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
+#&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'><span class='no'>LT2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>E</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
-#&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod Sex region IMR mod OAnew extrapLaw extrapFrom extrapFit ...</span>
+#&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'>
 <span class='no'>LT1</span>[<span class='no'>LT1</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; # A tibble: 20 x 2
 #&gt;    AgeStart DataValue
