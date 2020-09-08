@@ -256,26 +256,26 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   # Loop through name and id names
   # and save the labelled character
   # to the Name columns
-  res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
-    # Extract the columns from the df
-    nm_vec <- res[, nm]
-    id_vec <- res[, id]
+  ## res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
+  ##   # Extract the columns from the df
+  ##   nm_vec <- res[, nm]
+  ##   id_vec <- res[, id]
 
-    if (length(unique(nm_vec)) != length(unique(id_vec))) {
-      stop("Column ", nm, " and ", id, " have different ",
-           "unique values. Please report the exact same call that ",
-           "raised this error at https://github.com/timriffe/DDSQLtools/issues")
-    }
+  ##   if (length(unique(nm_vec)) != length(unique(id_vec))) {
+  ##     stop("Column ", nm, " and ", id, " have different ",
+  ##          "unique values. Please report the exact same call that ",
+  ##          "raised this error at https://github.com/timriffe/DDSQLtools/issues")
+  ##   }
 
-    # Set names of id to names to pass it to labelled
-    # with correct labels
-    vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
+  ##   # Set names of id to names to pass it to labelled
+  ##   # with correct labels
+  ##   vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
 
-    # Create name column with ID as labels
-    haven::labelled(nm_vec, labels = vct_nm)
-  }, names(values_env$id_to_fact), values_env$id_to_fact)
+  ##   # Create name column with ID as labels
+  ##   haven::labelled(nm_vec, labels = vct_nm)
+  ## }, names(values_env$id_to_fact), values_env$id_to_fact)
 
-  ## # Exclude some ID columns
+  ## # Currently includes some ID columns
   res <- res[values_env$col_order]
 
   res
