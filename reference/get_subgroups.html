@@ -129,7 +129,7 @@
     <p>Get information about available sub-group-types (SubGroupTypeID)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_subgroups</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_subgroups</span>(save_file = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,13 +178,14 @@ care, this is important! The following options are available:</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Check what subgroups are available for:</span>
-<span class='no'>S</span> <span class='kw'>&lt;-</span> <span class='fu'>get_subgroups</span>(<span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>,  <span class='co'># Population by age and sex indicator;</span>
-                  <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='fl'>818</span>,       <span class='co'># Egypt</span>
-                  <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='no'>S</span>
-}</div></pre>
+<span class='kw'>S</span> <span class='op'>&lt;-</span> <span class='fu'>get_subgroups</span>(indicatorTypeIds = <span class='fl'>8</span>,  <span class='co'># Population by age and sex indicator;</span>
+                  locIds = <span class='fl'>818</span>,       <span class='co'># Egypt</span>
+                  isComplete = <span class='fl'>0</span>)
+<span class='kw'>S</span>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -200,7 +201,7 @@ care, this is important! The following options are available:</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

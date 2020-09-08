@@ -130,10 +130,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>linkGenerator</span>(
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"unpd_server"</span>, <span class='st'>"http://24.239.36.16:9654/un3/api/"</span>),
-  <span class='no'>type</span>,
-  <span class='no'>verbose_print</span>,
-  <span class='no'>...</span>
+  server = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"unpd_server"</span>, <span class='st'>"http://24.239.36.16:9654/un3/api/"</span>),
+  <span class='kw'>type</span>,
+  <span class='kw'>verbose_print</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -195,38 +195,39 @@ are returned with format <code>DD/MM/YYYY</code>, where <code>DD</code> are days
 are months and <code>YYYY</code> are years.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Link to country list</span>
-<span class='no'>L1</span> <span class='kw'>&lt;-</span> <span class='fu'>linkGenerator</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"locations"</span>,
-                    <span class='kw'>addDefault</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
-                    <span class='kw'>includeDependencies</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
-                    <span class='kw'>includeFormerCountries</span> <span class='kw'>=</span> <span class='st'>"false"</span>)
-<span class='no'>L1</span>
+<span class='kw'>L1</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span>(type = <span class='st'>"locations"</span>,
+                    addDefault = <span class='st'>"false"</span>,
+                    includeDependencies = <span class='st'>"false"</span>,
+                    includeFormerCountries = <span class='st'>"false"</span>)
+<span class='kw'>L1</span>
 
 <span class='co'># Link to location types (for Egypt)</span>
 <span class='co'># With strings rather than codes</span>
-<span class='no'>L2</span> <span class='kw'>&lt;-</span> <span class='fu'>linkGenerator</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"locAreaTypes"</span>,
-                    <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='st'>"Population by sex"</span>,
-                    <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='st'>"Egypt"</span>,
-                    <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='st'>"Abridged"</span>)
-<span class='no'>L2</span>
+<span class='kw'>L2</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span>(type = <span class='st'>"locAreaTypes"</span>,
+                    indicatorTypeIds = <span class='st'>"Population by sex"</span>,
+                    locIds = <span class='st'>"Egypt"</span>,
+                    isComplete = <span class='st'>"Abridged"</span>)
+<span class='kw'>L2</span>
 
 <span class='co'># Link to subgroup types (for Egypt)</span>
-<span class='no'>L3</span> <span class='kw'>&lt;-</span> <span class='fu'>linkGenerator</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"subGroups"</span>,
-                    <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-                    <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='fl'>818</span>,
-                    <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='no'>L3</span>
+<span class='kw'>L3</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span>(type = <span class='st'>"subGroups"</span>,
+                    indicatorTypeIds = <span class='fl'>8</span>,
+                    locIds = <span class='fl'>818</span>,
+                    isComplete = <span class='fl'>0</span>)
+<span class='kw'>L3</span>
 
 <span class='co'># Link to indicator list</span>
-<span class='no'>L4</span> <span class='kw'>&lt;-</span> <span class='fu'>linkGenerator</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"indicators"</span>,
-                    <span class='kw'>addDefault</span> <span class='kw'>=</span> <span class='st'>"false"</span>)
-<span class='no'>L4</span>
+<span class='kw'>L4</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span>(type = <span class='st'>"indicators"</span>,
+                    addDefault = <span class='st'>"false"</span>)
+<span class='kw'>L4</span>
 
 <span class='co'># Link to data process type list</span>
-<span class='no'>L5</span> <span class='kw'>&lt;-</span> <span class='fu'>linkGenerator</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dataProcessTypes"</span>)
-<span class='no'>L5</span>
-}</div></pre>
+<span class='kw'>L5</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span>(type = <span class='st'>"dataProcessTypes"</span>)
+<span class='kw'>L5</span>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -242,7 +243,7 @@ are months and <code>YYYY</code> are years.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

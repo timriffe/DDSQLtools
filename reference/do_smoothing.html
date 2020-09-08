@@ -136,16 +136,16 @@ and United Nations methods.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_smoothing</span>(
-  <span class='no'>X</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>, <span class='st'>"United Nations"</span>, <span class='st'>"Strong"</span>, <span class='st'>"Zigzag"</span>,
+  <span class='kw'>X</span>,
+  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>, <span class='st'>"United Nations"</span>, <span class='st'>"Strong"</span>, <span class='st'>"Zigzag"</span>,
     <span class='st'>"MAV"</span>),
-  <span class='kw'>ageMin</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>ageMax</span> <span class='kw'>=</span> <span class='fl'>65</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>young.tail</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Original"</span>, <span class='st'>"Arriaga"</span>, <span class='st'>"Strong"</span>, <span class='fl'>NA</span>),
-  <span class='kw'>old.tail</span> <span class='kw'>=</span> <span class='no'>young.tail</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  ageMin = <span class='fl'>10</span>,
+  ageMax = <span class='fl'>65</span>,
+  n = <span class='fl'>3</span>,
+  young.tail = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Original"</span>, <span class='st'>"Arriaga"</span>, <span class='st'>"Strong"</span>, <span class='fl'>NA</span>),
+  old.tail = <span class='kw'>young.tail</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -216,45 +216,47 @@ compare the results from a variety of methods.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/smooth_age_5.html'>smooth_age_5</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>P5</span> <span class='kw'>&lt;-</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Pop5_Egypt_M_DB</span>
+    <pre class="examples"><div class='input'><span class='kw'>P5</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop5_Egypt_M_DB</span>
 
-<span class='no'>M</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>,
+<span class='kw'>M</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>,
        <span class='st'>"United Nations"</span>, <span class='st'>"Strong"</span>, <span class='st'>"Zigzag"</span>, <span class='st'>"MAV"</span>)
 
-<span class='no'>S1</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>1</span>])
-<span class='no'>S2</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>2</span>])
-<span class='no'>S3</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>3</span>])
-<span class='no'>S4</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>4</span>])
-<span class='no'>S5</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>5</span>])
-<span class='no'>S6</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>6</span>])
-<span class='no'>S7</span> <span class='kw'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='no'>P5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>M</span>[<span class='fl'>7</span>])
+<span class='kw'>S1</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>1</span>])
+<span class='kw'>S2</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>2</span>])
+<span class='kw'>S3</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>3</span>])
+<span class='kw'>S4</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>4</span>])
+<span class='kw'>S5</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>5</span>])
+<span class='kw'>S6</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>6</span>])
+<span class='kw'>S7</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span>(<span class='kw'>P5</span>, method = <span class='kw'>M</span>[<span class='fl'>7</span>])
 
-<span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
+<span class='kw'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
-<span class='no'>S1</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 16 x 8
+<span class='kw'>S1</span>[, <span class='kw'>select_columns</span>]
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 16 x 8</span><span>
 #&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName    DataTypeID    DataValue
-#&gt;    &lt;lgl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
-#&gt;  1 NA           0    2.5      5 0-4      DemoTools::age… do_smoothing…  3951843 
-#&gt;  2 NA           5    7.5     10 5-9      DemoTools::age… do_smoothing…  3936424 
-#&gt;  3 NA          10   12.5     15 10-14    DemoTools::age… do_smoothing…  4234663.
-#&gt;  4 NA          15   17.5     20 15-19    DemoTools::age… do_smoothing…  4132916.
-#&gt;  5 NA          20   22.5     25 20-24    DemoTools::age… do_smoothing…  3835300.
-#&gt;  6 NA          25   27.5     30 25-29    DemoTools::age… do_smoothing…  3321728.
-#&gt;  7 NA          30   32.5     35 30-34    DemoTools::age… do_smoothing…  2529984.
-#&gt;  8 NA          35   37.5     40 35-39    DemoTools::age… do_smoothing…  2178255.
-#&gt;  9 NA          40   42.5     45 40-44    DemoTools::age… do_smoothing…  2098388.
-#&gt; 10 NA          45   47.5     50 45-49    DemoTools::age… do_smoothing…  1834366.
-#&gt; 11 NA          50   52.5     55 50-54    DemoTools::age… do_smoothing…  1535701.
-#&gt; 12 NA          55   57.5     60 55-59    DemoTools::age… do_smoothing…  1213834.
-#&gt; 13 NA          60   62.5     65 60-64    DemoTools::age… do_smoothing…   896041 
-#&gt; 14 NA          65   67.5     70 65-69    DemoTools::age… do_smoothing…   638954 
-#&gt; 15 NA          70   72.5     75 70-74    DemoTools::age… do_smoothing…   401297 
-#&gt; 16 NA          75   87.5      0 75+      DemoTools::age… do_smoothing…   375648 </div><div class='input'>
-<span class='no'>S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>S1</span>$<span class='no'>DataValue</span>, <span class='no'>S2</span>$<span class='no'>DataValue</span>, <span class='no'>S3</span>$<span class='no'>DataValue</span>,
-           <span class='no'>S4</span>$<span class='no'>DataValue</span>, <span class='no'>S5</span>$<span class='no'>DataValue</span>, <span class='no'>S6</span>$<span class='no'>DataValue</span>, <span class='no'>S7</span>$<span class='no'>DataValue</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span>(<span class='no'>S</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Age</span> <span class='kw'>=</span> <span class='no'>S1</span>$<span class='no'>AgeLabel</span>, <span class='kw'>SmoothingMethod</span> <span class='kw'>=</span> <span class='no'>M</span>)
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #BB0000;'>NA</span><span>           0    2.5      5 0-4      DemoTools::age… do_smoothing…  3</span><span style='text-decoration: underline;'>951</span><span>843 
+#&gt; </span><span style='color: #555555;'> 2</span><span> </span><span style='color: #BB0000;'>NA</span><span>           5    7.5     10 5-9      DemoTools::age… do_smoothing…  3</span><span style='text-decoration: underline;'>936</span><span>424 
+#&gt; </span><span style='color: #555555;'> 3</span><span> </span><span style='color: #BB0000;'>NA</span><span>          10   12.5     15 10-14    DemoTools::age… do_smoothing…  4</span><span style='text-decoration: underline;'>234</span><span>663.
+#&gt; </span><span style='color: #555555;'> 4</span><span> </span><span style='color: #BB0000;'>NA</span><span>          15   17.5     20 15-19    DemoTools::age… do_smoothing…  4</span><span style='text-decoration: underline;'>132</span><span>916.
+#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #BB0000;'>NA</span><span>          20   22.5     25 20-24    DemoTools::age… do_smoothing…  3</span><span style='text-decoration: underline;'>835</span><span>300.
+#&gt; </span><span style='color: #555555;'> 6</span><span> </span><span style='color: #BB0000;'>NA</span><span>          25   27.5     30 25-29    DemoTools::age… do_smoothing…  3</span><span style='text-decoration: underline;'>321</span><span>728.
+#&gt; </span><span style='color: #555555;'> 7</span><span> </span><span style='color: #BB0000;'>NA</span><span>          30   32.5     35 30-34    DemoTools::age… do_smoothing…  2</span><span style='text-decoration: underline;'>529</span><span>984.
+#&gt; </span><span style='color: #555555;'> 8</span><span> </span><span style='color: #BB0000;'>NA</span><span>          35   37.5     40 35-39    DemoTools::age… do_smoothing…  2</span><span style='text-decoration: underline;'>178</span><span>255.
+#&gt; </span><span style='color: #555555;'> 9</span><span> </span><span style='color: #BB0000;'>NA</span><span>          40   42.5     45 40-44    DemoTools::age… do_smoothing…  2</span><span style='text-decoration: underline;'>098</span><span>388.
+#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #BB0000;'>NA</span><span>          45   47.5     50 45-49    DemoTools::age… do_smoothing…  1</span><span style='text-decoration: underline;'>834</span><span>366.
+#&gt; </span><span style='color: #555555;'>11</span><span> </span><span style='color: #BB0000;'>NA</span><span>          50   52.5     55 50-54    DemoTools::age… do_smoothing…  1</span><span style='text-decoration: underline;'>535</span><span>701.
+#&gt; </span><span style='color: #555555;'>12</span><span> </span><span style='color: #BB0000;'>NA</span><span>          55   57.5     60 55-59    DemoTools::age… do_smoothing…  1</span><span style='text-decoration: underline;'>213</span><span>834.
+#&gt; </span><span style='color: #555555;'>13</span><span> </span><span style='color: #BB0000;'>NA</span><span>          60   62.5     65 60-64    DemoTools::age… do_smoothing…   </span><span style='text-decoration: underline;'>896</span><span>041 
+#&gt; </span><span style='color: #555555;'>14</span><span> </span><span style='color: #BB0000;'>NA</span><span>          65   67.5     70 65-69    DemoTools::age… do_smoothing…   </span><span style='text-decoration: underline;'>638</span><span>954 
+#&gt; </span><span style='color: #555555;'>15</span><span> </span><span style='color: #BB0000;'>NA</span><span>          70   72.5     75 70-74    DemoTools::age… do_smoothing…   </span><span style='text-decoration: underline;'>401</span><span>297 
+#&gt; </span><span style='color: #555555;'>16</span><span> </span><span style='color: #BB0000;'>NA</span><span>          75   87.5      0 75+      DemoTools::age… do_smoothing…   </span><span style='text-decoration: underline;'>375</span><span>648 </div><div class='input'>
+<span class='kw'>S</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='kw'>S1</span><span class='op'>$</span><span class='kw'>DataValue</span>, <span class='kw'>S2</span><span class='op'>$</span><span class='kw'>DataValue</span>, <span class='kw'>S3</span><span class='op'>$</span><span class='kw'>DataValue</span>,
+           <span class='kw'>S4</span><span class='op'>$</span><span class='kw'>DataValue</span>, <span class='kw'>S5</span><span class='op'>$</span><span class='kw'>DataValue</span>, <span class='kw'>S6</span><span class='op'>$</span><span class='kw'>DataValue</span>, <span class='kw'>S7</span><span class='op'>$</span><span class='kw'>DataValue</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span>(<span class='kw'>S</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(Age = <span class='kw'>S1</span><span class='op'>$</span><span class='kw'>AgeLabel</span>, SmoothingMethod = <span class='kw'>M</span>)
 
-<span class='no'>S</span></div><div class='output co'>#&gt;        SmoothingMethod
+<span class='kw'>S</span>
+</div><div class='output co'>#&gt;        SmoothingMethod
 #&gt; Age     Carrier-Farrag     KKN Arriaga United Nations    Strong    Zigzag
 #&gt;   0-4          3951843 3951843 3813809        3951843 3868225.4 3951843.0
 #&gt;   5-9          3936424 3936424 4074458        3936424 4020041.6 3936424.0
@@ -289,7 +291,7 @@ compare the results from a variety of methods.</p>
 #&gt;   60-64  915272.3
 #&gt;   65-69  645430.7
 #&gt;   70-74  401297.0
-#&gt;   75+    375648.0</div></pre>
+#&gt;   75+    375648.0</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -305,7 +307,7 @@ compare the results from a variety of methods.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

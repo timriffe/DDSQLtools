@@ -129,7 +129,7 @@
     <p>Get information about available details for a given series of data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_seriesdata</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_seriesdata</span>(save_file = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,15 +177,16 @@ care, this is important! The following options are available:</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># You can provide all strings, all codes, or a combination of both</span>
-<span class='no'>G</span> <span class='kw'>&lt;-</span> <span class='fu'>get_seriesdata</span>(<span class='kw'>dataProcessTypeIds</span> <span class='kw'>=</span> <span class='fl'>0</span>:<span class='fl'>15</span>, <span class='co'># possible processes</span>
-                   <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>25</span>,    <span class='co'># M[x]</span>
-                   <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='st'>"Egypt"</span>,             <span class='co'># Egypt</span>
-                   <span class='kw'>locAreaTypeIds</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"whole area"</span>, <span class='st'>"rural"</span>, <span class='st'>"urban"</span>), <span class='co'># all possible types</span>
-                   <span class='kw'>subGroupIds</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>G</span>
-}</div></pre>
+<span class='kw'>G</span> <span class='op'>&lt;-</span> <span class='fu'>get_seriesdata</span>(dataProcessTypeIds = <span class='fl'>0</span><span class='op'>:</span><span class='fl'>15</span>, <span class='co'># possible processes</span>
+                   indicatorTypeIds = <span class='fl'>25</span>,    <span class='co'># M[x]</span>
+                   locIds = <span class='st'>"Egypt"</span>,             <span class='co'># Egypt</span>
+                   locAreaTypeIds = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"whole area"</span>, <span class='st'>"rural"</span>, <span class='st'>"urban"</span>), <span class='co'># all possible types</span>
+                   subGroupIds = <span class='fl'>2</span>)
+<span class='kw'>G</span>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -201,7 +202,7 @@ care, this is important! The following options are available:</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

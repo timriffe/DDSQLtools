@@ -129,7 +129,7 @@
     <p>Download data from UNPD portal</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_recorddata</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_recorddata</span>(save_file = <span class='fl'>FALSE</span>, verbose = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,27 +196,29 @@ the response from the <code>get_*</code> functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>#  You can provide all strings, all codes, or a combination of both</span>
-<span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='fu'>get_recorddata</span>(<span class='kw'>dataProcessTypeIds</span> <span class='kw'>=</span> <span class='st'>"Census"</span>,
-                   <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
-                   <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='st'>"egypt"</span>, <span class='co'># all arguments are case insensitive</span>
-                   <span class='kw'>locAreaTypeIds</span> <span class='kw'>=</span> <span class='st'>"Whole area"</span>,
-                   <span class='kw'>subGroupIds</span> <span class='kw'>=</span> <span class='st'>"Total or All groups"</span>,
-                   <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='st'>"Abridged"</span>)
+<span class='kw'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span>(dataProcessTypeIds = <span class='st'>"Census"</span>,
+                   indicatorTypeIds = <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
+                   locIds = <span class='st'>"egypt"</span>, <span class='co'># all arguments are case insensitive</span>
+                   locAreaTypeIds = <span class='st'>"Whole area"</span>,
+                   subGroupIds = <span class='st'>"Total or All groups"</span>,
+                   isComplete = <span class='st'>"Abridged"</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>Y</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>Y</span>)
 
 <span class='co'># Same thing only with codes</span>
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>get_recorddata</span>(<span class='kw'>dataProcessTypeIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,   <span class='co'># Census</span>
-                   <span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged </span>
-                   <span class='kw'>locIds</span> <span class='kw'>=</span> <span class='fl'>818</span>,         <span class='co'># Egypt</span>
-                   <span class='kw'>locAreaTypeIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,   <span class='co'># Whole area </span>
-                   <span class='kw'>subGroupIds</span> <span class='kw'>=</span> <span class='fl'>2</span>,      <span class='co'># Total or All groups</span>
-                   <span class='kw'>isComplete</span> <span class='kw'>=</span> <span class='fl'>0</span>)       <span class='co'># Age Distribution: Abridged</span>
+<span class='kw'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span>(dataProcessTypeIds = <span class='fl'>2</span>,   <span class='co'># Census</span>
+                   indicatorTypeIds = <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged </span>
+                   locIds = <span class='fl'>818</span>,         <span class='co'># Egypt</span>
+                   locAreaTypeIds = <span class='fl'>2</span>,   <span class='co'># Whole area </span>
+                   subGroupIds = <span class='fl'>2</span>,      <span class='co'># Total or All groups</span>
+                   isComplete = <span class='fl'>0</span>)       <span class='co'># Age Distribution: Abridged</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>X</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>X</span>)
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -232,7 +234,7 @@ the response from the <code>get_*</code> functions.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

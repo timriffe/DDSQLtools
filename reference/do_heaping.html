@@ -130,11 +130,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>do_heaping</span>(
-  <span class='no'>X</span>,
-  <span class='kw'>fn</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Whipple"</span>, <span class='st'>"Myers"</span>, <span class='st'>"Bachi"</span>, <span class='st'>"CoaleLi"</span>, <span class='st'>"Noumbissi"</span>, <span class='st'>"Spoorenberg"</span>,
+  <span class='kw'>X</span>,
+  fn = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Whipple"</span>, <span class='st'>"Myers"</span>, <span class='st'>"Bachi"</span>, <span class='st'>"CoaleLi"</span>, <span class='st'>"Noumbissi"</span>, <span class='st'>"Spoorenberg"</span>,
     <span class='st'>"ageRatioScore"</span>, <span class='st'>"KannistoHeap"</span>, <span class='st'>"Jdanov"</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  verbose = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -173,46 +173,57 @@ as the method is applied. Set <code>verbose = FALSE</code> to silent the functio
 <code><a href='https://rdrr.io/pkg/DemoTools/man/check_heaping_jdanov.html'>check_heaping_jdanov</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>P1</span> <span class='kw'>&lt;-</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Pop1_Egypt_M_DB</span>
+    <pre class="examples"><div class='input'><span class='kw'>P1</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop1_Egypt_M_DB</span>
 
-<span class='no'>H1</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Whipple"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_whipple method:</span>
+<span class='kw'>H1</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Whipple"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_whipple method:</span>
 #&gt; <span class='message'>ageMin ageMax digit</span>
-#&gt; <span class='message'>Check ?check_heaping_whipple for details and default values.</span></div><div class='input'><span class='no'>H2</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Myers"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_myers method:</span>
+#&gt; <span class='message'>Check ?check_heaping_whipple for details and default values.</span></div><div class='input'><span class='kw'>H2</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Myers"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_myers method:</span>
 #&gt; <span class='message'>ageMin ageMax</span>
-#&gt; <span class='message'>Check ?check_heaping_myers for details and default values.</span></div><div class='input'><span class='no'>H3</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Bachi"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_bachi method:</span>
+#&gt; <span class='message'>Check ?check_heaping_myers for details and default values.</span></div><div class='input'><span class='kw'>H3</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Bachi"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_bachi method:</span>
 #&gt; <span class='message'>ageMin ageMax pasex</span>
-#&gt; <span class='message'>Check ?check_heaping_bachi for details and default values.</span></div><div class='input'><span class='no'>H4</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"CoaleLi"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_coale_li method:</span>
+#&gt; <span class='message'>Check ?check_heaping_bachi for details and default values.</span></div><div class='input'><span class='kw'>H4</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"CoaleLi"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_coale_li method:</span>
 #&gt; <span class='message'>ageMin ageMax terms digit</span>
-#&gt; <span class='message'>Check ?check_heaping_coale_li for details and default values.</span></div><div class='input'><span class='no'>H5</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Noumbissi"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_noumbissi method:</span>
+#&gt; <span class='message'>Check ?check_heaping_coale_li for details and default values.</span></div><div class='input'><span class='kw'>H5</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Noumbissi"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_noumbissi method:</span>
 #&gt; <span class='message'>ageMin ageMax digit</span>
-#&gt; <span class='message'>Check ?check_heaping_noumbissi for details and default values.</span></div><div class='input'><span class='no'>H6</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Spoorenberg"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_spoorenberg method:</span>
+#&gt; <span class='message'>Check ?check_heaping_noumbissi for details and default values.</span></div><div class='input'><span class='kw'>H6</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Spoorenberg"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_spoorenberg method:</span>
 #&gt; <span class='message'>ageMin ageMax</span>
-#&gt; <span class='message'>Check ?check_heaping_spoorenberg for details and default values.</span></div><div class='input'><span class='no'>H7</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"ageRatioScore"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::ageRatioScore method:</span>
+#&gt; <span class='message'>Check ?check_heaping_spoorenberg for details and default values.</span></div><div class='input'><span class='kw'>H7</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"ageRatioScore"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::ageRatioScore method:</span>
 #&gt; <span class='message'>ageMin ageMax method</span>
-#&gt; <span class='message'>Check ?ageRatioScore for details and default values.</span></div><div class='input'><span class='no'>H8</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"KannistoHeap"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_kannisto method:</span>
+#&gt; <span class='message'>Check ?ageRatioScore for details and default values.</span></div><div class='input'><span class='kw'>H8</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"KannistoHeap"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_kannisto method:</span>
 #&gt; <span class='message'>Agei pow</span>
-#&gt; <span class='message'>Check ?check_heaping_kannisto for details and default values.</span></div><div class='input'><span class='no'>H9</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Jdanov"</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_jdanov method:</span>
+#&gt; <span class='message'>Check ?check_heaping_kannisto for details and default values.</span></div><div class='input'><span class='kw'>H9</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Jdanov"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::check_heaping_jdanov method:</span>
 #&gt; <span class='message'>Agei</span>
 #&gt; <span class='message'>Check ?check_heaping_jdanov for details and default values.</span></div><div class='input'>
-<span class='no'>H</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>H1</span>, <span class='no'>H2</span>, <span class='no'>H3</span>, <span class='no'>H4</span>, <span class='no'>H5</span>, <span class='no'>H6</span>, <span class='no'>H7</span>, <span class='no'>H8</span>, <span class='no'>H9</span>)
-<span class='no'>select_columns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
+<span class='kw'>H</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>H1</span>, <span class='kw'>H2</span>, <span class='kw'>H3</span>, <span class='kw'>H4</span>, <span class='kw'>H5</span>, <span class='kw'>H6</span>, <span class='kw'>H7</span>, <span class='kw'>H8</span>, <span class='kw'>H9</span>)
+<span class='kw'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
                     <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
-<span class='no'>H</span>[, <span class='no'>select_columns</span>]</div><div class='output co'>#&gt; # A tibble: 9 x 8
+<span class='kw'>H</span>[, <span class='kw'>select_columns</span>]
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 8</span><span>
 #&gt;   AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName    DataTypeID     DataValue
-#&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;              &lt;dbl&gt;
-#&gt; 1    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…      1.78
-#&gt; 2    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…     12.6 
-#&gt; 3    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…     19.7 
-#&gt; 4    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…      2.52
-#&gt; 5    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…      1.54
-#&gt; 6    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…      2.80
-#&gt; 7    NA        0   52.5     99 0-99+    DemoTools::age… "do_heaping(X…     72.6 
-#&gt; 8    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…      4.20
-#&gt; 9    NA        0   52.5     99 0-99+    DemoTools::che… "do_heaping(X…    228.  </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…      1.78
+#&gt; </span><span style='color: #555555;'>2</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…     12.6 
+#&gt; </span><span style='color: #555555;'>3</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…     19.7 
+#&gt; </span><span style='color: #555555;'>4</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…      2.52
+#&gt; </span><span style='color: #555555;'>5</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…      1.54
+#&gt; </span><span style='color: #555555;'>6</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…      2.80
+#&gt; </span><span style='color: #555555;'>7</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::age… </span><span style='color: #555555;'>"</span><span>do_heaping(X…     72.6 
+#&gt; </span><span style='color: #555555;'>8</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…      4.20
+#&gt; </span><span style='color: #555555;'>9</span><span>    </span><span style='color: #BB0000;'>NA</span><span>        0   52.5     99 0-99+    DemoTools::che… </span><span style='color: #555555;'>"</span><span>do_heaping(X…    228.  </div><div class='input'>
 <span class='co'># Silence the function with verbose = FALSE</span>
-<span class='no'>H1</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Whipple"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw'>H1</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Whipple"</span>, verbose = <span class='fl'>FALSE</span>)
 <span class='co'># ... or by specifying all arguments</span>
-<span class='no'>H1</span> <span class='kw'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='no'>P1</span>, <span class='kw'>fn</span> <span class='kw'>=</span> <span class='st'>"Whipple"</span>, <span class='kw'>ageMin</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>ageMax</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>digit</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div></pre>
+<span class='kw'>H1</span> <span class='op'>&lt;-</span> <span class='fu'>do_heaping</span>(<span class='kw'>P1</span>, fn = <span class='st'>"Whipple"</span>, ageMin = <span class='fl'>10</span>, ageMax = <span class='fl'>90</span>, digit = <span class='fl'>1</span>)
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -228,7 +239,7 @@ as the method is applied. Set <code>verbose = FALSE</code> to silent the functio
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

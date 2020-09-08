@@ -135,13 +135,13 @@ Various Mortality Models ("laws")</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_extrapolate</span>(
-  <span class='no'>X</span>,
-  <span class='no'>x_fit</span>,
-  <span class='no'>x_extr</span>,
-  <span class='kw'>law</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kannisto"</span>, <span class='st'>"kannisto_makeham"</span>, <span class='st'>"makeham"</span>, <span class='st'>"gompertz"</span>, <span class='st'>"ggompertz"</span>, <span class='st'>"beard"</span>,
+  <span class='kw'>X</span>,
+  <span class='kw'>x_fit</span>,
+  <span class='kw'>x_extr</span>,
+  law = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kannisto"</span>, <span class='st'>"kannisto_makeham"</span>, <span class='st'>"makeham"</span>, <span class='st'>"gompertz"</span>, <span class='st'>"ggompertz"</span>, <span class='st'>"beard"</span>,
     <span class='st'>"beard_makeham"</span>, <span class='st'>"quadratic"</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  verbose = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,70 +203,78 @@ Different numbers of rows. UN format.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1 - abridged data</span>
 <span class='co'># Extrapolate old-age mortality data</span>
-<span class='no'>E</span> <span class='kw'>&lt;-</span> <span class='fu'>do_extrapolate</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Mx5</span>,           <span class='co'># data - UN format </span>
-                    <span class='kw'>x_fit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>75</span>, <span class='fl'>80</span>, <span class='fl'>85</span>, <span class='fl'>90</span>),         <span class='co'># ages to be used in fitting</span>
-                    <span class='kw'>x_extr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>95</span>, <span class='fl'>100</span>, <span class='fl'>105</span>, <span class='fl'>110</span>), <span class='co'># ages for which the extrapolation is applied</span>
-                    <span class='kw'>law</span> <span class='kw'>=</span> <span class='st'>"kannisto"</span>)                  <span class='co'># the model</span></div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_rule_m_extrapolate method:</span>
+<span class='kw'>E</span> <span class='op'>&lt;-</span> <span class='fu'>do_extrapolate</span>(X = <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Mx5</span>,           <span class='co'># data - UN format </span>
+                    x_fit = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>75</span>, <span class='fl'>80</span>, <span class='fl'>85</span>, <span class='fl'>90</span>),         <span class='co'># ages to be used in fitting</span>
+                    x_extr = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>95</span>, <span class='fl'>100</span>, <span class='fl'>105</span>, <span class='fl'>110</span>), <span class='co'># ages for which the extrapolation is applied</span>
+                    law = <span class='st'>"kannisto"</span>)                  <span class='co'># the model</span>
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_rule_m_extrapolate method:</span>
 #&gt; <span class='message'>opt.method ...</span>
 #&gt; <span class='message'>Check ?lt_rule_m_extrapolate for details and default values.</span></div><div class='input'>
-<span class='no'>E</span></div><div class='output co'>#&gt; # A tibble: 24 x 13
+<span class='kw'>E</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24 x 13</span><span>
 #&gt;    LocID ReferencePeriod DataValue AgeStart AgeSpan SexID IndicatorID DataTypeID
-#&gt;    &lt;int&gt;           &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     
-#&gt;  1   328            1993   0.0297         0       1     1 nMx         "do_extra…
-#&gt;  2   328            1993   0.00665        1       4     1 nMx         "do_extra…
-#&gt;  3   328            1993   0.00343        5       5     1 nMx         "do_extra…
-#&gt;  4   328            1993   0.00378       10       5     1 nMx         "do_extra…
-#&gt;  5   328            1993   0.00707       15       5     1 nMx         "do_extra…
-#&gt;  6   328            1993   0.0134        20       5     1 nMx         "do_extra…
-#&gt;  7   328            1993   0.0184        25       5     1 nMx         "do_extra…
-#&gt;  8   328            1993   0.0223        30       5     1 nMx         "do_extra…
-#&gt;  9   328            1993   0.0257        35       5     1 nMx         "do_extra…
-#&gt; 10   328            1993   0.0361        40       5     1 nMx         "do_extra…
-#&gt; # … with 14 more rows, and 5 more variables: DataTypeName &lt;chr&gt;,
-#&gt; #   AgeLabel &lt;dbl&gt;, AgeMid &lt;dbl&gt;, AgeEnd &lt;dbl&gt;, AgeID &lt;dbl&gt;</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'> 1</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.029</span><span style='text-decoration: underline;'>7</span><span>         0       1     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 2</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.006</span><span style='text-decoration: underline;'>65</span><span>        1       4     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 3</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.003</span><span style='text-decoration: underline;'>43</span><span>        5       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 4</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.003</span><span style='text-decoration: underline;'>78</span><span>       10       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 5</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.007</span><span style='text-decoration: underline;'>07</span><span>       15       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 6</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.013</span><span style='text-decoration: underline;'>4</span><span>        20       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 7</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.018</span><span style='text-decoration: underline;'>4</span><span>        25       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 8</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.022</span><span style='text-decoration: underline;'>3</span><span>        30       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'> 9</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.025</span><span style='text-decoration: underline;'>7</span><span>        35       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'>10</span><span>   328            </span><span style='text-decoration: underline;'>1</span><span>993   0.036</span><span style='text-decoration: underline;'>1</span><span>        40       5     1 nMx         </span><span style='color: #555555;'>"</span><span>do_extra…
+#&gt; </span><span style='color: #555555;'># … with 14 more rows, and 5 more variables: DataTypeName </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   AgeLabel </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AgeMid </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AgeEnd </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, AgeID </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Build 2 life table: 1st using the original data and the 2nd using the extended data</span>
-<span class='no'>LT1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>DDSQLtools.data</span>$<span class='no'>Mx5</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
+<span class='kw'>LT1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(X = <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Mx5</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
-#&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'><span class='no'>LT2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>E</span>)</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
+#&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'><span class='kw'>LT2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>(X = <span class='kw'>E</span>)
+</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'>
-<span class='no'>LT1</span>[<span class='no'>LT1</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; # A tibble: 20 x 2
+<span class='kw'>LT1</span>[<span class='kw'>LT1</span><span class='op'>$</span><span class='kw'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 2</span><span>
 #&gt;    AgeStart DataValue
-#&gt;       &lt;int&gt;     &lt;dbl&gt;
-#&gt;  1        0     42.0 
-#&gt;  2        1     42.2 
-#&gt;  3        5     39.3 
-#&gt;  4       10     34.9 
-#&gt;  5       15     30.5 
-#&gt;  6       20     26.6 
-#&gt;  7       25     23.2 
-#&gt;  8       30     20.2 
-#&gt;  9       35     17.3 
-#&gt; 10       40     14.3 
-#&gt; 11       45     11.7 
-#&gt; 12       50      9.21
-#&gt; 13       55      7.23
-#&gt; 14       60      5.70
-#&gt; 15       65      4.67
-#&gt; 16       70      3.69
-#&gt; 17       75      2.85
-#&gt; 18       80      2.75
-#&gt; 19       85      2.65
-#&gt; 20       90      2.62</div><div class='input'><span class='no'>LT2</span>[<span class='no'>LT2</span>$<span class='no'>IndicatorID</span> <span class='kw'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]</div><div class='output co'>#&gt; # A tibble: 24 x 2
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>        0     42.0 
+#&gt; </span><span style='color: #555555;'> 2</span><span>        1     42.2 
+#&gt; </span><span style='color: #555555;'> 3</span><span>        5     39.3 
+#&gt; </span><span style='color: #555555;'> 4</span><span>       10     34.9 
+#&gt; </span><span style='color: #555555;'> 5</span><span>       15     30.5 
+#&gt; </span><span style='color: #555555;'> 6</span><span>       20     26.6 
+#&gt; </span><span style='color: #555555;'> 7</span><span>       25     23.2 
+#&gt; </span><span style='color: #555555;'> 8</span><span>       30     20.2 
+#&gt; </span><span style='color: #555555;'> 9</span><span>       35     17.3 
+#&gt; </span><span style='color: #555555;'>10</span><span>       40     14.3 
+#&gt; </span><span style='color: #555555;'>11</span><span>       45     11.7 
+#&gt; </span><span style='color: #555555;'>12</span><span>       50      9.21
+#&gt; </span><span style='color: #555555;'>13</span><span>       55      7.23
+#&gt; </span><span style='color: #555555;'>14</span><span>       60      5.70
+#&gt; </span><span style='color: #555555;'>15</span><span>       65      4.67
+#&gt; </span><span style='color: #555555;'>16</span><span>       70      3.69
+#&gt; </span><span style='color: #555555;'>17</span><span>       75      2.85
+#&gt; </span><span style='color: #555555;'>18</span><span>       80      2.75
+#&gt; </span><span style='color: #555555;'>19</span><span>       85      2.65
+#&gt; </span><span style='color: #555555;'>20</span><span>       90      2.62</div><div class='input'><span class='kw'>LT2</span>[<span class='kw'>LT2</span><span class='op'>$</span><span class='kw'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"ex"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeStart"</span>, <span class='st'>"DataValue"</span>)]
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 24 x 2</span><span>
 #&gt;    AgeStart DataValue
-#&gt;       &lt;int&gt;     &lt;dbl&gt;
-#&gt;  1        0      42.0
-#&gt;  2        1      42.2
-#&gt;  3        5      39.3
-#&gt;  4       10      34.9
-#&gt;  5       15      30.5
-#&gt;  6       20      26.6
-#&gt;  7       25      23.2
-#&gt;  8       30      20.2
-#&gt;  9       35      17.3
-#&gt; 10       40      14.3
-#&gt; # … with 14 more rows</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>LT1</span>)</div><div class='output co'>#&gt; [1] 180  13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>LT2</span>) <span class='co'># note the 2nd life table has few extra rows</span></div><div class='output co'>#&gt; [1] 216  13</div></pre>
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>        0      42.0
+#&gt; </span><span style='color: #555555;'> 2</span><span>        1      42.2
+#&gt; </span><span style='color: #555555;'> 3</span><span>        5      39.3
+#&gt; </span><span style='color: #555555;'> 4</span><span>       10      34.9
+#&gt; </span><span style='color: #555555;'> 5</span><span>       15      30.5
+#&gt; </span><span style='color: #555555;'> 6</span><span>       20      26.6
+#&gt; </span><span style='color: #555555;'> 7</span><span>       25      23.2
+#&gt; </span><span style='color: #555555;'> 8</span><span>       30      20.2
+#&gt; </span><span style='color: #555555;'> 9</span><span>       35      17.3
+#&gt; </span><span style='color: #555555;'>10</span><span>       40      14.3
+#&gt; </span><span style='color: #555555;'># … with 14 more rows</span><span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>LT1</span>)
+</div><div class='output co'>#&gt; [1] 180  13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>LT2</span>) <span class='co'># note the 2nd life table has few extra rows</span>
+</div><div class='output co'>#&gt; [1] 216  13</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -282,7 +290,7 @@ Different numbers of rows. UN format.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

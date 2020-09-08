@@ -129,7 +129,7 @@
     <p>Get information about available indicators (IndicatorID) and indicatortypeids (IndicatorTypeId)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_iitypes</span>(<span class='kw'>save_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_iitypes</span>(save_file = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,19 +177,20 @@ care, this is important! The following options are available:</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'>get_iitypes</span>()
-<span class='no'>I</span>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>I</span> <span class='op'>&lt;-</span> <span class='fu'>get_iitypes</span>()
+<span class='kw'>I</span>
 
-<span class='no'>only_itypes</span> <span class='kw'>&lt;-</span> <span class='fu'>get_iitypes</span>(<span class='kw'>indicatorTypeIds</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='no'>only_itypes</span>
+<span class='kw'>only_itypes</span> <span class='op'>&lt;-</span> <span class='fu'>get_iitypes</span>(indicatorTypeIds = <span class='fl'>6</span>)
+<span class='kw'>only_itypes</span>
 
-<span class='no'>only_iids</span> <span class='kw'>&lt;-</span> <span class='fu'>get_iitypes</span>(<span class='kw'>indicatorIds</span> <span class='kw'>=</span> <span class='fl'>229</span>)
-<span class='no'>only_iids</span>
+<span class='kw'>only_iids</span> <span class='op'>&lt;-</span> <span class='fu'>get_iitypes</span>(indicatorIds = <span class='fl'>229</span>)
+<span class='kw'>only_iids</span>
 
-<span class='no'>components</span> <span class='kw'>&lt;-</span> <span class='fu'>get_iitypes</span>(<span class='kw'>componentIds</span> <span class='kw'>=</span> <span class='fl'>4</span>)
-<span class='no'>components</span>
-}</div></pre>
+<span class='kw'>components</span> <span class='op'>&lt;-</span> <span class='fu'>get_iitypes</span>(componentIds = <span class='fl'>4</span>)
+<span class='kw'>components</span>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -205,7 +206,7 @@ care, this is important! The following options are available:</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
