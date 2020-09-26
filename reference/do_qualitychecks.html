@@ -129,13 +129,13 @@
     <p>Wrapper for Performing Age-Sex Male-Female Data Quality Checks</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_qualitychecks</span>(
-  <span class='kw'>XY</span>,
-  <span class='kw'>XX</span>,
-  fn = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sexRatioScore"</span>, <span class='st'>"ageSexAccuracy"</span>, <span class='st'>"ageSexAccuracyDasGupta"</span>),
-  verbose = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>do_qualitychecks</span><span class='op'>(</span>
+  <span class='va'>XY</span>,
+  <span class='va'>XX</span>,
+  fn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sexRatioScore"</span>, <span class='st'>"ageSexAccuracy"</span>, <span class='st'>"ageSexAccuracyDasGupta"</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,23 +175,23 @@ Different numbers of rows. UN format.</p>
 <code><a href='https://rdrr.io/pkg/DemoTools/man/ageSexAccuracyDasGupta.html'>ageSexAccuracyDasGupta</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>M5</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop5_Egypt_M_DB</span>
-<span class='kw'>F5</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop5_Egypt_F_DB</span>
+    <pre class="examples"><div class='input'><span class='va'>M5</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_M_DB</span>
+<span class='va'>F5</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_F_DB</span>
 
-<span class='kw'>Q1</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span>(<span class='kw'>M5</span>, <span class='kw'>F5</span>, fn = <span class='st'>"sexRatioScore"</span>)
+<span class='va'>Q1</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span><span class='op'>(</span><span class='va'>M5</span>, <span class='va'>F5</span>, fn <span class='op'>=</span> <span class='st'>"sexRatioScore"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::sexRatioScore method:</span>
 #&gt; <span class='message'>ageMin ageMax</span>
-#&gt; <span class='message'>Check ?sexRatioScore for details and default values.</span></div><div class='input'><span class='kw'>Q2</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span>(<span class='kw'>M5</span>, <span class='kw'>F5</span>, fn = <span class='st'>"ageSexAccuracy"</span>)
+#&gt; <span class='message'>Check ?sexRatioScore for details and default values.</span></div><div class='input'><span class='va'>Q2</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span><span class='op'>(</span><span class='va'>M5</span>, <span class='va'>F5</span>, fn <span class='op'>=</span> <span class='st'>"ageSexAccuracy"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::ageSexAccuracy method:</span>
 #&gt; <span class='message'>ageMin ageMax method adjust</span>
-#&gt; <span class='message'>Check ?ageSexAccuracy for details and default values.</span></div><div class='input'><span class='kw'>Q3</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span>(<span class='kw'>M5</span>, <span class='kw'>F5</span>, fn = <span class='st'>"ageSexAccuracyDasGupta"</span>)
+#&gt; <span class='message'>Check ?ageSexAccuracy for details and default values.</span></div><div class='input'><span class='va'>Q3</span> <span class='op'>&lt;-</span> <span class='fu'>do_qualitychecks</span><span class='op'>(</span><span class='va'>M5</span>, <span class='va'>F5</span>, fn <span class='op'>=</span> <span class='st'>"ageSexAccuracyDasGupta"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::ageSexAccuracyDasGupta method:</span>
 #&gt; <span class='message'>ageMin ageMax</span>
 #&gt; <span class='message'>Check ?ageSexAccuracyDasGupta for details and default values.</span></div><div class='input'>
-<span class='kw'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
-                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
-<span class='kw'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>Q1</span>, <span class='kw'>Q2</span>, <span class='kw'>Q3</span>)
-<span class='kw'>Q</span>[, <span class='kw'>select_columns</span>]
+<span class='va'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
+                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span><span class='op'>)</span>
+<span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>Q1</span>, <span class='va'>Q2</span>, <span class='va'>Q3</span><span class='op'>)</span>
+<span class='va'>Q</span><span class='op'>[</span>, <span class='va'>select_columns</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 8</span><span>
 #&gt;   AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName   DataTypeID      DataValue
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

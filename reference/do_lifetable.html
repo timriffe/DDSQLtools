@@ -129,7 +129,7 @@
     <p>Wrapper for Life Table Methods</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_lifetable</span>(<span class='kw'>X</span>, verbose = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>do_lifetable</span><span class='op'>(</span><span class='va'>X</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,8 +158,8 @@ Different numbers of rows. UN format.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/lt_abridged.html'>lt_abridged</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>mx</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Mx5</span>
-<span class='fu'>do_lifetable</span>(X = <span class='kw'>mx</span>)
+    <pre class="examples"><div class='input'><span class='va'>mx</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Mx5</span>
+<span class='fu'>do_lifetable</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>mx</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 180 x 13</span><span>

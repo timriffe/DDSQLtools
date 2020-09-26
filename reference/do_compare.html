@@ -129,7 +129,7 @@
     <p>Wrapper for Population Comparison</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_compare</span>(<span class='kw'>pop1</span>, <span class='kw'>pop2</span>, fn = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ID"</span>, <span class='st'>"IRD"</span>, <span class='st'>"ADM"</span>, <span class='st'>"RDM"</span>), verbose = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>do_compare</span><span class='op'>(</span><span class='va'>pop1</span>, <span class='va'>pop2</span>, fn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ID"</span>, <span class='st'>"IRD"</span>, <span class='st'>"ADM"</span>, <span class='st'>"RDM"</span><span class='op'>)</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,27 +173,27 @@ Different numbers of rows. UN format.</p>
     <pre class="examples"><div class='input'><span class='co'># ------------------------------------------</span>
 <span class='co'># Example 1 - Compute the Index of dissimilarity between 2 populations</span>
 
-<span class='kw'>P1m</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop1_Egypt_M_DB</span> <span class='co'># 1-year age groups data</span>
-<span class='kw'>P1f</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop1_Egypt_F_DB</span>
-<span class='kw'>P5m</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop5_Egypt_M_DB</span> <span class='co'># 5-year age groups data</span>
-<span class='kw'>P5f</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Pop5_Egypt_F_DB</span>
+<span class='va'>P1m</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop1_Egypt_M_DB</span> <span class='co'># 1-year age groups data</span>
+<span class='va'>P1f</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop1_Egypt_F_DB</span>
+<span class='va'>P5m</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_M_DB</span> <span class='co'># 5-year age groups data</span>
+<span class='va'>P5f</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_F_DB</span>
 
-<span class='kw'>C1</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>P1m</span>, pop2 = <span class='kw'>P1f</span>, fn = <span class='st'>"ID"</span>)
-<span class='kw'>C2</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>P5m</span>, pop2 = <span class='kw'>P5f</span>, fn = <span class='st'>"ID"</span>)
+<span class='va'>C1</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>P1m</span>, pop2 <span class='op'>=</span> <span class='va'>P1f</span>, fn <span class='op'>=</span> <span class='st'>"ID"</span><span class='op'>)</span>
+<span class='va'>C2</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>P5m</span>, pop2 <span class='op'>=</span> <span class='va'>P5f</span>, fn <span class='op'>=</span> <span class='st'>"ID"</span><span class='op'>)</span>
 
 <span class='co'># ------------------------------------------</span>
 <span class='co'># Example 2 - Compute the Index of relative difference between 2 populations</span>
-<span class='kw'>C3</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>P1m</span>, pop2 = <span class='kw'>P1f</span>, fn = <span class='st'>"IRD"</span>)
+<span class='va'>C3</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>P1m</span>, pop2 <span class='op'>=</span> <span class='va'>P1f</span>, fn <span class='op'>=</span> <span class='st'>"IRD"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::IRD method:</span>
 #&gt; <span class='message'>log</span>
-#&gt; <span class='message'>Check ?IRD for details and default values.</span></div><div class='input'><span class='kw'>C4</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>P5m</span>, pop2 = <span class='kw'>P5f</span>, fn = <span class='st'>"IRD"</span>)
+#&gt; <span class='message'>Check ?IRD for details and default values.</span></div><div class='input'><span class='va'>C4</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>P5m</span>, pop2 <span class='op'>=</span> <span class='va'>P5f</span>, fn <span class='op'>=</span> <span class='st'>"IRD"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::IRD method:</span>
 #&gt; <span class='message'>log</span>
 #&gt; <span class='message'>Check ?IRD for details and default values.</span></div><div class='input'>
-<span class='kw'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
-                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span>)
-<span class='kw'>C</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>C1</span>, <span class='kw'>C2</span>, <span class='kw'>C3</span>, <span class='kw'>C4</span>)
-<span class='kw'>C</span>[, <span class='kw'>select_columns</span>]
+<span class='va'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
+                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span><span class='op'>)</span>
+<span class='va'>C</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>C1</span>, <span class='va'>C2</span>, <span class='va'>C3</span>, <span class='va'>C4</span><span class='op'>)</span>
+<span class='va'>C</span><span class='op'>[</span>, <span class='va'>select_columns</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 8</span><span>
 #&gt;   AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName  DataTypeID       DataValue
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -207,39 +207,39 @@ Different numbers of rows. UN format.</p>
 
 <span class='co'># Since we do not have l[x] data yet, we will make up some dummy data from </span>
 <span class='co'># death-rates just to check the example (to be updated).</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='kw'>Mx</span> <span class='op'>&lt;-</span> <span class='kw'>DDSQLtools.data</span><span class='op'>$</span><span class='kw'>Mx5</span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='va'>Mx</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Mx5</span>
 
-<span class='kw'>lx.A</span> <span class='op'>&lt;-</span>
- <span class='kw'>Mx</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>() <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"lx"</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(AgeLabel = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span>(<span class='kw'>AgeStart</span>)))
+<span class='va'>lx.A</span> <span class='op'>&lt;-</span>
+ <span class='va'>Mx</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"lx"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>AgeLabel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span><span class='op'>(</span><span class='va'>AgeStart</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'>
-<span class='kw'>lx.B</span> <span class='op'>&lt;-</span>
- <span class='kw'>Mx</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(DataValue = <span class='kw'>DataValue</span> <span class='op'>*</span> <span class='fl'>0.98</span>, SexID = <span class='fl'>0</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span>() <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"lx"</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(AgeLabel = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span>(<span class='kw'>AgeStart</span>)))
+<span class='va'>lx.B</span> <span class='op'>&lt;-</span>
+ <span class='va'>Mx</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>DataValue <span class='op'>=</span> <span class='va'>DataValue</span> <span class='op'>*</span> <span class='fl'>0.98</span>, SexID <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='do_lifetable.html'>do_lifetable</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IndicatorID</span> <span class='op'>==</span> <span class='st'>"lx"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>AgeLabel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span><span class='op'>(</span><span class='va'>AgeStart</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 #&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 #&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='input'>
-<span class='kw'>C5</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>lx.A</span>, pop2 = <span class='kw'>lx.B</span>, fn = <span class='st'>"ADM"</span>)
+<span class='va'>C5</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>lx.A</span>, pop2 <span class='op'>=</span> <span class='va'>lx.B</span>, fn <span class='op'>=</span> <span class='st'>"ADM"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::ADM method:</span>
 #&gt; <span class='message'>lx1 lx2 Age1 Age2 ageMin ageMax</span>
 #&gt; <span class='message'>Check ?ADM for details and default values.</span></div><div class='input'>
 <span class='co'># ------------------------------------------</span>
 <span class='co'># Example 4 - Compute the Mean Absolute Difference in age-ratios of survival</span>
 <span class='co'># rates between 2 populations</span>
-<span class='kw'>C6</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span>(pop1 = <span class='kw'>lx.A</span>, pop2 = <span class='kw'>lx.B</span>, fn = <span class='st'>"RDM"</span>)
+<span class='va'>C6</span> <span class='op'>&lt;-</span> <span class='fu'>do_compare</span><span class='op'>(</span>pop1 <span class='op'>=</span> <span class='va'>lx.A</span>, pop2 <span class='op'>=</span> <span class='va'>lx.B</span>, fn <span class='op'>=</span> <span class='st'>"RDM"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::RDM method:</span>
 #&gt; <span class='message'>lx1 lx2 Age1 Age2 ageMin ageMax</span>
 #&gt; <span class='message'>Check ?RDM for details and default values.</span></div><div class='input'>
