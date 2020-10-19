@@ -293,23 +293,18 @@ read_API <- function(type, save_file, verbose = FALSE, ...) {
   # Temporary, just to check how the URL is constructed
   print(P)
 
-  out <- rjson::fromJSON(file = P)
+  out <- jsonlite::fromJSON(txt = P, flatten = TRUE)
   ## print("URL saved")
 
-  out <-
-    out %>% 
-    lapply(unlist) %>%    # list elements can either be lists or vectors
-    lapply(as.list) %>%   # here now everything is homogenously a vector
-    dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
-    lapply(trimws) %>%    # Remove leading/trailing spaces from the names
-    as.data.frame(stringsAsFactors = FALSE)  # coerce to desired form
-
+  # Cleaning up columns
+  out <- as.data.frame(lapply(out, trimws), stringsAsFactors = FALSE)
   out <- format.numeric.colums(out)
 
   if (save_file) {
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
   }
+
   out
 }
 

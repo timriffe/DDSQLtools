@@ -30,15 +30,15 @@ fitted values and residuals are computed for all ages in \code{x}.}
 
 \item{law}{The name of the mortality law/model to be used.
 The following options are available: \itemize{
-  \item{\code{"kannisto"}} -- The Kannisto model;
-  \item{\code{"kannisto_makeham"}} -- The Kannisto-Makeham model;
-  \item{\code{"gompertz"}} -- The Gompertz model;
-  \item{\code{"ggompertz"}} -- The Gamma-Gompertz model;
-  \item{\code{"makeham"}} -- The Makeham model;
-  \item{\code{"beard"}} -- The Beard model;
-  \item{\code{"beard_makeham"}} -- The Beard-Makeham model;
-  \item{\code{"quadratic"}} -- The Quadratic model.
-  }}
+\item{\code{"kannisto"}} -- The Kannisto model;
+\item{\code{"kannisto_makeham"}} -- The Kannisto-Makeham model;
+\item{\code{"gompertz"}} -- The Gompertz model;
+\item{\code{"ggompertz"}} -- The Gamma-Gompertz model;
+\item{\code{"makeham"}} -- The Makeham model;
+\item{\code{"beard"}} -- The Beard model;
+\item{\code{"beard_makeham"}} -- The Beard-Makeham model;
+\item{\code{"quadratic"}} -- The Quadratic model.
+}}
 
 \item{verbose}{Logical value. If \code{TRUE} messages are printed 
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}

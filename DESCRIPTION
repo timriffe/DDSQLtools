@@ -12,12 +12,12 @@ License: file LICENSE
 LazyData: TRUE
 Depends: R (>= 3.5.0)
 Imports: 
-    DemoTools (>= 1.9.3),
+    DemoTools (>= 1.9.23),
     dplyr (>= 0.7.6),
     tibble (>= 1.4.2),
-    rjson (>= 0.2.20),
     varhandle (>= 2.0.3),
-    haven
+    haven,
+    jsonlite
 Suggests: 
     covr (>= 3.1.0),
     testthat (>= 2.0.0),
@@ -27,7 +27,7 @@ Suggests:
     tidyverse
 URL: https://github.com/timriffe/DDSQLtools
 BugReports: https://github.com/timriffe/DDSQLtools/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Remotes: github::timriffe/DemoTools
 Encoding: UTF-8
 VignetteBuilder: knitr
