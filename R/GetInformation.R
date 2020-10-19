@@ -212,7 +212,7 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #' Once the data is read from the API, some transformations are applied:
 #'
 #' \itemize{
-#' \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
+# \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
 #' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
 #' }
 #' 
@@ -256,26 +256,27 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   # Loop through name and id names
   # and save the labelled character
   # to the Name columns
-  res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
-    # Extract the columns from the df
-    nm_vec <- res[, nm]
-    id_vec <- res[, id]
-    
-    if (length(unique(nm_vec)) != length(unique(id_vec))) {
-      stop("Column ", nm, " and ", id, " have different ",
-           "unique values. Please report the exact same call that ",
-           "raised this error at https://github.com/timriffe/DDSQLtools/issues")
-    }
+  ## res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
+  ##   # Extract the columns from the df
+  ##   nm_vec <- res[, nm]
+  ##   id_vec <- res[, id]
 
-    # Set names of id to names to pass it to labelled
-    # with correct labels
-    vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
+  ##   if (length(unique(nm_vec)) != length(unique(id_vec))) {
+  ##     stop("Column ", nm, " and ", id, " have different ",
+  ##          "unique values. Please report the exact same call that ",
+  ##          "raised this error at https://github.com/timriffe/DDSQLtools/issues")
+  ##   }
 
-    # Create name column with ID as labels
-    haven::labelled(nm_vec, labels = vct_nm)
-  }, names(values_env$id_to_fact), values_env$id_to_fact)
+  ##   # Set names of id to names to pass it to labelled
+  ##   # with correct labels
+  ##   vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
 
-  ## # Exclude ID columns
+  ##   # Create name column with ID as labels
+  ##   haven::labelled(nm_vec, labels = vct_nm)
+  ## }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+  ## # Currently includes some ID columns
+  ## browser()
   res <- res[values_env$col_order]
 
   res
@@ -292,23 +293,18 @@ read_API <- function(type, save_file, verbose = FALSE, ...) {
   # Temporary, just to check how the URL is constructed
   print(P)
 
-  out <- rjson::fromJSON(file = P)
+  out <- jsonlite::fromJSON(txt = P, flatten = TRUE)
   ## print("URL saved")
 
-  out <-
-    out %>% 
-    lapply(unlist) %>%    # list elements can either be lists or vectors
-    lapply(as.list) %>%   # here now everything is homogenously a vector
-    dplyr::bind_rows() %>%  # even if named elements differ still becomes rectangular
-    lapply(trimws) %>%    # Remove leading/trailing spaces from the names
-    as.data.frame(stringsAsFactors = FALSE)  # coerce to desired form
-
+  # Cleaning up columns
+  out <- as.data.frame(lapply(out, trimws), stringsAsFactors = FALSE)
   out <- format.numeric.colums(out)
 
   if (save_file) {
     save_in_working_dir(data = out, file_name = paste0("UNPD_", 
                                                        type))
   }
+
   out
 }
 

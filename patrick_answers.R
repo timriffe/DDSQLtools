@@ -411,3 +411,123 @@ res$IndicatorName
 ## * DataSource
 
 ## Jorge: Dennis asks which specific structured data endpoints need this. I think this applies to all structured data endpoints but Patrick might have in mind particular end points.
+
+
+################## Patrick questions 24th August, 2020 ###########
+
+# Install latest development
+devtools::install_github("cimentadaj/DDSQLtools")
+
+# 1. Do you think we can get in the output  of get_recorddata the field
+# 'SeriesID' as long integer than in scientific notation.
+
+# SeriesID is actually an integer. This is just a printing
+# issue. If you run the options expression below you'll get integers printed
+# without scientific notation
+options(scipen = 9999)
+
+Y <- get_recorddata(dataProcessTypeIds = "Census",
+                    indicatorTypeIds = 8, # and support numeric of string names
+                    locIds = "egypt", # all arguments are case insensitive
+                    locAreaTypeIds = "Whole area",
+                    subGroupIds = "Total or All groups",
+                    isComplete = "Abridged")
+
+head(Y$SeriesID)
+head(Y["SeriesID"])
+
+# 2. In the output recordset, can we also have AgeSort instead of 'agesort'
+
+# Now available
+head(Y$AgeSort)
+
+# 3. With the example below if I use n_chunks <- 1 works but n_chunks > 1 fails
+library(tictoc)
+myLocations <-
+  c(654, 660, 535, 92, 136, 212, 500, 652, 659, 663, 534, 796, 238, 584, 520,
+    580, 585, 16, 184, 570, 772, 798, 876, 234, 833, 20, 292, 336, 674, 438,
+    492, 60, 304, 666)
+
+# Here replace with number of desired chunk of countries
+n_chunks <- 3
+chunk_groups <- rep(1:n_chunks, length.out = length(myLocations))
+cnty_groups <- split(myLocations, chunk_groups)
+
+# Loop through each location with `lapply`
+myBirths <- lapply(cnty_groups, function(x) {
+  # Measure time of beginning
+  tic()
+
+  res <- get_recorddata(dataProcessTypeIds = 9,
+                        startYear = 1950,
+                        endYear = 2020,
+                        indicatorIds = 159,
+                        isComplete = 2,
+                        locIds = x,
+                        locAreaTypeIds = 2,
+                        subGroupIds = 2)
+
+  res$DataCatalogNote <- as.character(res$DataCatalogNote)
+
+  # Print time it took to make the request
+  cat("Country", x, ": ")
+
+  toc()
+  # return the result
+  res
+})
+
+## lab1 <- haven::labelled(c(2, 3), labels = c("Whatever" = 2, "Oh shit" = 3))
+## lab2 <- haven::labelled(c(4, 5), labels = c("Oss" = 4, "ooss" = 5))
+## lab3 <- haven::labelled(c(6, 7), labels = c("sppa" = 7, "uueaap" = 6))
+## dt1 <- data.frame(col1 = as_factor(lab1))
+## dt2 <- data.frame(col1 = as_factor(lab2))
+## dt3 <- data.frame(col1 = as_factor(lab3))
+## dplyr::bind_rows(list(dt1, dt2, dt3))$
+## do.call(rbind, list(dt1, dt2, dt3))
+## r1 <- head(myBirths[[1]]["LocName"])
+## r2 <- head(myBirths[[2]]["LocName"])
+## r3 <- head(myBirths[[3]]["LocName"])
+## x <- haven::labelled(c(1, 2, 1, 2, 10), c(Yes = 1, No = 2, Unknown = 9, Refused = 10))
+
+# Merge all separate country data frames into one data frame.
+dplyr::bind_rows(myBirths2)
+do.call(rbind, myBirths)
+
+head(TBirths)
+
+# Should I add these changes to the vignette?
+
+# 4. I see also that various fields are not returned in the output recordset
+# like LocID (right now only LocName), DataTypeID (right now only DataTypeName),
+# DataProcessID (right now only DataProcess).  I would favor including these IDs
+# also in the output recordset because we can use them for various purposes.
+# But StaffMemberID is only an internal field that should not get returned.
+# Idem for TimeReferenceID which is really only an internal ID.
+
+# I included now
+# LocID
+# DataTypeID
+all(c("LocID", "DataTypeID") %in% names(Y))
+
+# And removed
+# StaffMemberID
+# TimeReferenceID
+all(!c("StaffMemberID", "TimeReferenceID") %in% names(Y))
+
+# Dennis, can you include also DataProcessID? It's not being
+# returned in the API response
+
+# 5. I would favor we include DataTypeID before DataTypeName
+# And include in the output query these extra fields (Dennis: these
+# are coming from rftDataTypeGroup2):
+# DataTypeGroup2ID, DataTypeGroup2Name, DataTypeGroup2Sort
+
+# I switched the order and DataTypeID now comes first than DataTypeName
+# Dennis, can you include these three fields in the API response?
+
+# 6. haven labels currently not working for DataProcess, but it works fine for
+# LocID (as LocName), DataTypeID (as DataTypeName).
+# For some reason I thought we were receiving the DataProcessID filed in the API
+# response, but we're not. Dennis, can we include the DataProcessID
+# in the API response? This is the same field as in point 4.
