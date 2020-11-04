@@ -198,6 +198,8 @@ linkGenerator <- function(server = getOption("unpd_server",
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          dataProcessTypeIds = NULL,
+                         dataSourceShortNames = NULL,
+                         dataSourceYears = NULL,
                          startYear = NULL,
                          endYear = NULL,
                          AgeStart = NULL,
