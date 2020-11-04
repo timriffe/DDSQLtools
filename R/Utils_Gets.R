@@ -1,53 +1,24 @@
 #' API Link Generator Function
+#'
 #' @param server The path to the database. Check if the "unpd_server" option is
 #' is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}
+#'
 #' @param type Type of data. Various options are available.
+#'
+#' @param verbose Logical for whether to print the final translated call
+#' to numeric arguments. If the translation of arguments take a lot of time,
+#' it can have a substantial reduction in timing. This only makes sense if
+#' the user provided values as strings which need translation (such as a
+#' country name like 'Haiti' rather than its actually country code).
+#'
 #' @param ... Other arguments that might define the path to data. All arguments
 #' accept a numeric code which is interpreted as the code of the specific
 #' product requested. Alternatively, you can supply the equivalent product
 #' name as a string which is case insensitive (see examples). Handle with
-#' care, this is important! The following options are available:
+#' care, this is important! For a list of all options available, see the
+#' parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
 #'
-#' \itemize{
-#'   \item{\code{dataProcessTypeIds}} -- Data process Type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_dataprocess}} function to see the available 
-#'   options;
-#'
-#'   \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-#'   Run the \code{\link{get_dataprocessid}} function to see the available 
-#'   options;
-#' 
-#'   \item{\code{startYear}} -- Start year. Default: NULL;
-#' 
-#'   \item{\code{endYear}} -- End year. Default: NULL;
-#' 
-#'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_indicatortypes}} function to see the available options;
-#' 
-#'   \item{\code{indicatorIds}} -- Indicator ID as defined by the UNPD. 
-#'   Run the \code{\link{get_iitypes}} function to see the available options;
-#' 
-#'   \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
-#' 
-#'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-#'   \code{\link{get_locations}} function to see the available options;
-#' 
-#'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_locationtypes}} function to see the available 
-#'   options;
-#' 
-#'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-#'   \code{\link{get_subgroups}} function to see the available options;
-#' 
-#'   \item{\code{addDefault}} -- Logical. Default: FALSE;
-#' 
-#'   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
-#' 
-#'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
-#' 
-#'   }
-#' 
-#' @details The link generator is based on the structure of the database 
+#' @details The link generator is based on the structure of the database
 #' created by Dennis Butler (in late 2018). To change the server used to make
 #' the requests, set this at the beginning of your script:
 #' options(unpd_server = "fill this out").
@@ -56,7 +27,7 @@
 #' \code{\link{get_recorddata}}), the columns \code{TimeStart} and \code{TimeEnd}
 #' are returned with format \code{DD/MM/YYYY}, where \code{DD} are days, \code{MM}
 #' are months and \code{YYYY} are years.
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' # Link to country list
@@ -65,7 +36,7 @@
 #'                     includeDependencies = "false",
 #'                     includeFormerCountries = "false")
 #' L1
-#' 
+#'
 #' # Link to location types (for Egypt)
 #' # With strings rather than codes
 #' L2 <- linkGenerator(type = "locAreaTypes",
@@ -73,37 +44,35 @@
 #'                     locIds = "Egypt",
 #'                     isComplete = "Abridged")
 #' L2
-#' 
+#'
 #' # Link to subgroup types (for Egypt)
 #' L3 <- linkGenerator(type = "subGroups",
 #'                     indicatorTypeIds = 8,
 #'                     locIds = 818,
 #'                     isComplete = 0)
 #' L3
-#' 
+#'
 #' # Link to indicator list
 #' L4 <- linkGenerator(type = "indicators",
 #'                     addDefault = "false")
 #' L4
-#' 
+#'
 #' # Link to data process type list
 #' L5 <- linkGenerator(type = "dataProcessTypes")
 #' L5
 #' }
 #' @keywords internal
-linkGenerator <- function(server = getOption("unpd_server",
-                                             "http://24.239.36.16:9654/un3/api/"
-                                             ), 
+linkGenerator <- function(server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
                           type,
-                          verbose_print,
+                          verbose,
                           ...) {
-  
+
   types <- c("ages",
              "openAges",
              "Component",
              "DataCatalog",
              "dataProcessTypes",
-             "dataProcesses",             
+             "dataProcesses",
              "DataReliability",
              "DataSources",
              "DataSourceStatus",
@@ -131,70 +100,19 @@ linkGenerator <- function(server = getOption("unpd_server",
              "TimeReferences",
              # These are within UserUtility
              "dataEntryCount")
-  
+
   type  <- match.arg(tolower(type), choices = tolower(types))
-  query <- build_filter(..., verbose = verbose_print)
+  query <- build_filter(..., verbose = verbose)
   link  <- paste0(server, type, query)
   link
 }
 
 
 #' Build the section of the path (link) responsible with filtering the data
-#' # TODO: Describe each of the parameters in detail.
-#' 
-#' @param dataProcessIds 
-#' @param dataProcessTypeIds Data process ID as defined by the UNPD. Run
-#' \code{\link{get_dataprocess}} to see the available options
-#' @param startYear Start year. Default: NULL;
-#' @param endYear End year. Default: NULL;
-#' @param AgeStart 
-#' @param AgeEnd 
-#' @param indicatorTypeIds Indicator type ID as defined by the UNPD. Run the
-#' \code{\link{get_indicatortypes}} function to see the available options;
-#' @param indicatorIds 
-#' @param componentIds 
-#' @param isComplete isComplete;
-#' @param isActive 
-#' @param locIds Location ID as defined by the UNPD. Run
-#' \code{\link{get_locations}} to see the available options;
-#' @param ids 
-#' @param locAreaTypeIds Location area type ID as defined by the UNPD. Run
-#' \code{\link{get_locations}} to see the available options.
-#' 
-#' @param subGroupIds SubGroup ID as defined by the UNPD. Run
-#' \code{\link{get_subgroups}} to see the available options;
-#' @param addDefault Logical. Default: FALSE;
-#' @param includeDependencies Logical. Default: FALSE;
-#' @param includeFormerCountries Logical. Default: FALSE;
-#' @param includeDataIDs 
-#' @param verbose whether to print the optimized code for get_recorddata
-#' @param server The path to the database. Check if the "unpd_server" option is
-#' is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}
-#' @param type Type of data. Various options are available.
-#' @param ... Other arguments that might define the path to data. All arguments
-#' accept a numeric code which is interpreted as the code of the specific
-#' product requested. Alternatively, you can supply the equivalent product
-#' name as a string which is case insensitive (see examples). Handle with
-#' care, this is important! The following options are available: \itemize{
-#'   \item{\code{dataProcessTypeIds}} -- Data process ID as defined by the UNPD. 
-#'   Run the \code{\link{get_dataprocess}} function to see the available 
-#'   options;
-#'   \item{\code{startYear}} -- Start year. Default: NULL;
-#'   \item{\code{endYear}} -- End year. Default: NULL;
-#'   \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_indicatortypes}} function to see the available options;
-#'   \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
-#'   \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-#'   \code{\link{get_locations}} function to see the available options;
-#'   \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-#'   Run the \code{\link{get_locationtypes}} function to see the available 
-#'   options;
-#'   \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-#'   \code{\link{get_subgroups}} function to see the available options;
-#'   \item{\code{addDefault}} -- Logical. Default: FALSE;
-#'   \item{\code{includeDependencies}} -- Logical. Default: FALSE;
-#'   \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
-#'   }
+#'
+#' For a description of what each argument represents, see
+#' http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+#'
 #' @keywords internal
 build_filter <- function(dataProcessIds = NULL,
                          dataProcessTypeIds = NULL,
@@ -267,7 +185,7 @@ build_filter <- function(dataProcessIds = NULL,
       collapsed_x <- lapply(x, function(i) {
         if (length(i) > 1) paste0("c(", paste0(i, collapse = ", "), ")") else i
       })
-      
+
       mockup <- unlist(collapsed_x)
       res <- paste0("get_recorddata(",
                     paste0(names(mockup), " = ", mockup, collapse = ", "),
@@ -276,12 +194,12 @@ build_filter <- function(dataProcessIds = NULL,
           res)
 
     }
-    
+
     # Collapse multiple ids to parameters
     x <- vapply(x, paste0, collapse = ",", FUN.VALUE = character(1))
     # and exclude the empty ones
     x <- x[x != ""]
-    
+
     S   <- paste(paste(names(x), x, sep = "="), collapse = "&")
     out <- paste0("?", S)
   } else {
@@ -292,14 +210,14 @@ build_filter <- function(dataProcessIds = NULL,
 
 
 #' Format data from character to numeric
-#' @description When a data is downloaded from web it is saved as a list or 
+#' @description When a data is downloaded from web it is saved as a list or
 #' data.frame with columns containing strings of information (character format).
 #' This function reads the values and if it sees in these columns only numbers
 #' will convert the column to class numeric.
 #' @param X data.frame
 #' @keywords internal
 format.numeric.colums <- function(X) {
-  cn    <- colnames(X) 
+  cn    <- colnames(X)
   isNum <- apply(X, 2, FUN = function(w) all(varhandle::check.numeric(w)))
   X[isNum] <- lapply(X[, isNum], as.numeric)
 
@@ -310,11 +228,11 @@ format.numeric.colums <- function(X) {
 #' Save downloaded data in a .Rdata file located in the working directory
 #' @param data The dataset to be saved;
 #' @param file_name Name to be assigned to the data.
-#' @keywords internal 
+#' @keywords internal
 save_in_working_dir <- function(data, file_name) {
   assign(file_name, value = data)
   save(list = file_name, file = paste0(file_name, ".Rdata"))
-  
+
   wd <- getwd()
   n  <- nchar(wd)
   wd <- paste0("...", substring(wd, first = n - 45, last = n))
@@ -327,7 +245,7 @@ lookupLocIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
 
   paramStr_low <- tolower(paramStr)
-  
+
   locs <- get_locations()
   cnt_code <- locs[tolower(locs$Name) %in% paramStr_low, ]
 
@@ -344,7 +262,7 @@ lookupLocIds <- function(paramStr) {
 lookupIndicatorIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
-  
+
   inds <- get_indicatortypes()
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
@@ -378,7 +296,7 @@ lookupSubGroupsIds <- function(paramStr) {
 lookupAreaTypeIds <- function(paramStr, paramList) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
-  
+
   inds <- get_locationtypes(locIds = paramList[["locIds"]],
                             indicatorTypeIds = paramList[["indicatorTypeIds"]],
                             isComplete = paramList[["isComplete"]])
@@ -390,7 +308,7 @@ lookupAreaTypeIds <- function(paramStr, paramList) {
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
          " not found. Check get_locationtypes()")
   }
-  
+
   inds_code[["PK_LocAreaTypeID"]]
 }
 
@@ -409,7 +327,7 @@ lookupDataProcessTypeIds <- function(paramStr, paramList) {
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
          " not found. Check get_dataprocess()")
   }
-  
+
   inds_code[["PK_DataProcessTypeID"]]
 }
 
@@ -422,17 +340,16 @@ lookupDataProcessIds <- function(paramStr, paramList) {
                             isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
-  
+
   # The all statement is in case you provide 2 area types, for example
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Data type(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
          " not found. Check get_dataprocessids()")
   }
-  
+
   inds_code[["PK_DataProcessID"]]
 }
-
 
 lookupIsCompleteIds <- function(paramStr) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)

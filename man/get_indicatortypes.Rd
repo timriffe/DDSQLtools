@@ -7,54 +7,15 @@
 get_indicatortypes(save_file = FALSE, ...)
 }
 \arguments{
-\item{save_file}{Logical. Choose whether or not to save the data in an external 
-\code{.Rdata} file in the working directory. Default: 
-\code{FALSE};}
+\item{save_file}{Logical. Choose whether or not to save the data in an
+external \code{.Rdata} file in the working directory. Default: \code{FALSE}.}
 
 \item{...}{Other arguments that might define the path to data. All arguments
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:
-
-\itemize{
-  \item{\code{dataProcessTypeIds}} -- Data process Type ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocess}} function to see the available 
-  options;
-
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocessid}} function to see the available 
-  options;
-
-  \item{\code{startYear}} -- Start year. Default: NULL;
-
-  \item{\code{endYear}} -- End year. Default: NULL;
-
-  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{get_indicatortypes}} function to see the available options;
-
-  \item{\code{indicatorIds}} -- Indicator ID as defined by the UNPD. 
-  Run the \code{\link{get_iitypes}} function to see the available options;
-
-  \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
-
-  \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-  \code{\link{get_locations}} function to see the available options;
-
-  \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-  Run the \code{\link{get_locationtypes}} function to see the available 
-  options;
-
-  \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-  \code{\link{get_subgroups}} function to see the available options;
-
-  \item{\code{addDefault}} -- Logical. Default: FALSE;
-
-  \item{\code{includeDependencies}} -- Logical. Default: FALSE;
-
-  \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
-
-  }}
+care, this is important! For a list of all options available, see the
+parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords}
 }
 \description{
 Get information about available indicators (IndicatorTypeID)

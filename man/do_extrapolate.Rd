@@ -40,14 +40,14 @@ The following options are available: \itemize{
 \item{\code{"quadratic"}} -- The Quadratic model.
 }}
 
-\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+\item{verbose}{Logical value. If \code{TRUE} messages are printed
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to the
 \code{\link[MortalityLaws]{MortalityLaw}} function.}
 }
 \value{
-A data.frame having the same number of columns as input data. 
+A data.frame having the same number of columns as input data.
 Different numbers of rows. UN format.
 }
 \description{

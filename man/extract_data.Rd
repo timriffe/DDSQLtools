@@ -9,9 +9,8 @@ extract_data(ids, save_file = FALSE)
 \arguments{
 \item{ids}{a character vector of ID's that identify each data point}
 
-\item{save_file}{Logical. Choose whether or not to save the data in an external 
-\code{.Rdata} file in the working directory. Default: 
-\code{FALSE};}
+\item{save_file}{Logical. Choose whether or not to save the data in an
+external \code{.Rdata} file in the working directory. Default: \code{FALSE}.}
 }
 \value{
 A data frame with the same rows as the number of ID's containing
@@ -22,11 +21,8 @@ Request data records directly from their ID
 }
 \examples{
 
-# TODO: Add good example once the data filtering of all data available
-# is ready.
-
 \dontrun{
-extractData("35444654")
+extract_data("35444654")
 }
 
 }

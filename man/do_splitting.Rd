@@ -9,16 +9,16 @@ do_splitting(X, fn = c("beers", "grabill", "sprague"), verbose = TRUE, ...)
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{fn}{Method to be called from DemoTools. Available alternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives:
 \code{"beers", "grabill", "sprague"}.}
 
-\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+\item{verbose}{Logical value. If \code{TRUE} messages are printed
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
-A data.frame having the same number of columns as input data. 
+A data.frame having the same number of columns as input data.
 Different numbers of rows. UN format.
 }
 \description{
@@ -40,7 +40,7 @@ V1 <- do_splitting(P1, fn = "beers")
 V2 <- do_splitting(P1, fn = "grabill")
 V3 <- do_splitting(P1, fn = "sprague")
 
-select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel", 
+select_columns <- c("AgeID", "AgeStart", "AgeMid", "AgeEnd", "AgeLabel",
                     "DataTypeName", "DataTypeID", "DataValue")
 
 W1[, select_columns]
@@ -48,7 +48,7 @@ V1[, select_columns]
 
 }
 \seealso{
-\code{\link[DemoTools]{graduate_beers}}, 
-\code{\link[DemoTools]{graduate_grabill}}, 
+\code{\link[DemoTools]{graduate_beers}},
+\code{\link[DemoTools]{graduate_grabill}},
 \code{\link[DemoTools]{graduate_sprague}}.
 }
