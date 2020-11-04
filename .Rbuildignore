@@ -19,3 +19,4 @@ devdata
 ^\.github$
 ^\.ccache$
 ^tic\.R$
+^data-raw$
