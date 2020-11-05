@@ -218,6 +218,7 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #'
 #' @examples
 #' \dontrun{
+#'
 #' #  You can provide all strings, all codes, or a combination of both
 #' Y <- get_recorddata(dataProcessTypeIds = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
@@ -237,7 +238,32 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #'                    isComplete = 0)       # Age Distribution: Abridged
 #'
 #' head(X)
-#' }
+#'
+#' # Same thing but limited to DataSourceYears
+#' X <- get_recorddata(dataProcessTypeIds = 2,
+#'                    indicatorTypeIds = 8,
+#'                    locIds = 818,
+#'                    locAreaTypeIds = 2,
+#'                    subGroupIds = 2,
+#'                    isComplete = 0,
+#'                    dataSourceYears = 1980)
+#'
+#' head(X)
+#'
+#' # Same thing but limited to DataSourceShortNames
+#' X <- get_recorddata(dataProcessTypeIds = 2,
+#'                    indicatorTypeIds = 8,
+#'                    locIds = 818,
+#'                    locAreaTypeIds = 2,
+#'                    subGroupIds = 2,
+#'                    isComplete = 0,
+#'                    dataSourceShortNames = "OECD 1980")
+#'
+#' head(X)
+#'
+#'}
+#'
+#'
 #'
 #' @export
 get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {

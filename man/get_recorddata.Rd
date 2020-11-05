@@ -61,6 +61,30 @@ X <- get_recorddata(dataProcessTypeIds = 2,   # Census
                    isComplete = 0)       # Age Distribution: Abridged
 
 head(X)
+
+# Same thing but limited to DataSourceYears
+X <- get_recorddata(dataProcessTypeIds = 2,
+                   indicatorTypeIds = 8,
+                   locIds = 818,
+                   locAreaTypeIds = 2,
+                   subGroupIds = 2,
+                   isComplete = 0,
+                   dataSourceYears = 1980)
+
+head(X)
+
+# Same thing but limited to DataSourceShortNames
+X <- get_recorddata(dataProcessTypeIds = 2,
+                   indicatorTypeIds = 8,
+                   locIds = 818,
+                   locAreaTypeIds = 2,
+                   subGroupIds = 2,
+                   isComplete = 0,
+                   dataSourceShortNames = "OECD 1980")
+
+head(X)
 }
+
+
 
 }

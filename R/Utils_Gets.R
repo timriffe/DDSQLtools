@@ -132,7 +132,7 @@ build_filter <- function(dataProcessIds = NULL,
                          locAreaTypeIds = NULL,
                          subGroupIds = NULL,
                          addDefault = NULL,
-                         includeDependencies = NULL, 
+                         includeDependencies = NULL,
                          includeFormerCountries = NULL,
                          includeDataIDs = NULL,
                          verbose) {
