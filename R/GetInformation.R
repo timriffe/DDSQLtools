@@ -289,8 +289,9 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
 #' @keywords internal
 read_API <- function(type, save_file, verbose = FALSE, ...) {
   P <- linkGenerator(type = type, verbose = verbose, ...)
+
   # Temporary, just to check how the URL is constructed
-  print(P)
+  cat("\n", P, "\n")
 
   out <- jsonlite::fromJSON(txt = P, flatten = TRUE)
   ## print("URL saved")
