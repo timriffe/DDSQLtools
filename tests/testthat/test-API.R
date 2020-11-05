@@ -67,6 +67,10 @@ I <- get_indicators(addDefault = "false")
 validate_read_API(I)  # validate
 
 # ------------------------------------------
+I <- get_datasources()
+validate_read_API(I)  # validate
+
+# ------------------------------------------
 G <- get_seriesdata(dataProcessTypeIds = 2,
                     indicatorTypeIds = 8,
                     isComplete = 0,

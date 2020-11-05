@@ -131,10 +131,12 @@ build_filter <- function(dataProcessIds = NULL,
                          ids = NULL,
                          locAreaTypeIds = NULL,
                          subGroupIds = NULL,
+                         shortNames = NULL,
                          addDefault = NULL,
                          includeDependencies = NULL,
                          includeFormerCountries = NULL,
                          includeDataIDs = NULL,
+                         years = NULL,
                          verbose) {
 
   # Keep as list because unlisting multiple ids for a single

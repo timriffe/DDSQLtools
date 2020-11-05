@@ -191,6 +191,27 @@ get_seriesdata <- function(save_file = FALSE, ...) {
   read_API("structureddataseries", save_file, ...)
 }
 
+#' Get information about available data sources
+#' @inheritParams read_API
+#' @examples
+#' \dontrun{
+#' all_ds <- get_datasources()
+#' head(all_ds)
+#'
+#' limit_ds <- get_datasources(years = 1981)
+#'
+#' head(limit_ds)
+#'
+#' shortn_ds <- get_datasources(shortNames = "DYB")
+#'
+#' head(shortn_ds)
+#' }
+#' @export
+get_datasources <- function(save_file = FALSE, ...) {
+  read_API("dataSources", save_file, ...)
+}
+
+
 #' Download structuredDataRecords data from the UNPD portal
 #'
 #' @inheritParams read_API

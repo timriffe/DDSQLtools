@@ -22,10 +22,12 @@ build_filter(
   ids = NULL,
   locAreaTypeIds = NULL,
   subGroupIds = NULL,
+  shortNames = NULL,
   addDefault = NULL,
   includeDependencies = NULL,
   includeFormerCountries = NULL,
   includeDataIDs = NULL,
+  years = NULL,
   verbose
 )
 }

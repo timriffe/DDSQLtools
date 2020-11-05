@@ -42,6 +42,7 @@ Once the data is read from the API, some transformations are applied:
 }
 \examples{
 \dontrun{
+
 #  You can provide all strings, all codes, or a combination of both
 Y <- get_recorddata(dataProcessTypeIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
@@ -83,6 +84,7 @@ X <- get_recorddata(dataProcessTypeIds = 2,
                    dataSourceShortNames = "OECD 1980")
 
 head(X)
+
 }
 
 
