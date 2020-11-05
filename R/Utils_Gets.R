@@ -136,6 +136,7 @@ build_filter <- function(dataProcessIds = NULL,
                          includeDependencies = NULL,
                          includeFormerCountries = NULL,
                          includeDataIDs = NULL,
+                         includeUncertainty = NULL,
                          years = NULL,
                          verbose) {
 
@@ -198,6 +199,10 @@ build_filter <- function(dataProcessIds = NULL,
           res)
 
     }
+
+    # Turn TRUE/FALSE to true/false
+    is_logical <- vapply(x, is.logical, FUN.VALUE = logical(1))
+    x[is_logical] <- lapply(x[is_logical], function(x) tolower(as.character(x)))
 
     # Collapse multiple ids to parameters
     x <- vapply(x, paste0, collapse = ",", FUN.VALUE = character(1))
@@ -380,19 +385,19 @@ values_env$id_to_fact <- c(AreaName = "AreaID",
                            DataReliabilityName = "DataReliabilityID",
                            ## SubGroupName = "PK_SubGroupID",
                            ## DataSourceName = "DataSourceID",
-                           DataStatusName = "DataStatusID", 
+                           DataStatusName = "DataStatusID",
                            ## DataTypeName = "DataTypeID",
-                           DataTypeGroupName = "DataTypeGroupID", 
+                           DataTypeGroupName = "DataTypeGroupID",
                            IndicatorName = "IndicatorID",
                            ## LocName = "LocID",
-                           LocAreaTypeName = "LocAreaTypeID", 
+                           LocAreaTypeName = "LocAreaTypeID",
                            LocTypeName = "LocTypeID",
-                           ModelPatternName = "ModelPatternID", 
+                           ModelPatternName = "ModelPatternID",
                            ModelPatternFamilyName = "ModelPatternFamilyID",
-                           PeriodGroupName = "PeriodGroupID", 
+                           PeriodGroupName = "PeriodGroupID",
                            PeriodTypeName = "PeriodTypeID",
                            RegName = "RegID",
-                           SexName = "SexID", 
+                           SexName = "SexID",
                            StatisticalConceptName = "StatisticalConceptID",
                            SubGroupTypeName = "SubGroupTypeID"
                            ## DataProcess = "PK_DataProcessID"
@@ -441,6 +446,11 @@ values_env$col_order <- c("IndicatorName",
                           "DataSourceName",
                           "DataSourceShortName",
                           "DataSourceSort",
+                          "HasUncertaintyRecord",
+                          "StandardErrorValue",
+                          "ConfidenceInterval",
+                          "ConfidenceIntervalLowerBound",
+                          "ConfidenceIntervalUpperBound",
                           "DataStatusName",
                           "DataStatusID",
                           "DataStatusSort",

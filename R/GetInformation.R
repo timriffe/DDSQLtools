@@ -271,14 +271,15 @@ get_datasources <- function(save_file = FALSE, ...) {
 #'
 #' head(X)
 #'
-#' # Same thing but limited to DataSourceShortNames
+#' # Same thing but limited to DataSourceShortNames and including the uncertainty
 #' X <- get_recorddata(dataProcessTypeIds = 2,
 #'                    indicatorTypeIds = 8,
 #'                    locIds = 818,
 #'                    locAreaTypeIds = 2,
 #'                    subGroupIds = 2,
 #'                    isComplete = 0,
-#'                    dataSourceShortNames = "OECD 1980")
+#'                    dataSourceShortNames = "OECD 1980",
+#'                    includeUncertainty = TRUE)
 #'
 #' head(X)
 #'
