@@ -103,7 +103,7 @@ linkGenerator <- function(server = getOption("unpd_server", "http://24.239.36.16
 
   type  <- match.arg(tolower(type), choices = tolower(types))
   query <- build_filter(..., verbose = verbose)
-  link  <- paste0(server, type, query)
+  link  <- utils::URLencode(paste0(server, type, query))
   link
 }
 
