@@ -1,20 +1,19 @@
-##' Request data records directly from their ID
-##'
-##' @param ids a character vector of ID's that identify each data point
-##' @inheritParams read_API
-##' @return A data frame with the same rows as the number of ID's containing
-##' the data values for that specific ID.
-##'
-##' @examples
-##'
-##' # TODO: Add good example once the data filtering of all data available
-##' # is ready.
-##' 
-##' \dontrun{
-##' extractData("35444654")
-##' }
-##'
-##' @keywords internal 
+#' Request data records directly from their ID
+#'
+#' @param ids a character vector of ID's that identify each data point
+#'
+#' @inheritParams read_API
+#'
+#' @return A data frame with the same rows as the number of ID's containing
+#' the data values for that specific ID.
+#'
+#' @examples
+#'
+#' \dontrun{
+#' extract_data("35444654")
+#' }
+#'
+#' @keywords internal
 extract_data <- function(ids, save_file = FALSE) {
   len_ids <- length(ids)
 
@@ -42,7 +41,7 @@ extract_data <- function(ids, save_file = FALSE) {
     return(collapsed_res)
   }
 
-  cat(paste0("\r\r Reading chunks: [0/1]"))  
+  cat(paste0("\r\r Reading chunks: [0/1]"))
   collapsed_res <- read_API("structureddatarecords",
                             save_file = save_file,
                             verbose = FALSE,
@@ -63,10 +62,9 @@ extract_data <- function(ids, save_file = FALSE) {
 #'                   includeFormerCountries = "false")
 #' L
 #' }
-#' 
+#'
 #' @export
 get_locations <- function(save_file = FALSE, ...) {
-  
   read_API("locations", save_file, ...)
 }
 
@@ -84,7 +82,6 @@ get_locations <- function(save_file = FALSE, ...) {
 #' }
 #' @export
 get_locationtypes <- function(save_file = FALSE, ...) {
-  
   read_API("locareatypes", save_file, ...)
 }
 
@@ -92,7 +89,7 @@ get_locationtypes <- function(save_file = FALSE, ...) {
 #' Get information about available sub-group-types (SubGroupTypeID)
 #' @inheritParams read_API
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # Check what subgroups are available for:
 #' S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
@@ -102,27 +99,25 @@ get_locationtypes <- function(save_file = FALSE, ...) {
 #' }
 #' @export
 get_subgroups <- function(save_file = FALSE, ...) {
-  
   read_API("subGroups", save_file, ...)
 }
 
 
 #' Get information about available indicators (IndicatorTypeID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
 #' \dontrun{
 #' I <- get_indicatortypes(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
 #' }
 #' @export
 get_indicatortypes <- function(save_file = FALSE, ...) {
-  
   read_API("indicatortypes", save_file, ...)
 }
 
 #' Get information about available indicators (IndicatorID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
 #' \dontrun{
 #' I <- get_indicators(addDefault = "false")
 #' I[, c("PK_IndicatorTypeID", "Name", "ShortName")]
@@ -134,7 +129,7 @@ get_indicators <- function(save_file = FALSE, ...) {
 
 #' Get information about available indicators (IndicatorID) and indicatortypeids (IndicatorTypeId)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
 #' \dontrun{
 #' I <- get_iitypes()
 #' I
@@ -144,7 +139,7 @@ get_indicators <- function(save_file = FALSE, ...) {
 #'
 #' only_iids <- get_iitypes(indicatorIds = 229)
 #' only_iids
-#' 
+#'
 #' components <- get_iitypes(componentIds = 4)
 #' components
 #' }
@@ -156,7 +151,7 @@ get_iitypes <- function(save_file = FALSE, ...) {
 
 #' Get information about available data-types (DataProcessTypeID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
 #' \dontrun{
 #' D <- get_dataprocess()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
@@ -168,7 +163,7 @@ get_dataprocess <- function(save_file = FALSE, ...) {
 
 #' Get information about available data-types (DataProcessID and DataProcessTypeID)
 #' @inheritParams read_API
-#' @examples 
+#' @examples
 #' \dontrun{
 #' D <- get_dataprocessid()
 #' D[, c("PK_DataProcessID", "Name", "ShortName")]
@@ -196,29 +191,55 @@ get_seriesdata <- function(save_file = FALSE, ...) {
   read_API("structureddataseries", save_file, ...)
 }
 
-#' Download data from UNPD portal
+#' Get information about available data sources
+#' @inheritParams read_API
+#' @examples
+#' \dontrun{
+#' all_ds <- get_datasources()
+#' head(all_ds)
+#'
+#' limit_ds <- get_datasources(years = 1981)
+#'
+#' head(limit_ds)
+#'
+#' shortn_ds <- get_datasources(shortNames = "DYB")
+#'
+#' head(shortn_ds)
+#' }
+#' @export
+get_datasources <- function(save_file = FALSE, ...) {
+  read_API("dataSources", save_file, ...)
+}
+
+
+#' Download structuredDataRecords data from the UNPD portal
+#'
 #' @inheritParams read_API
 #' @param verbose Whether to print the translated query from strings to digits
 #' for faster queries. By default set to TRUE.
 #'
 #' @details
 #'
+#' \code{get_recorddata} directly queries the endpoint
+#' \code{structuredDataRecords}. For a list of all options available for this
+#' endpoint, see the parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+#'
 #' \code{get_recorddata} allows the user to supply string names for all
 #' arguments that have equivalent \code{get_*} functions. For example,
 #' \code{get_iitypes} for \code{indicatorIds}. The string used for all
 #' of these arguments should be the one from the column \code{Name} in
 #' the response from the \code{get_*} functions.
-#' 
+#'
 #' Once the data is read from the API, some transformations are applied:
 #'
 #' \itemize{
 # \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
 #' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
 #' }
-#' 
-#' @examples
 #'
+#' @examples
 #' \dontrun{
+#'
 #' #  You can provide all strings, all codes, or a combination of both
 #' Y <- get_recorddata(dataProcessTypeIds = "Census",
 #'                    indicatorTypeIds = 8, # and support numeric of string names
@@ -231,15 +252,41 @@ get_seriesdata <- function(save_file = FALSE, ...) {
 #'
 #' # Same thing only with codes
 #' X <- get_recorddata(dataProcessTypeIds = 2,   # Census
-#'                    indicatorTypeIds = 8, # Population by age and sex - abridged 
+#'                    indicatorTypeIds = 8, # Population by age and sex - abridged
 #'                    locIds = 818,         # Egypt
-#'                    locAreaTypeIds = 2,   # Whole area 
+#'                    locAreaTypeIds = 2,   # Whole area
 #'                    subGroupIds = 2,      # Total or All groups
 #'                    isComplete = 0)       # Age Distribution: Abridged
 #'
 #' head(X)
-#' }
-#' 
+#'
+#' # Same thing but limited to DataSourceYears
+#' X <- get_recorddata(dataProcessTypeIds = 2,
+#'                    indicatorTypeIds = 8,
+#'                    locIds = 818,
+#'                    locAreaTypeIds = 2,
+#'                    subGroupIds = 2,
+#'                    isComplete = 0,
+#'                    dataSourceYears = 1980)
+#'
+#' head(X)
+#'
+#' # Same thing but limited to DataSourceShortNames and including the uncertainty
+#' X <- get_recorddata(dataProcessTypeIds = 2,
+#'                    indicatorTypeIds = 8,
+#'                    locIds = 818,
+#'                    locAreaTypeIds = 2,
+#'                    subGroupIds = 2,
+#'                    isComplete = 0,
+#'                    dataSourceShortNames = "OECD 1980",
+#'                    includeUncertainty = TRUE)
+#'
+#' head(X)
+#'
+#'}
+#'
+#'
+#'
 #' @export
 get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   res <- read_API("structureddatarecords",
@@ -283,15 +330,16 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
 }
 
 #' Download data
-#' @param save_file Logical. Choose whether or not to save the data in an external 
-#' \code{.Rdata} file in the working directory. Default: 
-#' \code{FALSE};
 #' @inheritParams linkGenerator
+#' @param save_file Logical. Choose whether or not to save the data in an
+#' external \code{.Rdata} file in the working directory. Default: \code{FALSE}.
+#'
 #' @keywords internal
 read_API <- function(type, save_file, verbose = FALSE, ...) {
-  P <- linkGenerator(type = type, verbose_print = verbose, ...)
+  P <- linkGenerator(type = type, verbose = verbose, ...)
+
   # Temporary, just to check how the URL is constructed
-  print(P)
+  cat("\n", P, "\n")
 
   out <- jsonlite::fromJSON(txt = P, flatten = TRUE)
   ## print("URL saved")
@@ -301,8 +349,7 @@ read_API <- function(type, save_file, verbose = FALSE, ...) {
   out <- format.numeric.colums(out)
 
   if (save_file) {
-    save_in_working_dir(data = out, file_name = paste0("UNPD_", 
-                                                       type))
+    save_in_working_dir(data = out, file_name = paste0("UNPD_", type))
   }
 
   out

@@ -7,7 +7,7 @@
 output_msg(fn, arg_names)
 }
 \arguments{
-\item{fn}{Method to be called from DemoTools. Available alternatives: 
+\item{fn}{Method to be called from DemoTools. Available alternatives:
 \code{"beers", "grabill", "sprague"}.}
 }
 \description{

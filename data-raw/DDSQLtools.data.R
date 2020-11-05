@@ -54,6 +54,20 @@ dim(P1_F)
 
 # Tue Nov 27 18:28:26 2018 ------------------------------
 
+# From Jorge, November 4th 2020: Trying to replicate this but I can't
+# find the file anywhere. I found a reference to LTabr in old DemoTools
+# code but I couldn't figure out how to produce the file below.
+
+# I tried by following this https://github.com/timriffe/DemoTools/issues/64
+# and tried this because LTabr is not exported from DemoTools anymore:
+
+# x <- c(0, 1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90)
+# Mx <- c(0.029677111, 0.006652641, 0.003428760, 0.003779019, 0.007071163,
+#         0.013404195, 0.018407346, 0.022259325, 0.025713290, 0.036088883,
+#         0.048121808, 0.073429838, 0.107445906, 0.153227234, 0.192783422,
+#         0.254067819, 0.349650365, 0.604515543, 0.705407913, 0.828063757)
+# DemoTools::lt_abridged(nMx = Mx, Age = x)
+
 # This is a small table
 Mx <- paste0(getwd(), "/devdata/", "LTabr_error1.csv") %>% 
   read.csv() %>% 
@@ -66,7 +80,3 @@ DDSQLtools.data <- list(Pop1_Egypt_M_DB = P1_M, Pop1_Egypt_F_DB = P1_F,
                         Mx5 = Mx)
 
 devtools::use_data(DDSQLtools.data, overwrite = TRUE)
-
-
-
-

@@ -9,13 +9,13 @@ do_lifetable(X, verbose = TRUE, ...)
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{verbose}{Logical value. If \code{TRUE} messages are printed 
+\item{verbose}{Logical value. If \code{TRUE} messages are printed
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
 \item{...}{Other arguments to be passed on to other methods and functions.}
 }
 \value{
-A data.frame having the same number of columns as input data. 
+A data.frame having the same number of columns as input data.
 Different numbers of rows. UN format.
 }
 \description{

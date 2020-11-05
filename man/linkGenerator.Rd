@@ -7,7 +7,7 @@
 linkGenerator(
   server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
   type,
-  verbose_print,
+  verbose,
   ...
 )
 }
@@ -17,56 +17,24 @@ is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}}
 
 \item{type}{Type of data. Various options are available.}
 
+\item{verbose}{Logical for whether to print the final translated call
+to numeric arguments. If the translation of arguments take a lot of time,
+it can have a substantial reduction in timing. This only makes sense if
+the user provided values as strings which need translation (such as a
+country name like 'Haiti' rather than its actually country code).}
+
 \item{...}{Other arguments that might define the path to data. All arguments
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:
-
-\itemize{
-  \item{\code{dataProcessTypeIds}} -- Data process Type ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocess}} function to see the available 
-  options;
-
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocessid}} function to see the available 
-  options;
-
-  \item{\code{startYear}} -- Start year. Default: NULL;
-
-  \item{\code{endYear}} -- End year. Default: NULL;
-
-  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{get_indicatortypes}} function to see the available options;
-
-  \item{\code{indicatorIds}} -- Indicator ID as defined by the UNPD. 
-  Run the \code{\link{get_iitypes}} function to see the available options;
-
-  \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
-
-  \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-  \code{\link{get_locations}} function to see the available options;
-
-  \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-  Run the \code{\link{get_locationtypes}} function to see the available 
-  options;
-
-  \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-  \code{\link{get_subgroups}} function to see the available options;
-
-  \item{\code{addDefault}} -- Logical. Default: FALSE;
-
-  \item{\code{includeDependencies}} -- Logical. Default: FALSE;
-
-  \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
-
-  }}
+care, this is important! For a list of all options available, see the
+parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords}
 }
 \description{
 API Link Generator Function
 }
 \details{
-The link generator is based on the structure of the database 
+The link generator is based on the structure of the database
 created by Dennis Butler (in late 2018). To change the server used to make
 the requests, set this at the beginning of your script:
 options(unpd_server = "fill this out").

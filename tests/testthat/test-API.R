@@ -4,7 +4,7 @@ test_that("The linkGenerator() works fine", {
                      locIds = 4,
                      indicatorTypeIds = 8,
                      dataProcessTypeIds = c(2, 6),
-                     verbose_print = FALSE)
+                     verbose = FALSE)
   
   expect_output(print(L))                          # 1. Always expect an output;
   expect_true(is.character(L))                     # 2. The output is of the class "character";
@@ -64,6 +64,10 @@ validate_read_API(IT)  # validate
 
 # ------------------------------------------
 I <- get_indicators(addDefault = "false")
+validate_read_API(I)  # validate
+
+# ------------------------------------------
+I <- get_datasources()
 validate_read_API(I)  # validate
 
 # ------------------------------------------

@@ -49,7 +49,7 @@ egypt_str <- get_recorddata(dataProcessTypeIds = "Census",
 
 egypt_num <- get_recorddata(dataProcessTypeIds = 2,
                             indicatorTypeIds = 8,
-                            locIds = 818, 
+                            locIds = 818,
                             locAreaTypeIds = 2,
                             subGroupIds = 2,
                             isComplete = 0)
@@ -98,7 +98,9 @@ togo <- get_recorddata(dataProcessTypeIds = "Survey: cross-sectional survey (gen
 head(togo)
 ```
 
-#### Deaths by age and sex using register data
+#### Deaths by age and sex using register data with uncertainty
+
+You can also request uncertainty estimates with `includeUncertainty = TRUE`
 
 ```{r }
 oman <- get_recorddata(dataProcessTypeIds = "Register",
@@ -106,7 +108,8 @@ oman <- get_recorddata(dataProcessTypeIds = "Register",
                        locIds = "Oman",
                        locAreaTypeIds = "Whole area",
                        subGroupIds = "Total or All groups",
-                       isComplete = "Abridged")
+                       isComplete = "Abridged",
+                       includeUncertainty = TRUE)
 
 head(oman)
 ```
@@ -154,7 +157,7 @@ get_recorddata(dataProcessTypeIds = "Register",
 
 ```
 
-You'll get an error saying that `DDSQLtools` could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thinkg you want to do is to copy the **optimized query** printed by `get_recorddata` that already translated the string codes to numbers.
+You'll get an error saying that `DDSQLtools` could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thing you want to do is to copy the **optimized query** printed by `get_recorddata` that already translated the string codes to numbers.
 
 After that, you need to loop through groups of countries and make requests for each group separately. Below is the same example using base R and the `tidyverse`. On average, downloading these countries takes between 25 to 30 minutes.
 
@@ -325,7 +328,7 @@ Here we can see both the **code** and the **name** of the indicator. Both values
 get_locationtypes()
 ```
 
-In order to search for a specificic combination of values (`"Egypt"`, `"Deaths by age and sex"`, etc...), the process is only possible through trial and error. For example, if we wanted to explore `Deaths by age and sex` for `Oman`, we'd have to explore whether there is data for `Semi-rural` (`locAreaTypeIds`) and `Christian Orthodox` (`subGroupIds`). Since this exploration process is a bit cumbersome, we're currently developing a new strategy for exploring country/indicator pairs that will be more intuitive.
+In order to search for a specific combination of values (`"Egypt"`, `"Deaths by age and sex"`, etc...), the process is only possible through trial and error. For example, if we wanted to explore `Deaths by age and sex` for `Oman`, we'd have to explore whether there is data for `Semi-rural` (`locAreaTypeIds`) and `Christian Orthodox` (`subGroupIds`).
 
 For now, let's try this example for `"Semi-rural"`:
 
@@ -342,22 +345,22 @@ This error is just saying that the combination of data that you've specified is 
 
 Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn't know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the [front end of the API](http://24.239.36.16:9654/un3/Web/index.html) and then use these in the request.
 
-Let's do one example. Follow the hyperlink and click on `"Get Started - Select Indicator & Country"`. Then select `"Deaths by age and sex"` -> `"Oman"`. All possible datasets for `Oman` and `"Deaths by age and sex"` will appear automatically. We can filter down the options in the left-most menu and use these values to populate our `get_recorddata` call.
+Let's do one example. Follow the hyperlink and click on `"Get Started - Select Indicator & Country"`. Then select `"Deaths by age and sex"` -> `"Oman"`. All possible data sets for `Oman` and `"Deaths by age and sex"` will appear automatically. We can filter down the options in the left-most menu and use these values to populate our `get_recorddata` call.
 
 Looking at the possible values of `"Type of location"`, only `"Whole area"` is available. This means that we can't specify `"Semi-rural"` (as we saw in the example above). Looking at `"Type of subgroup"`, the only available group is `Total or All groups`, meaning that we can't specify `"Christian Orthodox"` either.
 
-Using this strategy is much easier and less time consuming that trying out different values. As outlined above, this strategy will not be necessary in the near future as we develop a quick strategy for exploring data from R.
+Using this strategy is much easier and less time consuming that trying out different values.
 
 ## Exploring indicators
 
-To explore all possicle indicatorIds, indicatorTypeIds and components, `get_iitypes` can be of use. Although `get_indicators` and `get_indicatortypes` are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That's where `get_iitypes` comes in. For example:
+To explore all possible indicatorIds, indicatorTypeIds and components, `get_iitypes` can be of use. Although `get_indicators` and `get_indicatortypes` are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That's where `get_iitypes` comes in. For example:
 
 ```{r}
 all_iitypes <- get_iitypes()
 head(all_iitypes)
 ```
 
-The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of `get_iitypes` is that you can select any of the with the function:
+The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of `get_iitypes` is that you can select any of then with the function:
 
 ```{r}
 get_iitypes(indicatorIds = 239)

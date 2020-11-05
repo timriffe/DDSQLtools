@@ -2,14 +2,13 @@
 % Please edit documentation in R/GetInformation.R
 \name{get_recorddata}
 \alias{get_recorddata}
-\title{Download data from UNPD portal}
+\title{Download structuredDataRecords data from the UNPD portal}
 \usage{
 get_recorddata(save_file = FALSE, verbose = TRUE, ...)
 }
 \arguments{
-\item{save_file}{Logical. Choose whether or not to save the data in an external 
-\code{.Rdata} file in the working directory. Default: 
-\code{FALSE};}
+\item{save_file}{Logical. Choose whether or not to save the data in an
+external \code{.Rdata} file in the working directory. Default: \code{FALSE}.}
 
 \item{verbose}{Whether to print the translated query from strings to digits
 for faster queries. By default set to TRUE.}
@@ -18,51 +17,17 @@ for faster queries. By default set to TRUE.}
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:
-
-\itemize{
-  \item{\code{dataProcessTypeIds}} -- Data process Type ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocess}} function to see the available 
-  options;
-
-  \item{\code{dataProcessIds}} -- Data process ID as defined by the UNPD. 
-  Run the \code{\link{get_dataprocessid}} function to see the available 
-  options;
-
-  \item{\code{startYear}} -- Start year. Default: NULL;
-
-  \item{\code{endYear}} -- End year. Default: NULL;
-
-  \item{\code{indicatorTypeIds}} -- Indicator type ID as defined by the UNPD. 
-  Run the \code{\link{get_indicatortypes}} function to see the available options;
-
-  \item{\code{indicatorIds}} -- Indicator ID as defined by the UNPD. 
-  Run the \code{\link{get_iitypes}} function to see the available options;
-
-  \item{\code{isComplete}} -- isComplete is set to `2` ('Total') by default on the API;
-
-  \item{\code{locIds}} -- Location ID as defined by the UNPD. Run the
-  \code{\link{get_locations}} function to see the available options;
-
-  \item{\code{locAreaTypeIds}} -- Location area type ID as defined by the UNPD. 
-  Run the \code{\link{get_locationtypes}} function to see the available 
-  options;
-
-  \item{\code{subGroupIds}} -- SubGroup ID as defined by the UNPD. Run the 
-  \code{\link{get_subgroups}} function to see the available options;
-
-  \item{\code{addDefault}} -- Logical. Default: FALSE;
-
-  \item{\code{includeDependencies}} -- Logical. Default: FALSE;
-
-  \item{\code{includeFormerCountries}} -- Logical. Default: FALSE.
-
-  }}
+care, this is important! For a list of all options available, see the
+parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords}
 }
 \description{
-Download data from UNPD portal
+Download structuredDataRecords data from the UNPD portal
 }
 \details{
+\code{get_recorddata} directly queries the endpoint
+\code{structuredDataRecords}. For a list of all options available for this
+endpoint, see the parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+
 \code{get_recorddata} allows the user to supply string names for all
 arguments that have equivalent \code{get_*} functions. For example,
 \code{get_iitypes} for \code{indicatorIds}. The string used for all
@@ -76,8 +41,8 @@ Once the data is read from the API, some transformations are applied:
 }
 }
 \examples{
-
 \dontrun{
+
 #  You can provide all strings, all codes, or a combination of both
 Y <- get_recorddata(dataProcessTypeIds = "Census",
                    indicatorTypeIds = 8, # and support numeric of string names
@@ -90,13 +55,38 @@ head(Y)
 
 # Same thing only with codes
 X <- get_recorddata(dataProcessTypeIds = 2,   # Census
-                   indicatorTypeIds = 8, # Population by age and sex - abridged 
+                   indicatorTypeIds = 8, # Population by age and sex - abridged
                    locIds = 818,         # Egypt
-                   locAreaTypeIds = 2,   # Whole area 
+                   locAreaTypeIds = 2,   # Whole area
                    subGroupIds = 2,      # Total or All groups
                    isComplete = 0)       # Age Distribution: Abridged
 
 head(X)
+
+# Same thing but limited to DataSourceYears
+X <- get_recorddata(dataProcessTypeIds = 2,
+                   indicatorTypeIds = 8,
+                   locIds = 818,
+                   locAreaTypeIds = 2,
+                   subGroupIds = 2,
+                   isComplete = 0,
+                   dataSourceYears = 1980)
+
+head(X)
+
+# Same thing but limited to DataSourceShortNames
+X <- get_recorddata(dataProcessTypeIds = 2,
+                   indicatorTypeIds = 8,
+                   locIds = 818,
+                   locAreaTypeIds = 2,
+                   subGroupIds = 2,
+                   isComplete = 0,
+                   dataSourceShortNames = "OECD 1980")
+
+head(X)
+
 }
+
+
 
 }

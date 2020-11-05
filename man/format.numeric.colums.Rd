@@ -10,7 +10,7 @@
 \item{X}{data.frame}
 }
 \description{
-When a data is downloaded from web it is saved as a list or 
+When a data is downloaded from web it is saved as a list or
 data.frame with columns containing strings of information (character format).
 This function reads the values and if it sees in these columns only numbers
 will convert the column to class numeric.
