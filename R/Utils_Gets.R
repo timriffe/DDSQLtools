@@ -140,19 +140,21 @@ build_filter <- function(dataProcessIds = NULL,
   # Keep as list because unlisting multiple ids for a single
   # parameters separates them into different strings
   x <- as.list(environment())
+
   # Exclude verbose option
   x <- x[!names(x) == "verbose"]
 
   # For later, to print the translated code query
   # so the user gets the faster request
-  any_str <- any(vapply(x, is.character, FUN.VALUE = logical(1)))
+  x_str <- x[c("locIds", "indicatorTypeIds", "isComplete", "subGroupIds", "locAreaTypeIds", "dataProcessIds", "dataProcessTypeIds")]
+  any_str <- any(vapply(x_str, is.character, FUN.VALUE = logical(1)))
 
   lookupParams <- list("locIds" = lookupLocIds,
                        "indicatorTypeIds" = lookupIndicatorIds,
                        "isComplete" = lookupIsCompleteIds,
                        "subGroupIds" = lookupSubGroupsIds)
 
-  # Iteratire over each lookupParams and apply their correspoding lookup
+  # Iterative over each lookupParams and apply their corresponding lookup
   # function to translate strings such as Germany to the corresponding code.
   # Only available for the names in lookupParams
   x[names(lookupParams)] <- mapply(
