@@ -230,6 +230,11 @@ get_datasources <- function(save_file = FALSE, ...) {
 #' of these arguments should be the one from the column \code{Name} in
 #' the response from the \code{get_*} functions.
 #'
+#' By default, all results exclude columns related to the uncertainty
+#' of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+#' By setting the argument \code{includeUncertainty = TRUE}, the uncertainty
+#' fields will be included in the final data frame.
+#'
 #' Once the data is read from the API, some transformations are applied:
 #'
 #' \itemize{
@@ -324,7 +329,20 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
 
   ## # Currently includes some ID columns
   ## browser()
+
   res <- res[values_env$col_order]
+
+  uncertainty <- list(...)$includeUncertainty
+  if (isFALSE(uncertainty) || is.null(uncertainty)) {
+    uncertainty_cols <- c("HasUncertaintyRecord",
+                          "StandardErrorValue",
+                          "ConfidenceInterval",
+                          "ConfidenceIntervalLowerBound",
+                          "ConfidenceIntervalUpperBound")
+
+    res <- res[setdiff(names(res), uncertainty_cols)]
+  }
+
 
   res
 }

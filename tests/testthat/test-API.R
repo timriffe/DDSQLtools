@@ -89,7 +89,7 @@ test_that("get_iitypes can subset correctly", {
   # longer and longer.
 
   # Here I'm testing all argument combined. If they
-  # work, it should be the same  
+  # work, it should be the same
   x <- get_iitypes(componentIds = 4,
                    indicatorTypeIds = 38,
                    indicatorIds = 323)
@@ -332,4 +332,49 @@ test_that("isComplete is set to 'Total' by default", {
 
   # Both results are the same
   expect_identical(births, births_iscomplete)
+})
+
+test_that("get_recorddata grabs uncertainty columns when includeUncertainty = TRUE", {
+
+  uncertainty_cols <- c("HasUncertaintyRecord",
+                        "StandardErrorValue",
+                        "ConfidenceInterval",
+                        "ConfidenceIntervalLowerBound",
+                        "ConfidenceIntervalUpperBound")
+
+  X <- get_recorddata(dataProcessTypeIds = 2,
+                      indicatorTypeIds = 8,
+                      locIds = 818,
+                      locAreaTypeIds = 2,
+                      subGroupIds = 2,
+                      isComplete = 0)
+
+  # If includeUncertainty is NULL (default), the columns
+  # are NOT included.
+  expect_false(all(uncertainty_cols %in% names(X)))
+
+  X <- get_recorddata(dataProcessTypeIds = 2,
+                      indicatorTypeIds = 8,
+                      locIds = 818,
+                      locAreaTypeIds = 2,
+                      subGroupIds = 2,
+                      isComplete = 0,
+                      includeUncertainty = FALSE)
+
+  # If includeUncertainty is FALSE, the columns
+  # are NOT included.
+  expect_false(all(uncertainty_cols %in% names(X)))
+
+  X <- get_recorddata(dataProcessTypeIds = 2,
+                      indicatorTypeIds = 8,
+                      locIds = 818,
+                      locAreaTypeIds = 2,
+                      subGroupIds = 2,
+                      isComplete = 0,
+                      includeUncertainty = TRUE)
+
+  # If includeUncertainty is TRUE, the columns
+  # ARE included.
+  expect_true(all(uncertainty_cols %in% names(X)))
+
 })

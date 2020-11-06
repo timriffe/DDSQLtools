@@ -114,6 +114,7 @@ oman <- get_recorddata(dataProcessTypeIds = "Register",
 head(oman)
 ```
 
+By default, the results from `get_recorddata` exclude any uncertainty columns such as `StandardErrorValue`, `ConfidenceInterval`, etc. By setting `includeUncertainty = TRUE`, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to `StandardErrorValue`, the user can quickly see the uncertainty columns.
 
 #### Change the IP of the UNPD SQL API
 

@@ -34,6 +34,11 @@ arguments that have equivalent \code{get_*} functions. For example,
 of these arguments should be the one from the column \code{Name} in
 the response from the \code{get_*} functions.
 
+By default, all results exclude columns related to the uncertainty
+of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+By setting the argument \code{includeUncertainty = TRUE}, the uncertainty
+fields will be included in the final data frame.
+
 Once the data is read from the API, some transformations are applied:
 
 \itemize{
@@ -74,14 +79,15 @@ X <- get_recorddata(dataProcessTypeIds = 2,
 
 head(X)
 
-# Same thing but limited to DataSourceShortNames
+# Same thing but limited to DataSourceShortNames and including the uncertainty
 X <- get_recorddata(dataProcessTypeIds = 2,
                    indicatorTypeIds = 8,
                    locIds = 818,
                    locAreaTypeIds = 2,
                    subGroupIds = 2,
                    isComplete = 0,
-                   dataSourceShortNames = "OECD 1980")
+                   dataSourceShortNames = "OECD 1980",
+                   includeUncertainty = TRUE)
 
 head(X)
 
