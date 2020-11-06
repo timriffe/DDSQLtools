@@ -27,6 +27,7 @@ build_filter(
   includeDependencies = NULL,
   includeFormerCountries = NULL,
   includeDataIDs = NULL,
+  includeUncertainty = NULL,
   years = NULL,
   verbose
 )
