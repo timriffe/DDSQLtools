@@ -37,6 +37,10 @@ D <- get_dataprocesstype()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
+D <- get_datacatalog()
+validate_read_API(D)  # validate
+
+# ------------------------------------------
 S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
                    locIds = 818,          # Egypt
                    isComplete = 0)

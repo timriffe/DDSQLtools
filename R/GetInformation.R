@@ -172,6 +172,22 @@ get_dataprocess <- function(save_file = FALSE, ...) {
   read_API("dataProcesses", save_file, ...)
 }
 
+#' Gets all DataCatalog records (DataCatalogs)
+#' @inheritParams read_API
+#' @examples
+#' \dontrun{
+#' 
+#' dc <- get_datacatalog()
+#' head(dc[, c("PK_DataCatalogID", "Name", "ShortName")])
+#'
+#' # Filter using locIds and DataProcessTypeIds
+#' dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
+#'
+#' }
+#' @export
+get_datacatalog <- function(save_file = FALSE, ...) {
+  read_API("dataCatalogs", save_file, ...)
+}
 
 #' Get information about available details for a given series of data
 #' @inheritParams read_API

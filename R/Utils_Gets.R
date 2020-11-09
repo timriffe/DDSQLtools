@@ -70,7 +70,7 @@ linkGenerator <- function(server = getOption("unpd_server", "http://24.239.36.16
   types <- c("ages",
              "openAges",
              "Component",
-             "DataCatalog",
+             "DataCatalogs",
              "dataProcessTypes",
              "dataProcesses",
              "DataReliability",
