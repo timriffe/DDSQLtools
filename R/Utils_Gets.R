@@ -325,16 +325,16 @@ lookupDataProcessTypeIds <- function(paramStr, paramList) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
 
-  inds <- get_dataprocess(locIds = paramList[["locIds"]],
-                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                          isComplete = paramList[["isComplete"]])
+  inds <- get_dataprocesstype(locIds = paramList[["locIds"]],
+                              indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                              isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
   # The all statement is in case you provide 2 area types, for example
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Data type(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check get_dataprocess()")
+         " not found. Check get_dataprocesstype()")
   }
 
   inds_code[["PK_DataProcessTypeID"]]

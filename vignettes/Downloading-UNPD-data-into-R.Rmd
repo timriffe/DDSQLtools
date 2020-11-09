@@ -85,7 +85,7 @@ get_recorddata(dataProcessTypeIds = "Census",
 
 ```
 
-See the error? This means that using `"Census"` for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using `get_dataprocess()`). Since this is a trial and error process, we've nailed it down to `"Survey: cross-sectional survey (generic/national)"`:
+See the error? This means that using `"Census"` for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using `get_dataprocesstype()`). Since this is a trial and error process, we've nailed it down to `"Survey: cross-sectional survey (generic/national)"`:
 
 ```{r }
 togo <- get_recorddata(dataProcessTypeIds = "Survey: cross-sectional survey (generic/national)",
@@ -310,7 +310,7 @@ deaths
 
 The previous examples assume you're familiar with the names or codes of the parameters of the API: locations, subgroups, etc... Whenever you don't know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent `get_*` function to extract all possible values. The current list is:
 
-* dataProcessTypeIds = `get_dataprocess()`
+* dataProcessTypeIds = `get_dataprocesstype()`
 * indicatorTypeIds = `get_indicatortypes()`
 * locIds = `get_locations()`
 * locAreaTypeIds = `get_locationtypes()`

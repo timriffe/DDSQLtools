@@ -148,16 +148,15 @@ get_iitypes <- function(save_file = FALSE, ...) {
   read_API("indicatorindicatortypes", save_file, ...)
 }
 
-
-#' Get information about available data-types (DataProcessTypeID)
+#' Get information about available types of data processes (DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
-#' D <- get_dataprocess()
+#' D <- get_dataprocesstype()
 #' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
 #' }
 #' @export
-get_dataprocess <- function(save_file = FALSE, ...) {
+get_dataprocesstype <- function(save_file = FALSE, ...) {
   read_API("dataProcessTypes", save_file, ...)
 }
 
