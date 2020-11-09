@@ -344,9 +344,9 @@ lookupDataProcessIds <- function(paramStr, paramList) {
   if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
   paramStr_low <- tolower(paramStr)
 
-  inds <- get_dataprocessid(locIds = paramList[["locIds"]],
-                            indicatorTypeIds = paramList[["indicatorTypeIds"]],
-                            isComplete = paramList[["isComplete"]])
+  inds <- get_dataprocess(locIds = paramList[["locIds"]],
+                          indicatorTypeIds = paramList[["indicatorTypeIds"]],
+                          isComplete = paramList[["isComplete"]])
 
   inds_code <- inds[tolower(inds$Name) %in% paramStr_low, ]
 
@@ -354,7 +354,7 @@ lookupDataProcessIds <- function(paramStr, paramList) {
   if (all(!tolower(paramStr) %in% tolower(inds_code$Name))) {
     stop("Data type(s) ",
          paste0("'", paramStr[!paramStr_low %in% inds_code$Name], "'", collapse = ", "),
-         " not found. Check get_dataprocessids()")
+         " not found. Check get_dataprocess()")
   }
 
   inds_code[["PK_DataProcessID"]]
