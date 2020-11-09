@@ -148,31 +148,46 @@ get_iitypes <- function(save_file = FALSE, ...) {
   read_API("indicatorindicatortypes", save_file, ...)
 }
 
+#' Get information about available types of data processes (DataProcessTypeID)
+#' @inheritParams read_API
+#' @examples
+#' \dontrun{
+#' D <- get_dataprocesstype()
+#' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
+#' }
+#' @export
+get_dataprocesstype <- function(save_file = FALSE, ...) {
+  read_API("dataProcessTypes", save_file, ...)
+}
 
-#' Get information about available data-types (DataProcessTypeID)
+#' Get information about available data processes (DataProcessID and DataProcessTypeID)
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
 #' D <- get_dataprocess()
-#' D[, c("PK_DataProcessTypeID", "Name", "ShortName")]
-#' }
-#' @export
-get_dataprocess <- function(save_file = FALSE, ...) {
-  read_API("dataProcessTypes", save_file, ...)
-}
-
-#' Get information about available data-types (DataProcessID and DataProcessTypeID)
-#' @inheritParams read_API
-#' @examples
-#' \dontrun{
-#' D <- get_dataprocessid()
 #' D[, c("PK_DataProcessID", "Name", "ShortName")]
 #' }
 #' @export
-get_dataprocessid <- function(save_file = FALSE, ...) {
+get_dataprocess <- function(save_file = FALSE, ...) {
   read_API("dataProcesses", save_file, ...)
 }
 
+#' Gets all DataCatalog records (DataCatalogs)
+#' @inheritParams read_API
+#' @examples
+#' \dontrun{
+#' 
+#' dc <- get_datacatalog()
+#' head(dc[, c("PK_DataCatalogID", "Name", "ShortName")])
+#'
+#' # Filter using locIds and DataProcessTypeIds
+#' dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
+#'
+#' }
+#' @export
+get_datacatalog <- function(save_file = FALSE, ...) {
+  read_API("dataCatalogs", save_file, ...)
+}
 
 #' Get information about available details for a given series of data
 #' @inheritParams read_API

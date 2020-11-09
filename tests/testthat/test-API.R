@@ -33,7 +33,11 @@ validate_recordddata <- function(x) {
 }
 
 # ------------------------------------------
-D <- get_dataprocess()
+D <- get_dataprocesstype()
+validate_read_API(D)  # validate
+
+# ------------------------------------------
+D <- get_datacatalog()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
