@@ -20,10 +20,18 @@ parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/
 \description{
 Gets all DataCatalog records (DataCatalogs)
 }
+\details{
+For an improved output, we combine DataCatalog data
+with locations (\code{\link{get_locations}}),
+dataprocess (\code{\link{get_dataprocess}}),
+dataprocesstype (\code{\link{get_dataprocesstype}}) together with some
+transformations (convert dates to date columns, renaming columns, etc...).
+}
 \examples{
 \dontrun{
+
 dc <- get_datacatalog()
-head(dc[, c("PK_DataCatalogID", "Name", "ShortName")])
+head(dc[, c("DataCatalogID", "DataProcessType", "LocName")])
 
 # Filter using locIds and DataProcessTypeIds
 dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)

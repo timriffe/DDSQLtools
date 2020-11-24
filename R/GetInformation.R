@@ -174,11 +174,18 @@ get_dataprocess <- function(save_file = FALSE, ...) {
 
 #' Gets all DataCatalog records (DataCatalogs)
 #' @inheritParams read_API
+#'
+#' @details For an improved output, we combine DataCatalog data
+#' with locations (\code{\link{get_locations}}),
+#' dataprocess (\code{\link{get_dataprocess}}),
+#' dataprocesstype (\code{\link{get_dataprocesstype}}) together with some
+#' transformations (convert dates to date columns, renaming columns, etc...).
+#'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' dc <- get_datacatalog()
-#' head(dc[, c("PK_DataCatalogID", "Name", "ShortName")])
+#' head(dc[, c("DataCatalogID", "DataProcessType", "LocName")])
 #'
 #' # Filter using locIds and DataProcessTypeIds
 #' dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
@@ -186,7 +193,113 @@ get_dataprocess <- function(save_file = FALSE, ...) {
 #' }
 #' @export
 get_datacatalog <- function(save_file = FALSE, ...) {
-  read_API("dataCatalogs", save_file, ...)
+  DataCatalog <- read_API("dataCatalogs", save_file, ...)
+
+  Locations <- get_locations(
+    addDefault = "false",
+    includeDependencies = "false",
+    includeFormerCountries = "false"
+  )
+
+  Locations <- within(Locations, {
+    LocID <- PK_LocID
+    PK_LocID <- NULL
+    LocName <- Name
+    Name <- NULL
+  })[c("LocID", "LocTypeID", "LocName")]
+
+  DataProcess <- get_dataprocess(addDefault = "false")
+
+  DataProcess <- within(DataProcess, {
+    DataProcessID <- PK_DataProcessID
+    PK_DataProcessID <- NULL
+    DataProcess <- Name
+    Name <- NULL
+    DataProcessShortName <- ShortName
+    ShortName <- NULL
+  })[c("DataProcessID", "DataProcessTypeID", "DataProcess", "DataProcessShortName")]
+
+  DataProcessType <- get_dataprocesstype(addDefault = "false")
+
+  DataProcessType <- within(DataProcessType, {
+    DataProcessTypeID <- PK_DataProcessTypeID
+    PK_DataProcessTypeID <- NULL
+    DataProcessType <- Name
+    Name <- NULL
+    DataProcessTypeShortName <- ShortName
+    ShortName <- NULL
+  })[c("DataProcessTypeID", "DataProcessType", "DataProcessTypeShortName")]
+
+  DataCatalog <- merge(
+    DataCatalog,
+    DataProcess,
+    by = "DataProcessID",
+    all.x = TRUE,
+    all.y = FALSE
+  )
+
+  DataCatalog <- merge(
+    DataCatalog,
+    DataProcessType,
+    by = "DataProcessTypeID",
+    all.x = TRUE,
+    all.y = FALSE
+  )
+
+  DataCatalog <-
+    merge(
+      DataCatalog,
+      Locations,
+      by = "LocID",
+      all.x = TRUE,
+      all.y = FALSE
+    )
+
+  ind <- which(grepl("PK_DataCatalogID", names(DataCatalog)))
+  names(DataCatalog)[4] <- "DataCatalogID"
+
+  cols_select <- c("DataCatalogID",
+                   "LocID",
+                   "LocTypeID",
+                   "LocName",
+                   "DataProcessTypeID",
+                   "DataProcessType",
+                   "DataProcessTypeShortName",
+                   "DataProcessID",
+                   "DataProcess",
+                   "DataProcessShortName",
+                   "Name",
+                   "ShortName",
+                   "OfficialName",
+                   "OfficialShortName",
+                   "ReferencePeriod",
+                   "ReferenceYearStart",
+                   "ReferenceYearEnd",
+                   "ReferenceYearMid",
+                   "FieldWorkStart",
+                   "FieldWorkEnd",
+                   "FieldWorkMiddle",
+                   "ParentDataCatalogID")
+
+  DataCatalog <- DataCatalog[cols_select]
+
+  DataCatalog <- within(DataCatalog, {
+    FieldWorkStart <- as.Date(FieldWorkStart, format = "%m/%d/%Y")
+    FieldWorkEnd <- as.Date(FieldWorkEnd, format = "%m/%d/%Y")
+  })
+
+  DataCatalog <- DataCatalog[!is.na(DataCatalog$LocTypeID), ]
+
+  order_rows <-
+    order(
+      DataCatalog$LocName,
+      DataCatalog$ShortName,
+      DataCatalog$ReferenceYearStart,
+      na.last = FALSE
+    )
+
+  DataCatalog <- DataCatalog[order_rows, ]
+  DataCatalog
 }
 
 #' Get information about available details for a given series of data
