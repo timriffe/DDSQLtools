@@ -49,10 +49,10 @@ C <- rbind(C1, C2, C3, C4)
 C[, select_columns]
 
 # ------------------------------------------
-# Example 3 - Compute the Mean Absolute Difference in survival 
+# Example 3 - Compute the Mean Absolute Difference in survival
 # rates between 2 populations
 
-# Since we do not have l[x] data yet, we will make up some dummy data from 
+# Since we do not have l[x] data yet, we will make up some dummy data from
 # death-rates just to check the example (to be updated).
 library(dplyr)
 Mx <- DDSQLtools.data$Mx5
@@ -65,7 +65,7 @@ lx.A <-
 
 lx.B <-
  Mx \%>\%
-  mutate(DataValue = DataValue * 0.98, SexID = 0) \%>\% 
+  mutate(DataValue = DataValue * 0.98, SexID = 0) \%>\%
   do_lifetable() \%>\%
   filter(IndicatorID == "lx") \%>\%
   mutate(AgeLabel = paste0(AgeStart, "-", lead(AgeStart)))
