@@ -8,6 +8,6 @@ if (interactive()) {
     devtools::check()
   }
 
-  cat("When checking the package don't run `devtools::check()` just run check(); check has been rewritten to install and update minimum version in the DESCRIPTION file for `DemoTools`.")
+  cat("When checking the package don't run `devtools::check()` just run check(); check has been rewritten to install and update minimum version in the DESCRIPTION file for `DemoTools`.", sep = "\n")
 }
 
