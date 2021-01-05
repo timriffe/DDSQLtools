@@ -279,7 +279,8 @@ get_datacatalog <- function(save_file = FALSE, ...) {
                    "FieldWorkStart",
                    "FieldWorkEnd",
                    "FieldWorkMiddle",
-                   "ParentDataCatalogID")
+                   "ParentDataCatalogID",
+                   "isSubnational")
 
   DataCatalog <- DataCatalog[cols_select]
 
