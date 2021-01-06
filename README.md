@@ -1,6 +1,6 @@
 # DDSQLtools
 
-![R CMD Check via {tic}](![R-CMD-check](https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg))
+[![R build status](https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg)](https://github.com/timriffe/DDSQLtools/actions)
 [![codecov](https://codecov.io/gh/timriffe/DDSQLtools/branch/master/graph/badge.svg)](https://codecov.io/gh/timriffe/DDSQLtools) 
 [![](https://img.shields.io/badge/devel%20version-01.02.000-yellow.svg)](https://github.com/timriffe/DDSQLtools)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
