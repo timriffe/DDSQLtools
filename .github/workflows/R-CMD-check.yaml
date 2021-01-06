@@ -32,6 +32,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       # prevent rgl issues because no X11 display is available
       RGL_USE_NULL: true
+      R_PROFILE_USER: ~/.Rprofile
 
     steps:
       - uses: actions/checkout@v2
@@ -39,6 +40,11 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
       - uses: r-lib/actions/setup-pandoc@v1
+
+      -name: Save CRAN repo to Rprofile
+       run: |
+         writeLines('options(repos = c(CRAN = "https://cran.rstudio.org"))', '~/.Rprofile')
+       shell: Rscript {0}
 
       - name: Query dependencies
         run: |
