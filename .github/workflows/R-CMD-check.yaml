@@ -41,10 +41,9 @@ jobs:
           r-version: ${{ matrix.config.r }}
       - uses: r-lib/actions/setup-pandoc@v1
 
-      -name: Save CRAN repo to Rprofile
-       run: |
-         writeLines('options(repos = c(CRAN = "https://cran.rstudio.org"))', '~/.Rprofile')
-       shell: Rscript {0}
+      - name: Save CRAN repo to Rprofile
+        run: writeLines('options(repos = c(CRAN = "https://cran.rstudio.org"))', '~/.Rprofile')
+        shell: Rscript {0}
 
       - name: Query dependencies
         run: |
