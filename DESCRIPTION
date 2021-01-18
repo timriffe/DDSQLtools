@@ -1,8 +1,8 @@
 Package: DDSQLtools
 Type: Package
 Title: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Format
-Version: 01.02.000
-Date: 2020-01-07
+Version: 01.02.01
+Date: 2021-01-18
 Authors@R: c(
   person("Tim", "Riffe", role = c("aut", "cre"), email = "tim.riffe@gmail.com", comment = c(ORCID = "0000-0002-2673-4622")),
   person("Marius D.", "Pascariu", role = "aut", comment = c(ORCID = "0000-0002-2568-6489")),
