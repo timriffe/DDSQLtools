@@ -1,6 +1,6 @@
 # Data for comparison
 Mx5 <- DDSQLtools.data$Mx5 
-x1  <- c(75, 80, 85, 90)        # ages to be used in fitting
+x1  <- c(70, 75, 80, 85, 90)        # ages to be used in fitting
 x2  <- c(90, 95, 100, 105, 110) # ages for which the extrapolation is applied
 M <- c("kannisto",
        "kannisto_makeham", 
