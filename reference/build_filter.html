@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build the section of the path (link) responsible with filtering the data
-# TODO: Describe each of the parameters in detail. — build_filter • DDSQLtools</title>
+<title>Build the section of the path (link) responsible with filtering the data — build_filter • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Build the section of the path (link) responsible with filtering the data
-# TODO: Describe each of the parameters in detail. — build_filter" />
-<meta property="og:description" content="Build the section of the path (link) responsible with filtering the data
-# TODO: Describe each of the parameters in detail." />
+<meta property="og:title" content="Build the section of the path (link) responsible with filtering the data — build_filter" />
+<meta property="og:description" content="For a description of what each argument represents, see
+http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords" />
 
 
 
@@ -75,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.01</span>
       </span>
     </div>
 
@@ -83,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,7 +104,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/timriffe/DDSQLtools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -123,20 +121,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build the section of the path (link) responsible with filtering the data
-# TODO: Describe each of the parameters in detail.</h1>
+    <h1>Build the section of the path (link) responsible with filtering the data</h1>
     <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/Utils_Gets.R'><code>R/Utils_Gets.R</code></a></small>
     <div class="hidden name"><code>build_filter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Build the section of the path (link) responsible with filtering the data
-# TODO: Describe each of the parameters in detail.</p>
+    <p>For a description of what each argument represents, see
+http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords</p>
     </div>
 
     <pre class="usage"><span class='fu'>build_filter</span><span class='op'>(</span>
   dataProcessIds <span class='op'>=</span> <span class='cn'>NULL</span>,
   dataProcessTypeIds <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dataSourceShortNames <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dataSourceYears <span class='op'>=</span> <span class='cn'>NULL</span>,
   startYear <span class='op'>=</span> <span class='cn'>NULL</span>,
   endYear <span class='op'>=</span> <span class='cn'>NULL</span>,
   AgeStart <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -150,138 +149,16 @@
   ids <span class='op'>=</span> <span class='cn'>NULL</span>,
   locAreaTypeIds <span class='op'>=</span> <span class='cn'>NULL</span>,
   subGroupIds <span class='op'>=</span> <span class='cn'>NULL</span>,
+  shortNames <span class='op'>=</span> <span class='cn'>NULL</span>,
   addDefault <span class='op'>=</span> <span class='cn'>NULL</span>,
   includeDependencies <span class='op'>=</span> <span class='cn'>NULL</span>,
   includeFormerCountries <span class='op'>=</span> <span class='cn'>NULL</span>,
   includeDataIDs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  includeUncertainty <span class='op'>=</span> <span class='cn'>NULL</span>,
+  years <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>verbose</span>
 <span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>dataProcessIds</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>dataProcessTypeIds</th>
-      <td><p>Data process ID as defined by the UNPD. Run
-<code><a href='get_dataprocess.html'>get_dataprocess</a></code> to see the available options</p></td>
-    </tr>
-    <tr>
-      <th>startYear</th>
-      <td><p>Start year. Default: NULL;</p></td>
-    </tr>
-    <tr>
-      <th>endYear</th>
-      <td><p>End year. Default: NULL;</p></td>
-    </tr>
-    <tr>
-      <th>AgeStart</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>AgeEnd</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>indicatorTypeIds</th>
-      <td><p>Indicator type ID as defined by the UNPD. Run the
-<code><a href='get_indicatortypes.html'>get_indicatortypes</a></code> function to see the available options;</p></td>
-    </tr>
-    <tr>
-      <th>indicatorIds</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>componentIds</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>isComplete</th>
-      <td><p>isComplete;</p></td>
-    </tr>
-    <tr>
-      <th>isActive</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>locIds</th>
-      <td><p>Location ID as defined by the UNPD. Run
-<code><a href='get_locations.html'>get_locations</a></code> to see the available options;</p></td>
-    </tr>
-    <tr>
-      <th>ids</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>locAreaTypeIds</th>
-      <td><p>Location area type ID as defined by the UNPD. Run
-<code><a href='get_locations.html'>get_locations</a></code> to see the available options.</p></td>
-    </tr>
-    <tr>
-      <th>subGroupIds</th>
-      <td><p>SubGroup ID as defined by the UNPD. Run
-<code><a href='get_subgroups.html'>get_subgroups</a></code> to see the available options;</p></td>
-    </tr>
-    <tr>
-      <th>addDefault</th>
-      <td><p>Logical. Default: FALSE;</p></td>
-    </tr>
-    <tr>
-      <th>includeDependencies</th>
-      <td><p>Logical. Default: FALSE;</p></td>
-    </tr>
-    <tr>
-      <th>includeFormerCountries</th>
-      <td><p>Logical. Default: FALSE;</p></td>
-    </tr>
-    <tr>
-      <th>includeDataIDs</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>whether to print the optimized code for get_recorddata</p></td>
-    </tr>
-    <tr>
-      <th>server</th>
-      <td><p>The path to the database. Check if the "unpd_server" option is
-is set. If not, defaults to <code>"http://24.239.36.16:9654/un2/api/"</code></p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of data. Various options are available.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments that might define the path to data. All arguments
-accept a numeric code which is interpreted as the code of the specific
-product requested. Alternatively, you can supply the equivalent product
-name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:</p><ul>
-<li><p><code>dataProcessTypeIds</code> -- Data process ID as defined by the UNPD. 
-  Run the <code><a href='get_dataprocess.html'>get_dataprocess</a></code> function to see the available 
-  options;</p></li>
-<li><p><code>startYear</code> -- Start year. Default: NULL;</p></li>
-<li><p><code>endYear</code> -- End year. Default: NULL;</p></li>
-<li><p><code>indicatorTypeIds</code> -- Indicator type ID as defined by the UNPD. 
-  Run the <code><a href='get_indicatortypes.html'>get_indicatortypes</a></code> function to see the available options;</p></li>
-<li><p><code>isComplete</code> -- isComplete is set to `2` ('Total') by default on the API;</p></li>
-<li><p><code>locIds</code> -- Location ID as defined by the UNPD. Run the
-  <code><a href='get_locations.html'>get_locations</a></code> function to see the available options;</p></li>
-<li><p><code>locAreaTypeIds</code> -- Location area type ID as defined by the UNPD. 
-  Run the <code><a href='get_locationtypes.html'>get_locationtypes</a></code> function to see the available 
-  options;</p></li>
-<li><p><code>subGroupIds</code> -- SubGroup ID as defined by the UNPD. Run the 
-  <code><a href='get_subgroups.html'>get_subgroups</a></code> function to see the available options;</p></li>
-<li><p><code>addDefault</code> -- Logical. Default: FALSE;</p></li>
-<li><p><code>includeDependencies</code> -- Logical. Default: FALSE;</p></li>
-<li><p><code>includeFormerCountries</code> -- Logical. Default: FALSE.</p></li>
-</ul></td>
-    </tr>
-    </table>
 
 
   </div>

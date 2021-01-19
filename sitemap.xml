@@ -46,10 +46,16 @@
     <loc>http://pkgdown.r-lib.org/reference/format_output.html</loc>
   </url>
   <url>
+    <loc>http://pkgdown.r-lib.org/reference/get_datacatalog.html</loc>
+  </url>
+  <url>
     <loc>http://pkgdown.r-lib.org/reference/get_dataprocess.html</loc>
   </url>
   <url>
-    <loc>http://pkgdown.r-lib.org/reference/get_dataprocessid.html</loc>
+    <loc>http://pkgdown.r-lib.org/reference/get_dataprocesstype.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/reference/get_datasources.html</loc>
   </url>
   <url>
     <loc>http://pkgdown.r-lib.org/reference/get_iitypes.html</loc>

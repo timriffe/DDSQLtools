@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.01</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -62,7 +62,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/timriffe/DDSQLtools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -76,8 +76,7 @@
 
       
 
-      </header><script src="Downloading-UNPD-data-into-R_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Downloading-UNPD-data-into-R_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Downloading-UNPD-data-into-R_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="Downloading-UNPD-data-into-R_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Downloading UNPD data into R</h1>
@@ -91,52 +90,58 @@
     
     
 <p><code>DDSQLtools</code> is a package that aims to make downloading data from the UNPD SQL API into R easy. In this vignette we will discuss the different ways in which you can explore and download this data. Make sure you have the latest version of <code>DDSQLtools</code> by installing it from Github:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"timriffe/DDSQLtools"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"timriffe/DDSQLtools"</span><span class="op">)</span></code></pre></div>
 <p>and load the package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timriffe/DDSQLtools">DDSQLtools</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timriffe/DDSQLtools">DDSQLtools</a></span><span class="op">)</span></code></pre></div>
 <div id="quick-recipes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-recipes" class="anchor"></a>Quick recipes</h2>
 <p>Before we begin, some of the output might show numbers with scientific notation depending on your R setup (2.56×10 instead of 0.00000256). You can suppress scientific notation by typing this into your R console: <code><a href="https://rdrr.io/r/base/options.html">options(scipen = 9999)</a></code>.</p>
 <p>If you’re already familiar with concepts from the UNPD SQL API, then you’ll only have to interact with the <code>get_recorddata</code> function. For example, here’s how to get data on population by age and sex for Egypt with different options:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="va">egypt_str</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
                             indicatorTypeIds <span class="op">=</span> <span class="st">"Population by age and sex"</span>,
                             locIds <span class="op">=</span> <span class="st">"Egypt"</span>,
                             locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                             subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
-                            isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span></pre></div>
+                            isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span></code></pre></div>
 <p><code>get_recorddata</code> accepts either string names or codes. For example, this will return the same thing as above:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="va">egypt_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="fl">2</span>,
                             indicatorTypeIds <span class="op">=</span> <span class="fl">8</span>,
-                            locIds <span class="op">=</span> <span class="fl">818</span>, 
+                            locIds <span class="op">=</span> <span class="fl">818</span>,
                             locAreaTypeIds <span class="op">=</span> <span class="fl">2</span>,
                             subGroupIds <span class="op">=</span> <span class="fl">2</span>,
-                            isComplete <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></pre></div>
+                            isComplete <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p>Note that <strong>using numeric codes is faster than using string names because we don’t have to make code translations behind the scenes</strong> (if you’re unsure what these codes mean, please refer to the section <code>Exploring the UNPD SQL API from R</code> below). If you want to figure out which names to use, each of these arguments has an equivalent lookup function. For example, for figuring out the possible values in <code>locIds</code>, use <code><a href="../reference/get_locations.html">get_locations()</a></code>. You can see all arguments and their equivalent lookup functions in the documentation of <code><a href="../reference/get_recorddata.html">?get_recorddata</a></code>. Do note that these lookup functions have both the <code>'Name'</code> and a <code>'ShortName'</code> of each value. The translation will only accept string names from the <code>'Name'</code> column.</p>
 <p>Here are a few other examples:</p>
 <div id="population-by-age-and-sex-with-census-data" class="section level4">
 <h4 class="hasAnchor">
 <a href="#population-by-age-and-sex-with-census-data" class="anchor"></a>Population by age and sex with census data</h4>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">china</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">china</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
                         indicatorTypeIds <span class="op">=</span> <span class="st">"Population by age and sex"</span>,
                         locIds <span class="op">=</span> <span class="st">"China"</span>,
                         locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                         subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                         isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locations? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatortypes? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/subgroups? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156 </span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)</span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">china</span><span class="op">)</span>
 <span class="co">#&gt;                          IndicatorName IndicatorID LocName LocID</span>
@@ -278,39 +283,50 @@
 <span class="co">#&gt; 3      1982          0  1 8.922218e+11  57026336</span>
 <span class="co">#&gt; 4      1982          0  1 2.232352e+14  67837936</span>
 <span class="co">#&gt; 5      1982          0  1 8.922218e+11  67837984</span>
-<span class="co">#&gt; 6      1982          0  1 2.232352e+14  63804580</span></pre></div>
+<span class="co">#&gt; 6      1982          0  1 2.232352e+14  63804580</span></code></pre></div>
 </div>
 <div id="births-by-age-of-mother" class="section level4">
 <h4 class="hasAnchor">
 <a href="#births-by-age-of-mother" class="anchor"></a>Births by age of mother</h4>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
                indicatorTypeIds <span class="op">=</span> <span class="st">"Births by age of mother"</span>,
                locIds <span class="op">=</span> <span class="st">"Togo"</span>,
                locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
-<span class="co">#&gt; Error in fun(vec, ...): Data type(s) 'Census' not found. Check get_dataprocess()</span></pre></div>
-<p>See the error? This means that using <code>"Census"</code> for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using <code><a href="../reference/get_dataprocess.html">get_dataprocess()</a></code>). Since this is a trial and error process, we’ve nailed it down to <code>"Survey: cross-sectional survey (generic/national)"</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">togo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Survey: cross-sectional survey (generic/national)"</span>,
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locations? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatortypes? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/subgroups? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768</span>
+<span class="co">#&gt; Error in fun(vec, ...): Data type(s) 'Census' not found. Check get_dataprocesstype()</span></code></pre></div>
+<p>See the error? This means that using <code>"Census"</code> for this set of options is unavailable. We need to check which other data processes have data for these options (for example, using <code><a href="../reference/get_dataprocesstype.html">get_dataprocesstype()</a></code>). Since this is a trial and error process, we’ve nailed it down to <code>"Survey: cross-sectional survey (generic/national)"</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">togo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Survey: cross-sectional survey (generic/national)"</span>,
                        indicatorTypeIds <span class="op">=</span> <span class="st">"Births by age of mother"</span>,
                        locIds <span class="op">=</span> <span class="st">"Togo"</span>,
                        locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                        subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                        isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locations? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatortypes? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/subgroups? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768 </span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)</span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">togo</span><span class="op">)</span>
 <span class="co">#&gt;                                IndicatorName IndicatorID LocName LocID</span>
@@ -459,25 +475,33 @@
 <span class="co">#&gt; 3        NA          0  1  3115296084      7150</span>
 <span class="co">#&gt; 4        NA          0  1 69981216851     21910</span>
 <span class="co">#&gt; 5        NA          0  1  3115296084     21910</span>
-<span class="co">#&gt; 6        NA          0  1 69981216851     25305</span></pre></div>
+<span class="co">#&gt; 6        NA          0  1 69981216851     25305</span></code></pre></div>
 </div>
-<div id="deaths-by-age-and-sex-using-register-data" class="section level4">
+<div id="deaths-by-age-and-sex-using-register-data-with-uncertainty" class="section level4">
 <h4 class="hasAnchor">
-<a href="#deaths-by-age-and-sex-using-register-data" class="anchor"></a>Deaths by age and sex using register data</h4>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">oman</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
+<a href="#deaths-by-age-and-sex-using-register-data-with-uncertainty" class="anchor"></a>Deaths by age and sex using register data with uncertainty</h4>
+<p>You can also request uncertainty estimates with <code>includeUncertainty = TRUE</code></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">oman</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
                        indicatorTypeIds <span class="op">=</span> <span class="st">"Deaths by age and sex"</span>,
                        locIds <span class="op">=</span> <span class="st">"Oman"</span>,
                        locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                        subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
-                       isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span>
+                       isComplete <span class="op">=</span> <span class="st">"Abridged"</span>,
+                       includeUncertainty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locations? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatortypes? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/subgroups? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/dataprocesstypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512 </span>
 <span class="co">#&gt; If you run the same query again, use the one below (faster): </span>
-<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2)[1] "http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2"</span>
+<span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2, includeUncertainty = 1)</span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/structureddatarecords?dataProcessTypeIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2&amp;includeUncertainty=true</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oman</span><span class="op">)</span>
 <span class="co">#&gt;                      IndicatorName IndicatorID LocName LocID StructuredDataID</span>
@@ -543,83 +567,98 @@
 <span class="co">#&gt; 4              NA           56             UNSD           2003</span>
 <span class="co">#&gt; 5              NA           56             UNSD           2003</span>
 <span class="co">#&gt; 6              NA           56             UNSD           2003</span>
-<span class="co">#&gt;         DataSourceName DataSourceShortName DataSourceSort DataStatusName</span>
-<span class="co">#&gt; 1 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt; 2 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt; 3 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt; 4 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt; 5 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt; 6 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt;   DataStatusID DataStatusSort StatisticalConceptName StatisticalConceptID</span>
-<span class="co">#&gt; 1            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt; 2            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt; 3            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt; 4            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt; 5            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt; 6            1              1     Year of occurrence                    5</span>
-<span class="co">#&gt;   StatisticalConceptSort    SexName SexID SexSort AgeID AgeUnit AgeStart AgeEnd</span>
-<span class="co">#&gt; 1                      4 Both sexes     3       3   331    Year        1      5</span>
-<span class="co">#&gt; 2                      4 Both sexes     3       3   398    Year        0     -1</span>
-<span class="co">#&gt; 3                      4 Both sexes     3       3  3154    Year        5     15</span>
-<span class="co">#&gt; 4                      4 Both sexes     3       3  3242    Year       15     45</span>
-<span class="co">#&gt; 5                      4 Both sexes     3       3  3263    Year       45      0</span>
-<span class="co">#&gt; 6                      4 Both sexes     3       3   331    Year        1      5</span>
-<span class="co">#&gt;   AgeSpan AgeMid AgeLabel AgeSort agesort DataTypeGroupName DataTypeGroupID</span>
-<span class="co">#&gt; 1       4    3.0      1-4      27       0            Direct               3</span>
-<span class="co">#&gt; 2      -1   -1.0    Total     999       0            Direct               3</span>
-<span class="co">#&gt; 3      10   10.0     5-14      51       0            Direct               3</span>
-<span class="co">#&gt; 4      30   30.0    15-44     134       0            Direct               3</span>
-<span class="co">#&gt; 5      -1   72.5      45+     260       0            Direct               3</span>
-<span class="co">#&gt; 6       4    3.0      1-4      27       0            Direct               3</span>
-<span class="co">#&gt;   DataTypeName DataTypeID DataTypeSort      ModelType ModelPatternFamilyName</span>
-<span class="co">#&gt; 1       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt; 2       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt; 3       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt; 4       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt; 5       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt; 6       Direct         16           17 Not applicable         Not applicable</span>
-<span class="co">#&gt;   ModelPatternFamilyID        ModelPatternName ModelPatternID</span>
-<span class="co">#&gt; 1                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 2                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 3                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 4                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 5                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 6                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt;   DataReliabilityName DataReliabilityID DataReliabilitySort PeriodTypeName</span>
-<span class="co">#&gt; 1                 Low                 4                   3             CR</span>
-<span class="co">#&gt; 2                 Low                 4                   3             CR</span>
-<span class="co">#&gt; 3                 Low                 4                   3             CR</span>
-<span class="co">#&gt; 4                 Low                 4                   3             CR</span>
-<span class="co">#&gt; 5                 Low                 4                   3             CR</span>
-<span class="co">#&gt; 6                 Low                 4                   3             CR</span>
-<span class="co">#&gt;   PeriodTypeID PeriodGroupName PeriodGroupID PeriodStart PeriodEnd PeriodSpan</span>
-<span class="co">#&gt; 1            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt; 2            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt; 3            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt; 4            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt; 5            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt; 6            3  Not applicable            10          NA        NA         NA</span>
-<span class="co">#&gt;   PeriodMiddle Weight TimeUnit  TimeStart    TimeEnd TimeDuration TimeMid</span>
-<span class="co">#&gt; 1           NA     NA     year 01/07/1999 01/07/1999            0  1999.5</span>
-<span class="co">#&gt; 2           NA     NA     year 01/07/1999 01/07/1999            0  1999.5</span>
-<span class="co">#&gt; 3           NA     NA     year 01/07/1999 01/07/1999            0  1999.5</span>
-<span class="co">#&gt; 4           NA     NA     year 01/07/1999 01/07/1999            0  1999.5</span>
-<span class="co">#&gt; 5           NA     NA     year 01/07/1999 01/07/1999            0  1999.5</span>
-<span class="co">#&gt; 6           NA     NA     year 01/07/2000 01/07/2000            0  2000.5</span>
-<span class="co">#&gt;   TimeLabel FootNoteID id     SeriesID DataValue</span>
-<span class="co">#&gt; 1      1999          0  1 2.052191e+14        56</span>
-<span class="co">#&gt; 2      1999          0  1 2.052191e+14      2440</span>
-<span class="co">#&gt; 3      1999          0  1 2.052191e+14        67</span>
-<span class="co">#&gt; 4      1999          0  1 2.052191e+14       286</span>
-<span class="co">#&gt; 5      1999          0  1 2.052191e+14      1645</span>
-<span class="co">#&gt; 6      2000          0  1 1.572421e+13        59</span></pre></div>
+<span class="co">#&gt;         DataSourceName DataSourceShortName DataSourceSort HasUncertaintyRecord</span>
+<span class="co">#&gt; 1 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt; 2 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt; 3 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt; 4 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt; 5 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt; 6 Demographic Yearbook                 DYB             20                FALSE</span>
+<span class="co">#&gt;   StandardErrorValue ConfidenceInterval ConfidenceIntervalLowerBound</span>
+<span class="co">#&gt; 1                  0                  0                            0</span>
+<span class="co">#&gt; 2                  0                  0                            0</span>
+<span class="co">#&gt; 3                  0                  0                            0</span>
+<span class="co">#&gt; 4                  0                  0                            0</span>
+<span class="co">#&gt; 5                  0                  0                            0</span>
+<span class="co">#&gt; 6                  0                  0                            0</span>
+<span class="co">#&gt;   ConfidenceIntervalUpperBound DataStatusName DataStatusID DataStatusSort</span>
+<span class="co">#&gt; 1                            0          Final            1              1</span>
+<span class="co">#&gt; 2                            0          Final            1              1</span>
+<span class="co">#&gt; 3                            0          Final            1              1</span>
+<span class="co">#&gt; 4                            0          Final            1              1</span>
+<span class="co">#&gt; 5                            0          Final            1              1</span>
+<span class="co">#&gt; 6                            0          Final            1              1</span>
+<span class="co">#&gt;   StatisticalConceptName StatisticalConceptID StatisticalConceptSort    SexName</span>
+<span class="co">#&gt; 1     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt; 2     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt; 3     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt; 4     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt; 5     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt; 6     Year of occurrence                    5                      4 Both sexes</span>
+<span class="co">#&gt;   SexID SexSort AgeID AgeUnit AgeStart AgeEnd AgeSpan AgeMid AgeLabel AgeSort</span>
+<span class="co">#&gt; 1     3       3   331    Year        1      5       4    3.0      1-4      27</span>
+<span class="co">#&gt; 2     3       3   398    Year        0     -1      -1   -1.0    Total     999</span>
+<span class="co">#&gt; 3     3       3  3154    Year        5     15      10   10.0     5-14      51</span>
+<span class="co">#&gt; 4     3       3  3242    Year       15     45      30   30.0    15-44     134</span>
+<span class="co">#&gt; 5     3       3  3263    Year       45      0      -1   72.5      45+     260</span>
+<span class="co">#&gt; 6     3       3   331    Year        1      5       4    3.0      1-4      27</span>
+<span class="co">#&gt;   agesort DataTypeGroupName DataTypeGroupID DataTypeName DataTypeID</span>
+<span class="co">#&gt; 1       0            Direct               3       Direct         16</span>
+<span class="co">#&gt; 2       0            Direct               3       Direct         16</span>
+<span class="co">#&gt; 3       0            Direct               3       Direct         16</span>
+<span class="co">#&gt; 4       0            Direct               3       Direct         16</span>
+<span class="co">#&gt; 5       0            Direct               3       Direct         16</span>
+<span class="co">#&gt; 6       0            Direct               3       Direct         16</span>
+<span class="co">#&gt;   DataTypeSort      ModelType ModelPatternFamilyName ModelPatternFamilyID</span>
+<span class="co">#&gt; 1           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt; 2           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt; 3           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt; 4           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt; 5           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt; 6           17 Not applicable         Not applicable                   15</span>
+<span class="co">#&gt;          ModelPatternName ModelPatternID DataReliabilityName DataReliabilityID</span>
+<span class="co">#&gt; 1 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt; 2 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt; 3 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt; 4 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt; 5 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt; 6 Not applicable (Direct)             40                 Low                 4</span>
+<span class="co">#&gt;   DataReliabilitySort PeriodTypeName PeriodTypeID PeriodGroupName PeriodGroupID</span>
+<span class="co">#&gt; 1                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt; 2                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt; 3                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt; 4                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt; 5                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt; 6                   3             CR            3  Not applicable            10</span>
+<span class="co">#&gt;   PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit  TimeStart</span>
+<span class="co">#&gt; 1          NA        NA         NA           NA     NA     year 01/07/1999</span>
+<span class="co">#&gt; 2          NA        NA         NA           NA     NA     year 01/07/1999</span>
+<span class="co">#&gt; 3          NA        NA         NA           NA     NA     year 01/07/1999</span>
+<span class="co">#&gt; 4          NA        NA         NA           NA     NA     year 01/07/1999</span>
+<span class="co">#&gt; 5          NA        NA         NA           NA     NA     year 01/07/1999</span>
+<span class="co">#&gt; 6          NA        NA         NA           NA     NA     year 01/07/2000</span>
+<span class="co">#&gt;      TimeEnd TimeDuration TimeMid TimeLabel FootNoteID id     SeriesID</span>
+<span class="co">#&gt; 1 01/07/1999            0  1999.5      1999          0  1 2.052191e+14</span>
+<span class="co">#&gt; 2 01/07/1999            0  1999.5      1999          0  1 2.052191e+14</span>
+<span class="co">#&gt; 3 01/07/1999            0  1999.5      1999          0  1 2.052191e+14</span>
+<span class="co">#&gt; 4 01/07/1999            0  1999.5      1999          0  1 2.052191e+14</span>
+<span class="co">#&gt; 5 01/07/1999            0  1999.5      1999          0  1 2.052191e+14</span>
+<span class="co">#&gt; 6 01/07/2000            0  2000.5      2000          0  1 1.572421e+13</span>
+<span class="co">#&gt;   DataValue</span>
+<span class="co">#&gt; 1        56</span>
+<span class="co">#&gt; 2      2440</span>
+<span class="co">#&gt; 3        67</span>
+<span class="co">#&gt; 4       286</span>
+<span class="co">#&gt; 5      1645</span>
+<span class="co">#&gt; 6        59</span></code></pre></div>
+<p>By default, the results from <code>get_recorddata</code> exclude any uncertainty columns such as <code>StandardErrorValue</code>, <code>ConfidenceInterval</code>, etc. By setting <code>includeUncertainty = TRUE</code>, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to <code>StandardErrorValue</code>, the user can quickly see the uncertainty columns.</p>
 </div>
 <div id="change-the-ip-of-the-unpd-sql-api" class="section level4">
 <h4 class="hasAnchor">
 <a href="#change-the-ip-of-the-unpd-sql-api" class="anchor"></a>Change the IP of the UNPD SQL API</h4>
 <p>Currently the IP of the server is automatically set but can be changed simply by adding <code><a href="https://rdrr.io/r/base/options.html">options(unpd_server = "your server")</a></code> to the beginning of your script:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co"># Change this to the desired server. This is the server</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Change this to the desired server. This is the server</span>
 <span class="co"># which is set by default.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>unpd_server <span class="op">=</span> <span class="st">"http://24.239.36.16:9654/un3/api/"</span><span class="op">)</span>
 
@@ -628,14 +667,14 @@
                locIds <span class="op">=</span> <span class="st">"Oman"</span>,
                locAreaTypeIds <span class="op">=</span> <span class="st">"Whole area"</span>,
                subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
-               isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span></pre></div>
+               isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="downloading-many-countries" class="section level4">
 <h4 class="hasAnchor">
 <a href="#downloading-many-countries" class="anchor"></a>Downloading many countries</h4>
 <p>Due to the nature of the UNPD API, it’s not possible to download over 30 countries in the same API request. For example, if we wanted to download data on these countries:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
                  <span class="fl">192</span>, <span class="fl">170</span>, <span class="fl">414</span>, <span class="fl">616</span>, <span class="fl">320</span>, <span class="fl">480</span>, <span class="fl">218</span>,
@@ -650,14 +689,14 @@
                subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                isComplete <span class="op">=</span> <span class="st">"Abridged"</span>,
                startYear <span class="op">=</span> <span class="fl">1920</span>,
-               endYear <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></pre></div>
-<p>You’ll get an error saying that <code>DDSQLtools</code> could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thinkg you want to do is to copy the <strong>optimized query</strong> printed by <code>get_recorddata</code> that already translated the string codes to numbers.</p>
+               endYear <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
+<p>You’ll get an error saying that <code>DDSQLtools</code> could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thing you want to do is to copy the <strong>optimized query</strong> printed by <code>get_recorddata</code> that already translated the string codes to numbers.</p>
 <p>After that, you need to loop through groups of countries and make requests for each group separately. Below is the same example using base R and the <code>tidyverse</code>. On average, downloading these countries takes between 25 to 30 minutes.</p>
 <div id="using-base-r" class="section level5">
 <h5 class="hasAnchor">
 <a href="#using-base-r" class="anchor"></a>Using base R</h5>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
                  <span class="fl">192</span>, <span class="fl">170</span>, <span class="fl">414</span>, <span class="fl">616</span>, <span class="fl">320</span>, <span class="fl">480</span>, <span class="fl">218</span>,
                  <span class="fl">818</span>, <span class="fl">222</span>, <span class="fl">300</span>, <span class="fl">558</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">348</span>, <span class="fl">470</span>,
@@ -689,13 +728,13 @@
 
 <span class="co"># Row-bind all the data frames into one data frame</span>
 <span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">deaths</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deaths</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deaths</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="using-the-tidyverse" class="section level5">
 <h5 class="hasAnchor">
 <a href="#using-the-tidyverse" class="anchor"></a>Using the tidyverse</h5>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
@@ -730,7 +769,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">deaths</span></pre></div>
+<span class="va">deaths</span></code></pre></div>
 <!-- #### Identifying ID and Names of values -->
 <!-- Whenever you download some data, you'll see that there are several columns that end with `Name`. This columns contain, for example, the name of the location (`LocName`) or the name of the subgroup (`SubGroupName`). To be able to see the equivalent ID of these names, there are two different strategies using the `haven` package. -->
 <!-- First, let's get some data: -->
@@ -787,7 +826,7 @@
 <a href="#exploring-the-unpd-sql-api-from-r" class="anchor"></a>Exploring the UNPD SQL API from R</h2>
 <p>The previous examples assume you’re familiar with the names or codes of the parameters of the API: locations, subgroups, etc… Whenever you don’t know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent <code>get_*</code> function to extract all possible values. The current list is:</p>
 <ul>
-<li>dataProcessTypeIds = <code><a href="../reference/get_dataprocess.html">get_dataprocess()</a></code>
+<li>dataProcessTypeIds = <code><a href="../reference/get_dataprocesstype.html">get_dataprocesstype()</a></code>
 </li>
 <li>indicatorTypeIds = <code><a href="../reference/get_indicatortypes.html">get_indicatortypes()</a></code>
 </li>
@@ -801,12 +840,13 @@
 </li>
 </ul>
 <p>For example, to see all possible indicator types:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/get_indicatortypes.html">get_indicatortypes</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_indicatortypes.html">get_indicatortypes</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Here we can see both the <strong>code</strong> and the <strong>name</strong> of the indicator. Both values are accepted by <code>get_recorddata</code>. Another example is getting the list of location types. <code><a href="../reference/get_locationtypes.html">get_locationtypes()</a></code> will give you those:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="../reference/get_locationtypes.html">get_locationtypes</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?"</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_locationtypes.html">get_locationtypes</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?</span>
 <span class="co">#&gt;    PK_LocAreaTypeID                           Name</span>
 <span class="co">#&gt; 1                 0 Unknown location type/category</span>
 <span class="co">#&gt; 2                 1                 Not applicable</span>
@@ -848,70 +888,68 @@
 <span class="co">#&gt; 10 WHO-DB subdiv=A35    FALSE     FALSE</span>
 <span class="co">#&gt; 11 WHO-DB subdiv=A41    FALSE     FALSE</span>
 <span class="co">#&gt; 12 WHO-DB subdiv=A51    FALSE     FALSE</span>
-<span class="co">#&gt; 13 WHO-DB subdiv=A70    FALSE     FALSE</span></pre></div>
-<p>In order to search for a specificic combination of values (<code>"Egypt"</code>, <code>"Deaths by age and sex"</code>, etc…), the process is only possible through trial and error. For example, if we wanted to explore <code>Deaths by age and sex</code> for <code>Oman</code>, we’d have to explore whether there is data for <code>Semi-rural</code> (<code>locAreaTypeIds</code>) and <code>Christian Orthodox</code> (<code>subGroupIds</code>). Since this exploration process is a bit cumbersome, we’re currently developing a new strategy for exploring country/indicator pairs that will be more intuitive.</p>
+<span class="co">#&gt; 13 WHO-DB subdiv=A70    FALSE     FALSE</span></code></pre></div>
+<p>In order to search for a specific combination of values (<code>"Egypt"</code>, <code>"Deaths by age and sex"</code>, etc…), the process is only possible through trial and error. For example, if we wanted to explore <code>Deaths by age and sex</code> for <code>Oman</code>, we’d have to explore whether there is data for <code>Semi-rural</code> (<code>locAreaTypeIds</code>) and <code>Christian Orthodox</code> (<code>subGroupIds</code>).</p>
 <p>For now, let’s try this example for <code>"Semi-rural"</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
                indicatorTypeIds <span class="op">=</span> <span class="st">"Deaths by age and sex"</span>,
                locIds <span class="op">=</span> <span class="st">"Oman"</span>,
                locAreaTypeIds <span class="op">=</span> <span class="st">"Semi-rural"</span>,
                subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locations?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatortypes?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/subgroups?"</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512"</span>
-<span class="co">#&gt; Error in fun(vec, ...): Area Type(s) 'Semi-rural' not found. Check get_locationtypes()</span></pre></div>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locations? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatortypes? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/subgroups? </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512</span>
+<span class="co">#&gt; Error in fun(vec, ...): Area Type(s) 'Semi-rural' not found. Check get_locationtypes()</span></code></pre></div>
 <p>This error is just saying that the combination of data that you’ve specified is not available (in this case, <code>Semi-rural</code> is not available for register data on deaths by age and sex in <code>Oman</code> for all groups abridged).</p>
 <p>Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn’t know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the <a href="http://24.239.36.16:9654/un3/Web/index.html">front end of the API</a> and then use these in the request.</p>
-<p>Let’s do one example. Follow the hyperlink and click on <code>"Get Started - Select Indicator &amp; Country"</code>. Then select <code>"Deaths by age and sex"</code> -&gt; <code>"Oman"</code>. All possible datasets for <code>Oman</code> and <code>"Deaths by age and sex"</code> will appear automatically. We can filter down the options in the left-most menu and use these values to populate our <code>get_recorddata</code> call.</p>
+<p>Let’s do one example. Follow the hyperlink and click on <code>"Get Started - Select Indicator &amp; Country"</code>. Then select <code>"Deaths by age and sex"</code> -&gt; <code>"Oman"</code>. All possible data sets for <code>Oman</code> and <code>"Deaths by age and sex"</code> will appear automatically. We can filter down the options in the left-most menu and use these values to populate our <code>get_recorddata</code> call.</p>
 <p>Looking at the possible values of <code>"Type of location"</code>, only <code>"Whole area"</code> is available. This means that we can’t specify <code>"Semi-rural"</code> (as we saw in the example above). Looking at <code>"Type of subgroup"</code>, the only available group is <code>Total or All groups</code>, meaning that we can’t specify <code>"Christian Orthodox"</code> either.</p>
-<p>Using this strategy is much easier and less time consuming that trying out different values. As outlined above, this strategy will not be necessary in the near future as we develop a quick strategy for exploring data from R.</p>
+<p>Using this strategy is much easier and less time consuming that trying out different values.</p>
 </div>
 <div id="exploring-indicators" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exploring-indicators" class="anchor"></a>Exploring indicators</h2>
-<p>To explore all possicle indicatorIds, indicatorTypeIds and components, <code>get_iitypes</code> can be of use. Although <code>get_indicators</code> and <code>get_indicatortypes</code> are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That’s where <code>get_iitypes</code> comes in. For example:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="va">all_iitypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatorindicatortypes?"</span>
+<p>To explore all possible indicatorIds, indicatorTypeIds and components, <code>get_iitypes</code> can be of use. Although <code>get_indicators</code> and <code>get_indicatortypes</code> are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That’s where <code>get_iitypes</code> comes in. For example:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_iitypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatorindicatortypes?</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">all_iitypes</span><span class="op">)</span>
-<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsHeader IsActive IsInput</span>
-<span class="co">#&gt; 1            239                  16        -3    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt; 2            229                   9        -2    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt; 3            234                  NA         0    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 4             13                2314        13    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 5             14                2313        14    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 6             21                4317        21    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt;   IsOutput                        Name    ShortName</span>
-<span class="co">#&gt; 1     TRUE  Under-five mortality (5q0)          5q0</span>
-<span class="co">#&gt; 2     TRUE Infant mortality rate (1q0)          1q0</span>
-<span class="co">#&gt; 3     TRUE       Child mortality (4q1)          4q1</span>
-<span class="co">#&gt; 4     TRUE    Surface Area (square km)             </span>
-<span class="co">#&gt; 5     TRUE          Population density             </span>
-<span class="co">#&gt; 6     TRUE            Percentage urban PercentUrban</span>
-<span class="co">#&gt;                            LongName                                  PrintName</span>
-<span class="co">#&gt; 1 Under-five mortality by sex (5q0)    Under-five mortality by sex, U5MR (5q0)</span>
-<span class="co">#&gt; 2             Infant mortality rate    Infant mortality rate by sex, IMR (1q0)</span>
-<span class="co">#&gt; 3      Child mortality by sex (4q1)           Child mortality by sex, CM (4q1)</span>
-<span class="co">#&gt; 4                                                                             </span>
-<span class="co">#&gt; 5                Population density Population density (persons per square km)</span>
-<span class="co">#&gt; 6                  Percentage urban                           Percentage urban</span>
-<span class="co">#&gt;                                                  Description ParentIndicator</span>
-<span class="co">#&gt; 1 Probability of dying between birth and the fifth birthday.                </span>
-<span class="co">#&gt; 2             Probability of dying before the first birthday                </span>
-<span class="co">#&gt; 3 Probability of dying between the first and fifth birthdays                </span>
-<span class="co">#&gt; 4                                                                           </span>
-<span class="co">#&gt; 5                                                                           </span>
-<span class="co">#&gt; 6                                                                           </span>
-<span class="co">#&gt;   CreatedBy TimeUnit UnitScaling</span>
-<span class="co">#&gt; 1                 NA       1e-03</span>
-<span class="co">#&gt; 2                 NA       1e-03</span>
-<span class="co">#&gt; 3                 NA       1e-03</span>
-<span class="co">#&gt; 4                 NA          NA</span>
-<span class="co">#&gt; 5                  1       1e+00</span>
-<span class="co">#&gt; 6                  1       1e+02</span>
+<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
+<span class="co">#&gt; 1            239                  16        -3     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt; 2            229                   9        -2     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt; 3            234                  NA         0    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 4             13                2314        13     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 5             14                2313        14     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 6             21                4317        21     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt;                          Name    ShortName                          LongName</span>
+<span class="co">#&gt; 1  Under-five mortality (5q0)          5q0 Under-five mortality by sex (5q0)</span>
+<span class="co">#&gt; 2 Infant mortality rate (1q0)          1q0             Infant mortality rate</span>
+<span class="co">#&gt; 3       Child mortality (4q1)          4q1      Child mortality by sex (4q1)</span>
+<span class="co">#&gt; 4    Surface Area (square km)                                               </span>
+<span class="co">#&gt; 5          Population density                             Population density</span>
+<span class="co">#&gt; 6            Percentage urban PercentUrban                  Percentage urban</span>
+<span class="co">#&gt;                                    PrintName</span>
+<span class="co">#&gt; 1    Under-five mortality by sex, U5MR (5q0)</span>
+<span class="co">#&gt; 2    Infant mortality rate by sex, IMR (1q0)</span>
+<span class="co">#&gt; 3           Child mortality by sex, CM (4q1)</span>
+<span class="co">#&gt; 4                                           </span>
+<span class="co">#&gt; 5 Population density (persons per square km)</span>
+<span class="co">#&gt; 6                           Percentage urban</span>
+<span class="co">#&gt;                                                  Description UnitScaling</span>
+<span class="co">#&gt; 1 Probability of dying between birth and the fifth birthday.       1e-03</span>
+<span class="co">#&gt; 2             Probability of dying before the first birthday       1e-03</span>
+<span class="co">#&gt; 3 Probability of dying between the first and fifth birthdays       1e-03</span>
+<span class="co">#&gt; 4                                                                     NA</span>
+<span class="co">#&gt; 5                                                                  1e+00</span>
+<span class="co">#&gt; 6                                                                  1e+02</span>
 <span class="co">#&gt;                                     UnitShortLabel        UnitLongLabel</span>
 <span class="co">#&gt; 1                            per 1,000 live births                     </span>
 <span class="co">#&gt; 2                            per 1,000 live births                     </span>
@@ -926,103 +964,80 @@
 <span class="co">#&gt; 4                                  1           1               2</span>
 <span class="co">#&gt; 5     relative  ### ### ##0        1           1               2</span>
 <span class="co">#&gt; 6     relative         #0.0        3           1               4</span>
-<span class="co">#&gt;   IndicatorClassID dimVariant dimTime IsAnnual dimAge AgeUnit</span>
-<span class="co">#&gt; 1                3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 2                3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 3                3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 4                2      FALSE   FALSE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 5                2       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 6                2      FALSE    TRUE    FALSE  FALSE    Year</span>
+<span class="co">#&gt;   IndicatorClassID dimTime dimAge AgeUnit AgeObservationPlanID AgeID AgeStart</span>
+<span class="co">#&gt; 1                3    TRUE  FALSE    Year                    5   301        0</span>
+<span class="co">#&gt; 2                3    TRUE  FALSE    Year                    5   330        0</span>
+<span class="co">#&gt; 3                3    TRUE  FALSE    Year                    5   331        1</span>
+<span class="co">#&gt; 4                2   FALSE  FALSE    Year                    2   700        0</span>
+<span class="co">#&gt; 5                2    TRUE  FALSE    Year                    2   700        0</span>
+<span class="co">#&gt; 6                2    TRUE  FALSE    Year                    2   700        0</span>
+<span class="co">#&gt;   AgeSpan IsComplete dimSex SexID DefaultSubGroupID AgeEnd MinValue MaxValue</span>
+<span class="co">#&gt; 1       5          2   TRUE    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 2       1          2   TRUE    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 3       4          2   TRUE    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 4      -1          2  FALSE    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 5      -1          2  FALSE    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 6      -1          2  FALSE     3                 2     NA       NA       NA</span>
+<span class="co">#&gt;   IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
+<span class="co">#&gt; 1                               22                         4</span>
+<span class="co">#&gt; 2                               21                         4</span>
+<span class="co">#&gt; 3                               28                         4</span>
+<span class="co">#&gt; 4                                2                         1</span>
+<span class="co">#&gt; 5                                2                         1</span>
+<span class="co">#&gt; 6                                4                         1</span>
+<span class="co">#&gt;   IndicatorType.ComponentName              IndicatorType.Name</span>
+<span class="co">#&gt; 1                   Mortality            Under-five mortality</span>
+<span class="co">#&gt; 2                   Mortality                Infant mortality</span>
+<span class="co">#&gt; 3                   Mortality       Child mortality (age 1-4)</span>
+<span class="co">#&gt; 4                  Population         Geographic distribution</span>
+<span class="co">#&gt; 5                  Population         Geographic distribution</span>
+<span class="co">#&gt; 6                  Population Urban-Rural distribution: Rates</span>
+<span class="co">#&gt;   IndicatorType.ShortName IndicatorType.SortOrder IndicatorType.Description</span>
+<span class="co">#&gt; 1                      NA                      24                        NA</span>
+<span class="co">#&gt; 2                      NA                      23                        NA</span>
+<span class="co">#&gt; 3                      NA                      30                        NA</span>
+<span class="co">#&gt; 4                      NA                       3                        NA</span>
+<span class="co">#&gt; 5                      NA                       3                        NA</span>
+<span class="co">#&gt; 6                      NA                       5                        NA</span></code></pre></div>
+<p>The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of <code>get_iitypes</code> is that you can select any of then with the function:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorIds <span class="op">=</span> <span class="fl">239</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorIds=239</span>
+<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
+<span class="co">#&gt; 1            239                  16        -3     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt;                         Name ShortName                          LongName</span>
+<span class="co">#&gt; 1 Under-five mortality (5q0)       5q0 Under-five mortality by sex (5q0)</span>
+<span class="co">#&gt;                                 PrintName</span>
+<span class="co">#&gt; 1 Under-five mortality by sex, U5MR (5q0)</span>
+<span class="co">#&gt;                                                  Description UnitScaling</span>
+<span class="co">#&gt; 1 Probability of dying between birth and the fifth birthday.       0.001</span>
+<span class="co">#&gt;          UnitShortLabel UnitLongLabel VariableType FormatString DomainID</span>
+<span class="co">#&gt; 1 per 1,000 live births            NA         Rate        ##0.0        1</span>
+<span class="co">#&gt;   ComponentID IndicatorTypeID IndicatorClassID dimTime dimAge AgeUnit</span>
+<span class="co">#&gt; 1           4              22                3    TRUE  FALSE    Year</span>
 <span class="co">#&gt;   AgeObservationPlanID AgeID AgeStart AgeSpan IsComplete dimSex SexID</span>
 <span class="co">#&gt; 1                    5   301        0       5          2   TRUE    NA</span>
-<span class="co">#&gt; 2                    5   330        0       1          2   TRUE    NA</span>
-<span class="co">#&gt; 3                    5   331        1       4          2   TRUE    NA</span>
-<span class="co">#&gt; 4                    2   700        0      -1          2  FALSE    NA</span>
-<span class="co">#&gt; 5                    2   700        0      -1          2  FALSE    NA</span>
-<span class="co">#&gt; 6                    2   700        0      -1          2  FALSE     3</span>
-<span class="co">#&gt;                           vwName                  tblName</span>
-<span class="co">#&gt; 1  vwDemoUnderFiveMortalityBySex        tblChildMortality</span>
-<span class="co">#&gt; 2 vwDemoInfantMortalityRateBySex        tblChildMortality</span>
-<span class="co">#&gt; 3                                                        </span>
-<span class="co">#&gt; 4              vwDemoSurfaceArea            vwSurfaceArea</span>
-<span class="co">#&gt; 5               vwDemoPopDensity             vwPopDensity</span>
-<span class="co">#&gt; 6           vwDemoWUP_PercUrban5 vwProUrbanOPS_PercUrban5</span>
-<span class="co">#&gt;                     SourceTable SourceField             ExcelTabName</span>
-<span class="co">#&gt; 1                                                 UnderFiveMortality</span>
-<span class="co">#&gt; 2                                           InfantMortalityRateBySex</span>
-<span class="co">#&gt; 3                                                                   </span>
-<span class="co">#&gt; 4                                                        SurfaceArea</span>
-<span class="co">#&gt; 5                                                         PopDensity</span>
-<span class="co">#&gt; 6 vwWPPCD_tblProjDataIndicators       Datum         PercentageUrban5</span>
-<span class="co">#&gt;   DefaultSubGroupID AgeEnd IndicatorType.PK_IndicatorTypeID</span>
-<span class="co">#&gt; 1                 2     NA                               22</span>
-<span class="co">#&gt; 2                 2     NA                               21</span>
-<span class="co">#&gt; 3                 2     NA                               28</span>
-<span class="co">#&gt; 4                 2     NA                                2</span>
-<span class="co">#&gt; 5                 2     NA                                2</span>
-<span class="co">#&gt; 6                 2     NA                                4</span>
-<span class="co">#&gt;   IndicatorType.ComponentID IndicatorType.ComponentName</span>
-<span class="co">#&gt; 1                         4                   Mortality</span>
-<span class="co">#&gt; 2                         4                   Mortality</span>
-<span class="co">#&gt; 3                         4                   Mortality</span>
-<span class="co">#&gt; 4                         1                  Population</span>
-<span class="co">#&gt; 5                         1                  Population</span>
-<span class="co">#&gt; 6                         1                  Population</span>
-<span class="co">#&gt;                IndicatorType.Name IndicatorType.ShortName</span>
-<span class="co">#&gt; 1            Under-five mortality                      NA</span>
-<span class="co">#&gt; 2                Infant mortality                      NA</span>
-<span class="co">#&gt; 3       Child mortality (age 1-4)                      NA</span>
-<span class="co">#&gt; 4         Geographic distribution                      NA</span>
-<span class="co">#&gt; 5         Geographic distribution                      NA</span>
-<span class="co">#&gt; 6 Urban-Rural distribution: Rates                      NA</span>
-<span class="co">#&gt;   IndicatorType.SortOrder IndicatorType.Description</span>
-<span class="co">#&gt; 1                      24                        NA</span>
-<span class="co">#&gt; 2                      23                        NA</span>
-<span class="co">#&gt; 3                      30                        NA</span>
-<span class="co">#&gt; 4                       3                        NA</span>
-<span class="co">#&gt; 5                       3                        NA</span>
-<span class="co">#&gt; 6                       5                        NA</span></pre></div>
-<p>The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of <code>get_iitypes</code> is that you can select any of the with the function:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorIds <span class="op">=</span> <span class="fl">239</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorIds=239"</span>
-<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsHeader IsActive IsInput</span>
-<span class="co">#&gt; 1            239                  16        -3    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt;   IsOutput                       Name ShortName</span>
-<span class="co">#&gt; 1     TRUE Under-five mortality (5q0)       5q0</span>
-<span class="co">#&gt;                            LongName                               PrintName</span>
-<span class="co">#&gt; 1 Under-five mortality by sex (5q0) Under-five mortality by sex, U5MR (5q0)</span>
-<span class="co">#&gt;                                                  Description ParentIndicator</span>
-<span class="co">#&gt; 1 Probability of dying between birth and the fifth birthday.              NA</span>
-<span class="co">#&gt;   CreatedBy TimeUnit UnitScaling        UnitShortLabel UnitLongLabel</span>
-<span class="co">#&gt; 1        NA       NA       0.001 per 1,000 live births            NA</span>
-<span class="co">#&gt;   VariableType FormatString DomainID ComponentID IndicatorTypeID</span>
-<span class="co">#&gt; 1         Rate        ##0.0        1           4              22</span>
-<span class="co">#&gt;   IndicatorClassID dimVariant dimTime IsAnnual dimAge AgeUnit</span>
-<span class="co">#&gt; 1                3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt;   AgeObservationPlanID AgeID AgeStart AgeSpan IsComplete dimSex SexID</span>
-<span class="co">#&gt; 1                    5   301        0       5          2   TRUE    NA</span>
-<span class="co">#&gt;                          vwName           tblName SourceTable SourceField</span>
-<span class="co">#&gt; 1 vwDemoUnderFiveMortalityBySex tblChildMortality          NA          NA</span>
-<span class="co">#&gt;         ExcelTabName DefaultSubGroupID AgeEnd IndicatorType.PK_IndicatorTypeID</span>
-<span class="co">#&gt; 1 UnderFiveMortality                 2     NA                               22</span>
+<span class="co">#&gt;   DefaultSubGroupID AgeEnd MinValue MaxValue IndicatorType.PK_IndicatorTypeID</span>
+<span class="co">#&gt; 1                 2     NA       NA       NA                               22</span>
 <span class="co">#&gt;   IndicatorType.ComponentID IndicatorType.ComponentName   IndicatorType.Name</span>
 <span class="co">#&gt; 1                         4                   Mortality Under-five mortality</span>
 <span class="co">#&gt;   IndicatorType.ShortName IndicatorType.SortOrder IndicatorType.Description</span>
-<span class="co">#&gt; 1                      NA                      24                        NA</span></pre></div>
-<div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorTypeIds <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorTypeIds=2"</span>
-<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsHeader IsActive IsInput</span>
-<span class="co">#&gt; 1             13                2314        13    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 2             14                2313        14    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 3            364                  NA       363    FALSE     TRUE    &lt;NA&gt;</span>
-<span class="co">#&gt; 4            365                  NA       364    FALSE     TRUE    &lt;NA&gt;</span>
-<span class="co">#&gt;   IsOutput                                 Name ShortName</span>
-<span class="co">#&gt; 1     TRUE             Surface Area (square km)          </span>
-<span class="co">#&gt; 2     TRUE                   Population density          </span>
-<span class="co">#&gt; 3     &lt;NA&gt; Contraceptive prevalence any methods     CUany</span>
-<span class="co">#&gt; 4     &lt;NA&gt;   Contraceptive prevalence by method CUmethods</span>
+<span class="co">#&gt; 1                      NA                      24                        NA</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorTypeIds <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorTypeIds=2</span>
+<span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
+<span class="co">#&gt; 1             13                2314        13     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 2             14                2313        14     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 3            364                  NA       363     TRUE    &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#&gt; 4            365                  NA       364     TRUE    &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#&gt;                                   Name ShortName</span>
+<span class="co">#&gt; 1             Surface Area (square km)          </span>
+<span class="co">#&gt; 2                   Population density          </span>
+<span class="co">#&gt; 3 Contraceptive prevalence any methods     CUany</span>
+<span class="co">#&gt; 4   Contraceptive prevalence by method CUmethods</span>
 <span class="co">#&gt;                               LongName</span>
 <span class="co">#&gt; 1                                     </span>
 <span class="co">#&gt; 2                   Population density</span>
@@ -1033,41 +1048,31 @@
 <span class="co">#&gt; 2 Population density (persons per square km)</span>
 <span class="co">#&gt; 3                                           </span>
 <span class="co">#&gt; 4                                           </span>
-<span class="co">#&gt;                                  Description ParentIndicator CreatedBy TimeUnit</span>
-<span class="co">#&gt; 1                                                         NA        NA       NA</span>
-<span class="co">#&gt; 2                                                         NA        NA        1</span>
-<span class="co">#&gt; 3                                                         NA        NA       NA</span>
-<span class="co">#&gt; 4 Used for upload of CP data from xls files.              NA        NA       NA</span>
-<span class="co">#&gt;   UnitScaling UnitShortLabel        UnitLongLabel VariableType FormatString</span>
-<span class="co">#&gt; 1          NA                                                              </span>
-<span class="co">#&gt; 2           1     per sq. km per square kilometer     relative  ### ### ##0</span>
-<span class="co">#&gt; 3         100       per cent             per cent     relative        ##0.0</span>
-<span class="co">#&gt; 4         100       per cent             per cent     relative        ##0.0</span>
-<span class="co">#&gt;   DomainID ComponentID IndicatorTypeID IndicatorClassID dimVariant dimTime</span>
-<span class="co">#&gt; 1        1           1               2                2      FALSE   FALSE</span>
-<span class="co">#&gt; 2        1           1               2                2       TRUE    TRUE</span>
-<span class="co">#&gt; 3        7           9               2                2       &lt;NA&gt;    TRUE</span>
-<span class="co">#&gt; 4        7           9               2                2       &lt;NA&gt;    TRUE</span>
-<span class="co">#&gt;   IsAnnual dimAge AgeUnit AgeObservationPlanID AgeID AgeStart AgeSpan</span>
-<span class="co">#&gt; 1    FALSE  FALSE    Year                    2   700        0      -1</span>
-<span class="co">#&gt; 2    FALSE  FALSE    Year                    2   700        0      -1</span>
-<span class="co">#&gt; 3     TRUE   TRUE    Year                    5    NA       NA      NA</span>
-<span class="co">#&gt; 4     TRUE   TRUE    Year                    5    NA       NA      NA</span>
-<span class="co">#&gt;   IsComplete dimSex SexID            vwName       tblName SourceTable</span>
-<span class="co">#&gt; 1          2  FALSE    NA vwDemoSurfaceArea vwSurfaceArea          NA</span>
-<span class="co">#&gt; 2          2  FALSE    NA  vwDemoPopDensity  vwPopDensity          NA</span>
-<span class="co">#&gt; 3         NA   &lt;NA&gt;    NA                                          NA</span>
-<span class="co">#&gt; 4         NA   &lt;NA&gt;    NA                                          NA</span>
-<span class="co">#&gt;   SourceField ExcelTabName DefaultSubGroupID AgeEnd</span>
-<span class="co">#&gt; 1          NA  SurfaceArea                 2     NA</span>
-<span class="co">#&gt; 2          NA   PopDensity                 2     NA</span>
-<span class="co">#&gt; 3          NA                              2     NA</span>
-<span class="co">#&gt; 4          NA                              2     NA</span>
-<span class="co">#&gt;   IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
-<span class="co">#&gt; 1                                2                         1</span>
-<span class="co">#&gt; 2                                2                         1</span>
-<span class="co">#&gt; 3                                2                         1</span>
-<span class="co">#&gt; 4                                2                         1</span>
+<span class="co">#&gt;                                  Description UnitScaling UnitShortLabel</span>
+<span class="co">#&gt; 1                                                     NA               </span>
+<span class="co">#&gt; 2                                                      1     per sq. km</span>
+<span class="co">#&gt; 3                                                    100       per cent</span>
+<span class="co">#&gt; 4 Used for upload of CP data from xls files.         100       per cent</span>
+<span class="co">#&gt;          UnitLongLabel VariableType FormatString DomainID ComponentID</span>
+<span class="co">#&gt; 1                                                       1           1</span>
+<span class="co">#&gt; 2 per square kilometer     relative  ### ### ##0        1           1</span>
+<span class="co">#&gt; 3             per cent     relative        ##0.0        7           9</span>
+<span class="co">#&gt; 4             per cent     relative        ##0.0        7           9</span>
+<span class="co">#&gt;   IndicatorTypeID IndicatorClassID dimTime dimAge AgeUnit AgeObservationPlanID</span>
+<span class="co">#&gt; 1               2                2   FALSE  FALSE    Year                    2</span>
+<span class="co">#&gt; 2               2                2    TRUE  FALSE    Year                    2</span>
+<span class="co">#&gt; 3               2                2    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 4               2                2    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt;   AgeID AgeStart AgeSpan IsComplete dimSex SexID DefaultSubGroupID AgeEnd</span>
+<span class="co">#&gt; 1   700        0      -1          2  FALSE    NA                 2     NA</span>
+<span class="co">#&gt; 2   700        0      -1          2  FALSE    NA                 2     NA</span>
+<span class="co">#&gt; 3    NA       NA      NA         NA   &lt;NA&gt;    NA                 2     NA</span>
+<span class="co">#&gt; 4    NA       NA      NA         NA   &lt;NA&gt;    NA                 2     NA</span>
+<span class="co">#&gt;   MinValue MaxValue IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
+<span class="co">#&gt; 1       NA       NA                                2                         1</span>
+<span class="co">#&gt; 2       NA       NA                                2                         1</span>
+<span class="co">#&gt; 3       NA       NA                                2                         1</span>
+<span class="co">#&gt; 4       NA       NA                                2                         1</span>
 <span class="co">#&gt;   IndicatorType.ComponentName      IndicatorType.Name IndicatorType.ShortName</span>
 <span class="co">#&gt; 1                  Population Geographic distribution                      NA</span>
 <span class="co">#&gt; 2                  Population Geographic distribution                      NA</span>
@@ -1077,61 +1082,37 @@
 <span class="co">#&gt; 1                       3                        NA</span>
 <span class="co">#&gt; 2                       3                        NA</span>
 <span class="co">#&gt; 3                       3                        NA</span>
-<span class="co">#&gt; 4                       3                        NA</span></pre></div>
+<span class="co">#&gt; 4                       3                        NA</span></code></pre></div>
 <p>or ComponentIds:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatorindicatortypes?componentIds=4"</span>
-<span class="co">#&gt;    PK_IndicatorID DemoBaseIndicatorID SortOrder IsHeader IsActive IsInput</span>
-<span class="co">#&gt; 1             239                  16        -3    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt; 2             229                   9        -2    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt; 3             234                  NA         0    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 4             323                  NA       195    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 5             324                  NA       196    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 6             325                  NA       197    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 7             326                  NA       198    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 8             327                  NA       199    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 9             328                  NA       200    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 10            329                  NA       201    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 11            330                  NA       202    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 12            331                  NA       203    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 13            332                  NA       204    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 14            188                1062       211    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 15            194                   6       217    FALSE     TRUE    TRUE</span>
-<span class="co">#&gt; 16            195                  NA       218    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 17            314                  NA       219     TRUE     TRUE   FALSE</span>
-<span class="co">#&gt; 18            315                  NA       220     TRUE     TRUE   FALSE</span>
-<span class="co">#&gt; 19            201                  NA       226    FALSE    FALSE   FALSE</span>
-<span class="co">#&gt; 20            217                1065       242    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 21            219                  NA       244    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 22            220                  NA       245    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 23            221                  NA       246    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt; 24            225                  NA       250    FALSE    FALSE    TRUE</span>
-<span class="co">#&gt;    IsOutput</span>
-<span class="co">#&gt; 1      TRUE</span>
-<span class="co">#&gt; 2      TRUE</span>
-<span class="co">#&gt; 3      TRUE</span>
-<span class="co">#&gt; 4      TRUE</span>
-<span class="co">#&gt; 5      TRUE</span>
-<span class="co">#&gt; 6      TRUE</span>
-<span class="co">#&gt; 7      TRUE</span>
-<span class="co">#&gt; 8      TRUE</span>
-<span class="co">#&gt; 9      TRUE</span>
-<span class="co">#&gt; 10     TRUE</span>
-<span class="co">#&gt; 11     TRUE</span>
-<span class="co">#&gt; 12     TRUE</span>
-<span class="co">#&gt; 13     TRUE</span>
-<span class="co">#&gt; 14     TRUE</span>
-<span class="co">#&gt; 15     TRUE</span>
-<span class="co">#&gt; 16     TRUE</span>
-<span class="co">#&gt; 17     TRUE</span>
-<span class="co">#&gt; 18     TRUE</span>
-<span class="co">#&gt; 19    FALSE</span>
-<span class="co">#&gt; 20     TRUE</span>
-<span class="co">#&gt; 21     TRUE</span>
-<span class="co">#&gt; 22     TRUE</span>
-<span class="co">#&gt; 23     TRUE</span>
-<span class="co">#&gt; 24     TRUE</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatorindicatortypes?componentIds=4</span>
+<span class="co">#&gt;    PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
+<span class="co">#&gt; 1             239                  16        -3     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt; 2             229                   9        -2     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt; 3             234                  NA         0    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 4             323                  NA       195     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 5             324                  NA       196     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 6             325                  NA       197     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 7             326                  NA       198     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 8             327                  NA       199     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 9             328                  NA       200     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 10            329                  NA       201     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 11            330                  NA       202     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 12            331                  NA       203     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 13            332                  NA       204     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 14            188                1062       211     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 15            194                   6       217     TRUE    TRUE     TRUE</span>
+<span class="co">#&gt; 16            195                  NA       218    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 17            314                  NA       219     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 18            315                  NA       220     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 19            201                  NA       226    FALSE   FALSE    FALSE</span>
+<span class="co">#&gt; 20            217                1065       242     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 21            219                  NA       244    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 22            220                  NA       245    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 23            221                  NA       246    FALSE    TRUE     TRUE</span>
+<span class="co">#&gt; 24            225                  NA       250    FALSE    TRUE     TRUE</span>
 <span class="co">#&gt;                                                                      Name</span>
 <span class="co">#&gt; 1                                              Under-five mortality (5q0)</span>
 <span class="co">#&gt; 2                                             Infant mortality rate (1q0)</span>
@@ -1257,206 +1238,131 @@
 <span class="co">#&gt; 22                                                      also known as ASDR or M(x,n)</span>
 <span class="co">#&gt; 23                               Probability of dying within the first month of life</span>
 <span class="co">#&gt; 24                                  Difference between infant and neonatal mortality</span>
-<span class="co">#&gt;       ParentIndicator                      CreatedBy TimeUnit UnitScaling</span>
-<span class="co">#&gt; 1                                                          NA       1e-03</span>
-<span class="co">#&gt; 2                                                          NA       1e-03</span>
-<span class="co">#&gt; 3                                                          NA       1e-03</span>
-<span class="co">#&gt; 4                None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 5                None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 6                None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 7                None Calculation over age dimension       NA       1e+00</span>
-<span class="co">#&gt; 8                None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 9                None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 10               None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 11               None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 12               None Calculation over age dimension       NA       1e+00</span>
-<span class="co">#&gt; 13               None Calculation over age dimension       NA       1e+03</span>
-<span class="co">#&gt; 14                                                         NA       1e+03</span>
-<span class="co">#&gt; 15               None          Estimation/Projection       NA       1e+03</span>
-<span class="co">#&gt; 16               None          Estimation/Projection       NA       1e+03</span>
-<span class="co">#&gt; 17               None          Estimation/Projection       NA       1e+03</span>
-<span class="co">#&gt; 18               None          Estimation/Projection       NA       1e+03</span>
-<span class="co">#&gt; 19                                                         NA          NA</span>
-<span class="co">#&gt; 20                                                         NA       1e-03</span>
-<span class="co">#&gt; 21 Deaths, Population                    Calculation       NA          NA</span>
-<span class="co">#&gt; 22 Deaths, Population                    Calculation       NA          NA</span>
-<span class="co">#&gt; 23                                                         NA       1e-03</span>
-<span class="co">#&gt; 24                                                         NA       1e-03</span>
-<span class="co">#&gt;                                      UnitShortLabel        UnitLongLabel</span>
-<span class="co">#&gt; 1                             per 1,000 live births                     </span>
-<span class="co">#&gt; 2                             per 1,000 live births                     </span>
-<span class="co">#&gt; 3  per 1,000 children surviving to 12 months of age                     </span>
-<span class="co">#&gt; 4                                         thousands            thousands</span>
-<span class="co">#&gt; 5                                         thousands            thousands</span>
-<span class="co">#&gt; 6                                         thousands            thousands</span>
-<span class="co">#&gt; 7                                   per female dead      per female dead</span>
-<span class="co">#&gt; 8                                         thousands            thousands</span>
-<span class="co">#&gt; 9                                         thousands            thousands</span>
-<span class="co">#&gt; 10                                        thousands            thousands</span>
-<span class="co">#&gt; 11                                        thousands            thousands</span>
-<span class="co">#&gt; 12                             per female surviving per female surviving</span>
-<span class="co">#&gt; 13                                        thousands            thousands</span>
-<span class="co">#&gt; 14                                        thousands                     </span>
-<span class="co">#&gt; 15                                        thousands                     </span>
-<span class="co">#&gt; 16                                        thousands                     </span>
-<span class="co">#&gt; 17                                        thousands                     </span>
-<span class="co">#&gt; 18                                        thousands                     </span>
-<span class="co">#&gt; 19                                                                      </span>
-<span class="co">#&gt; 20                             per 1,000 population                     </span>
-<span class="co">#&gt; 21                                                                      </span>
-<span class="co">#&gt; 22                                                                      </span>
-<span class="co">#&gt; 23                            per 1,000 live births                     </span>
-<span class="co">#&gt; 24                            per 1,000 live births                     </span>
-<span class="co">#&gt;    VariableType FormatString DomainID ComponentID IndicatorTypeID</span>
-<span class="co">#&gt; 1          Rate        ##0.0        1           4              22</span>
-<span class="co">#&gt; 2          Rate          ##0        1           4              21</span>
-<span class="co">#&gt; 3          Rate        ##0.0        1           4              28</span>
-<span class="co">#&gt; 4      absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 5      absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 6      absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 7      relative        ##0.0        1           4              38</span>
-<span class="co">#&gt; 8      absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 9      absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 10     absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 11     absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 12     relative        ##0.0        1           4              38</span>
-<span class="co">#&gt; 13     absolute  ### ### ##0        1           4              38</span>
-<span class="co">#&gt; 14     absolute  ### ### ##0        1           4              19</span>
-<span class="co">#&gt; 15     absolute  ### ### ##0        1           4              20</span>
-<span class="co">#&gt; 16     absolute  ### ### ##0        1           4              20</span>
-<span class="co">#&gt; 17     absolute  ### ### ##0        1           4              20</span>
-<span class="co">#&gt; 18     absolute  ### ### ##0        1           4              20</span>
-<span class="co">#&gt; 19                                  1           4              21</span>
-<span class="co">#&gt; 20     relative        ##0.0        1           4              24</span>
-<span class="co">#&gt; 21                                  1           4              25</span>
-<span class="co">#&gt; 22                                  1           4              25</span>
-<span class="co">#&gt; 23         Rate          ##0        1           4              26</span>
-<span class="co">#&gt; 24         Rate          ##0        1           4              27</span>
-<span class="co">#&gt;    IndicatorClassID dimVariant dimTime IsAnnual dimAge AgeUnit</span>
-<span class="co">#&gt; 1                 3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 2                 3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 3                 3       TRUE    TRUE    FALSE  FALSE    Year</span>
-<span class="co">#&gt; 4                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 5                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 6                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 7                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 8                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 9                 3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 10                3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 11                3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 12                3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 13                3      FALSE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 14                3       TRUE    TRUE     TRUE  FALSE    Year</span>
-<span class="co">#&gt; 15                3       TRUE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 16                3       TRUE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 17                3       TRUE    TRUE    FALSE   TRUE   Month</span>
-<span class="co">#&gt; 18                3       TRUE    TRUE    FALSE   TRUE   Month</span>
-<span class="co">#&gt; 19                3       TRUE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 20                3       TRUE    TRUE     TRUE  FALSE    Year</span>
-<span class="co">#&gt; 21                3       TRUE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 22                3       TRUE    TRUE    FALSE   TRUE    Year</span>
-<span class="co">#&gt; 23                3       TRUE    TRUE    FALSE  FALSE   Month</span>
-<span class="co">#&gt; 24                3       TRUE    TRUE    FALSE  FALSE   Month</span>
-<span class="co">#&gt;    AgeObservationPlanID AgeID AgeStart AgeSpan IsComplete dimSex SexID</span>
-<span class="co">#&gt; 1                     5   301        0       5          2   TRUE    NA</span>
-<span class="co">#&gt; 2                     5   330        0       1          2   TRUE    NA</span>
-<span class="co">#&gt; 3                     5   331        1       4          2   TRUE    NA</span>
-<span class="co">#&gt; 4                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 5                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 6                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 7                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 8                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 9                     5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 10                    5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 11                    5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 12                    5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 13                    5     0       NA      -9          0   TRUE    NA</span>
-<span class="co">#&gt; 14                    5   700        0      -1          2   TRUE    NA</span>
-<span class="co">#&gt; 15                    5    NA        0       5          0   TRUE    NA</span>
-<span class="co">#&gt; 16                    5    NA        0       1          1   TRUE    NA</span>
-<span class="co">#&gt; 17                    5    NA       NA      NA          0   TRUE    NA</span>
-<span class="co">#&gt; 18                    5    NA       NA      NA          0   TRUE    NA</span>
-<span class="co">#&gt; 19                    5    NA       NA      NA          0   TRUE    NA</span>
-<span class="co">#&gt; 20                    5   398        0      -1          2  FALSE    NA</span>
-<span class="co">#&gt; 21                    5    NA        0       1          0   TRUE    NA</span>
-<span class="co">#&gt; 22                    5    NA        0       1          1   TRUE    NA</span>
-<span class="co">#&gt; 23                    5 30481        0       1          2   TRUE    NA</span>
-<span class="co">#&gt; 24                    5 30489        1      11          2   TRUE    NA</span>
-<span class="co">#&gt;                              vwName           tblName SourceTable SourceField</span>
-<span class="co">#&gt; 1     vwDemoUnderFiveMortalityBySex tblChildMortality          NA          NA</span>
-<span class="co">#&gt; 2    vwDemoInfantMortalityRateBySex tblChildMortality          NA          NA</span>
-<span class="co">#&gt; 3                                                              NA          NA</span>
-<span class="co">#&gt; 4                                                              NA          NA</span>
-<span class="co">#&gt; 5                                                              NA          NA</span>
-<span class="co">#&gt; 6                                                              NA          NA</span>
-<span class="co">#&gt; 7                                                              NA          NA</span>
-<span class="co">#&gt; 8                                                              NA          NA</span>
-<span class="co">#&gt; 9                                                              NA          NA</span>
-<span class="co">#&gt; 10                                                             NA          NA</span>
-<span class="co">#&gt; 11                                                             NA          NA</span>
-<span class="co">#&gt; 12                                                             NA          NA</span>
-<span class="co">#&gt; 13                                                             NA          NA</span>
-<span class="co">#&gt; 14         vwDemoDeathsInterpolated       tblProjData          NA          NA</span>
-<span class="co">#&gt; 15          vwDemoDeathsByAgeAndSex  tblVEvents_Death          NA          NA</span>
-<span class="co">#&gt; 16                                                             NA          NA</span>
-<span class="co">#&gt; 17                                                             NA          NA</span>
-<span class="co">#&gt; 18                                                             NA          NA</span>
-<span class="co">#&gt; 19                                                             NA          NA</span>
-<span class="co">#&gt; 20 vwDemoCrudeDeathRateInterpolated       tblProjData          NA          NA</span>
-<span class="co">#&gt; 21                                                             NA          NA</span>
-<span class="co">#&gt; 22                                                             NA          NA</span>
-<span class="co">#&gt; 23                                                             NA          NA</span>
-<span class="co">#&gt; 24                                                             NA          NA</span>
-<span class="co">#&gt;                ExcelTabName DefaultSubGroupID AgeEnd</span>
-<span class="co">#&gt; 1        UnderFiveMortality                 2     NA</span>
-<span class="co">#&gt; 2  InfantMortalityRateBySex                 2     NA</span>
-<span class="co">#&gt; 3                                           2     NA</span>
-<span class="co">#&gt; 4                                           2     NA</span>
-<span class="co">#&gt; 5                                           2     NA</span>
-<span class="co">#&gt; 6                                           2     NA</span>
-<span class="co">#&gt; 7                                           2     NA</span>
-<span class="co">#&gt; 8                                           2     NA</span>
-<span class="co">#&gt; 9                                           2     NA</span>
-<span class="co">#&gt; 10                                          2     NA</span>
-<span class="co">#&gt; 11                                          2     NA</span>
-<span class="co">#&gt; 12                                          2     NA</span>
-<span class="co">#&gt; 13                                          2     NA</span>
-<span class="co">#&gt; 14           DeathsInterpol                 2     NA</span>
-<span class="co">#&gt; 15        DeathsByAgeAndSex                 2    100</span>
-<span class="co">#&gt; 16                                          2    100</span>
-<span class="co">#&gt; 17                                          2     NA</span>
-<span class="co">#&gt; 18                                          2     NA</span>
-<span class="co">#&gt; 19                                          2     NA</span>
-<span class="co">#&gt; 20              CDRInterpol                 2     NA</span>
-<span class="co">#&gt; 21                                          2    100</span>
-<span class="co">#&gt; 22                                          2    100</span>
-<span class="co">#&gt; 23                                          2     NA</span>
-<span class="co">#&gt; 24                                          2     NA</span>
-<span class="co">#&gt;    IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
-<span class="co">#&gt; 1                                22                         4</span>
-<span class="co">#&gt; 2                                21                         4</span>
-<span class="co">#&gt; 3                                28                         4</span>
-<span class="co">#&gt; 4                                38                         4</span>
-<span class="co">#&gt; 5                                38                         4</span>
-<span class="co">#&gt; 6                                38                         4</span>
-<span class="co">#&gt; 7                                38                         4</span>
-<span class="co">#&gt; 8                                38                         4</span>
-<span class="co">#&gt; 9                                38                         4</span>
-<span class="co">#&gt; 10                               38                         4</span>
-<span class="co">#&gt; 11                               38                         4</span>
-<span class="co">#&gt; 12                               38                         4</span>
-<span class="co">#&gt; 13                               38                         4</span>
-<span class="co">#&gt; 14                               19                         4</span>
-<span class="co">#&gt; 15                               20                         4</span>
-<span class="co">#&gt; 16                               20                         4</span>
-<span class="co">#&gt; 17                               20                         4</span>
-<span class="co">#&gt; 18                               20                         4</span>
-<span class="co">#&gt; 19                               21                         4</span>
-<span class="co">#&gt; 20                               24                         4</span>
-<span class="co">#&gt; 21                               25                         4</span>
-<span class="co">#&gt; 22                               25                         4</span>
-<span class="co">#&gt; 23                               26                         4</span>
-<span class="co">#&gt; 24                               27                         4</span>
+<span class="co">#&gt;    UnitScaling                                   UnitShortLabel</span>
+<span class="co">#&gt; 1        1e-03                            per 1,000 live births</span>
+<span class="co">#&gt; 2        1e-03                            per 1,000 live births</span>
+<span class="co">#&gt; 3        1e-03 per 1,000 children surviving to 12 months of age</span>
+<span class="co">#&gt; 4        1e+03                                        thousands</span>
+<span class="co">#&gt; 5        1e+03                                        thousands</span>
+<span class="co">#&gt; 6        1e+03                                        thousands</span>
+<span class="co">#&gt; 7        1e+00                                  per female dead</span>
+<span class="co">#&gt; 8        1e+03                                        thousands</span>
+<span class="co">#&gt; 9        1e+03                                        thousands</span>
+<span class="co">#&gt; 10       1e+03                                        thousands</span>
+<span class="co">#&gt; 11       1e+03                                        thousands</span>
+<span class="co">#&gt; 12       1e+00                             per female surviving</span>
+<span class="co">#&gt; 13       1e+03                                        thousands</span>
+<span class="co">#&gt; 14       1e+03                                        thousands</span>
+<span class="co">#&gt; 15       1e+03                                        thousands</span>
+<span class="co">#&gt; 16       1e+03                                        thousands</span>
+<span class="co">#&gt; 17       1e+03                                        thousands</span>
+<span class="co">#&gt; 18       1e+03                                        thousands</span>
+<span class="co">#&gt; 19          NA                                                 </span>
+<span class="co">#&gt; 20       1e-03                             per 1,000 population</span>
+<span class="co">#&gt; 21          NA                                                 </span>
+<span class="co">#&gt; 22          NA                                                 </span>
+<span class="co">#&gt; 23       1e-03                            per 1,000 live births</span>
+<span class="co">#&gt; 24       1e-03                            per 1,000 live births</span>
+<span class="co">#&gt;           UnitLongLabel VariableType FormatString DomainID ComponentID</span>
+<span class="co">#&gt; 1                               Rate        ##0.0        1           4</span>
+<span class="co">#&gt; 2                               Rate          ##0        1           4</span>
+<span class="co">#&gt; 3                               Rate        ##0.0        1           4</span>
+<span class="co">#&gt; 4             thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 5             thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 6             thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 7       per female dead     relative        ##0.0        1           4</span>
+<span class="co">#&gt; 8             thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 9             thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 10            thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 11            thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 12 per female surviving     relative        ##0.0        1           4</span>
+<span class="co">#&gt; 13            thousands     absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 14                          absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 15                          absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 16                          absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 17                          absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 18                          absolute  ### ### ##0        1           4</span>
+<span class="co">#&gt; 19                                                       1           4</span>
+<span class="co">#&gt; 20                          relative        ##0.0        1           4</span>
+<span class="co">#&gt; 21                                                       1           4</span>
+<span class="co">#&gt; 22                                                       1           4</span>
+<span class="co">#&gt; 23                              Rate          ##0        1           4</span>
+<span class="co">#&gt; 24                              Rate          ##0        1           4</span>
+<span class="co">#&gt;    IndicatorTypeID IndicatorClassID dimTime dimAge AgeUnit AgeObservationPlanID</span>
+<span class="co">#&gt; 1               22                3    TRUE  FALSE    Year                    5</span>
+<span class="co">#&gt; 2               21                3    TRUE  FALSE    Year                    5</span>
+<span class="co">#&gt; 3               28                3    TRUE  FALSE    Year                    5</span>
+<span class="co">#&gt; 4               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 5               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 6               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 7               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 8               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 9               38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 10              38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 11              38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 12              38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 13              38                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 14              19                3    TRUE  FALSE    Year                    5</span>
+<span class="co">#&gt; 15              20                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 16              20                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 17              20                3    TRUE   TRUE   Month                    5</span>
+<span class="co">#&gt; 18              20                3    TRUE   TRUE   Month                    5</span>
+<span class="co">#&gt; 19              21                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 20              24                3    TRUE  FALSE    Year                    5</span>
+<span class="co">#&gt; 21              25                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 22              25                3    TRUE   TRUE    Year                    5</span>
+<span class="co">#&gt; 23              26                3    TRUE  FALSE   Month                    5</span>
+<span class="co">#&gt; 24              27                3    TRUE  FALSE   Month                    5</span>
+<span class="co">#&gt;    AgeID AgeStart AgeSpan IsComplete dimSex SexID DefaultSubGroupID AgeEnd</span>
+<span class="co">#&gt; 1    301        0       5          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 2    330        0       1          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 3    331        1       4          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 4      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 5      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 6      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 7      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 8      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 9      0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 10     0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 11     0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 12     0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 13     0       NA      -9          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 14   700        0      -1          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 15    NA        0       5          0   TRUE    NA                 2    100</span>
+<span class="co">#&gt; 16    NA        0       1          1   TRUE    NA                 2    100</span>
+<span class="co">#&gt; 17    NA       NA      NA          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 18    NA       NA      NA          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 19    NA       NA      NA          0   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 20   398        0      -1          2  FALSE    NA                 2     NA</span>
+<span class="co">#&gt; 21    NA        0       1          0   TRUE    NA                 2    100</span>
+<span class="co">#&gt; 22    NA        0       1          1   TRUE    NA                 2    100</span>
+<span class="co">#&gt; 23 30481        0       1          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt; 24 30489        1      11          2   TRUE    NA                 2     NA</span>
+<span class="co">#&gt;    MinValue MaxValue IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
+<span class="co">#&gt; 1        NA       NA                               22                         4</span>
+<span class="co">#&gt; 2        NA       NA                               21                         4</span>
+<span class="co">#&gt; 3        NA       NA                               28                         4</span>
+<span class="co">#&gt; 4        NA       NA                               38                         4</span>
+<span class="co">#&gt; 5        NA       NA                               38                         4</span>
+<span class="co">#&gt; 6        NA       NA                               38                         4</span>
+<span class="co">#&gt; 7        NA       NA                               38                         4</span>
+<span class="co">#&gt; 8        NA       NA                               38                         4</span>
+<span class="co">#&gt; 9        NA       NA                               38                         4</span>
+<span class="co">#&gt; 10       NA       NA                               38                         4</span>
+<span class="co">#&gt; 11       NA       NA                               38                         4</span>
+<span class="co">#&gt; 12       NA       NA                               38                         4</span>
+<span class="co">#&gt; 13       NA       NA                               38                         4</span>
+<span class="co">#&gt; 14       NA       NA                               19                         4</span>
+<span class="co">#&gt; 15       NA       NA                               20                         4</span>
+<span class="co">#&gt; 16       NA       NA                               20                         4</span>
+<span class="co">#&gt; 17       NA       NA                               20                         4</span>
+<span class="co">#&gt; 18       NA       NA                               20                         4</span>
+<span class="co">#&gt; 19       NA       NA                               21                         4</span>
+<span class="co">#&gt; 20       NA       NA                               24                         4</span>
+<span class="co">#&gt; 21       NA       NA                               25                         4</span>
+<span class="co">#&gt; 22       NA       NA                               25                         4</span>
+<span class="co">#&gt; 23       NA       NA                               26                         4</span>
+<span class="co">#&gt; 24       NA       NA                               27                         4</span>
 <span class="co">#&gt;    IndicatorType.ComponentName               IndicatorType.Name</span>
 <span class="co">#&gt; 1                    Mortality             Under-five mortality</span>
 <span class="co">#&gt; 2                    Mortality                 Infant mortality</span>
@@ -1506,33 +1412,23 @@
 <span class="co">#&gt; 21                      NA                      27                        NA</span>
 <span class="co">#&gt; 22                      NA                      27                        NA</span>
 <span class="co">#&gt; 23                      NA                      28                        NA</span>
-<span class="co">#&gt; 24                      NA                      29                        NA</span></pre></div>
+<span class="co">#&gt; 24                      NA                      29                        NA</span></code></pre></div>
 <p>Although this is handy for exploration, what’s even more handy is the combination of parameters:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span>, indicatorTypeIds <span class="op">=</span> <span class="fl">38</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorTypeIds=38&amp;componentIds=4"</span>
-<span class="co">#&gt;    PK_IndicatorID DemoBaseIndicatorID SortOrder IsHeader IsActive IsInput</span>
-<span class="co">#&gt; 1             323                  NA       195    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 2             324                  NA       196    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 3             325                  NA       197    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 4             326                  NA       198    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 5             327                  NA       199    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 6             328                  NA       200    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 7             329                  NA       201    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 8             330                  NA       202    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 9             331                  NA       203    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt; 10            332                  NA       204    FALSE     TRUE   FALSE</span>
-<span class="co">#&gt;    IsOutput</span>
-<span class="co">#&gt; 1      TRUE</span>
-<span class="co">#&gt; 2      TRUE</span>
-<span class="co">#&gt; 3      TRUE</span>
-<span class="co">#&gt; 4      TRUE</span>
-<span class="co">#&gt; 5      TRUE</span>
-<span class="co">#&gt; 6      TRUE</span>
-<span class="co">#&gt; 7      TRUE</span>
-<span class="co">#&gt; 8      TRUE</span>
-<span class="co">#&gt; 9      TRUE</span>
-<span class="co">#&gt; 10     TRUE</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span>, indicatorTypeIds <span class="op">=</span> <span class="fl">38</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  http://24.239.36.16:9654/un3/api/indicatorindicatortypes?indicatorTypeIds=38&amp;componentIds=4</span>
+<span class="co">#&gt;    PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
+<span class="co">#&gt; 1             323                  NA       195     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 2             324                  NA       196     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 3             325                  NA       197     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 4             326                  NA       198     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 5             327                  NA       199     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 6             328                  NA       200     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 7             329                  NA       201     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 8             330                  NA       202     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 9             331                  NA       203     TRUE   FALSE     TRUE</span>
+<span class="co">#&gt; 10            332                  NA       204     TRUE   FALSE     TRUE</span>
 <span class="co">#&gt;                                                                      Name</span>
 <span class="co">#&gt; 1                    Children dead by age of mother (and by sex of child)</span>
 <span class="co">#&gt; 2               Mean children dead by age of mother (and by sex of child)</span>
@@ -1566,39 +1462,28 @@
 <span class="co">#&gt; 8                   Mean children surviving by age group of mother          NA</span>
 <span class="co">#&gt; 9  Sex ratio children surviving by age of mother (per 100 females)          NA</span>
 <span class="co">#&gt; 10                       Children surviving by age group of mother          NA</span>
-<span class="co">#&gt;    ParentIndicator                      CreatedBy TimeUnit UnitScaling</span>
-<span class="co">#&gt; 1             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 2             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 3             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 4             None Calculation over age dimension       NA           1</span>
-<span class="co">#&gt; 5             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 6             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 7             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 8             None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt; 9             None Calculation over age dimension       NA           1</span>
-<span class="co">#&gt; 10            None Calculation over age dimension       NA        1000</span>
-<span class="co">#&gt;          UnitShortLabel        UnitLongLabel VariableType FormatString DomainID</span>
-<span class="co">#&gt; 1             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 2             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 3             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 4       per female dead      per female dead     relative        ##0.0        1</span>
-<span class="co">#&gt; 5             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 6             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 7             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 8             thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt; 9  per female surviving per female surviving     relative        ##0.0        1</span>
-<span class="co">#&gt; 10            thousands            thousands     absolute  ### ### ##0        1</span>
-<span class="co">#&gt;    ComponentID IndicatorTypeID IndicatorClassID dimVariant dimTime IsAnnual</span>
-<span class="co">#&gt; 1            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 2            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 3            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 4            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 5            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 6            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 7            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 8            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 9            4              38                3      FALSE    TRUE    FALSE</span>
-<span class="co">#&gt; 10           4              38                3      FALSE    TRUE    FALSE</span>
+<span class="co">#&gt;    UnitScaling       UnitShortLabel        UnitLongLabel VariableType</span>
+<span class="co">#&gt; 1         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 2         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 3         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 4            1      per female dead      per female dead     relative</span>
+<span class="co">#&gt; 5         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 6         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 7         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 8         1000            thousands            thousands     absolute</span>
+<span class="co">#&gt; 9            1 per female surviving per female surviving     relative</span>
+<span class="co">#&gt; 10        1000            thousands            thousands     absolute</span>
+<span class="co">#&gt;    FormatString DomainID ComponentID IndicatorTypeID IndicatorClassID dimTime</span>
+<span class="co">#&gt; 1   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 2   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 3   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 4         ##0.0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 5   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 6   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 7   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 8   ### ### ##0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 9         ##0.0        1           4              38                3    TRUE</span>
+<span class="co">#&gt; 10  ### ### ##0        1           4              38                3    TRUE</span>
 <span class="co">#&gt;    dimAge AgeUnit AgeObservationPlanID AgeID AgeStart AgeSpan IsComplete dimSex</span>
 <span class="co">#&gt; 1    TRUE    Year                    5     0       NA      -9          0   TRUE</span>
 <span class="co">#&gt; 2    TRUE    Year                    5     0       NA      -9          0   TRUE</span>
@@ -1610,28 +1495,28 @@
 <span class="co">#&gt; 8    TRUE    Year                    5     0       NA      -9          0   TRUE</span>
 <span class="co">#&gt; 9    TRUE    Year                    5     0       NA      -9          0   TRUE</span>
 <span class="co">#&gt; 10   TRUE    Year                    5     0       NA      -9          0   TRUE</span>
-<span class="co">#&gt;    SexID vwName tblName SourceTable SourceField ExcelTabName DefaultSubGroupID</span>
-<span class="co">#&gt; 1     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 2     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 3     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 4     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 5     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 6     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 7     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 8     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 9     NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt; 10    NA     NA      NA          NA          NA           NA                 2</span>
-<span class="co">#&gt;    AgeEnd IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
-<span class="co">#&gt; 1      NA                               38                         4</span>
-<span class="co">#&gt; 2      NA                               38                         4</span>
-<span class="co">#&gt; 3      NA                               38                         4</span>
-<span class="co">#&gt; 4      NA                               38                         4</span>
-<span class="co">#&gt; 5      NA                               38                         4</span>
-<span class="co">#&gt; 6      NA                               38                         4</span>
-<span class="co">#&gt; 7      NA                               38                         4</span>
-<span class="co">#&gt; 8      NA                               38                         4</span>
-<span class="co">#&gt; 9      NA                               38                         4</span>
-<span class="co">#&gt; 10     NA                               38                         4</span>
+<span class="co">#&gt;    SexID DefaultSubGroupID AgeEnd MinValue MaxValue</span>
+<span class="co">#&gt; 1     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 2     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 3     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 4     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 5     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 6     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 7     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 8     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 9     NA                 2     NA       NA       NA</span>
+<span class="co">#&gt; 10    NA                 2     NA       NA       NA</span>
+<span class="co">#&gt;    IndicatorType.PK_IndicatorTypeID IndicatorType.ComponentID</span>
+<span class="co">#&gt; 1                                38                         4</span>
+<span class="co">#&gt; 2                                38                         4</span>
+<span class="co">#&gt; 3                                38                         4</span>
+<span class="co">#&gt; 4                                38                         4</span>
+<span class="co">#&gt; 5                                38                         4</span>
+<span class="co">#&gt; 6                                38                         4</span>
+<span class="co">#&gt; 7                                38                         4</span>
+<span class="co">#&gt; 8                                38                         4</span>
+<span class="co">#&gt; 9                                38                         4</span>
+<span class="co">#&gt; 10                               38                         4</span>
 <span class="co">#&gt;    IndicatorType.ComponentName               IndicatorType.Name</span>
 <span class="co">#&gt; 1                    Mortality Children deaths by age of mother</span>
 <span class="co">#&gt; 2                    Mortality Children deaths by age of mother</span>
@@ -1653,7 +1538,7 @@
 <span class="co">#&gt; 7                       NA                      22                        NA</span>
 <span class="co">#&gt; 8                       NA                      22                        NA</span>
 <span class="co">#&gt; 9                       NA                      22                        NA</span>
-<span class="co">#&gt; 10                      NA                      22                        NA</span></pre></div>
+<span class="co">#&gt; 10                      NA                      22                        NA</span></code></pre></div>
 <p>This approach to exploring indicators is much more rich that selecting indicators manually with the <code>get_*</code> functions.</p>
 </div>
   </div>

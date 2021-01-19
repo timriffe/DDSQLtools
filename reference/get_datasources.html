@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DDSQLtools: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Format — DDSQLtools • DDSQLtools</title>
+<title>Get information about available data sources — get_datasources • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="DDSQLtools: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Format — DDSQLtools" />
-<meta property="og:description" content="Make the DemoTools package click into the UNPD workflow." />
+<meta property="og:title" content="Get information about available data sources — get_datasources" />
+<meta property="og:description" content="Get information about available data sources" />
 
 
 
@@ -120,35 +120,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>DDSQLtools: Wrappers for DemoTools Functions to Work with UNPD SQL Internal Data Format</h1>
-    <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/DDSQLtools-package.R'><code>R/DDSQLtools-package.R</code></a></small>
-    <div class="hidden name"><code>DDSQLtools.Rd</code></div>
+    <h1>Get information about available data sources</h1>
+    <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/GetInformation.R'><code>R/GetInformation.R</code></a></small>
+    <div class="hidden name"><code>get_datasources.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make the DemoTools package click into the UNPD workflow.</p>
+    <p>Get information about available data sources</p>
     </div>
 
+    <pre class="usage"><span class='fu'>get_datasources</span><span class='op'>(</span>save_file <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>save_file</th>
+      <td><p>Logical. Choose whether or not to save the data in an
+external <code>.Rdata</code> file in the working directory. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments that might define the path to data. All arguments
+accept a numeric code which is interpreted as the code of the specific
+product requested. Alternatively, you can supply the equivalent product
+name as a string which is case insensitive (see examples). Handle with
+care, this is important! For a list of all options available, see the
+parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords</p></td>
+    </tr>
+    </table>
 
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>all_ds</span> <span class='op'>&lt;-</span> <span class='fu'>get_datasources</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>all_ds</span><span class='op'>)</span>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://github.com/timriffe/DDSQLtools'>https://github.com/timriffe/DDSQLtools</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/timriffe/DDSQLtools/issues'>https://github.com/timriffe/DDSQLtools/issues</a></p></li>
-</ul>
+<span class='va'>limit_ds</span> <span class='op'>&lt;-</span> <span class='fu'>get_datasources</span><span class='op'>(</span>years <span class='op'>=</span> <span class='fl'>1981</span><span class='op'>)</span>
 
-</div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>limit_ds</span><span class='op'>)</span>
 
-    <p><strong>Maintainer</strong>: Tim Riffe <a href='mailto:tim.riffe@gmail.com'>tim.riffe@gmail.com</a> (<a href='https://orcid.org/0000-0002-2673-4622'>ORCID</a>)</p>
-<p>Authors:</p><ul>
-<li><p>Marius D. Pascariu (<a href='https://orcid.org/0000-0002-2568-6489'>ORCID</a>)</p></li>
-<li><p>Jorge Cimentada (<a href='https://orcid.org/0000-0001-5594-1156'>ORCID</a>)</p></li>
-</ul>
+<span class='va'>shortn_ds</span> <span class='op'>&lt;-</span> <span class='fu'>get_datasources</span><span class='op'>(</span>shortNames <span class='op'>=</span> <span class='st'>"DYB"</span><span class='op'>)</span>
 
-
-
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>shortn_ds</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

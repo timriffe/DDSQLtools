@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download data from UNPD portal — get_recorddata • DDSQLtools</title>
+<title>Download structuredDataRecords data from the UNPD portal — get_recorddata • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download data from UNPD portal — get_recorddata" />
-<meta property="og:description" content="Download data from UNPD portal" />
+<meta property="og:title" content="Download structuredDataRecords data from the UNPD portal — get_recorddata" />
+<meta property="og:description" content="Download structuredDataRecords data from the UNPD portal" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.01</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,7 +103,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/timriffe/DDSQLtools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,13 +120,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download data from UNPD portal</h1>
+    <h1>Download structuredDataRecords data from the UNPD portal</h1>
     <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/GetInformation.R'><code>R/GetInformation.R</code></a></small>
     <div class="hidden name"><code>get_recorddata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download data from UNPD portal</p>
+    <p>Download structuredDataRecords data from the UNPD portal</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_recorddata</span><span class='op'>(</span>save_file <span class='op'>=</span> <span class='cn'>FALSE</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -136,9 +136,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>save_file</th>
-      <td><p>Logical. Choose whether or not to save the data in an external 
-<code>.Rdata</code> file in the working directory. Default: 
-<code>FALSE</code>;</p></td>
+      <td><p>Logical. Choose whether or not to save the data in an
+external <code>.Rdata</code> file in the working directory. Default: <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -151,42 +150,25 @@ for faster queries. By default set to TRUE.</p></td>
 accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
-care, this is important! The following options are available:</p>
-<ul>
-<li><p><code>dataProcessTypeIds</code> -- Data process Type ID as defined by the UNPD. 
-  Run the <code><a href='get_dataprocess.html'>get_dataprocess</a></code> function to see the available 
-  options;</p></li>
-<li><p><code>dataProcessIds</code> -- Data process ID as defined by the UNPD. 
-  Run the <code><a href='get_dataprocessid.html'>get_dataprocessid</a></code> function to see the available 
-  options;</p></li>
-<li><p><code>startYear</code> -- Start year. Default: NULL;</p></li>
-<li><p><code>endYear</code> -- End year. Default: NULL;</p></li>
-<li><p><code>indicatorTypeIds</code> -- Indicator type ID as defined by the UNPD. 
-  Run the <code><a href='get_indicatortypes.html'>get_indicatortypes</a></code> function to see the available options;</p></li>
-<li><p><code>indicatorIds</code> -- Indicator ID as defined by the UNPD. 
-  Run the <code><a href='get_iitypes.html'>get_iitypes</a></code> function to see the available options;</p></li>
-<li><p><code>isComplete</code> -- isComplete is set to `2` ('Total') by default on the API;</p></li>
-<li><p><code>locIds</code> -- Location ID as defined by the UNPD. Run the
-  <code><a href='get_locations.html'>get_locations</a></code> function to see the available options;</p></li>
-<li><p><code>locAreaTypeIds</code> -- Location area type ID as defined by the UNPD. 
-  Run the <code><a href='get_locationtypes.html'>get_locationtypes</a></code> function to see the available 
-  options;</p></li>
-<li><p><code>subGroupIds</code> -- SubGroup ID as defined by the UNPD. Run the 
-  <code><a href='get_subgroups.html'>get_subgroups</a></code> function to see the available options;</p></li>
-<li><p><code>addDefault</code> -- Logical. Default: FALSE;</p></li>
-<li><p><code>includeDependencies</code> -- Logical. Default: FALSE;</p></li>
-<li><p><code>includeFormerCountries</code> -- Logical. Default: FALSE.</p></li>
-</ul></td>
+care, this is important! For a list of all options available, see the
+parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>get_recorddata</code> allows the user to supply string names for all
+    <p><code>get_recorddata</code> directly queries the endpoint
+<code>structuredDataRecords</code>. For a list of all options available for this
+endpoint, see the parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords</p>
+<p><code>get_recorddata</code> allows the user to supply string names for all
 arguments that have equivalent <code>get_*</code> functions. For example,
 <code>get_iitypes</code> for <code>indicatorIds</code>. The string used for all
 of these arguments should be the one from the column <code>Name</code> in
 the response from the <code>get_*</code> functions.</p>
+<p>By default, all results exclude columns related to the uncertainty
+of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+By setting the argument <code>includeUncertainty = TRUE</code>, the uncertainty
+fields will be included in the final data frame.</p>
 <p>Once the data is read from the API, some transformations are applied:</p>
 <ul>
 <li><p><code>TimeStart</code> and <code>TimeEnd</code> are returned with format <code>'DD/MM/YYYY'</code></p></li>
@@ -194,8 +176,8 @@ the response from the <code>get_*</code> functions.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
 <span class='co'>#  You can provide all strings, all codes, or a combination of both</span>
 <span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='st'>"Census"</span>,
                    indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
@@ -208,14 +190,40 @@ the response from the <code>get_*</code> functions.</p>
 
 <span class='co'># Same thing only with codes</span>
 <span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,   <span class='co'># Census</span>
-                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged </span>
+                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged</span>
                    locIds <span class='op'>=</span> <span class='fl'>818</span>,         <span class='co'># Egypt</span>
-                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,   <span class='co'># Whole area </span>
+                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,   <span class='co'># Whole area</span>
                    subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,      <span class='co'># Total or All groups</span>
                    isComplete <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>       <span class='co'># Age Distribution: Abridged</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+
+<span class='co'># Same thing but limited to DataSourceYears</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
+                   locIds <span class='op'>=</span> <span class='fl'>818</span>,
+                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   isComplete <span class='op'>=</span> <span class='fl'>0</span>,
+                   dataSourceYears <span class='op'>=</span> <span class='fl'>1980</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+
+<span class='co'># Same thing but limited to DataSourceShortNames and including the uncertainty</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
+                   locIds <span class='op'>=</span> <span class='fl'>818</span>,
+                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
+                   isComplete <span class='op'>=</span> <span class='fl'>0</span>,
+                   dataSourceShortNames <span class='op'>=</span> <span class='st'>"OECD 1980"</span>,
+                   includeUncertainty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+
 <span class='op'>}</span>
+
+
 
 </div></pre>
   </div>
