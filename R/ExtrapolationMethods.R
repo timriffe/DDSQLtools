@@ -1,6 +1,8 @@
 #' Wrapper for Extrapolating Old-Age Human Mortality Data Using
 #' Various Mortality Models ("laws")
 #' @inheritParams DemoTools::lt_rule_m_extrapolate
+#' @param opt.method Optimization method to use. Default set to 'LF2'. See
+#' \code{DemoTools::lt_rule_m_extrapolate} for all available options.
 #' @inheritParams do_lifetable
 #' @inherit do_lifetable return
 #' @source The function is based on the methods implemented in the
@@ -40,6 +42,7 @@ do_extrapolate <- function(X,
                                    "beard_makeham",
                                    "quadratic"),
                            verbose = TRUE,
+                           opt.method = "LF2",
                            ...) {
 
   A   <- X$DataValue
@@ -52,6 +55,7 @@ do_extrapolate <- function(X,
                              x_fit = x_fit,
                              x_extr = x_extr,
                              law = law,
+                             opt.method = opt.method,
                              ...)
 
   age_names <- as.numeric(names(E$values))
