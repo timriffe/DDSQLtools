@@ -158,7 +158,7 @@ mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
 validate_recordddata(mixed_codes)  # validate
 
 # After changing the unpd server
-options(unpd_server = "http://24.239.36.16:9654/un3/api/")
+options(unpd_server = "https://popdiv.dfs.un.org/DemoData/api/")
 
 mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
                               indicatorTypeIds = 8, # Population by age and sex - abridged 
@@ -185,7 +185,7 @@ test_that("get_recorddata returns error when setting wrong server", {
     )
   )
 
-  options(unpd_server = "http://24.239.36.16:9654/un3/api/")
+  options(unpd_server = "https://popdiv.dfs.un.org/DemoData/api/")
 })
 
 test_that("get_recorddata with codes gives same output with strings", {
@@ -266,7 +266,7 @@ test_that("Looking up wrong input throws errors in get_recorddata", {
                fixed = TRUE)
 })
 
-ids <- "35444654"
+ids <- "183578537"
 res <- extract_data(ids)
 validate_read_API(res)
 
@@ -317,7 +317,6 @@ test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY
 test_that("isComplete is set to 'Total' by default", {
   myLocations <- 28
   # A request without specifying `isComplete`
-
   births <- get_recorddata(dataProcessTypeIds = 9,
                            startYear = 1920,
                            endYear = 2020,
