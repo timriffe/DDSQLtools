@@ -1,7 +1,7 @@
 #' API Link Generator Function
 #'
 #' @param server The path to the database. Check if the "unpd_server" option is
-#' is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}
+#' is set. If not, defaults to \code{"https://popdiv.dfs.un.org/DemoData/api/"}
 #'
 #' @param type Type of data. Various options are available.
 #'
@@ -62,7 +62,7 @@
 #' L5
 #' }
 #' @keywords internal
-linkGenerator <- function(server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
+linkGenerator <- function(server = getOption("unpd_server", "https://popdiv.dfs.un.org/DemoData/api/"),
                           type,
                           verbose,
                           ...) {

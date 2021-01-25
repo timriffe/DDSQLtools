@@ -2,10 +2,10 @@
 % Please edit documentation in R/ExtrapolationMethods.R
 \name{do_extrapolate}
 \alias{do_extrapolate}
-\title{Wrapper for Extrapolating Old-Age Human Mortality Data Using 
+\title{Wrapper for Extrapolating Old-Age Human Mortality Data Using
 Various Mortality Models ("laws")}
 \source{
-The function is based on the methods implemented in the 
+The function is based on the methods implemented in the
 \code{MortalityLaws} R package.
 }
 \usage{
@@ -16,6 +16,7 @@ do_extrapolate(
   law = c("kannisto", "kannisto_makeham", "makeham", "gompertz", "ggompertz", "beard",
     "beard_makeham", "quadratic"),
   verbose = TRUE,
+  opt.method = "LF2",
   ...
 )
 }
@@ -43,6 +44,9 @@ The following options are available: \itemize{
 \item{verbose}{Logical value. If \code{TRUE} messages are printed
 as the method is applied. Set \code{verbose = FALSE} to silent the function.}
 
+\item{opt.method}{Optimization method to use. Default set to 'LF2'. See
+\code{DemoTools::lt_rule_m_extrapolate} for all available options.}
+
 \item{...}{Other arguments to be passed on to the
 \code{\link[MortalityLaws]{MortalityLaw}} function.}
 }
@@ -51,13 +55,13 @@ A data.frame having the same number of columns as input data.
 Different numbers of rows. UN format.
 }
 \description{
-Wrapper for Extrapolating Old-Age Human Mortality Data Using 
+Wrapper for Extrapolating Old-Age Human Mortality Data Using
 Various Mortality Models ("laws")
 }
 \examples{
 # Example 1 - abridged data
 # Extrapolate old-age mortality data
-E <- do_extrapolate(X = DDSQLtools.data$Mx5,           # data - UN format 
+E <- do_extrapolate(X = DDSQLtools.data$Mx5,           # data - UN format
                     x_fit = c(75, 80, 85, 90),         # ages to be used in fitting
                     x_extr = c(90, 95, 100, 105, 110), # ages for which the extrapolation is applied
                     law = "kannisto")                  # the model

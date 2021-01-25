@@ -118,12 +118,12 @@ By default, the results from `get_recorddata` exclude any uncertainty columns su
 
 #### Change the IP of the UNPD SQL API
 
-Currently the IP of the server is automatically set but can be changed simply by adding `options(unpd_server = "your server")` to the beginning of your script:
+Currently the IP of the server is automatically set (to `https://popdiv.dfs.un.org/DemoData/api/`) but can be changed simply by adding `options(unpd_server = "your server")` to the beginning of your script:
 
 ```{r, eval = FALSE}
 # Change this to the desired server. This is the server
 # which is set by default.
-options(unpd_server = "http://24.239.36.16:9654/un3/api/")
+options(unpd_server = "https://popdiv.dfs.un.org/DemoData/api/")
 
 get_recorddata(dataProcessTypeIds = "Register",
                indicatorTypeIds = "Deaths by age and sex",
