@@ -115,6 +115,20 @@ get_indicatortypes <- function(save_file = FALSE, ...) {
   read_API("indicatortypes", save_file, ...)
 }
 
+#' Get information about available dataTypes (DataTypeID)
+#' @inheritParams read_API
+#' @examples
+#'
+#' \dontrun{
+#' # Check which datatypes are available:
+#' P <- get_datatypes()
+#' head(P)
+#' }
+#' @export
+get_datatypes <- function(save_file = FALSE, ...) {
+  read_API("datatypes", save_file, ...)
+}
+
 #' Get information about available indicators (IndicatorID)
 #' @inheritParams read_API
 #' @examples
