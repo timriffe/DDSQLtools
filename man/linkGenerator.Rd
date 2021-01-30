@@ -5,7 +5,7 @@
 \title{API Link Generator Function}
 \usage{
 linkGenerator(
-  server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
+  server = getOption("unpd_server", "https://popdiv.dfs.un.org/DemoData/api/"),
   type,
   verbose,
   ...
@@ -13,7 +13,7 @@ linkGenerator(
 }
 \arguments{
 \item{server}{The path to the database. Check if the "unpd_server" option is
-is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}}
+is set. If not, defaults to \code{"https://popdiv.dfs.un.org/DemoData/api/"}}
 
 \item{type}{Type of data. Various options are available.}
 
