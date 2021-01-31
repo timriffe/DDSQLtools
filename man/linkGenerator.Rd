@@ -5,7 +5,7 @@
 \title{API Link Generator Function}
 \usage{
 linkGenerator(
-  server = getOption("unpd_server", "http://24.239.36.16:9654/un3/api/"),
+  server = getOption("unpd_server", "https://popdiv.dfs.un.org/DemoData/api/"),
   type,
   verbose,
   ...
@@ -13,7 +13,7 @@ linkGenerator(
 }
 \arguments{
 \item{server}{The path to the database. Check if the "unpd_server" option is
-is set. If not, defaults to \code{"http://24.239.36.16:9654/un2/api/"}}
+is set. If not, defaults to \code{"https://popdiv.dfs.un.org/DemoData/api/"}}
 
 \item{type}{Type of data. Various options are available.}
 
@@ -28,7 +28,7 @@ accept a numeric code which is interpreted as the code of the specific
 product requested. Alternatively, you can supply the equivalent product
 name as a string which is case insensitive (see examples). Handle with
 care, this is important! For a list of all options available, see the
-parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords}
+parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/index#/}
 }
 \description{
 API Link Generator Function

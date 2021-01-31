@@ -16,7 +16,7 @@
 #' product requested. Alternatively, you can supply the equivalent product
 #' name as a string which is case insensitive (see examples). Handle with
 #' care, this is important! For a list of all options available, see the
-#' parameters for each endpoint at http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+#' parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/index#/
 #'
 #' @details The link generator is based on the structure of the database
 #' created by Dennis Butler (in late 2018). To change the server used to make
