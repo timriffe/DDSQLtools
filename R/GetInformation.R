@@ -264,13 +264,13 @@ get_datacatalog <- function(save_file = FALSE, ...) {
     merge(
       DataCatalog,
       Locations,
-      by = "LocID",
+      by = c("LocID", "LocName"),
       all.x = TRUE,
       all.y = FALSE
     )
 
   ind <- which(grepl("PK_DataCatalogID", names(DataCatalog)))
-  names(DataCatalog)[4] <- "DataCatalogID"
+  names(DataCatalog)[ind] <- "DataCatalogID"
 
   cols_select <- c("DataCatalogID",
                    "LocID",
