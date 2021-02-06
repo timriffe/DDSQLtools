@@ -37,9 +37,8 @@ D <- get_dataprocesstype()
 validate_read_API(D)  # validate
 
 # ------------------------------------------
-## TODO: Dennis needs to fix this endpoint for it to work
-## D <- get_datacatalog()
-## validate_read_API(D)  # validate
+D <- get_datacatalog()
+validate_read_API(D)  # validate
 
 # ------------------------------------------
 S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
