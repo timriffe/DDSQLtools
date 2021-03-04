@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Downloading-UNPD-data-into-R: Downloading-UNPD-data-into-R.html
-last_built: 2021-03-03T00:33Z
+last_built: 2021-03-04T00:36Z
 urls:
   reference: http://pkgdown.r-lib.org/reference
   article: http://pkgdown.r-lib.org/articles
