@@ -116,6 +116,38 @@ head(oman)
 
 By default, the results from `get_recorddata` exclude any uncertainty columns such as `StandardErrorValue`, `ConfidenceInterval`, etc. By setting `includeUncertainty = TRUE`, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to `StandardErrorValue`, the user can quickly see the uncertainty columns.
 
+#### Additional queries with dataTypeGroupIds and dataTypeGroupId2s
+
+`get_recorddataadditional` allows to use additional arguments such as `dataTypeGroupIds` and `dataTypeGroupId2s`.For a list of all arguments you can use, see [here](https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecordsAdditional).  For example:
+
+```{r, eval = FALSE}
+
+## For dataTypeGroupIds
+dt <-
+  get_recorddataadditional(
+    dataTypeGroupIds = "Direct", # or 3
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+## For dataTypeGroupId2s
+dt <-
+  get_recorddataadditional(
+    dataTypeGroupId2s = "Population (sample tabulation)", # or 11
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+```
+
+`get_datatypes` can show you which `dataTypeIds` are within the umbrella of aggregated categories such as `dataTypeGroupIds` and `dataTypeGroupId2s`.
+
 #### Change the IP of the UNPD SQL API
 
 Currently the IP of the server is automatically set (to `https://popdiv.dfs.un.org/DemoData/api/`) but can be changed simply by adding `options(unpd_server = "your server")` to the beginning of your script:

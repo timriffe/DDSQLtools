@@ -45,3 +45,41 @@ Once the data is read from the API, some transformations are applied:
 \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
 }
 }
+\examples{
+\dontrun{
+
+# You can do pretty much all queries you would do with get_recorddata:
+Y <- get_recorddata(
+  dataProcessTypeIds = "Census",
+  indicatorTypeIds = 8, # and support numeric of string names
+  locIds = "egypt", # all arguments are case insensitive
+  locAreaTypeIds = "Whole area",
+  subGroupIds = "Total or All groups",
+  isComplete = "Abridged"
+)
+
+
+# But there's additional parameters such as dataTypeGroupIds or
+dataTypeGroupId2s:
+dt <-
+  get_recorddataadditional(
+    dataTypeGroupIds = "Direct", # or 3
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+
+dt <-
+  get_recorddataadditional(
+    dataTypeGroupId2s = "Population (sample tabulation)", # or 11
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+}
+}
