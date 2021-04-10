@@ -167,6 +167,13 @@ transformations (convert dates to date columns, renaming columns, etc...).</p>
 <span class='co'># Filter using locIds and DataProcessTypeIds</span>
 <span class='va'>dc</span> <span class='op'>&lt;-</span> <span class='fu'>get_datacatalog</span><span class='op'>(</span>locIds <span class='op'>=</span> <span class='fl'>76</span>, dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 
+
+<span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='fu'>get_datacatalog</span><span class='op'>(</span>isSubnational <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span>
+
+<span class='va'>t3</span> <span class='op'>&lt;-</span> <span class='fu'>get_datacatalog</span><span class='op'>(</span>isSubnational <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>t3</span><span class='op'>)</span>
+
 <span class='op'>}</span>
 </div></pre>
   </div>

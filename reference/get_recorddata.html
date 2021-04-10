@@ -179,51 +179,56 @@ fields will be included in the final data frame.</p>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'>#  You can provide all strings, all codes, or a combination of both</span>
-<span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='st'>"Census"</span>,
-                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
-                   locIds <span class='op'>=</span> <span class='st'>"egypt"</span>, <span class='co'># all arguments are case insensitive</span>
-                   locAreaTypeIds <span class='op'>=</span> <span class='st'>"Whole area"</span>,
-                   subGroupIds <span class='op'>=</span> <span class='st'>"Total or All groups"</span>,
-                   isComplete <span class='op'>=</span> <span class='st'>"Abridged"</span><span class='op'>)</span>
+<span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>
+  dataProcessTypeIds <span class='op'>=</span> <span class='st'>"Census"</span>,
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># and support numeric of string names</span>
+  locIds <span class='op'>=</span> <span class='st'>"egypt"</span>, <span class='co'># all arguments are case insensitive</span>
+  locAreaTypeIds <span class='op'>=</span> <span class='st'>"Whole area"</span>,
+  subGroupIds <span class='op'>=</span> <span class='st'>"Total or All groups"</span>,
+  isComplete <span class='op'>=</span> <span class='st'>"Abridged"</span>
+<span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
 
 <span class='co'># Same thing only with codes</span>
-<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,   <span class='co'># Census</span>
-                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged</span>
-                   locIds <span class='op'>=</span> <span class='fl'>818</span>,         <span class='co'># Egypt</span>
-                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,   <span class='co'># Whole area</span>
-                   subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,      <span class='co'># Total or All groups</span>
-                   isComplete <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>       <span class='co'># Age Distribution: Abridged</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>
+  dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># Census</span>
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex - abridged</span>
+  locIds <span class='op'>=</span> <span class='fl'>818</span>, <span class='co'># Egypt</span>
+  locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># Whole area</span>
+  subGroupIds <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># Total or All groups</span>
+  isComplete <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span> <span class='co'># Age Distribution: Abridged</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
 
 <span class='co'># Same thing but limited to DataSourceYears</span>
-<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
-                   locIds <span class='op'>=</span> <span class='fl'>818</span>,
-                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   isComplete <span class='op'>=</span> <span class='fl'>0</span>,
-                   dataSourceYears <span class='op'>=</span> <span class='fl'>1980</span><span class='op'>)</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>
+  dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
+  locIds <span class='op'>=</span> <span class='fl'>818</span>,
+  locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
+  isComplete <span class='op'>=</span> <span class='fl'>0</span>,
+  dataSourceYears <span class='op'>=</span> <span class='fl'>1980</span>
+<span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
 
 <span class='co'># Same thing but limited to DataSourceShortNames and including the uncertainty</span>
-<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
-                   locIds <span class='op'>=</span> <span class='fl'>818</span>,
-                   locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
-                   isComplete <span class='op'>=</span> <span class='fl'>0</span>,
-                   dataSourceShortNames <span class='op'>=</span> <span class='st'>"OECD 1980"</span>,
-                   includeUncertainty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>
+  dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
+  locIds <span class='op'>=</span> <span class='fl'>818</span>,
+  locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
+  isComplete <span class='op'>=</span> <span class='fl'>0</span>,
+  dataSourceShortNames <span class='op'>=</span> <span class='st'>"OECD 1980"</span>,
+  includeUncertainty <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
-
 <span class='op'>}</span>
-
-
 
 </div></pre>
   </div>

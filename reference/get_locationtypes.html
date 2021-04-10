@@ -155,9 +155,11 @@ parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/in
     <pre class="examples"><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Check what subgroups are available for:</span>
-<span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fu'>get_locationtypes</span><span class='op'>(</span>indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex indicator;</span>
-                      locIds <span class='op'>=</span> <span class='st'>"egypt"</span>,
-                      isComplete <span class='op'>=</span> <span class='st'>"abridged"</span><span class='op'>)</span>
+<span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fu'>get_locationtypes</span><span class='op'>(</span>
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>, <span class='co'># Population by age and sex indicator;</span>
+  locIds <span class='op'>=</span> <span class='st'>"egypt"</span>,
+  isComplete <span class='op'>=</span> <span class='st'>"abridged"</span>
+<span class='op'>)</span>
 <span class='va'>P</span>
 <span class='op'>}</span>
 </div></pre>

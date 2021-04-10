@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get information about available locations (LocID) — get_locations • DDSQLtools</title>
+<title>Download structuredDataRecordsAdditional data from the UNPD portal — get_recorddataadditional • DDSQLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get information about available locations (LocID) — get_locations" />
-<meta property="og:description" content="Get information about available locations (LocID)" />
+<meta property="og:title" content="Download structuredDataRecordsAdditional data from the UNPD portal — get_recorddataadditional" />
+<meta property="og:description" content="Download structuredDataRecordsAdditional data from the UNPD portal" />
 
 
 
@@ -120,16 +120,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get information about available locations (LocID)</h1>
+    <h1>Download structuredDataRecordsAdditional data from the UNPD portal</h1>
     <small class="dont-index">Source: <a href='https://github.com/timriffe/DDSQLtools/blob/master/R/GetInformation.R'><code>R/GetInformation.R</code></a></small>
-    <div class="hidden name"><code>get_locations.Rd</code></div>
+    <div class="hidden name"><code>get_recorddataadditional.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get information about available locations (LocID)</p>
+    <p>Download structuredDataRecordsAdditional data from the UNPD portal</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_locations</span><span class='op'>(</span>save_file <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_recorddataadditional</span><span class='op'>(</span>save_file <span class='op'>=</span> <span class='cn'>FALSE</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +138,11 @@
       <th>save_file</th>
       <td><p>Logical. Choose whether or not to save the data in an
 external <code>.Rdata</code> file in the working directory. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to print the translated query from strings to digits
+for faster queries. By default set to TRUE.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -150,18 +155,28 @@ parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/in
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>get_recorddataadditional</code> directly queries the endpoint
+<code>structuredDataRecordsadditional</code>. For a list of all options available for this
+endpoint, see the parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords</p>
+<p><code>get_recorddataadditional</code> allows the user to supply string names for all
+arguments that have equivalent <code>get_*</code> functions. For example,
+<code>get_iitypes</code> for <code>indicatorIds</code>. The string used for all
+of these arguments should be the one from the column <code>Name</code> in
+the response from the <code>get_*</code> functions.</p>
+<p>By default, all results exclude columns related to the uncertainty
+of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+By setting the argument <code>includeUncertainty = TRUE</code>, the uncertainty
+fields will be included in the final data frame.</p>
+<p>Once the data is read from the API, some transformations are applied:</p>
+<ul>
+<li><p><code>TimeStart</code> and <code>TimeEnd</code> are returned with format <code>'DD/MM/YYYY'</code></p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>L</span> <span class='op'>&lt;-</span> <span class='fu'>get_locations</span><span class='op'>(</span>
-  addDefault <span class='op'>=</span> <span class='st'>"false"</span>,
-  includeDependencies <span class='op'>=</span> <span class='st'>"false"</span>,
-  includeFormerCountries <span class='op'>=</span> <span class='st'>"false"</span>
-<span class='op'>)</span>
-<span class='va'>L</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
