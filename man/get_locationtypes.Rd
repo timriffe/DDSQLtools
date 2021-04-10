@@ -24,9 +24,11 @@ Get information about available location types (LocAreaTypeID)
 
 \dontrun{
 # Check what subgroups are available for:
-P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
-                      locIds = "egypt",
-                      isComplete = "abridged")
+P <- get_locationtypes(
+  indicatorTypeIds = 8, # Population by age and sex indicator;
+  locIds = "egypt",
+  isComplete = "abridged"
+)
 P
 }
 }

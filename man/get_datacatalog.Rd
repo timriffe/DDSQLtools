@@ -35,6 +35,5 @@ head(dc[, c("DataCatalogID", "DataProcessType", "LocName")])
 
 # Filter using locIds and DataProcessTypeIds
 dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
-
 }
 }

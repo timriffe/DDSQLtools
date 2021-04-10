@@ -23,11 +23,13 @@ Get information about available details for a given series of data
 \examples{
 \dontrun{
 # You can provide all strings, all codes, or a combination of both
-G <- get_seriesdata(dataProcessTypeIds = 0:15, # possible processes
-                   indicatorTypeIds = 25,    # M[x]
-                   locIds = "Egypt",             # Egypt
-                   locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
-                   subGroupIds = 2)
+G <- get_seriesdata(
+  dataProcessTypeIds = 0:15, # possible processes
+  indicatorTypeIds = 25, # M[x]
+  locIds = "Egypt", # Egypt
+  locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
+  subGroupIds = 2
+)
 G
 }
 }

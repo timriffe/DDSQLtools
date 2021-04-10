@@ -22,9 +22,11 @@ Get information about available locations (LocID)
 }
 \examples{
 \dontrun{
-L <- get_locations(addDefault = "false",
-                  includeDependencies = "false",
-                  includeFormerCountries = "false")
+L <- get_locations(
+  addDefault = "false",
+  includeDependencies = "false",
+  includeFormerCountries = "false"
+)
 L
 }
 

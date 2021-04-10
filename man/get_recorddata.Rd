@@ -49,50 +49,55 @@ Once the data is read from the API, some transformations are applied:
 \dontrun{
 
 #  You can provide all strings, all codes, or a combination of both
-Y <- get_recorddata(dataProcessTypeIds = "Census",
-                   indicatorTypeIds = 8, # and support numeric of string names
-                   locIds = "egypt", # all arguments are case insensitive
-                   locAreaTypeIds = "Whole area",
-                   subGroupIds = "Total or All groups",
-                   isComplete = "Abridged")
+Y <- get_recorddata(
+  dataProcessTypeIds = "Census",
+  indicatorTypeIds = 8, # and support numeric of string names
+  locIds = "egypt", # all arguments are case insensitive
+  locAreaTypeIds = "Whole area",
+  subGroupIds = "Total or All groups",
+  isComplete = "Abridged"
+)
 
 head(Y)
 
 # Same thing only with codes
-X <- get_recorddata(dataProcessTypeIds = 2,   # Census
-                   indicatorTypeIds = 8, # Population by age and sex - abridged
-                   locIds = 818,         # Egypt
-                   locAreaTypeIds = 2,   # Whole area
-                   subGroupIds = 2,      # Total or All groups
-                   isComplete = 0)       # Age Distribution: Abridged
+X <- get_recorddata(
+  dataProcessTypeIds = 2, # Census
+  indicatorTypeIds = 8, # Population by age and sex - abridged
+  locIds = 818, # Egypt
+  locAreaTypeIds = 2, # Whole area
+  subGroupIds = 2, # Total or All groups
+  isComplete = 0
+) # Age Distribution: Abridged
 
 head(X)
 
 # Same thing but limited to DataSourceYears
-X <- get_recorddata(dataProcessTypeIds = 2,
-                   indicatorTypeIds = 8,
-                   locIds = 818,
-                   locAreaTypeIds = 2,
-                   subGroupIds = 2,
-                   isComplete = 0,
-                   dataSourceYears = 1980)
+X <- get_recorddata(
+  dataProcessTypeIds = 2,
+  indicatorTypeIds = 8,
+  locIds = 818,
+  locAreaTypeIds = 2,
+  subGroupIds = 2,
+  isComplete = 0,
+  dataSourceYears = 1980
+)
 
 head(X)
 
 # Same thing but limited to DataSourceShortNames and including the uncertainty
-X <- get_recorddata(dataProcessTypeIds = 2,
-                   indicatorTypeIds = 8,
-                   locIds = 818,
-                   locAreaTypeIds = 2,
-                   subGroupIds = 2,
-                   isComplete = 0,
-                   dataSourceShortNames = "OECD 1980",
-                   includeUncertainty = TRUE)
+X <- get_recorddata(
+  dataProcessTypeIds = 2,
+  indicatorTypeIds = 8,
+  locIds = 818,
+  locAreaTypeIds = 2,
+  subGroupIds = 2,
+  isComplete = 0,
+  dataSourceShortNames = "OECD 1980",
+  includeUncertainty = TRUE
+)
 
 head(X)
-
 }
-
-
 
 }
