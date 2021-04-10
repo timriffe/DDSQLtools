@@ -31,6 +31,7 @@ build_filter(
   includeFormerCountries = NULL,
   includeDataIDs = NULL,
   includeUncertainty = NULL,
+  isSubnational = NULL,
   years = NULL,
   verbose
 )

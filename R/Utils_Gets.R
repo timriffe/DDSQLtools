@@ -149,6 +149,7 @@ build_filter <- function(dataTypeIds = NULL,
                          includeFormerCountries = NULL,
                          includeDataIDs = NULL,
                          includeUncertainty = NULL,
+                         isSubnational = NULL,
                          years = NULL,
                          verbose) {
 

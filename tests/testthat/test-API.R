@@ -40,6 +40,12 @@ validate_read_API(D) # validate
 D <- get_datacatalog()
 validate_read_API(D) # validate
 
+D <- get_datacatalog(isSubnational = TRUE)
+validate_read_API(D) # validate
+
+D <- get_datacatalog(isSubnational = FALSE)
+validate_read_API(D) # validate
+
 # ------------------------------------------
 S <- get_subgroups(
   indicatorTypeIds = 8, # Population by age and sex indicator;
