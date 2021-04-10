@@ -1,74 +1,80 @@
 test_that("The linkGenerator() works fine", {
-  
-  L <- linkGenerator(type = "structureddatarecords",
-                     locIds = 4,
-                     indicatorTypeIds = 8,
-                     dataProcessTypeIds = c(2, 6),
-                     verbose = FALSE)
-  
-  expect_output(print(L))                          # 1. Always expect an output;
-  expect_true(is.character(L))                     # 2. The output is of the class "character";
-  expect_error(linkGenerator(wrong_argument = 1))  # 3. Does not work with whatever argument in "...";
-  expect_error(linkGenerator(type = "countryy"))   # 4. Is sensitive to typos;
-  expect_equal(length(strsplit(L, split = " ")[[1]]), 1) # 5. Expect no spaces in the string.
+  L <- linkGenerator(
+    type = "structureddatarecords",
+    locIds = 4,
+    indicatorTypeIds = 8,
+    dataProcessTypeIds = c(2, 6),
+    verbose = FALSE
+  )
 
+  expect_output(print(L)) # 1. Always expect an output;
+  expect_true(is.character(L)) # 2. The output is of the class "character";
+  expect_error(linkGenerator(wrong_argument = 1)) # 3. Does not work with whatever argument in "...";
+  expect_error(linkGenerator(type = "countryy")) # 4. Is sensitive to typos;
+  expect_equal(length(strsplit(L, split = " ")[[1]]), 1) # 5. Expect no spaces in the string.
 })
 
 
 ## Test API functions
 validate_read_API <- function(Z) {
   test_that("The read_API works fine", {
-    expect_output(print(Z))                     # 1. Always expect an output;
-    expect_true(is.data.frame(Z))               # 2. The output is of the class "data.frame";
-    expect_true(ncol(Z) >= 2)                   # 3. The output has al least 2 columns;
-    expect_false(any(is.null(colnames(Z))))     # 4. All columns have names;
-    expect_true(nrow(Z) >= 1)                   # 5. The output has at least 1 rows
+    expect_output(print(Z)) # 1. Always expect an output;
+    expect_true(is.data.frame(Z)) # 2. The output is of the class "data.frame";
+    expect_true(ncol(Z) >= 2) # 3. The output has al least 2 columns;
+    expect_false(any(is.null(colnames(Z)))) # 4. All columns have names;
+    expect_true(nrow(Z) >= 1) # 5. The output has at least 1 rows
   })
 }
 
 validate_recordddata <- function(x) {
-  validate_read_API(x)  # validate
+  validate_read_API(x) # validate
   # Test there aren't any NA in DataCatalogID
   expect_true(!any(is.na(x$DataCatalogID)))
 }
 
 # ------------------------------------------
 D <- get_dataprocesstype()
-validate_read_API(D)  # validate
+validate_read_API(D) # validate
 
 # ------------------------------------------
 D <- get_datacatalog()
-validate_read_API(D)  # validate
+validate_read_API(D) # validate
 
 # ------------------------------------------
-S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
-                   locIds = 818,          # Egypt
-                   isComplete = 0)
-validate_read_API(S)  # validate
+S <- get_subgroups(
+  indicatorTypeIds = 8, # Population by age and sex indicator;
+  locIds = 818, # Egypt
+  isComplete = 0
+)
+validate_read_API(S) # validate
 
 # ------------------------------------------
-L <- get_locations(addDefault = "false",
-                   includeDependencies = "false",
-                   includeFormerCountries = "false")
-validate_read_API(L)  # validate
+L <- get_locations(
+  addDefault = "false",
+  includeDependencies = "false",
+  includeFormerCountries = "false"
+)
+validate_read_API(L) # validate
 
 # ------------------------------------------
-P <- get_locationtypes(indicatorTypeIds = 8,  
-                       locIds = 818,
-                       isComplete = 0)
-validate_read_API(P)  # validate
+P <- get_locationtypes(
+  indicatorTypeIds = 8,
+  locIds = 818,
+  isComplete = 0
+)
+validate_read_API(P) # validate
 
 # ------------------------------------------
 IT <- get_indicatortypes(addDefault = "false")
-validate_read_API(IT)  # validate
+validate_read_API(IT) # validate
 
 # ------------------------------------------
 IT <- get_iitypes(addDefault = "false")
-validate_read_API(IT)  # validate
+validate_read_API(IT) # validate
 
 # ------------------------------------------
 I <- get_indicators(addDefault = "false")
-validate_read_API(I)  # validate
+validate_read_API(I) # validate
 
 # ------------------------------------------
 ## TODO: Fix this test
@@ -76,15 +82,17 @@ validate_read_API(I)  # validate
 ## validate_read_API(I)  # validate
 
 # ------------------------------------------
-G <- get_seriesdata(dataProcessTypeIds = 2,
-                    indicatorTypeIds = 8,
-                    isComplete = 0,
-                    locIds = 4,
-                    locAreaTypeIds = 2,
-                    startYear = 1950,
-                    subGroupIds = 2)
+G <- get_seriesdata(
+  dataProcessTypeIds = 2,
+  indicatorTypeIds = 8,
+  isComplete = 0,
+  locIds = 4,
+  locAreaTypeIds = 2,
+  startYear = 1950,
+  subGroupIds = 2
+)
 
-validate_read_API(G)  # validate
+validate_read_API(G) # validate
 
 # ------------------------------------------
 
@@ -95,9 +103,11 @@ test_that("get_iitypes can subset correctly", {
 
   # Here I'm testing all argument combined. If they
   # work, it should be the same
-  x <- get_iitypes(componentIds = 4,
-                   indicatorTypeIds = 38,
-                   indicatorIds = 323)
+  x <- get_iitypes(
+    componentIds = 4,
+    indicatorTypeIds = 38,
+    indicatorIds = 323
+  )
   expect_equal(unique(x[["IndicatorType.ComponentID"]]), 4)
   expect_equal(unique(x[["IndicatorType.PK_IndicatorTypeID"]]), 38)
   expect_equal(unique(x[["PK_IndicatorID"]]), 323)
@@ -105,68 +115,80 @@ test_that("get_iitypes can subset correctly", {
 
 
 # ------------------------------------------
-X <- get_recorddata(dataProcessTypeIds = 2,   # Census
-                    indicatorTypeIds = 8, # Population by age and sex - abridged 
-                    locIds = 818,         # Egypt
-                    locAreaTypeIds = 2,   # Whole area 
-                    subGroupIds = 2,      # Total or All groups
-                    isComplete = 0)       # Age Distribution: Abridged
+X <- get_recorddata(
+  dataProcessTypeIds = 2, # Census
+  indicatorTypeIds = 8, # Population by age and sex - abridged
+  locIds = 818, # Egypt
+  locAreaTypeIds = 2, # Whole area
+  subGroupIds = 2, # Total or All groups
+  isComplete = 0
+) # Age Distribution: Abridged
 
-validate_recordddata(X)  # validate
+validate_recordddata(X) # validate
 
 # Check whether it successfully accepts strings rather than codes
-Y <- get_recorddata(dataProcessTypeIds = "Census",   # Estimate
-                    indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged 
-                    locIds = "Egypt",         # Egypt
-                    locAreaTypeIds = "Whole area",   # Whole area 
-                    subGroupIds = "Total or All groups",      # Total or All groups
-                    isComplete = "Abridged")       # Age Distribution: Abridged
+Y <- get_recorddata(
+  dataProcessTypeIds = "Census", # Estimate
+  indicatorTypeIds = "Population by age and sex", # Population by age and sex - abridged
+  locIds = "Egypt", # Egypt
+  locAreaTypeIds = "Whole area", # Whole area
+  subGroupIds = "Total or All groups", # Total or All groups
+  isComplete = "Abridged"
+) # Age Distribution: Abridged
 
 validate_recordddata(Y)
 
 # Check whether it successfully mixed cases
-mixed <- get_recorddata(dataProcessTypeIds = "census",   # Estimate
-                        indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged 
-                        locIds = "egypt",         # Egypt
-                        locAreaTypeIds = "Whole area",   # Whole area 
-                        subGroupIds = "Total or All groups",      # Total or All groups
-                        isComplete = "Abridged")       # Age Distribution: Abridged
+mixed <- get_recorddata(
+  dataProcessTypeIds = "census", # Estimate
+  indicatorTypeIds = "population by age and sex", # Population by age and sex - abridged
+  locIds = "egypt", # Egypt
+  locAreaTypeIds = "Whole area", # Whole area
+  subGroupIds = "Total or All groups", # Total or All groups
+  isComplete = "Abridged"
+) # Age Distribution: Abridged
 
-validate_recordddata(mixed)  # validate
+validate_recordddata(mixed) # validate
 
 # Check whether we can translate with dataProcessIds
-mixed_dataid <- get_recorddata(dataProcessIds = "Population and Housing Census",
-                               startYear = 1920,
-                               endYear = 2020,
-                               indicatorIds = 58,
-                               isComplete = 0,
-                               locIds = 4,
-                               locAreaTypeIds = 2,
-                               subGroupIds = 2)
+mixed_dataid <- get_recorddata(
+  dataProcessIds = "Population and Housing Census",
+  startYear = 1920,
+  endYear = 2020,
+  indicatorIds = 58,
+  isComplete = 0,
+  locIds = 4,
+  locAreaTypeIds = 2,
+  subGroupIds = 2
+)
 
-validate_recordddata(mixed_dataid)  # validate
+validate_recordddata(mixed_dataid) # validate
 
 # mixed with codes
-mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
-                              indicatorTypeIds = 8, # Population by age and sex - abridged 
-                              locIds = 818,         # Egypt
-                              locAreaTypeIds = "Whole area",   # Whole area 
-                              subGroupIds = "Total or All groups",      # Total or All groups
-                              isComplete = "Abridged")       # Age Distribution: Abridged
+mixed_codes <- get_recorddata(
+  dataProcessTypeIds = 2, # Census
+  indicatorTypeIds = 8, # Population by age and sex - abridged
+  locIds = 818, # Egypt
+  locAreaTypeIds = "Whole area", # Whole area
+  subGroupIds = "Total or All groups", # Total or All groups
+  isComplete = "Abridged"
+) # Age Distribution: Abridged
 
-validate_recordddata(mixed_codes)  # validate
+validate_recordddata(mixed_codes) # validate
 
 # After changing the unpd server
 options(unpd_server = "https://popdiv.dfs.un.org/DemoData/api/")
 
-mixed_codes <- get_recorddata(dataProcessTypeIds = 2,   # Census
-                              indicatorTypeIds = 8, # Population by age and sex - abridged 
-                              locIds = 818,         # Egypt
-                              locAreaTypeIds = "Whole area",   # Whole area 
-                              subGroupIds = "Total or All groups",      # Total or All groups
-                              isComplete = "Abridged")       # Age Distribution: Abridged
+mixed_codes <- get_recorddata(
+  dataProcessTypeIds = 2, # Census
+  indicatorTypeIds = 8, # Population by age and sex - abridged
+  locIds = 818, # Egypt
+  locAreaTypeIds = "Whole area", # Whole area
+  subGroupIds = "Total or All groups", # Total or All groups
+  isComplete = "Abridged"
+) # Age Distribution: Abridged
 
-validate_recordddata(mixed_codes)  # validate
+validate_recordddata(mixed_codes) # validate
 
 
 test_that("get_recorddata returns error when setting wrong server", {
@@ -175,12 +197,14 @@ test_that("get_recorddata returns error when setting wrong server", {
 
   expect_error(
     suppressWarnings(
-      get_recorddata(dataProcessTypeIds = 2,   # Census
-                     indicatorTypeIds = 8, # Population by age and sex - abridged 
-                     locIds = 818,         # Egypt
-                     locAreaTypeIds = "Whole area",   # Whole area 
-                     subGroupIds = "Total or All groups",      # Total or All groups
-                     isComplete = "Abridged")       # Age Distribution: Abridged
+      get_recorddata(
+        dataProcessTypeIds = 2, # Census
+        indicatorTypeIds = 8, # Population by age and sex - abridged
+        locIds = 818, # Egypt
+        locAreaTypeIds = "Whole area", # Whole area
+        subGroupIds = "Total or All groups", # Total or All groups
+        isComplete = "Abridged"
+      ) # Age Distribution: Abridged
     )
   )
 
@@ -235,7 +259,7 @@ validate_date <- function(res) {
 ##                         subGroupIds = 2) # Total
 
 ##   subset_names <- res[names(values_env$id_to_fact)]
-  
+
 ##   expect_true(
 ##     all(
 ##       vapply(subset_names, function(x) inherits(x, "haven_labelled"),
@@ -250,20 +274,24 @@ validate_date <- function(res) {
 
 test_that("Looking up wrong input throws errors in get_recorddata", {
   expect_error(get_recorddata(locIds = "Wrong country"),
-               regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
-               fixed = TRUE)
+    regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
+    fixed = TRUE
+  )
 
   expect_error(get_recorddata(indicatorTypeIds = "Wrong"),
-               regexp = "Location(s) 'Wrong' not found. Check get_indicatortypes()",
-               fixed = TRUE)
+    regexp = "Location(s) 'Wrong' not found. Check get_indicatortypes()",
+    fixed = TRUE
+  )
 
   expect_error(get_recorddata(subGroupIds = "Wrong"),
-               regexp = "Location(s) 'Wrong' not found. Check get_subgroups()",
-               fixed = TRUE)
+    regexp = "Location(s) 'Wrong' not found. Check get_subgroups()",
+    fixed = TRUE
+  )
 
   expect_error(get_recorddata(isComplete = "Wrong"),
-               regexp = "IsComplete does not accept string 'Wrong'. Only 'abridged', 'complete', 'total'.",
-               fixed = TRUE)
+    regexp = "IsComplete does not accept string 'Wrong'. Only 'abridged', 'complete', 'total'.",
+    fixed = TRUE
+  )
 })
 
 ids <- "183578537"
@@ -313,7 +341,6 @@ test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY
   # that we always have 10 characters.
   expect_equal(10, unique(nchar(res$TimeStart)))
   expect_equal(10, unique(nchar(res$TimeEnd)))
-
 })
 
 ## TODO: This is failing due to the new unpd server. Fix this once
@@ -344,46 +371,52 @@ test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY
 ## })
 
 test_that("get_recorddata grabs uncertainty columns when includeUncertainty = TRUE", {
+  uncertainty_cols <- c(
+    "HasUncertaintyRecord",
+    "StandardErrorValue",
+    "ConfidenceInterval",
+    "ConfidenceIntervalLowerBound",
+    "ConfidenceIntervalUpperBound"
+  )
 
-  uncertainty_cols <- c("HasUncertaintyRecord",
-                        "StandardErrorValue",
-                        "ConfidenceInterval",
-                        "ConfidenceIntervalLowerBound",
-                        "ConfidenceIntervalUpperBound")
-
-  X <- get_recorddata(dataProcessTypeIds = 2,
-                      indicatorTypeIds = 8,
-                      locIds = 818,
-                      locAreaTypeIds = 2,
-                      subGroupIds = 2,
-                      isComplete = 0)
+  X <- get_recorddata(
+    dataProcessTypeIds = 2,
+    indicatorTypeIds = 8,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2,
+    isComplete = 0
+  )
 
   # If includeUncertainty is NULL (default), the columns
   # are NOT included.
   expect_false(all(uncertainty_cols %in% names(X)))
 
-  X <- get_recorddata(dataProcessTypeIds = 2,
-                      indicatorTypeIds = 8,
-                      locIds = 818,
-                      locAreaTypeIds = 2,
-                      subGroupIds = 2,
-                      isComplete = 0,
-                      includeUncertainty = FALSE)
+  X <- get_recorddata(
+    dataProcessTypeIds = 2,
+    indicatorTypeIds = 8,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2,
+    isComplete = 0,
+    includeUncertainty = FALSE
+  )
 
   # If includeUncertainty is FALSE, the columns
   # are NOT included.
   expect_false(all(uncertainty_cols %in% names(X)))
 
-  X <- get_recorddata(dataProcessTypeIds = 2,
-                      indicatorTypeIds = 8,
-                      locIds = 818,
-                      locAreaTypeIds = 2,
-                      subGroupIds = 2,
-                      isComplete = 0,
-                      includeUncertainty = TRUE)
+  X <- get_recorddata(
+    dataProcessTypeIds = 2,
+    indicatorTypeIds = 8,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2,
+    isComplete = 0,
+    includeUncertainty = TRUE
+  )
 
   # If includeUncertainty is TRUE, the columns
   # ARE included.
   expect_true(all(uncertainty_cols %in% names(X)))
-
 })
