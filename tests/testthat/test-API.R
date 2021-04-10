@@ -176,6 +176,62 @@ mixed_codes <- get_recorddata(
 
 validate_recordddata(mixed_codes) # validate
 
+
+## For dataTypeGroupIds
+
+# Check that it translates
+chr_id <-
+  get_recorddataadditional(
+    dataTypeGroupIds = "Direct",
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+validate_recordddata(chr_id)
+
+# Check that ti works with an id
+num_id <-
+  get_recorddataadditional(
+    dataTypeGroupIds = 3,
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+validate_recordddata(num_id)
+
+## For dataTypeGroupId2s
+
+# Check that it translates
+chr_id <-
+  get_recorddataadditional(
+    dataTypeGroupId2s = "Population (sample tabulation)",
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+validate_recordddata(chr_id)
+
+num_id <-
+  get_recorddataadditional(
+    dataTypeGroupId2s = 11,
+    indicatorTypeIds = 8,
+    isComplete = 0,
+    locIds = 818,
+    locAreaTypeIds = 2,
+    subGroupIds = 2
+  )
+
+validate_recordddata(num_id)
+
 # After changing the unpd server
 options(unpd_server = "https://popdiv.dfs.un.org/DemoData/api/")
 

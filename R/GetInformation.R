@@ -487,7 +487,6 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   ## }, names(values_env$id_to_fact), values_env$id_to_fact)
 
   ## # Currently includes some ID columns
-  ## browser()
 
   res <- res[values_env$col_order]
 
@@ -548,6 +547,52 @@ get_recorddataadditional <- function(save_file = FALSE, verbose = TRUE, ...) {
       ...
     )
 
+  # Make sure dates are in 00/00/0000 format
+  # Note that the result is not of class date
+  # but of chr!
+  res$TimeStart <- chr_to_date(res$TimeStart)
+  res$TimeEnd <- chr_to_date(res$TimeEnd)
+
+  # Loop through name and id names
+  # and save the labelled character
+  # to the Name columns
+  ## res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
+  ##   # Extract the columns from the df
+  ##   nm_vec <- res[, nm]
+  ##   id_vec <- res[, id]
+
+  ##   if (length(unique(nm_vec)) != length(unique(id_vec))) {
+  ##     stop("Column ", nm, " and ", id, " have different ",
+  ##          "unique values. Please report the exact same call that ",
+  ##          "raised this error at https://github.com/timriffe/DDSQLtools/issues")
+  ##   }
+
+  ##   # Set names of id to names to pass it to labelled
+  ##   # with correct labels
+  ##   vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
+
+  ##   # Create name column with ID as labels
+  ##   haven::labelled(nm_vec, labels = vct_nm)
+  ## }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+  ## # Currently includes some ID columns
+
+  res <- res[values_env$col_order]
+
+  uncertainty <- list(...)$includeUncertainty
+  if (isFALSE(uncertainty) || is.null(uncertainty)) {
+    uncertainty_cols <- c(
+      "HasUncertaintyRecord",
+      "StandardErrorValue",
+      "ConfidenceInterval",
+      "ConfidenceIntervalLowerBound",
+      "ConfidenceIntervalUpperBound"
+    )
+
+    res <- res[setdiff(names(res), uncertainty_cols)]
+  }
+
+  res
   res
 }
 

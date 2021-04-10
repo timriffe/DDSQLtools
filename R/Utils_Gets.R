@@ -123,7 +123,10 @@ linkGenerator <- function(server = getOption("unpd_server", "https://popdiv.dfs.
 #' http://24.239.36.16:9654/un3/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
 #'
 #' @keywords internal
-build_filter <- function(dataProcessIds = NULL,
+build_filter <- function(dataTypeIds = NULL,
+                         dataTypeGroupIds = NULL,
+                         dataTypeGroupId2s = NULL,
+                         dataProcessIds = NULL,
                          dataProcessTypeIds = NULL,
                          dataSourceShortNames = NULL,
                          dataSourceYears = NULL,
@@ -158,13 +161,24 @@ build_filter <- function(dataProcessIds = NULL,
 
   # For later, to print the translated code query
   # so the user gets the faster request
-  x_str <- x[c("locIds", "indicatorTypeIds", "isComplete", "subGroupIds", "locAreaTypeIds", "dataProcessIds", "dataProcessTypeIds")]
+  translate_vars <- c(
+    "locIds", "indicatorTypeIds", "isComplete", "subGroupIds",
+    "locAreaTypeIds", "dataProcessIds", "dataProcessTypeIds",
+    "dataTypeGroupIds", "dataTypeGroupId2s"
+  )
+
+  x_str <- x[translate_vars]
+
   any_str <- any(vapply(x_str, is.character, FUN.VALUE = logical(1)))
 
-  lookupParams <- list("locIds" = lookupLocIds,
-                       "indicatorTypeIds" = lookupIndicatorIds,
-                       "isComplete" = lookupIsCompleteIds,
-                       "subGroupIds" = lookupSubGroupsIds)
+  lookupParams <- list(
+    "locIds" = lookupLocIds,
+    "indicatorTypeIds" = lookupIndicatorIds,
+    "isComplete" = lookupIsCompleteIds,
+    "subGroupIds" = lookupSubGroupsIds,
+    "dataTypeGroupIds" = lookupDataTypeGroupIds,
+    "dataTypeGroupId2s" = lookupDataTypeGroupId2s
+  )
 
   # Iterative over each lookupParams and apply their corresponding lookup
   # function to translate strings such as Germany to the corresponding code.
@@ -264,8 +278,57 @@ save_in_working_dir <- function(data, file_name) {
   cat("\n   ")
 }
 
+
+lookupDataTypeGroupIds <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) {
+    return(paramStr)
+  }
+
+  paramStr_low <- tolower(paramStr)
+
+  data_types <- get_datatypes()
+  type_code <- data_types[tolower(data_types$DataTypeGroupName) %in% paramStr_low, ]
+
+  # The all statement is in case you provide 2 countries, for example
+  if (all(!paramStr_low %in% tolower(type_code$DataTypeGroupName))) {
+    stop(
+      "DataTypeGroup(s) ",
+      paste0("'", paramStr[!paramStr_low %in% type_code$DataTypeGroupName], "'", collapse = ", "),
+      " not found. Check get_datatypes()"
+    )
+  }
+
+  unique(type_code[["DataTypeGroupID"]])
+}
+
+
+lookupDataTypeGroupId2s <- function(paramStr) {
+  if (is.numeric(paramStr) || is.null(paramStr)) {
+    return(paramStr)
+  }
+
+  paramStr_low <- tolower(paramStr)
+
+  data_types <- get_datatypes()
+  type_code <- data_types[tolower(data_types$DataTypeGroupName2) %in% paramStr_low, ]
+
+  # The all statement is in case you provide 2 countries, for example
+  if (all(!paramStr_low %in% tolower(type_code$DataTypeGroupName2))) {
+    stop(
+      "DataTypeGroup2(s) ",
+      paste0("'", paramStr[!paramStr_low %in% type_code$DataTypeGroupName2], "'", collapse = ", "),
+      " not found. Check get_datatypes()"
+    )
+  }
+
+  unique(type_code[["DataTypeGroupID2"]])
+}
+
+
 lookupLocIds <- function(paramStr) {
-  if (is.numeric(paramStr) || is.null(paramStr)) return(paramStr)
+  if (is.numeric(paramStr) || is.null(paramStr)) {
+    return(paramStr)
+  }
 
   paramStr_low <- tolower(paramStr)
 
