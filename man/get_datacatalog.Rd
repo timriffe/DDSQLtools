@@ -36,5 +36,12 @@ head(dc[, c("DataCatalogID", "DataProcessType", "LocName")])
 # Filter using locIds and DataProcessTypeIds
 dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
 
+
+t2 <- get_datacatalog(isSubnational = TRUE)
+head(t2)
+
+t3 <- get_datacatalog(isSubnational = FALSE)
+head(t3)
+
 }
 }

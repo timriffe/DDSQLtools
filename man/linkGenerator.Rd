@@ -47,30 +47,38 @@ are months and \code{YYYY} are years.
 \examples{
 \dontrun{
 # Link to country list
-L1 <- linkGenerator(type = "locations",
-                    addDefault = "false",
-                    includeDependencies = "false",
-                    includeFormerCountries = "false")
+L1 <- linkGenerator(
+  type = "locations",
+  addDefault = "false",
+  includeDependencies = "false",
+  includeFormerCountries = "false"
+)
 L1
 
 # Link to location types (for Egypt)
 # With strings rather than codes
-L2 <- linkGenerator(type = "locAreaTypes",
-                    indicatorTypeIds = "Population by sex",
-                    locIds = "Egypt",
-                    isComplete = "Abridged")
+L2 <- linkGenerator(
+  type = "locAreaTypes",
+  indicatorTypeIds = "Population by sex",
+  locIds = "Egypt",
+  isComplete = "Abridged"
+)
 L2
 
 # Link to subgroup types (for Egypt)
-L3 <- linkGenerator(type = "subGroups",
-                    indicatorTypeIds = 8,
-                    locIds = 818,
-                    isComplete = 0)
+L3 <- linkGenerator(
+  type = "subGroups",
+  indicatorTypeIds = 8,
+  locIds = 818,
+  isComplete = 0
+)
 L3
 
 # Link to indicator list
-L4 <- linkGenerator(type = "indicators",
-                    addDefault = "false")
+L4 <- linkGenerator(
+  type = "indicators",
+  addDefault = "false"
+)
 L4
 
 # Link to data process type list

@@ -5,6 +5,9 @@
 \title{Build the section of the path (link) responsible with filtering the data}
 \usage{
 build_filter(
+  dataTypeIds = NULL,
+  dataTypeGroupIds = NULL,
+  dataTypeGroupId2s = NULL,
   dataProcessIds = NULL,
   dataProcessTypeIds = NULL,
   dataSourceShortNames = NULL,
@@ -28,6 +31,7 @@ build_filter(
   includeFormerCountries = NULL,
   includeDataIDs = NULL,
   includeUncertainty = NULL,
+  isSubnational = NULL,
   years = NULL,
   verbose
 )

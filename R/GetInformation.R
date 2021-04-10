@@ -18,7 +18,6 @@ extract_data <- function(ids, save_file = FALSE) {
   len_ids <- length(ids)
 
   if (len_ids > 200) {
-
     values <- c(seq(1, len_ids, by = 199), len_ids)
     seq_values <- seq_along(values)[-length(values)]
 
@@ -29,9 +28,10 @@ extract_data <- function(ids, save_file = FALSE) {
         if (i > 1) seq_ch[1] <- seq_ch[1] + 1
         id_chunk <- ids[seq_ch[1]:seq_ch[2]]
         read_API("structureddatarecords",
-                 save_file = save_file,
-                 verbose = FALSE,
-                 ids = id_chunk)
+          save_file = save_file,
+          verbose = FALSE,
+          ids = id_chunk
+        )
       })
 
     collapsed_res <- do.call(rbind, all_res)
@@ -43,9 +43,10 @@ extract_data <- function(ids, save_file = FALSE) {
 
   cat(paste0("\r\r Reading chunks: [0/1]"))
   collapsed_res <- read_API("structureddatarecords",
-                            save_file = save_file,
-                            verbose = FALSE,
-                            ids = ids)
+    save_file = save_file,
+    verbose = FALSE,
+    ids = ids
+  )
 
   collapsed_res$TimeStart <- chr_to_date(collapsed_res$TimeStart)
   collapsed_res$TimeEnd <- chr_to_date(collapsed_res$TimeEnd)
@@ -57,9 +58,11 @@ extract_data <- function(ids, save_file = FALSE) {
 #' @inheritParams read_API
 #' @examples
 #' \dontrun{
-#' L <- get_locations(addDefault = "false",
-#'                   includeDependencies = "false",
-#'                   includeFormerCountries = "false")
+#' L <- get_locations(
+#'   addDefault = "false",
+#'   includeDependencies = "false",
+#'   includeFormerCountries = "false"
+#' )
 #' L
 #' }
 #'
@@ -75,9 +78,11 @@ get_locations <- function(save_file = FALSE, ...) {
 #'
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' P <- get_locationtypes(indicatorTypeIds = 8, # Population by age and sex indicator;
-#'                       locIds = "egypt",
-#'                       isComplete = "abridged")
+#' P <- get_locationtypes(
+#'   indicatorTypeIds = 8, # Population by age and sex indicator;
+#'   locIds = "egypt",
+#'   isComplete = "abridged"
+#' )
 #' P
 #' }
 #' @export
@@ -92,9 +97,11 @@ get_locationtypes <- function(save_file = FALSE, ...) {
 #'
 #' \dontrun{
 #' # Check what subgroups are available for:
-#' S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
-#'                   locIds = 818,       # Egypt
-#'                   isComplete = 0)
+#' S <- get_subgroups(
+#'   indicatorTypeIds = 8, # Population by age and sex indicator;
+#'   locIds = 818, # Egypt
+#'   isComplete = 0
+#' )
 #' S
 #' }
 #' @export
@@ -204,6 +211,13 @@ get_dataprocess <- function(save_file = FALSE, ...) {
 #' # Filter using locIds and DataProcessTypeIds
 #' dc <- get_datacatalog(locIds = 76, dataProcessTypeIds = 2)
 #'
+#'
+#' t2 <- get_datacatalog(isSubnational = TRUE)
+#' head(t2)
+#'
+#' t3 <- get_datacatalog(isSubnational = FALSE)
+#' head(t3)
+#'
 #' }
 #' @export
 get_datacatalog <- function(save_file = FALSE, ...) {
@@ -272,29 +286,31 @@ get_datacatalog <- function(save_file = FALSE, ...) {
   ind <- which(grepl("PK_DataCatalogID", names(DataCatalog)))
   names(DataCatalog)[ind] <- "DataCatalogID"
 
-  cols_select <- c("DataCatalogID",
-                   "LocID",
-                   "LocTypeID",
-                   "LocName",
-                   "DataProcessTypeID",
-                   "DataProcessType",
-                   "DataProcessTypeShortName",
-                   "DataProcessID",
-                   "DataProcess",
-                   "DataProcessShortName",
-                   "Name",
-                   "ShortName",
-                   "OfficialName",
-                   "OfficialShortName",
-                   "ReferencePeriod",
-                   "ReferenceYearStart",
-                   "ReferenceYearEnd",
-                   "ReferenceYearMid",
-                   "FieldWorkStart",
-                   "FieldWorkEnd",
-                   "FieldWorkMiddle",
-                   "ParentDataCatalogID",
-                   "isSubnational")
+  cols_select <- c(
+    "DataCatalogID",
+    "LocID",
+    "LocTypeID",
+    "LocName",
+    "DataProcessTypeID",
+    "DataProcessType",
+    "DataProcessTypeShortName",
+    "DataProcessID",
+    "DataProcess",
+    "DataProcessShortName",
+    "Name",
+    "ShortName",
+    "OfficialName",
+    "OfficialShortName",
+    "ReferencePeriod",
+    "ReferenceYearStart",
+    "ReferenceYearEnd",
+    "ReferenceYearMid",
+    "FieldWorkStart",
+    "FieldWorkEnd",
+    "FieldWorkMiddle",
+    "ParentDataCatalogID",
+    "isSubnational"
+  )
 
   DataCatalog <- DataCatalog[cols_select]
 
@@ -322,11 +338,13 @@ get_datacatalog <- function(save_file = FALSE, ...) {
 #' @examples
 #' \dontrun{
 #' # You can provide all strings, all codes, or a combination of both
-#' G <- get_seriesdata(dataProcessTypeIds = 0:15, # possible processes
-#'                    indicatorTypeIds = 25,    # M[x]
-#'                    locIds = "Egypt",             # Egypt
-#'                    locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
-#'                    subGroupIds = 2)
+#' G <- get_seriesdata(
+#'   dataProcessTypeIds = 0:15, # possible processes
+#'   indicatorTypeIds = 25, # M[x]
+#'   locIds = "Egypt", # Egypt
+#'   locAreaTypeIds = c("whole area", "rural", "urban"), # all possible types
+#'   subGroupIds = 2
+#' )
 #' G
 #' }
 #' @export
@@ -389,58 +407,64 @@ get_datasources <- function(save_file = FALSE, ...) {
 #' \dontrun{
 #'
 #' #  You can provide all strings, all codes, or a combination of both
-#' Y <- get_recorddata(dataProcessTypeIds = "Census",
-#'                    indicatorTypeIds = 8, # and support numeric of string names
-#'                    locIds = "egypt", # all arguments are case insensitive
-#'                    locAreaTypeIds = "Whole area",
-#'                    subGroupIds = "Total or All groups",
-#'                    isComplete = "Abridged")
+#' Y <- get_recorddata(
+#'   dataProcessTypeIds = "Census",
+#'   indicatorTypeIds = 8, # and support numeric of string names
+#'   locIds = "egypt", # all arguments are case insensitive
+#'   locAreaTypeIds = "Whole area",
+#'   subGroupIds = "Total or All groups",
+#'   isComplete = "Abridged"
+#' )
 #'
 #' head(Y)
 #'
 #' # Same thing only with codes
-#' X <- get_recorddata(dataProcessTypeIds = 2,   # Census
-#'                    indicatorTypeIds = 8, # Population by age and sex - abridged
-#'                    locIds = 818,         # Egypt
-#'                    locAreaTypeIds = 2,   # Whole area
-#'                    subGroupIds = 2,      # Total or All groups
-#'                    isComplete = 0)       # Age Distribution: Abridged
+#' X <- get_recorddata(
+#'   dataProcessTypeIds = 2, # Census
+#'   indicatorTypeIds = 8, # Population by age and sex - abridged
+#'   locIds = 818, # Egypt
+#'   locAreaTypeIds = 2, # Whole area
+#'   subGroupIds = 2, # Total or All groups
+#'   isComplete = 0
+#' ) # Age Distribution: Abridged
 #'
 #' head(X)
 #'
 #' # Same thing but limited to DataSourceYears
-#' X <- get_recorddata(dataProcessTypeIds = 2,
-#'                    indicatorTypeIds = 8,
-#'                    locIds = 818,
-#'                    locAreaTypeIds = 2,
-#'                    subGroupIds = 2,
-#'                    isComplete = 0,
-#'                    dataSourceYears = 1980)
+#' X <- get_recorddata(
+#'   dataProcessTypeIds = 2,
+#'   indicatorTypeIds = 8,
+#'   locIds = 818,
+#'   locAreaTypeIds = 2,
+#'   subGroupIds = 2,
+#'   isComplete = 0,
+#'   dataSourceYears = 1980
+#' )
 #'
 #' head(X)
 #'
 #' # Same thing but limited to DataSourceShortNames and including the uncertainty
-#' X <- get_recorddata(dataProcessTypeIds = 2,
-#'                    indicatorTypeIds = 8,
-#'                    locIds = 818,
-#'                    locAreaTypeIds = 2,
-#'                    subGroupIds = 2,
-#'                    isComplete = 0,
-#'                    dataSourceShortNames = "OECD 1980",
-#'                    includeUncertainty = TRUE)
+#' X <- get_recorddata(
+#'   dataProcessTypeIds = 2,
+#'   indicatorTypeIds = 8,
+#'   locIds = 818,
+#'   locAreaTypeIds = 2,
+#'   subGroupIds = 2,
+#'   isComplete = 0,
+#'   dataSourceShortNames = "OECD 1980",
+#'   includeUncertainty = TRUE
+#' )
 #'
 #' head(X)
-#'
-#'}
-#'
-#'
+#' }
 #'
 #' @export
 get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   res <- read_API("structureddatarecords",
-                  save_file = save_file,
-                  verbose = verbose,
-                  ...)
+    save_file = save_file,
+    verbose = verbose,
+    ...
+  )
 
   # Make sure dates are in 00/00/0000 format
   # Note that the result is not of class date
@@ -471,22 +495,150 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   ## }, names(values_env$id_to_fact), values_env$id_to_fact)
 
   ## # Currently includes some ID columns
-  ## browser()
 
   res <- res[values_env$col_order]
 
   uncertainty <- list(...)$includeUncertainty
   if (isFALSE(uncertainty) || is.null(uncertainty)) {
-    uncertainty_cols <- c("HasUncertaintyRecord",
-                          "StandardErrorValue",
-                          "ConfidenceInterval",
-                          "ConfidenceIntervalLowerBound",
-                          "ConfidenceIntervalUpperBound")
+    uncertainty_cols <- c(
+      "HasUncertaintyRecord",
+      "StandardErrorValue",
+      "ConfidenceInterval",
+      "ConfidenceIntervalLowerBound",
+      "ConfidenceIntervalUpperBound"
+    )
 
     res <- res[setdiff(names(res), uncertainty_cols)]
   }
 
 
+  res
+}
+
+#' Download structuredDataRecordsAdditional data from the UNPD portal
+#'
+#' @inheritParams read_API
+#' @param verbose Whether to print the translated query from strings to digits
+#' for faster queries. By default set to TRUE.
+#'
+#' @details
+#'
+#' \code{get_recorddataadditional} directly queries the endpoint
+#' \code{structuredDataRecordsadditional}. For a list of all options available for this
+#' endpoint, see the parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+#'
+#' \code{get_recorddataadditional} allows the user to supply string names for all
+#' arguments that have equivalent \code{get_*} functions. For example,
+#' \code{get_iitypes} for \code{indicatorIds}. The string used for all
+#' of these arguments should be the one from the column \code{Name} in
+#' the response from the \code{get_*} functions.
+#'
+#' By default, all results exclude columns related to the uncertainty
+#' of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+#' By setting the argument \code{includeUncertainty = TRUE}, the uncertainty
+#' fields will be included in the final data frame.
+#'
+#' Once the data is read from the API, some transformations are applied:
+#'
+#' \itemize{
+# \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
+#' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
+#' }
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # You can do pretty much all queries you would do with get_recorddata:
+#' Y <- get_recorddata(
+#'   dataProcessTypeIds = "Census",
+#'   indicatorTypeIds = 8, # and support numeric of string names
+#'   locIds = "egypt", # all arguments are case insensitive
+#'   locAreaTypeIds = "Whole area",
+#'   subGroupIds = "Total or All groups",
+#'   isComplete = "Abridged"
+#' )
+#'
+#'
+#' # But there's additional parameters such as dataTypeGroupIds or
+#' dataTypeGroupId2s:
+#' dt <-
+#'   get_recorddataadditional(
+#'     dataTypeGroupIds = "Direct", # or 3
+#'     indicatorTypeIds = 8,
+#'     isComplete = 0,
+#'     locIds = 818,
+#'     locAreaTypeIds = 2,
+#'     subGroupIds = 2
+#'   )
+#'
+#'
+#' dt <-
+#'   get_recorddataadditional(
+#'     dataTypeGroupId2s = "Population (sample tabulation)", # or 11
+#'     indicatorTypeIds = 8,
+#'     isComplete = 0,
+#'     locIds = 818,
+#'     locAreaTypeIds = 2,
+#'     subGroupIds = 2
+#'  )
+#' }
+get_recorddataadditional <- function(save_file = FALSE, verbose = TRUE, ...) {
+  res <-
+    read_API(
+      "structureddatarecordsadditional",
+      save_file = save_file,
+      verbose = verbose,
+      ...
+    )
+
+  # Make sure dates are in 00/00/0000 format
+  # Note that the result is not of class date
+  # but of chr!
+  res$TimeStart <- chr_to_date(res$TimeStart)
+  res$TimeEnd <- chr_to_date(res$TimeEnd)
+
+  # Loop through name and id names
+  # and save the labelled character
+  # to the Name columns
+  ## res[names(values_env$id_to_fact)] <- Map(function(nm, id) {
+  ##   # Extract the columns from the df
+  ##   nm_vec <- res[, nm]
+  ##   id_vec <- res[, id]
+
+  ##   if (length(unique(nm_vec)) != length(unique(id_vec))) {
+  ##     stop("Column ", nm, " and ", id, " have different ",
+  ##          "unique values. Please report the exact same call that ",
+  ##          "raised this error at https://github.com/timriffe/DDSQLtools/issues")
+  ##   }
+
+  ##   # Set names of id to names to pass it to labelled
+  ##   # with correct labels
+  ##   vct_nm <- stats::setNames(unique(nm_vec), unique(id_vec))
+
+  ##   # Create name column with ID as labels
+  ##   haven::labelled(nm_vec, labels = vct_nm)
+  ## }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+  ## # Currently includes some ID columns
+
+  res <- res[values_env$col_order]
+
+  uncertainty <- list(...)$includeUncertainty
+  if (isFALSE(uncertainty) || is.null(uncertainty)) {
+    uncertainty_cols <- c(
+      "HasUncertaintyRecord",
+      "StandardErrorValue",
+      "ConfidenceInterval",
+      "ConfidenceIntervalLowerBound",
+      "ConfidenceIntervalUpperBound"
+    )
+
+    res <- res[setdiff(names(res), uncertainty_cols)]
+  }
+
+  res
   res
 }
 

@@ -24,9 +24,11 @@ Get information about available sub-group-types (SubGroupTypeID)
 
 \dontrun{
 # Check what subgroups are available for:
-S <- get_subgroups(indicatorTypeIds = 8,  # Population by age and sex indicator;
-                  locIds = 818,       # Egypt
-                  isComplete = 0)
+S <- get_subgroups(
+  indicatorTypeIds = 8, # Population by age and sex indicator;
+  locIds = 818, # Egypt
+  isComplete = 0
+)
 S
 }
 }
