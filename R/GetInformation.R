@@ -508,6 +508,49 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, ...) {
   res
 }
 
+#' Download structuredDataRecordsAdditional data from the UNPD portal
+#'
+#' @inheritParams read_API
+#' @param verbose Whether to print the translated query from strings to digits
+#' for faster queries. By default set to TRUE.
+#'
+#' @details
+#'
+#' \code{get_recorddataadditional} directly queries the endpoint
+#' \code{structuredDataRecordsadditional}. For a list of all options available for this
+#' endpoint, see the parameters for each endpoint at https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecords
+#'
+#' \code{get_recorddataadditional} allows the user to supply string names for all
+#' arguments that have equivalent \code{get_*} functions. For example,
+#' \code{get_iitypes} for \code{indicatorIds}. The string used for all
+#' of these arguments should be the one from the column \code{Name} in
+#' the response from the \code{get_*} functions.
+#'
+#' By default, all results exclude columns related to the uncertainty
+#' of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
+#' By setting the argument \code{includeUncertainty = TRUE}, the uncertainty
+#' fields will be included in the final data frame.
+#'
+#' Once the data is read from the API, some transformations are applied:
+#'
+#' \itemize{
+# \item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
+#' \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
+#' }
+#'
+#' @export
+get_recorddataadditional <- function(save_file = FALSE, verbose = TRUE, ...) {
+  res <-
+    read_API(
+      "structureddatarecordsadditional",
+      save_file = save_file,
+      verbose = verbose,
+      ...
+    )
+
+  res
+}
+
 #' Download data
 #' @inheritParams linkGenerator
 #' @param save_file Logical. Choose whether or not to save the data in an
