@@ -20,7 +20,7 @@ do_smoothing(
 \arguments{
 \item{X}{Input data. UN format.}
 
-\item{method}{character string. Options include \code{"Carrier-Farrag"},\code{"Arriaga"},\code{"KKN"},\code{"United Nations"}, \code{"Strong"}, \code{MAV} and \code{"Zigzag"}. See details. Default \code{"Carrier-Farrag"}.}
+\item{method}{character string. Options include \code{"Carrier-Farrag"},\code{"Arriaga"},\code{"KKN"},\code{"United Nations"}, \code{"Strong"}, and \code{"Zigzag"}. See details. Default \code{"Carrier-Farrag"}.}
 
 \item{ageMin}{integer. The lowest age included included in intermediate adjustment. Default 10. Only relevant for Strong method.}
 
@@ -43,7 +43,7 @@ Different numbers of rows. UN format.
 }
 \description{
 Smooth population counts in 5-year age groups using the Carrier-Farrag,
-Karup-King-Newton, Arriaga, United Nations, Strong, MAV or Zigzag methods. Allows for imputation
+Karup-King-Newton, Arriaga, United Nations, Stong, or Zigzag methods. Allows for imputation
 of values in the youngest and oldest age groups for the Carrier-Farrag, Karup-King-Newton,
 and United Nations methods.
 }
@@ -56,8 +56,8 @@ operate based on 10-year age group totals, excluding the open age group.
 
 The Carrier-Farrag, Karup-King-Newton, and United Nations methods do not produce estimates
 for the first and final 10-year age groups. By default, these are imputed with the original 5-year age group totals, but
-you can also specify to impute with \code{NA}, or the results of the Arriaga,
-Strong and Cascade methods. If the terminal digit of the open age group is 5, then the terminal 10-year
+you can also specify to impute with \code{NA}, or the results of the Arriaga or
+Strong methods. If the terminal digit of the open age group is 5, then the terminal 10-year
 age group shifts down, so imputations may affect more ages in this case. Imputation can follow
 different methods for young and old ages.
 
