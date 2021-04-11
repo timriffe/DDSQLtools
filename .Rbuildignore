@@ -20,3 +20,4 @@ devdata
 ^\.ccache$
 ^tic\.R$
 ^data-raw$
+build.R
