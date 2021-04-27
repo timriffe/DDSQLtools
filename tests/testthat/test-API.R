@@ -310,29 +310,32 @@ validate_date <- function(res) {
 ## })
 
 
-## test_that("get_recorddata transforms Name columns to labels", {
-##   res <- get_recorddata(dataProcessTypeIds = 9, # Register
-##                         startYear = 1920,
-##                         endYear = 2020,
-##                         indicatorTypeIds = 14, # Births by sex
-##                         isComplete = 2, # Total
-##                         locIds = 28, # Antigua and Barbuda
-##                         locAreaTypeIds = 2, # Whole area
-##                         subGroupIds = 2) # Total
+test_that("get_recorddata transforms Name columns to labels", {
+  res <- get_recorddata(
+    dataProcessTypeIds = 2, # Census
+    indicatorTypeIds = 8, # Population by age and sex - abridged
+    locIds = 818, # Egypt
+    locAreaTypeIds = 2, # Whole area
+    subGroupIds = 2, # Total or All groups
+    isComplete = 0,
+    collapse_id_name = TRUE
+  ) # Age Distribution: Abridged
 
-##   subset_names <- res[names(values_env$id_to_fact)]
+  subset_names <- res[names(values_env$id_to_fact)]
 
-##   expect_true(
-##     all(
-##       vapply(subset_names, function(x) inherits(x, "haven_labelled"),
-##              FUN.VALUE = logical(1)))
-##   )
+  expect_true(
+    all(
+      vapply(subset_names, function(x) inherits(x, "haven_labelled"),
+        FUN.VALUE = logical(1)
+      )
+    )
+  )
 
-##   ## TODO
-##   ## You might want to add another test that checks that the ID
-##   ## in the label is a numeric and and value is a character
-##   ## to make sure you never mix them up.
-## })
+  ## TODO
+  ## You might want to add another test that checks that the ID
+  ## in the label is a numeric and and value is a character
+  ## to make sure you never mix them up.
+})
 
 test_that("Looking up wrong input throws errors in get_recorddata", {
   expect_error(get_recorddata(locIds = "Wrong country"),

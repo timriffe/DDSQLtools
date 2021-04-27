@@ -500,7 +500,7 @@ values_env$id_to_fact <- c(
   ## DataTypeName = "DataTypeID",
   DataTypeGroupName = "DataTypeGroupID",
   IndicatorName = "IndicatorID",
-  ## LocName = "LocID",
+  LocName = "LocID",
   LocAreaTypeName = "LocAreaTypeID",
   LocTypeName = "LocTypeID",
   ModelPatternName = "ModelPatternID",
