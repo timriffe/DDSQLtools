@@ -273,70 +273,74 @@ deaths <-
 deaths
 ```
 
-<!-- #### Identifying ID and Names of values -->
+#### Identifying ID and Names of values
 
-<!-- Whenever you download some data, you'll see that there are several columns that end with `Name`. This columns contain, for example, the name of the location (`LocName`) or the name of the subgroup (`SubGroupName`). To be able to see the equivalent ID of these names, there are two different strategies using the `haven` package. -->
+Whenever you download some data, you'll see that there are several columns that end with `Name`. This columns contain, for example, the name of the location (`LocName`) or the name of the subgroup (`SubGroupName`). To be able to see the equivalent ID of these names, there are two different strategies using the `haven` package.
 
-<!-- First, let's get some data: -->
+First, let's get some data:
 
-<!-- ```{r } -->
-<!-- res <- get_recorddata(dataProcessTypeIds = 9, # Register -->
-<!--                       startYear = 1920, -->
-<!--                       endYear = 2020, -->
-<!--                       indicatorTypeIds = 14, # Births by sex -->
-<!--                       isComplete = 2, # Total -->
-<!--                       locIds = 28, # Antigua and Barbuda -->
-<!--                       locAreaTypeIds = 2, # Whole area -->
-<!--                       subGroupIds = 2) # Total -->
-<!-- ``` -->
+```{r }
+res <- get_recorddata(
+    dataProcessTypeIds = 2, # Census
+    indicatorTypeIds = 8, # Population by age and sex - abridged
+    locIds = 818, # Egypt
+    locAreaTypeIds = 2, # Whole area
+    subGroupIds = 2, # Total or All groups
+    isComplete = 0,
+    collapse_id_name = TRUE
+  )
+```
 
-<!-- #### Base R -->
+#### Base R
 
-<!-- You can use `print_labels` from `haven` on the column of interest and it will show you the ID: -->
+You can use `print_labels` from `haven` on the column of interest and it will show you the ID:
 
-<!-- ```{r} -->
-<!-- library(haven) -->
-<!-- print_labels(res$LocName) -->
-<!-- ``` -->
+```{r}
+library(haven)
+print_labels(res$LocName)
+```
 
-<!-- If you want to flip the labels for the entire data frame such that the ID is current value and not the name, you can do that with `as_factor`: -->
+If you want to flip the labels for the entire data frame such that the ID is current value and not the name, you can do that with `as_factor`:
 
-<!-- ```{r} -->
-<!-- res_edit <- as_factor(res) -->
+```{r}
+res_edit <- as_factor(res)
 
-<!-- # No long showing the name but the ID -->
-<!-- head(res_edit["LocName"]) -->
-<!-- ``` -->
+# No long showing the name but the ID
+head(res_edit["LocName"])
+```
 
-<!-- #### Tidyverse -->
+#### Tidyverse
 
-<!-- Using the tidyverse, the solution from base R applies as well. However, if you convert your data frame to a `tibble`, it will automatically show you the labels in the data frame. -->
+Using the tidyverse, the solution from base R applies as well. However, if you convert your data frame to a `tibble`, it will automatically show you the labels in the data frame.
 
-<!-- ```{r } -->
-<!-- library(tidyverse) -->
+```{r }
+library(tidyverse)
 
-<!-- res_tb <- res %>% as_tibble() -->
-<!-- # See the code next to the name? No need to print it -->
-<!-- # separately, `tibble` print boths things together. -->
-<!-- res_tb %>% -->
-<!--   select(ends_with("Name")) -->
-<!-- ``` -->
+res_tb <- res %>% as_tibble()
+# See the code next to the name? No need to print it
+# separately, `tibble` print boths things together.
+res_tb %>%
+  select(ends_with("Name"))
+```
 
-<!-- If you're interested in keeping either the codes or the names, you can do that with `as_factor`: -->
+If you're interested in keeping either the codes or the names, you can do that with `as_factor`:
 
-<!-- ```{r } -->
-<!-- res_tb %>% -->
-<!--   # You can extract just the ID -->
-<!--   as_factor(levels = "labels") %>%  -->
-<!--   select(ends_with("Name")) -->
-<!-- ``` -->
+```{r }
+res_tb %>%
+  # You can extract just the ID
+  as_factor(levels = "labels") %>%
+  select(ends_with("Name"))
+```
 
-<!-- ```{r} -->
-<!-- res_tb %>% -->
-<!--   # Or just the values -->
-<!--   as_factor(levels = "values") %>% -->
-<!--   select(ends_with("Name"))   -->
-<!-- ``` -->
+```{r}
+res_tb %>%
+  # Or just the values
+  as_factor(levels = "values") %>%
+  select(ends_with("Name"))
+```
+
+
+Since `get_recorddataadditional` is a cousing of `get_recorddatal` with additional options to specify, all of the above applies to `get_recorddataadditional`.
 
 ## Exploring the UNPD SQL API from R
 

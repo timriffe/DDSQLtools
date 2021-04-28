@@ -4,7 +4,12 @@
 \alias{get_recorddata}
 \title{Download structuredDataRecords data from the UNPD portal}
 \usage{
-get_recorddata(save_file = FALSE, verbose = TRUE, ...)
+get_recorddata(
+  save_file = FALSE,
+  verbose = TRUE,
+  collapse_id_name = FALSE,
+  ...
+)
 }
 \arguments{
 \item{save_file}{Logical. Choose whether or not to save the data in an
@@ -12,6 +17,10 @@ external \code{.Rdata} file in the working directory. Default: \code{FALSE}.}
 
 \item{verbose}{Whether to print the translated query from strings to digits
 for faster queries. By default set to TRUE.}
+
+\item{collapse_id_name}{A logical to whether collapse all ID-Name columns
+into a single \code{haven_labelled} column. Default set to \code{FALSE}.
+See details for more information.}
 
 \item{...}{Other arguments that might define the path to data. All arguments
 accept a numeric code which is interpreted as the code of the specific
@@ -39,7 +48,19 @@ of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
 By setting the argument \code{includeUncertainty = TRUE}, the uncertainty
 fields will be included in the final data frame.
 
-Once the data is read from the API, some transformations are applied:
+Once the data is read from the API, some transformations are applied. If
+\code{collapse_id_name} is set to \code{TRUE}, all of these columns are
+merged with their exact ID pairs (such that only the Name columns
+are kept and their ID pair are assigned as labels):
+
+\itemize{
+\item{Columns \code{AreaName}, \code{DataReliabilityName}, \code{SubGroupName}, \code{DataStatusName}, \code{DataTypeName}, \code{DataTypeGroupName}, \code{IndicatorName}, \code{LocName}, \code{LocAreaTypeName}, \code{LocTypeName}, \code{ModelPatternName}, \code{ModelPatternFamilyName}, \code{PeriodGroupName}, \code{PeriodTypeName}, \code{RegName}, \code{SexName}, \code{StatisticalConceptName}, \code{SubGroupTypeName} are converted to labelled factors with \code{\link[haven]{labelled}}}
+}
+
+For an example to understand better how to exploit this feature, see
+the vignette section 'Identifying ID and Names of values'.
+
+Regardless of the \code{collapse_id_name} value, these transformations are applied:
 
 \itemize{
 \item{\code{TimeStart} and \code{TimeEnd} are returned with format \code{'DD/MM/YYYY'}}
@@ -98,6 +119,23 @@ X <- get_recorddata(
 )
 
 head(X)
+
+# You can also request the Name-ID pairs of columns to be collapsed
+# to only the Name columns and ID pair is assigned as a label
+X <- get_recorddata(
+  dataProcessTypeIds = 2,
+  indicatorTypeIds = 8,
+  locIds = 818,
+  locAreaTypeIds = 2,
+  subGroupIds = 2,
+  isComplete = 0,
+  dataSourceShortNames = "OECD 1980",
+  includeUncertainty = TRUE,
+  collapse_id_name = TRUE
+)
+
+# Some of the collapsed columns:
+head(x[, c("IndicatorName", "LocTypeName")])
 }
 
 }

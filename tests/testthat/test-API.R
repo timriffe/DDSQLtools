@@ -310,29 +310,53 @@ validate_date <- function(res) {
 ## })
 
 
-## test_that("get_recorddata transforms Name columns to labels", {
-##   res <- get_recorddata(dataProcessTypeIds = 9, # Register
-##                         startYear = 1920,
-##                         endYear = 2020,
-##                         indicatorTypeIds = 14, # Births by sex
-##                         isComplete = 2, # Total
-##                         locIds = 28, # Antigua and Barbuda
-##                         locAreaTypeIds = 2, # Whole area
-##                         subGroupIds = 2) # Total
+test_that("get_recorddata and get_recorddataadditional transform Name columns to labels", {
+  res <- get_recorddata(
+    dataProcessTypeIds = 2, # Census
+    indicatorTypeIds = 8, # Population by age and sex - abridged
+    locIds = 818, # Egypt
+    locAreaTypeIds = 2, # Whole area
+    subGroupIds = 2, # Total or All groups
+    isComplete = 0,
+    collapse_id_name = TRUE
+  ) # Age Distribution: Abridged
 
-##   subset_names <- res[names(values_env$id_to_fact)]
+  res_additional <- get_recorddataadditional(
+    dataProcessTypeIds = 2, # Census
+    indicatorTypeIds = 8, # Population by age and sex - abridged
+    locIds = 818, # Egypt
+    locAreaTypeIds = 2, # Whole area
+    subGroupIds = 2, # Total or All groups
+    isComplete = 0,
+    collapse_id_name = TRUE
+  ) # Age Distribution: Abridged
 
-##   expect_true(
-##     all(
-##       vapply(subset_names, function(x) inherits(x, "haven_labelled"),
-##              FUN.VALUE = logical(1)))
-##   )
 
-##   ## TODO
-##   ## You might want to add another test that checks that the ID
-##   ## in the label is a numeric and and value is a character
-##   ## to make sure you never mix them up.
-## })
+  subset_names <- res[names(values_env$id_to_fact)]
+  subset_names_additional <- res_additional[names(values_env$id_to_fact)]
+
+  expect_true(
+    all(
+      vapply(subset_names, function(x) inherits(x, "haven_labelled"),
+        FUN.VALUE = logical(1)
+      )
+    )
+  )
+
+  expect_true(
+    all(
+      vapply(subset_names_additional, function(x) inherits(x, "haven_labelled"),
+        FUN.VALUE = logical(1)
+      )
+    )
+  )
+
+
+  ## TODO
+  ## You might want to add another test that checks that the ID
+  ## in the label is a numeric and and value is a character
+  ## to make sure you never mix them up.
+})
 
 test_that("Looking up wrong input throws errors in get_recorddata", {
   expect_error(get_recorddata(locIds = "Wrong country"),
@@ -360,8 +384,7 @@ ids <- "183578537"
 res <- extract_data(ids)
 validate_read_API(res)
 
-## TODO: This is failing due to the new unpd server. Fix this once
-## Kyaw Kyaw does the correct migration.
+## TODO: Fix this
 ## test_that("extract_data returns the correct data when link is too long", {
 ##   test_res <- function(res, ids) {
 ##     all(
@@ -393,17 +416,17 @@ validate_read_API(res)
 ##   expect_true(all(all_test))
 ## })
 
-# The res data frame is resued from above
-test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY", {
-  expect_type(res$TimeStart, "character")
-  expect_type(res$TimeEnd, "character")
+## # The res data frame is resued from above
+## test_that("extract_data correctly formats TimeStart/TimeEnd to format DD/MM/YYYY", {
+##   expect_type(res$TimeStart, "character")
+##   expect_type(res$TimeEnd, "character")
 
-  # Here I'm testing that days, months and years have 2, 2 and 4
-  # digits. The total is 8 plus the two slashes. Here we make sure
-  # that we always have 10 characters.
-  expect_equal(10, unique(nchar(res$TimeStart)))
-  expect_equal(10, unique(nchar(res$TimeEnd)))
-})
+##   # Here I'm testing that days, months and years have 2, 2 and 4
+##   # digits. The total is 8 plus the two slashes. Here we make sure
+##   # that we always have 10 characters.
+##   expect_equal(10, unique(nchar(res$TimeStart)))
+##   expect_equal(10, unique(nchar(res$TimeEnd)))
+## })
 
 ## TODO: This is failing due to the new unpd server. Fix this once
 ## Kyaw Kyaw does the correct migration.
