@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.03</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.04</span>
       </span>
     </div>
 
@@ -144,34 +144,27 @@
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">china</span><span class="op">)</span>
-<span class="co">#&gt;                          IndicatorName IndicatorID LocName LocID</span>
-<span class="co">#&gt; 1 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt; 2 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt; 3 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt; 4 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt; 5 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt; 6 Population by age and sex - abridged          58   China   156</span>
-<span class="co">#&gt;   StructuredDataID LocTypeName LocTypeID RegName RegID AreaName AreaID</span>
-<span class="co">#&gt; 1        204033947     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 2        204033948     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 3        204033949     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 4        204033950     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 5        204033951     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 6        204033952     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt;   LocAreaTypeName LocAreaTypeID                 SubGroupTypeName SubGroupTypeID</span>
-<span class="co">#&gt; 1      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 2      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 3      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 4      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 5      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 6      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt;   SubGroupID1        SubGroupName SubGroupCombinationID SubGroupTypeSortOrder</span>
-<span class="co">#&gt; 1           2 Total or All groups                     0                     3</span>
-<span class="co">#&gt; 2           2 Total or All groups                     0                     3</span>
-<span class="co">#&gt; 3           2 Total or All groups                     0                     3</span>
-<span class="co">#&gt; 4           2 Total or All groups                     0                     3</span>
-<span class="co">#&gt; 5           2 Total or All groups                     0                     3</span>
-<span class="co">#&gt; 6           2 Total or All groups                     0                     3</span>
+<span class="co">#&gt;                          IndicatorName LocName StructuredDataID LocTypeName</span>
+<span class="co">#&gt; 1 Population by age and sex - abridged   China        204033947     Country</span>
+<span class="co">#&gt; 2 Population by age and sex - abridged   China        204033948     Country</span>
+<span class="co">#&gt; 3 Population by age and sex - abridged   China        204033949     Country</span>
+<span class="co">#&gt; 4 Population by age and sex - abridged   China        204033950     Country</span>
+<span class="co">#&gt; 5 Population by age and sex - abridged   China        204033951     Country</span>
+<span class="co">#&gt; 6 Population by age and sex - abridged   China        204033952     Country</span>
+<span class="co">#&gt;   RegName AreaName LocAreaTypeName                 SubGroupTypeName SubGroupID1</span>
+<span class="co">#&gt; 1      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 2      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 3      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 4      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 5      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 6      NA       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt;          SubGroupName SubGroupCombinationID SubGroupTypeSortOrder</span>
+<span class="co">#&gt; 1 Total or All groups                     0                     3</span>
+<span class="co">#&gt; 2 Total or All groups                     0                     3</span>
+<span class="co">#&gt; 3 Total or All groups                     0                     3</span>
+<span class="co">#&gt; 4 Total or All groups                     0                     3</span>
+<span class="co">#&gt; 5 Total or All groups                     0                     3</span>
+<span class="co">#&gt; 6 Total or All groups                     0                     3</span>
 <span class="co">#&gt;   IndicatorShortName DataCatalogID DataProcessTypeID DataProcessType</span>
 <span class="co">#&gt; 1        Population5           272            Census          Census</span>
 <span class="co">#&gt; 2        Population5           272            Census          Census</span>
@@ -214,69 +207,62 @@
 <span class="co">#&gt; 4 Demographic Yearbook                 DYB             20          Final</span>
 <span class="co">#&gt; 5 Demographic Yearbook                 DYB             20          Final</span>
 <span class="co">#&gt; 6 Demographic Yearbook                 DYB             20          Final</span>
-<span class="co">#&gt;   DataStatusID DataStatusSort StatisticalConceptName StatisticalConceptID</span>
-<span class="co">#&gt; 1            1              2                De-jure                    3</span>
-<span class="co">#&gt; 2            1              2                De-jure                    3</span>
-<span class="co">#&gt; 3            1              2                De-jure                    3</span>
-<span class="co">#&gt; 4            1              2                De-jure                    3</span>
-<span class="co">#&gt; 5            1              2                De-jure                    3</span>
-<span class="co">#&gt; 6            1              2                De-jure                    3</span>
-<span class="co">#&gt;   StatisticalConceptSort SexName SexID SexSort AgeID AgeUnit AgeStart AgeEnd</span>
-<span class="co">#&gt; 1                      3    Male     1       1   700    Year        0     -1</span>
-<span class="co">#&gt; 2                      3    Male     1       1   702    Year        5     10</span>
-<span class="co">#&gt; 3                      3    Male     1       1   703    Year       10     15</span>
-<span class="co">#&gt; 4                      3    Male     1       1   704    Year       15     20</span>
-<span class="co">#&gt; 5                      3    Male     1       1   705    Year       20     25</span>
-<span class="co">#&gt; 6                      3    Male     1       1   706    Year       25     30</span>
-<span class="co">#&gt;   AgeSpan AgeMid AgeLabel AgeSort agesort DataTypeGroupName DataTypeGroupID</span>
-<span class="co">#&gt; 1      -1   -1.0    Total     999       0            Direct               3</span>
-<span class="co">#&gt; 2       5    7.5      5-9      69       0            Direct               3</span>
-<span class="co">#&gt; 3       5   12.5    10-14     133       0            Direct               3</span>
-<span class="co">#&gt; 4       5   17.5    15-19     190       0            Direct               3</span>
-<span class="co">#&gt; 5       5   22.5    20-24     263       0            Direct               3</span>
-<span class="co">#&gt; 6       5   27.5    25-29     306       0            Direct               3</span>
-<span class="co">#&gt;                DataTypeName DataTypeID DataTypeSort      ModelType</span>
-<span class="co">#&gt; 1 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt; 2 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt; 3 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt; 4 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt; 5 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt; 6 Population by age and sex         58          201 Not applicable</span>
-<span class="co">#&gt;   ModelPatternFamilyName ModelPatternFamilyID        ModelPatternName</span>
-<span class="co">#&gt; 1         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt; 2         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt; 3         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt; 4         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt; 5         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt; 6         Not applicable                   15 Not applicable (Direct)</span>
-<span class="co">#&gt;   ModelPatternID DataReliabilityName DataReliabilityID DataReliabilitySort</span>
-<span class="co">#&gt; 1             40                Fair                 5                   2</span>
-<span class="co">#&gt; 2             40                Fair                 5                   2</span>
-<span class="co">#&gt; 3             40                Fair                 5                   2</span>
-<span class="co">#&gt; 4             40                Fair                 5                   2</span>
-<span class="co">#&gt; 5             40                Fair                 5                   2</span>
-<span class="co">#&gt; 6             40                Fair                 5                   2</span>
-<span class="co">#&gt;   PeriodTypeName PeriodTypeID PeriodGroupName PeriodGroupID PeriodStart</span>
-<span class="co">#&gt; 1             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt; 2             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt; 3             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt; 4             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt; 5             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt; 6             CR            3  Not applicable            10           0</span>
-<span class="co">#&gt;   PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit  TimeStart    TimeEnd</span>
-<span class="co">#&gt; 1         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt; 2         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt; 3         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt; 4         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt; 5         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt; 6         0          0            0     NA     year 01/11/2000 01/11/2000</span>
-<span class="co">#&gt;   TimeDuration  TimeMid TimeLabel FootNoteID id     SeriesID DataValue</span>
-<span class="co">#&gt; 1            0 2000.838      2000          0  1 2.191812e+17 640275968</span>
-<span class="co">#&gt; 2            0 2000.838      2000          0  1 2.191812e+17  48303208</span>
-<span class="co">#&gt; 3            0 2000.838      2000          0  1 2.191812e+17  65344740</span>
-<span class="co">#&gt; 4            0 2000.838      2000          0  1 2.191812e+17  52878168</span>
-<span class="co">#&gt; 5            0 2000.838      2000          0  1 2.191812e+17  47937768</span>
-<span class="co">#&gt; 6            0 2000.838      2000          0  1 2.191812e+17  60230760</span></code></pre></div>
+<span class="co">#&gt;   DataStatusSort StatisticalConceptName StatisticalConceptSort SexName SexSort</span>
+<span class="co">#&gt; 1              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt; 2              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt; 3              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt; 4              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt; 5              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt; 6              2                De-jure                      3    Male       1</span>
+<span class="co">#&gt;   AgeID AgeUnit AgeStart AgeEnd AgeSpan AgeMid AgeLabel AgeSort agesort</span>
+<span class="co">#&gt; 1   700    Year        0     -1      -1   -1.0    Total     999       0</span>
+<span class="co">#&gt; 2   702    Year        5     10       5    7.5      5-9      69       0</span>
+<span class="co">#&gt; 3   703    Year       10     15       5   12.5    10-14     133       0</span>
+<span class="co">#&gt; 4   704    Year       15     20       5   17.5    15-19     190       0</span>
+<span class="co">#&gt; 5   705    Year       20     25       5   22.5    20-24     263       0</span>
+<span class="co">#&gt; 6   706    Year       25     30       5   27.5    25-29     306       0</span>
+<span class="co">#&gt;   DataTypeGroupName              DataTypeName DataTypeID DataTypeSort</span>
+<span class="co">#&gt; 1            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt; 2            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt; 3            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt; 4            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt; 5            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt; 6            Direct Population by age and sex         58          201</span>
+<span class="co">#&gt;        ModelType ModelPatternFamilyName        ModelPatternName</span>
+<span class="co">#&gt; 1 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 2 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 3 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 4 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 5 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 6 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt;   DataReliabilityName DataReliabilitySort PeriodTypeName PeriodGroupName</span>
+<span class="co">#&gt; 1                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt; 2                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt; 3                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt; 4                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt; 5                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt; 6                Fair                   2             CR  Not applicable</span>
+<span class="co">#&gt;   PeriodStart PeriodEnd PeriodSpan PeriodMiddle Weight TimeUnit  TimeStart</span>
+<span class="co">#&gt; 1           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt; 2           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt; 3           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt; 4           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt; 5           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt; 6           0         0          0            0     NA     year 01/11/2000</span>
+<span class="co">#&gt;      TimeEnd TimeDuration  TimeMid TimeLabel FootNoteID id     SeriesID</span>
+<span class="co">#&gt; 1 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt; 2 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt; 3 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt; 4 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt; 5 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt; 6 01/11/2000            0 2000.838      2000          0  1 2.191812e+17</span>
+<span class="co">#&gt;   DataValue</span>
+<span class="co">#&gt; 1 640275968</span>
+<span class="co">#&gt; 2  48303208</span>
+<span class="co">#&gt; 3  65344740</span>
+<span class="co">#&gt; 4  52878168</span>
+<span class="co">#&gt; 5  47937768</span>
+<span class="co">#&gt; 6  60230760</span></code></pre></div>
 </div>
 <div id="births-by-age-of-mother" class="section level4">
 <h4 class="hasAnchor">
@@ -322,27 +308,20 @@
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">togo</span><span class="op">)</span>
-<span class="co">#&gt;                                IndicatorName IndicatorID LocName LocID</span>
-<span class="co">#&gt; 1 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt; 2 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt; 3 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt; 4 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt; 5 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt; 6 Births by age of mother (and sex of child)         170    Togo   768</span>
-<span class="co">#&gt;   StructuredDataID LocTypeName LocTypeID RegName RegID AreaName AreaID</span>
-<span class="co">#&gt; 1        205820005     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 2        205820006     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 3        205820007     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 4        205820008     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 5        205820009     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt; 6        205820010     Country         5      NA     0       NA      0</span>
-<span class="co">#&gt;   LocAreaTypeName LocAreaTypeID                 SubGroupTypeName SubGroupTypeID</span>
-<span class="co">#&gt; 1      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 2      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 3      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 4      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 5      Whole area             2 Total / All groups / Whole group              2</span>
-<span class="co">#&gt; 6      Whole area             2 Total / All groups / Whole group              2</span>
+<span class="co">#&gt;                                IndicatorName LocName StructuredDataID</span>
+<span class="co">#&gt; 1 Births by age of mother (and sex of child)    Togo        205820005</span>
+<span class="co">#&gt; 2 Births by age of mother (and sex of child)    Togo        205820006</span>
+<span class="co">#&gt; 3 Births by age of mother (and sex of child)    Togo        205820007</span>
+<span class="co">#&gt; 4 Births by age of mother (and sex of child)    Togo        205820008</span>
+<span class="co">#&gt; 5 Births by age of mother (and sex of child)    Togo        205820009</span>
+<span class="co">#&gt; 6 Births by age of mother (and sex of child)    Togo        205820010</span>
+<span class="co">#&gt;   LocTypeName RegName AreaName LocAreaTypeName                 SubGroupTypeName</span>
+<span class="co">#&gt; 1     Country      NA       NA      Whole area Total / All groups / Whole group</span>
+<span class="co">#&gt; 2     Country      NA       NA      Whole area Total / All groups / Whole group</span>
+<span class="co">#&gt; 3     Country      NA       NA      Whole area Total / All groups / Whole group</span>
+<span class="co">#&gt; 4     Country      NA       NA      Whole area Total / All groups / Whole group</span>
+<span class="co">#&gt; 5     Country      NA       NA      Whole area Total / All groups / Whole group</span>
+<span class="co">#&gt; 6     Country      NA       NA      Whole area Total / All groups / Whole group</span>
 <span class="co">#&gt;   SubGroupID1        SubGroupName SubGroupCombinationID SubGroupTypeSortOrder</span>
 <span class="co">#&gt; 1           2 Total or All groups                     0                     3</span>
 <span class="co">#&gt; 2           2 Total or All groups                     0                     3</span>
@@ -392,55 +371,41 @@
 <span class="co">#&gt; 4             UNSD           1965 Demographic Yearbook                 DYB</span>
 <span class="co">#&gt; 5             UNSD           1965 Demographic Yearbook                 DYB</span>
 <span class="co">#&gt; 6             UNSD           1965 Demographic Yearbook                 DYB</span>
-<span class="co">#&gt;   DataSourceSort DataStatusName DataStatusID DataStatusSort</span>
-<span class="co">#&gt; 1             20          Final            1              2</span>
-<span class="co">#&gt; 2             20          Final            1              2</span>
-<span class="co">#&gt; 3             20          Final            1              2</span>
-<span class="co">#&gt; 4             20          Final            1              2</span>
-<span class="co">#&gt; 5             20          Final            1              2</span>
-<span class="co">#&gt; 6             20          Final            1              2</span>
-<span class="co">#&gt;   StatisticalConceptName StatisticalConceptID StatisticalConceptSort SexName</span>
-<span class="co">#&gt; 1     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt; 2     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt; 3     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt; 4     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt; 5     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt; 6     Year of occurrence                    5                      5    Male</span>
-<span class="co">#&gt;   SexID SexSort AgeID AgeUnit AgeStart AgeEnd AgeSpan AgeMid AgeLabel AgeSort</span>
-<span class="co">#&gt; 1     1       1   304    Year       15     20       5   17.5    15-19     126</span>
-<span class="co">#&gt; 2     1       1   305    Year       20     25       5   22.5    20-24     172</span>
-<span class="co">#&gt; 3     1       1   306    Year       25     30       5   27.5    25-29     195</span>
-<span class="co">#&gt; 4     1       1   307    Year       30     35       5   32.5    30-34     211</span>
-<span class="co">#&gt; 5     1       1   308    Year       35     40       5   37.5    35-39     232</span>
-<span class="co">#&gt; 6     1       1   309    Year       40     45       5   42.5    40-44     249</span>
-<span class="co">#&gt;   agesort DataTypeGroupName DataTypeGroupID  DataTypeName DataTypeID</span>
-<span class="co">#&gt; 1       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt; 2       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt; 3       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt; 4       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt; 5       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt; 6       0            Direct               3 Recent births         62</span>
-<span class="co">#&gt;   DataTypeSort      ModelType ModelPatternFamilyName ModelPatternFamilyID</span>
-<span class="co">#&gt; 1          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt; 2          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt; 3          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt; 4          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt; 5          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt; 6          320 Not applicable         Not applicable                   15</span>
-<span class="co">#&gt;          ModelPatternName ModelPatternID DataReliabilityName DataReliabilityID</span>
-<span class="co">#&gt; 1 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt; 2 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt; 3 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt; 4 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt; 5 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt; 6 Not applicable (Direct)             40                Fair                 5</span>
-<span class="co">#&gt;   DataReliabilitySort PeriodTypeName PeriodTypeID PeriodGroupName PeriodGroupID</span>
-<span class="co">#&gt; 1                   2             RP            6             &lt; 1            67</span>
-<span class="co">#&gt; 2                   2             RP            6             &lt; 1            67</span>
-<span class="co">#&gt; 3                   2             RP            6             &lt; 1            67</span>
-<span class="co">#&gt; 4                   2             RP            6             &lt; 1            67</span>
-<span class="co">#&gt; 5                   2             RP            6             &lt; 1            67</span>
-<span class="co">#&gt; 6                   2             RP            6             &lt; 1            67</span>
+<span class="co">#&gt;   DataSourceSort DataStatusName DataStatusSort StatisticalConceptName</span>
+<span class="co">#&gt; 1             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt; 2             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt; 3             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt; 4             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt; 5             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt; 6             20          Final              2     Year of occurrence</span>
+<span class="co">#&gt;   StatisticalConceptSort SexName SexSort AgeID AgeUnit AgeStart AgeEnd AgeSpan</span>
+<span class="co">#&gt; 1                      5    Male       1   304    Year       15     20       5</span>
+<span class="co">#&gt; 2                      5    Male       1   305    Year       20     25       5</span>
+<span class="co">#&gt; 3                      5    Male       1   306    Year       25     30       5</span>
+<span class="co">#&gt; 4                      5    Male       1   307    Year       30     35       5</span>
+<span class="co">#&gt; 5                      5    Male       1   308    Year       35     40       5</span>
+<span class="co">#&gt; 6                      5    Male       1   309    Year       40     45       5</span>
+<span class="co">#&gt;   AgeMid AgeLabel AgeSort agesort DataTypeGroupName  DataTypeName DataTypeID</span>
+<span class="co">#&gt; 1   17.5    15-19     126       0            Direct Recent births         62</span>
+<span class="co">#&gt; 2   22.5    20-24     172       0            Direct Recent births         62</span>
+<span class="co">#&gt; 3   27.5    25-29     195       0            Direct Recent births         62</span>
+<span class="co">#&gt; 4   32.5    30-34     211       0            Direct Recent births         62</span>
+<span class="co">#&gt; 5   37.5    35-39     232       0            Direct Recent births         62</span>
+<span class="co">#&gt; 6   42.5    40-44     249       0            Direct Recent births         62</span>
+<span class="co">#&gt;   DataTypeSort      ModelType ModelPatternFamilyName        ModelPatternName</span>
+<span class="co">#&gt; 1          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 2          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 3          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 4          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 5          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt; 6          320 Not applicable         Not applicable Not applicable (Direct)</span>
+<span class="co">#&gt;   DataReliabilityName DataReliabilitySort PeriodTypeName PeriodGroupName</span>
+<span class="co">#&gt; 1                Fair                   2             RP             &lt; 1</span>
+<span class="co">#&gt; 2                Fair                   2             RP             &lt; 1</span>
+<span class="co">#&gt; 3                Fair                   2             RP             &lt; 1</span>
+<span class="co">#&gt; 4                Fair                   2             RP             &lt; 1</span>
+<span class="co">#&gt; 5                Fair                   2             RP             &lt; 1</span>
+<span class="co">#&gt; 6                Fair                   2             RP             &lt; 1</span>
 <span class="co">#&gt;   PeriodStart PeriodEnd PeriodSpan PeriodMiddle    Weight TimeUnit  TimeStart</span>
 <span class="co">#&gt; 1           0         1          1          0.5 0.4320109     year 01/01/1961</span>
 <span class="co">#&gt; 2           0         1          1          0.5 0.4320109     year 01/01/1961</span>
@@ -490,27 +455,20 @@
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2&amp;includeUncertainty=true</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oman</span><span class="op">)</span>
-<span class="co">#&gt;                      IndicatorName IndicatorID LocName LocID StructuredDataID</span>
-<span class="co">#&gt; 1 Deaths by age and sex - abridged         194    Oman   512        184068524</span>
-<span class="co">#&gt; 2 Deaths by age and sex - abridged         194    Oman   512        184068531</span>
-<span class="co">#&gt; 3 Deaths by age and sex - abridged         194    Oman   512        184068521</span>
-<span class="co">#&gt; 4 Deaths by age and sex - abridged         194    Oman   512        184068523</span>
-<span class="co">#&gt; 5 Deaths by age and sex - abridged         194    Oman   512        184068537</span>
-<span class="co">#&gt; 6 Deaths by age and sex - abridged         194    Oman   512        184068539</span>
-<span class="co">#&gt;   LocTypeName LocTypeID RegName RegID AreaName AreaID LocAreaTypeName</span>
-<span class="co">#&gt; 1     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt; 2     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt; 3     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt; 4     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt; 5     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt; 6     Country         5      NA     0       NA      0      Whole area</span>
-<span class="co">#&gt;   LocAreaTypeID                 SubGroupTypeName SubGroupTypeID SubGroupID1</span>
-<span class="co">#&gt; 1             2 Total / All groups / Whole group              2           2</span>
-<span class="co">#&gt; 2             2 Total / All groups / Whole group              2           2</span>
-<span class="co">#&gt; 3             2 Total / All groups / Whole group              2           2</span>
-<span class="co">#&gt; 4             2 Total / All groups / Whole group              2           2</span>
-<span class="co">#&gt; 5             2 Total / All groups / Whole group              2           2</span>
-<span class="co">#&gt; 6             2 Total / All groups / Whole group              2           2</span>
+<span class="co">#&gt;                      IndicatorName LocName StructuredDataID LocTypeName RegName</span>
+<span class="co">#&gt; 1 Deaths by age and sex - abridged    Oman        184068537     Country      NA</span>
+<span class="co">#&gt; 2 Deaths by age and sex - abridged    Oman        184068539     Country      NA</span>
+<span class="co">#&gt; 3 Deaths by age and sex - abridged    Oman        184068521     Country      NA</span>
+<span class="co">#&gt; 4 Deaths by age and sex - abridged    Oman        184068523     Country      NA</span>
+<span class="co">#&gt; 5 Deaths by age and sex - abridged    Oman        184068514     Country      NA</span>
+<span class="co">#&gt; 6 Deaths by age and sex - abridged    Oman        184068471     Country      NA</span>
+<span class="co">#&gt;   AreaName LocAreaTypeName                 SubGroupTypeName SubGroupID1</span>
+<span class="co">#&gt; 1       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 2       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 3       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 4       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 5       NA      Whole area Total / All groups / Whole group           2</span>
+<span class="co">#&gt; 6       NA      Whole area Total / All groups / Whole group           2</span>
 <span class="co">#&gt;          SubGroupName SubGroupCombinationID SubGroupTypeSortOrder</span>
 <span class="co">#&gt; 1 Total or All groups                     0                     3</span>
 <span class="co">#&gt; 2 Total or All groups                     0                     3</span>
@@ -574,69 +532,55 @@
 <span class="co">#&gt; 4                            0                            0          Final</span>
 <span class="co">#&gt; 5                            0                            0          Final</span>
 <span class="co">#&gt; 6                            0                            0          Final</span>
-<span class="co">#&gt;   DataStatusID DataStatusSort StatisticalConceptName StatisticalConceptID</span>
-<span class="co">#&gt; 1            1              2                Unknown                    0</span>
-<span class="co">#&gt; 2            1              2                Unknown                    0</span>
-<span class="co">#&gt; 3            1              2                Unknown                    0</span>
-<span class="co">#&gt; 4            1              2                Unknown                    0</span>
-<span class="co">#&gt; 5            1              2                Unknown                    0</span>
-<span class="co">#&gt; 6            1              2                Unknown                    0</span>
-<span class="co">#&gt;   StatisticalConceptSort SexName SexID SexSort AgeID AgeUnit AgeStart AgeEnd</span>
-<span class="co">#&gt; 1                      6 Unknown     0       5   305    Year       20     25</span>
-<span class="co">#&gt; 2                      6 Unknown     0       5   312    Year       55     60</span>
-<span class="co">#&gt; 3                      6 Unknown     0       5   302    Year        5     10</span>
-<span class="co">#&gt; 4                      6 Unknown     0       5   304    Year       15     20</span>
-<span class="co">#&gt; 5                      6 Unknown     0       5   318    Year       85     90</span>
-<span class="co">#&gt; 6                      6 Unknown     0       5   370    Year       95      0</span>
-<span class="co">#&gt;   AgeSpan AgeMid AgeLabel AgeSort agesort DataTypeGroupName DataTypeGroupID</span>
-<span class="co">#&gt; 1       5   22.5    20-24     172       0            Direct               3</span>
-<span class="co">#&gt; 2       5   57.5    55-59     297       0            Direct               3</span>
-<span class="co">#&gt; 3       5    7.5      5-9      47       0            Direct               3</span>
-<span class="co">#&gt; 4       5   17.5    15-19     126       0            Direct               3</span>
-<span class="co">#&gt; 5       5   87.5    85-89     369       0            Direct               3</span>
-<span class="co">#&gt; 6      -1   97.5      95+     384       0            Direct               3</span>
-<span class="co">#&gt;   DataTypeName DataTypeID DataTypeSort      ModelType ModelPatternFamilyName</span>
-<span class="co">#&gt; 1       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt; 2       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt; 3       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt; 4       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt; 5       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt; 6       Direct         16           11 Not applicable         Not applicable</span>
-<span class="co">#&gt;   ModelPatternFamilyID        ModelPatternName ModelPatternID</span>
-<span class="co">#&gt; 1                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 2                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 3                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 4                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 5                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt; 6                   15 Not applicable (Direct)             40</span>
-<span class="co">#&gt;   DataReliabilityName DataReliabilityID DataReliabilitySort PeriodTypeName</span>
-<span class="co">#&gt; 1        High quality                 6                   1             CR</span>
-<span class="co">#&gt; 2        High quality                 6                   1             CR</span>
-<span class="co">#&gt; 3        High quality                 6                   1             CR</span>
-<span class="co">#&gt; 4        High quality                 6                   1             CR</span>
-<span class="co">#&gt; 5        High quality                 6                   1             CR</span>
-<span class="co">#&gt; 6        High quality                 6                   1             CR</span>
-<span class="co">#&gt;   PeriodTypeID PeriodGroupName PeriodGroupID PeriodStart PeriodEnd PeriodSpan</span>
-<span class="co">#&gt; 1            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt; 2            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt; 3            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt; 4            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt; 5            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt; 6            3  Not applicable            10           0         0          0</span>
-<span class="co">#&gt;   PeriodMiddle Weight TimeUnit  TimeStart    TimeEnd TimeDuration TimeMid</span>
-<span class="co">#&gt; 1            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt; 2            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt; 3            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt; 4            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt; 5            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt; 6            0     NA     year 01/01/2010 01/01/2011            1  2010.5</span>
-<span class="co">#&gt;   TimeLabel FootNoteID id     SeriesID DataValue</span>
-<span class="co">#&gt; 1      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 2      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 3      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 4      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 5      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 6      2010          0  1 1.551674e+16         0</span></code></pre></div>
+<span class="co">#&gt;   DataStatusSort StatisticalConceptName StatisticalConceptSort SexName SexSort</span>
+<span class="co">#&gt; 1              2                Unknown                      6 Unknown       5</span>
+<span class="co">#&gt; 2              2                Unknown                      6 Unknown       5</span>
+<span class="co">#&gt; 3              2                Unknown                      6 Unknown       5</span>
+<span class="co">#&gt; 4              2                Unknown                      6 Unknown       5</span>
+<span class="co">#&gt; 5              2                Unknown                      6 Unknown       5</span>
+<span class="co">#&gt; 6              2                Unknown                      6    Male       1</span>
+<span class="co">#&gt;   AgeID AgeUnit AgeStart AgeEnd AgeSpan AgeMid AgeLabel AgeSort agesort</span>
+<span class="co">#&gt; 1   318    Year       85     90       5   87.5    85-89     369       0</span>
+<span class="co">#&gt; 2   370    Year       95      0      -1   97.5      95+     384       0</span>
+<span class="co">#&gt; 3   302    Year        5     10       5    7.5      5-9      47       0</span>
+<span class="co">#&gt; 4   304    Year       15     20       5   17.5    15-19     126       0</span>
+<span class="co">#&gt; 5   399    Year       -2     -2      -2   -2.0  Unknown     998       0</span>
+<span class="co">#&gt; 6   302    Year        5     10       5    7.5      5-9      47       0</span>
+<span class="co">#&gt;   DataTypeGroupName DataTypeName DataTypeID DataTypeSort      ModelType</span>
+<span class="co">#&gt; 1            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt; 2            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt; 3            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt; 4            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt; 5            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt; 6            Direct       Direct         16           11 Not applicable</span>
+<span class="co">#&gt;   ModelPatternFamilyName        ModelPatternName DataReliabilityName</span>
+<span class="co">#&gt; 1         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt; 2         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt; 3         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt; 4         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt; 5         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt; 6         Not applicable Not applicable (Direct)        High quality</span>
+<span class="co">#&gt;   DataReliabilitySort PeriodTypeName PeriodGroupName PeriodStart PeriodEnd</span>
+<span class="co">#&gt; 1                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt; 2                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt; 3                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt; 4                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt; 5                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt; 6                   1             CR  Not applicable           0         0</span>
+<span class="co">#&gt;   PeriodSpan PeriodMiddle Weight TimeUnit  TimeStart    TimeEnd TimeDuration</span>
+<span class="co">#&gt; 1          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt; 2          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt; 3          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt; 4          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt; 5          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt; 6          0            0     NA     year 01/01/2010 01/01/2011            1</span>
+<span class="co">#&gt;   TimeMid TimeLabel FootNoteID id     SeriesID DataValue</span>
+<span class="co">#&gt; 1  2010.5      2010          0  1 1.551674e+16         0</span>
+<span class="co">#&gt; 2  2010.5      2010          0  1 1.551674e+16         0</span>
+<span class="co">#&gt; 3  2010.5      2010          0  1 1.551674e+16         0</span>
+<span class="co">#&gt; 4  2010.5      2010          0  1 1.551674e+16         0</span>
+<span class="co">#&gt; 5  2010.5      2010          0  1 1.551674e+16         6</span>
+<span class="co">#&gt; 6  2010.5      2010          0  1 1.551674e+16        39</span></code></pre></div>
 <p>By default, the results from <code>get_recorddata</code> exclude any uncertainty columns such as <code>StandardErrorValue</code>, <code>ConfidenceInterval</code>, etc. By setting <code>includeUncertainty = TRUE</code>, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to <code>StandardErrorValue</code>, the user can quickly see the uncertainty columns.</p>
 </div>
 <div id="additional-queries-with-datatypegroupids-and-datatypegroupid2s" class="section level4">
@@ -784,55 +728,145 @@
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">deaths</span></code></pre></div>
-<!-- #### Identifying ID and Names of values -->
-<!-- Whenever you download some data, you'll see that there are several columns that end with `Name`. This columns contain, for example, the name of the location (`LocName`) or the name of the subgroup (`SubGroupName`). To be able to see the equivalent ID of these names, there are two different strategies using the `haven` package. -->
-<!-- First, let's get some data: -->
-<!-- ```{r } -->
-<!-- res <- get_recorddata(dataProcessTypeIds = 9, # Register -->
-<!--                       startYear = 1920, -->
-<!--                       endYear = 2020, -->
-<!--                       indicatorTypeIds = 14, # Births by sex -->
-<!--                       isComplete = 2, # Total -->
-<!--                       locIds = 28, # Antigua and Barbuda -->
-<!--                       locAreaTypeIds = 2, # Whole area -->
-<!--                       subGroupIds = 2) # Total -->
-<!-- ``` -->
-<!-- #### Base R -->
-<!-- You can use `print_labels` from `haven` on the column of interest and it will show you the ID: -->
-<!-- ```{r} -->
-<!-- library(haven) -->
-<!-- print_labels(res$LocName) -->
-<!-- ``` -->
-<!-- If you want to flip the labels for the entire data frame such that the ID is current value and not the name, you can do that with `as_factor`: -->
-<!-- ```{r} -->
-<!-- res_edit <- as_factor(res) -->
-<!-- # No long showing the name but the ID -->
-<!-- head(res_edit["LocName"]) -->
-<!-- ``` -->
-<!-- #### Tidyverse -->
-<!-- Using the tidyverse, the solution from base R applies as well. However, if you convert your data frame to a `tibble`, it will automatically show you the labels in the data frame. -->
-<!-- ```{r } -->
-<!-- library(tidyverse) -->
-<!-- res_tb <- res %>% as_tibble() -->
-<!-- # See the code next to the name? No need to print it -->
-<!-- # separately, `tibble` print boths things together. -->
-<!-- res_tb %>% -->
-<!--   select(ends_with("Name")) -->
-<!-- ``` -->
-<!-- If you're interested in keeping either the codes or the names, you can do that with `as_factor`: -->
-<!-- ```{r } -->
-<!-- res_tb %>% -->
-<!--   # You can extract just the ID -->
-<!--   as_factor(levels = "labels") %>%  -->
-<!--   select(ends_with("Name")) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- res_tb %>% -->
-<!--   # Or just the values -->
-<!--   as_factor(levels = "values") %>% -->
-<!--   select(ends_with("Name"))   -->
-<!-- ``` -->
 </div>
+</div>
+<div id="identifying-id-and-names-of-values" class="section level4">
+<h4 class="hasAnchor">
+<a href="#identifying-id-and-names-of-values" class="anchor"></a>Identifying ID and Names of values</h4>
+<p>Whenever you download some data, you’ll see that there are several columns that end with <code>Name</code>. This columns contain, for example, the name of the location (<code>LocName</code>) or the name of the subgroup (<code>SubGroupName</code>). To be able to see the equivalent ID of these names, there are two different strategies using the <code>haven</code> package.</p>
+<p>First, let’s get some data:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>
+    dataProcessTypeIds <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Census</span>
+    indicatorTypeIds <span class="op">=</span> <span class="fl">8</span>, <span class="co"># Population by age and sex - abridged</span>
+    locIds <span class="op">=</span> <span class="fl">818</span>, <span class="co"># Egypt</span>
+    locAreaTypeIds <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Whole area</span>
+    subGroupIds <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Total or All groups</span>
+    isComplete <span class="op">=</span> <span class="fl">0</span>,
+    collapse_id_name <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=818&amp;locAreaTypeIds=2&amp;subGroupIds=2</span></code></pre></div>
+</div>
+<div id="base-r" class="section level4">
+<h4 class="hasAnchor">
+<a href="#base-r" class="anchor"></a>Base R</h4>
+<p>You can use <code>print_labels</code> from <code>haven</code> on the column of interest and it will show you the ID:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
+<span class="fu"><a href="https://haven.tidyverse.org/reference/print_labels.html">print_labels</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">LocName</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Labels:</span>
+<span class="co">#&gt;  value label</span>
+<span class="co">#&gt;  Egypt   818</span></code></pre></div>
+<p>If you want to flip the labels for the entire data frame such that the ID is current value and not the name, you can do that with <code>as_factor</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_edit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
+
+<span class="co"># No long showing the name but the ID</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res_edit</span><span class="op">[</span><span class="st">"LocName"</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt;   LocName</span>
+<span class="co">#&gt; 1     818</span>
+<span class="co">#&gt; 2     818</span>
+<span class="co">#&gt; 3     818</span>
+<span class="co">#&gt; 4     818</span>
+<span class="co">#&gt; 5     818</span>
+<span class="co">#&gt; 6     818</span></code></pre></div>
+</div>
+<div id="tidyverse" class="section level4">
+<h4 class="hasAnchor">
+<a href="#tidyverse" class="anchor"></a>Tidyverse</h4>
+<p>Using the tidyverse, the solution from base R applies as well. However, if you convert your data frame to a <code>tibble</code>, it will automatically show you the labels in the data frame.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
+<span class="co">#&gt; ✔ ggplot2 3.3.3     ✔ purrr   0.3.4</span>
+<span class="co">#&gt; ✔ tibble  3.1.1     ✔ dplyr   1.0.5</span>
+<span class="co">#&gt; ✔ tidyr   1.1.3     ✔ stringr 1.4.0</span>
+<span class="co">#&gt; ✔ readr   1.4.0     ✔ forcats 0.5.1</span>
+<span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
+<span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
+<span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span>
+
+<span class="va">res_tb</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># See the code next to the name? No need to print it</span>
+<span class="co"># separately, `tibble` print boths things together.</span>
+<span class="va">res_tb</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 800 x 23</span>
+<span class="co">#&gt;    IndicatorName        LocName     LocTypeName RegName AreaName LocAreaTypeName</span>
+<span class="co">#&gt;    &lt;chr+lbl&gt;            &lt;chr+lbl&gt;   &lt;chr+lbl&gt;   &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;chr+lbl&gt;      </span>
+<span class="co">#&gt;  1 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  2 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  3 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  4 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  5 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  6 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  7 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  8 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt;  9 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt; 10 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
+<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;chr+lbl&gt;,</span>
+<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;chr+lbl&gt;,</span>
+<span class="co">#&gt; #   StatisticalConceptName &lt;chr+lbl&gt;, SexName &lt;chr+lbl&gt;,</span>
+<span class="co">#&gt; #   DataTypeGroupName &lt;chr+lbl&gt;, DataTypeName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ModelPatternFamilyName &lt;chr+lbl&gt;, ModelPatternName &lt;chr+lbl&gt;,</span>
+<span class="co">#&gt; #   DataReliabilityName &lt;chr+lbl&gt;, PeriodTypeName &lt;chr+lbl&gt;,</span>
+<span class="co">#&gt; #   PeriodGroupName &lt;chr+lbl&gt;</span></code></pre></div>
+<p>If you’re interested in keeping either the codes or the names, you can do that with <code>as_factor</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_tb</span> <span class="op">%&gt;%</span>
+  <span class="co"># You can extract just the ID</span>
+  <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"labels"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 800 x 23</span>
+<span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
+<span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
+<span class="co">#&gt;  1 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  2 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  3 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  4 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  5 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  6 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  7 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  8 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt;  9 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt; 10 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
+<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_tb</span> <span class="op">%&gt;%</span>
+  <span class="co"># Or just the values</span>
+  <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 800 x 23</span>
+<span class="co">#&gt;    IndicatorName            LocName LocTypeName RegName AreaName LocAreaTypeName</span>
+<span class="co">#&gt;    &lt;fct&gt;                    &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
+<span class="co">#&gt;  1 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  2 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  3 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  4 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  5 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  6 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  7 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  8 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt;  9 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt; 10 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
+<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
+<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span>
+<span class="co">#&gt; #   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></code></pre></div>
+<p>Since <code>get_recorddataadditional</code> is a cousing of <code>get_recorddatal</code> with additional options to specify, all of the above applies to <code>get_recorddataadditional</code>.</p>
 </div>
 </div>
 <div id="exploring-the-unpd-sql-api-from-r" class="section level2">
@@ -854,10 +888,10 @@
 </li>
 </ul>
 <p>For example, to see all possible indicator types:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_indicatortypes.html">get_indicatortypes</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Here we can see both the <strong>code</strong> and the <strong>name</strong> of the indicator. Both values are accepted by <code>get_recorddata</code>. Another example is getting the list of location types. <code><a href="../reference/get_locationtypes.html">get_locationtypes()</a></code> will give you those:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_locationtypes.html">get_locationtypes</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/locareatypes?</span>
@@ -920,7 +954,7 @@
 <span class="co">#&gt; 18                      FALSE     FALSE</span></code></pre></div>
 <p>In order to search for a specific combination of values (<code>"Egypt"</code>, <code>"Deaths by age and sex"</code>, etc…), the process is only possible through trial and error. For example, if we wanted to explore <code>Deaths by age and sex</code> for <code>Oman</code>, we’d have to explore whether there is data for <code>Semi-rural</code> (<code>locAreaTypeIds</code>) and <code>Christian Orthodox</code> (<code>subGroupIds</code>).</p>
 <p>For now, let’s try this example for <code>"Semi-rural"</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
                indicatorTypeIds <span class="op">=</span> <span class="st">"Deaths by age and sex"</span>,
                locIds <span class="op">=</span> <span class="st">"Oman"</span>,
@@ -946,7 +980,7 @@
 <h2 class="hasAnchor">
 <a href="#exploring-indicators" class="anchor"></a>Exploring indicators</h2>
 <p>To explore all possible indicatorIds, indicatorTypeIds and components, <code>get_iitypes</code> can be of use. Although <code>get_indicators</code> and <code>get_indicatortypes</code> are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That’s where <code>get_iitypes</code> comes in. For example:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_iitypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?</span>
@@ -1029,7 +1063,7 @@
 <span class="co">#&gt; 5                       8                        NA</span>
 <span class="co">#&gt; 6                       9                        NA</span></code></pre></div>
 <p>The output is all IndicatorTypeID, together with the IndicatorIds and ComponentIDs. The advantage of <code>get_iitypes</code> is that you can select any of then with the function:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorIds <span class="op">=</span> <span class="fl">239</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?indicatorIds=239</span>
@@ -1053,7 +1087,7 @@
 <span class="co">#&gt; 1                   Mortality Under-five mortality                      NA</span>
 <span class="co">#&gt;   IndicatorType.SortOrder IndicatorType.Description</span>
 <span class="co">#&gt; 1                      24                        NA</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>indicatorTypeIds <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?indicatorTypeIds=2</span>
@@ -1214,7 +1248,7 @@
 <span class="co">#&gt; 11                       4                        NA</span>
 <span class="co">#&gt; 12                       4                        NA</span></code></pre></div>
 <p>or ComponentIds:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?componentIds=4</span>
@@ -1891,7 +1925,7 @@
 <span class="co">#&gt; 46                      32                        NA</span>
 <span class="co">#&gt; 47                      35                        NA</span></code></pre></div>
 <p>Although this is handy for exploration, what’s even more handy is the combination of parameters:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span>componentIds <span class="op">=</span> <span class="fl">4</span>, indicatorTypeIds <span class="op">=</span> <span class="fl">38</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?indicatorTypeIds=38&amp;componentIds=4</span>

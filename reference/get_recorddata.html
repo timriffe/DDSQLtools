@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.03</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.04</span>
       </span>
     </div>
 
@@ -129,7 +129,12 @@
     <p>Download structuredDataRecords data from the UNPD portal</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_recorddata</span><span class='op'>(</span>save_file <span class='op'>=</span> <span class='cn'>FALSE</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_recorddata</span><span class='op'>(</span>
+  save_file <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  collapse_id_name <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,6 +148,12 @@ external <code>.Rdata</code> file in the working directory. Default: <code>FALSE
       <th>verbose</th>
       <td><p>Whether to print the translated query from strings to digits
 for faster queries. By default set to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>collapse_id_name</th>
+      <td><p>A logical to whether collapse all ID-Name columns
+into a single <code>haven_labelled</code> column. Default set to <code>FALSE</code>.
+See details for more information.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -169,7 +180,17 @@ the response from the <code>get_*</code> functions.</p>
 of the values requested (StandardErrorValue, ConfidenceInterval, etc...).
 By setting the argument <code>includeUncertainty = TRUE</code>, the uncertainty
 fields will be included in the final data frame.</p>
-<p>Once the data is read from the API, some transformations are applied:</p>
+<p>Once the data is read from the API, some transformations are applied. If
+<code>collapse_id_name</code> is set to <code>TRUE</code>, all of these columns are
+merged with their exact ID pairs (such that only the Name columns
+are kept and their ID pair are assigned as labels):</p>
+<ul>
+<li><p>Columns <code>AreaName</code>, <code>DataReliabilityName</code>, <code>SubGroupName</code>, <code>DataStatusName</code>, <code>DataTypeName</code>, <code>DataTypeGroupName</code>, <code>IndicatorName</code>, <code>LocName</code>, <code>LocAreaTypeName</code>, <code>LocTypeName</code>, <code>ModelPatternName</code>, <code>ModelPatternFamilyName</code>, <code>PeriodGroupName</code>, <code>PeriodTypeName</code>, <code>RegName</code>, <code>SexName</code>, <code>StatisticalConceptName</code>, <code>SubGroupTypeName</code> are converted to labelled factors with <code><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></code></p></li>
+</ul>
+
+<p>For an example to understand better how to exploit this feature, see
+the vignette section 'Identifying ID and Names of values'.</p>
+<p>Regardless of the <code>collapse_id_name</code> value, these transformations are applied:</p>
 <ul>
 <li><p><code>TimeStart</code> and <code>TimeEnd</code> are returned with format <code>'DD/MM/YYYY'</code></p></li>
 </ul>
@@ -228,6 +249,23 @@ fields will be included in the final data frame.</p>
 <span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+
+<span class='co'># You can also request the Name-ID pairs of columns to be collapsed</span>
+<span class='co'># to only the Name columns and ID pair is assigned as a label</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>get_recorddata</span><span class='op'>(</span>
+  dataProcessTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
+  locIds <span class='op'>=</span> <span class='fl'>818</span>,
+  locAreaTypeIds <span class='op'>=</span> <span class='fl'>2</span>,
+  subGroupIds <span class='op'>=</span> <span class='fl'>2</span>,
+  isComplete <span class='op'>=</span> <span class='fl'>0</span>,
+  dataSourceShortNames <span class='op'>=</span> <span class='st'>"OECD 1980"</span>,
+  includeUncertainty <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  collapse_id_name <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+
+<span class='co'># Some of the collapsed columns:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"IndicatorName"</span>, <span class='st'>"LocTypeName"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 </div></pre>
