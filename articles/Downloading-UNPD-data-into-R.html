@@ -456,12 +456,12 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oman</span><span class="op">)</span>
 <span class="co">#&gt;                      IndicatorName LocName StructuredDataID LocTypeName RegName</span>
-<span class="co">#&gt; 1 Deaths by age and sex - abridged    Oman        184068537     Country      NA</span>
-<span class="co">#&gt; 2 Deaths by age and sex - abridged    Oman        184068539     Country      NA</span>
+<span class="co">#&gt; 1 Deaths by age and sex - abridged    Oman        184068525     Country      NA</span>
+<span class="co">#&gt; 2 Deaths by age and sex - abridged    Oman        184068526     Country      NA</span>
 <span class="co">#&gt; 3 Deaths by age and sex - abridged    Oman        184068534     Country      NA</span>
 <span class="co">#&gt; 4 Deaths by age and sex - abridged    Oman        184068536     Country      NA</span>
-<span class="co">#&gt; 5 Deaths by age and sex - abridged    Oman        184068514     Country      NA</span>
-<span class="co">#&gt; 6 Deaths by age and sex - abridged    Oman        184068471     Country      NA</span>
+<span class="co">#&gt; 5 Deaths by age and sex - abridged    Oman        184068527     Country      NA</span>
+<span class="co">#&gt; 6 Deaths by age and sex - abridged    Oman        184068528     Country      NA</span>
 <span class="co">#&gt;   AreaName LocAreaTypeName                 SubGroupTypeName SubGroupID1</span>
 <span class="co">#&gt; 1       NA      Whole area Total / All groups / Whole group           2</span>
 <span class="co">#&gt; 2       NA      Whole area Total / All groups / Whole group           2</span>
@@ -538,14 +538,14 @@
 <span class="co">#&gt; 3              2                Unknown                      6 Unknown       5</span>
 <span class="co">#&gt; 4              2                Unknown                      6 Unknown       5</span>
 <span class="co">#&gt; 5              2                Unknown                      6 Unknown       5</span>
-<span class="co">#&gt; 6              2                Unknown                      6    Male       1</span>
+<span class="co">#&gt; 6              2                Unknown                      6 Unknown       5</span>
 <span class="co">#&gt;   AgeID AgeUnit AgeStart AgeEnd AgeSpan AgeMid AgeLabel AgeSort agesort</span>
-<span class="co">#&gt; 1   318    Year       85     90       5   87.5    85-89     369       0</span>
-<span class="co">#&gt; 2   370    Year       95      0      -1   97.5      95+     384       0</span>
+<span class="co">#&gt; 1   306    Year       25     30       5   27.5    25-29     195       0</span>
+<span class="co">#&gt; 2   307    Year       30     35       5   32.5    30-34     211       0</span>
 <span class="co">#&gt; 3   315    Year       70     75       5   72.5    70-74     339       0</span>
 <span class="co">#&gt; 4   317    Year       80     85       5   82.5    80-84     360       0</span>
-<span class="co">#&gt; 5   399    Year       -2     -2      -2   -2.0  Unknown     998       0</span>
-<span class="co">#&gt; 6   302    Year        5     10       5    7.5      5-9      47       0</span>
+<span class="co">#&gt; 5   308    Year       35     40       5   37.5    35-39     232       0</span>
+<span class="co">#&gt; 6   309    Year       40     45       5   42.5    40-44     249       0</span>
 <span class="co">#&gt;   DataTypeGroupName DataTypeName DataTypeID DataTypeSort      ModelType</span>
 <span class="co">#&gt; 1            Direct       Direct         16           11 Not applicable</span>
 <span class="co">#&gt; 2            Direct       Direct         16           11 Not applicable</span>
@@ -575,12 +575,12 @@
 <span class="co">#&gt; 5          0            0     NA     year 01/01/2010 01/01/2011            1</span>
 <span class="co">#&gt; 6          0            0     NA     year 01/01/2010 01/01/2011            1</span>
 <span class="co">#&gt;   TimeMid TimeLabel FootNoteID id     SeriesID DataValue</span>
-<span class="co">#&gt; 1  2010.5      2010          0  1 1.551674e+16         0</span>
+<span class="co">#&gt; 1  2010.5      2010          0  1 1.551674e+16         1</span>
 <span class="co">#&gt; 2  2010.5      2010          0  1 1.551674e+16         0</span>
 <span class="co">#&gt; 3  2010.5      2010          0  1 1.551674e+16         0</span>
 <span class="co">#&gt; 4  2010.5      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 5  2010.5      2010          0  1 1.551674e+16         6</span>
-<span class="co">#&gt; 6  2010.5      2010          0  1 1.551674e+16        39</span></code></pre></div>
+<span class="co">#&gt; 5  2010.5      2010          0  1 1.551674e+16         2</span>
+<span class="co">#&gt; 6  2010.5      2010          0  1 1.551674e+16         1</span></code></pre></div>
 <p>By default, the results from <code>get_recorddata</code> exclude any uncertainty columns such as <code>StandardErrorValue</code>, <code>ConfidenceInterval</code>, etc. By setting <code>includeUncertainty = TRUE</code>, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to <code>StandardErrorValue</code>, the user can quickly see the uncertainty columns.</p>
 </div>
 <div id="additional-queries-with-datatypegroupids-and-datatypegroupid2s" class="section level4">
