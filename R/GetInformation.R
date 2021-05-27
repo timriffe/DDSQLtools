@@ -527,9 +527,17 @@ get_recorddata <- function(save_file = FALSE, verbose = TRUE, collapse_id_name =
       # Create name column with ID as labels
       haven::labelled(nm_vec, labels = vct_nm)
     }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+    # This effectively says: out of all the columns, remove the ones
+    # that have ID in their title (becuase the user asked to remove
+    # all ID columns)
+    available_cols <- setdiff(values_env$col_order, values_env$id_to_fact)
+
+  } else {
+    # Keep all columns
+    available_cols <- values_env$col_order
   }
 
-  available_cols <- setdiff(values_env$col_order, values_env$id_to_fact)
   res <- res[available_cols]
 
   uncertainty <- list(...)$includeUncertainty
@@ -685,9 +693,12 @@ get_recorddataadditional <- function(save_file = FALSE, verbose = TRUE, collapse
       # Create name column with ID as labels
       haven::labelled(nm_vec, labels = vct_nm)
     }, names(values_env$id_to_fact), values_env$id_to_fact)
+
+    available_cols <- setdiff(values_env$col_order, values_env$id_to_fact)
+  } else {
+    available_cols <- values_env$col_order
   }
 
-  available_cols <- setdiff(values_env$col_order, values_env$id_to_fact)
   res <- res[available_cols]
 
   uncertainty <- list(...)$includeUncertainty
