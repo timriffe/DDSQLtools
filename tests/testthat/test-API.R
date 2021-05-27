@@ -358,6 +358,47 @@ test_that("get_recorddata and get_recorddataadditional transform Name columns to
   ## to make sure you never mix them up.
 })
 
+test_that("get_recorddata and get_recorddataadditional keep the correct columns when collapse_id_name is set to different values", {
+
+
+  collapse_opts <- c(TRUE, FALSE)
+  cols_available <-
+    list(
+      setdiff(values_env$col_order, values_env$id_to_fact),
+      values_env$col_order
+    )
+
+  for (ind in seq_along(cols_available)) {
+    res <- get_recorddata(
+      dataProcessTypeIds = 2, # Census
+      indicatorTypeIds = 8, # Population by age and sex - abridged
+      locIds = 818, # Egypt
+      locAreaTypeIds = 2, # Whole area
+      subGroupIds = 2, # Total or All groups
+      isComplete = 0,
+      includeUncertainty = TRUE,
+      collapse_id_name = collapse_opts[ind]
+    ) # Age Distribution: Abridged
+
+    expect_equal(colnames(res), cols_available[[ind]])
+
+    res <- get_recorddataadditional(
+      dataProcessTypeIds = 2, # Census
+      indicatorTypeIds = 8, # Population by age and sex - abridged
+      locIds = 818, # Egypt
+      locAreaTypeIds = 2, # Whole area
+      subGroupIds = 2, # Total or All groups
+      isComplete = 0,
+      includeUncertainty = TRUE,
+      collapse_id_name = collapse_opts[ind]
+    ) # Age Distribution: Abridged
+
+    expect_equal(colnames(res), cols_available[[ind]])
+  }
+
+})
+
+
 test_that("Looking up wrong input throws errors in get_recorddata", {
   expect_error(get_recorddata(locIds = "Wrong country"),
     regexp = "Location(s) 'Wrong country' not found. Check get_locations()",
