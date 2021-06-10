@@ -40,7 +40,8 @@ if (system("whoami",intern=TRUE) == "tim"){
     DESC_changes %>% 
     select(date,version, hash) %>% 
     dplyr::filter(!is.na(version)) %>% 
-    distinct(date, version)
+    distinct(version, .keep_all = TRUE) %>% 
+    distinct(date, .keep_all = TRUE) 
   
   write_csv(version_lookup,"version_lookup.csv")
   
@@ -85,7 +86,7 @@ install_DDSQLtools_version <- function(version = NULL, date = NULL, hash = NULL)
       cat("date didn't parse. It should be yyyy-mm-dd format if given as character\n")
       stop()
     }
-    browser()
+   
     dateK <- date
     dateL <- 
       versions %>% 
@@ -102,7 +103,7 @@ install_DDSQLtools_version <- function(version = NULL, date = NULL, hash = NULL)
     out <- 1
     if (date != dateL){
       cat("date not in the (incomplete) set returned by get_DDSQLtools_versions()
-            using the closest date in that subset instead:", dateL,"\n")
+            using the closest date in that subset instead:", as.character(dateL),"\n")
     }
   }
   
@@ -132,7 +133,7 @@ install_DDSQLtools_version <- function(version = NULL, date = NULL, hash = NULL)
           out from the lookup table.")
   }
   
-  
+  closeAllConnections()
 }
 
 
