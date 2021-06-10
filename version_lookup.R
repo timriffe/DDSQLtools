@@ -40,7 +40,7 @@ if (system("whoami",intern=TRUE) == "tim"){
     DESC_changes %>% 
     select(date,version, hash) %>% 
     dplyr::filter(!is.na(version)) %>% 
-    distinct()
+    distinct(date, version)
   
   write_csv(version_lookup,"version_lookup.csv")
   
@@ -78,25 +78,34 @@ install_DDSQLtools_version <- function(version = NULL, date = NULL, hash = NULL)
   
   # try date
   if (is.null(out)){
-    if (!is.null(date)){
-      dateL <- 
-        versions %>% 
-        mutate(dist = abs(date - date)) %>% 
-        dplyr::filter(dist = min(dist)) %>% 
-        dplyr::pull(date) %>% 
-        '['(1)
-      hash <- 
-        versions %>% 
-        dplyr::filter(date == dateL) %>% 
-        dplyr::pull(hash)
-      remotes::install_github("timriffe/DDSQLtools", ref = hash)
-      out <- 1
-      if (date != dateL){
-        cat("date not in the (incomplete) set returned by get_DDSQLtools_versions()
-              using the closest date in that subset instead:", dateL,"\n")
-      }
+    if (is.character(date)){
+      date = lubridate::ymd(date)
+    }
+    if (is.na(date)){
+      cat("date didn't parse. It should be yyyy-mm-dd format if given as character\n")
+      stop()
+    }
+    browser()
+    dateK <- date
+    dateL <- 
+      versions %>% 
+      mutate(dist = abs(dateK - date)) %>% 
+      dplyr::filter(dist == min(dist)) %>% 
+      dplyr::pull(date) %>% 
+      '['(1)
+
+    hash <- 
+      versions %>% 
+      dplyr::filter(date == dateL) %>% 
+      dplyr::pull(hash)
+    remotes::install_github("timriffe/DDSQLtools", ref = hash)
+    out <- 1
+    if (date != dateL){
+      cat("date not in the (incomplete) set returned by get_DDSQLtools_versions()
+            using the closest date in that subset instead:", dateL,"\n")
     }
   }
+  
   
   # try version
   if (is.null(out)){
