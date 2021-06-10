@@ -493,10 +493,10 @@
 <span class="co">#&gt;                      IndicatorName IndicatorID LocName LocID StructuredDataID</span>
 <span class="co">#&gt; 1 Deaths by age and sex - abridged         194    Oman   512        184068522</span>
 <span class="co">#&gt; 2 Deaths by age and sex - abridged         194    Oman   512        184068529</span>
-<span class="co">#&gt; 3 Deaths by age and sex - abridged         194    Oman   512        184068483</span>
-<span class="co">#&gt; 4 Deaths by age and sex - abridged         194    Oman   512        184068534</span>
-<span class="co">#&gt; 5 Deaths by age and sex - abridged         194    Oman   512        184068537</span>
-<span class="co">#&gt; 6 Deaths by age and sex - abridged         194    Oman   512        184068473</span>
+<span class="co">#&gt; 3 Deaths by age and sex - abridged         194    Oman   512        184068524</span>
+<span class="co">#&gt; 4 Deaths by age and sex - abridged         194    Oman   512        184068531</span>
+<span class="co">#&gt; 5 Deaths by age and sex - abridged         194    Oman   512        184068534</span>
+<span class="co">#&gt; 6 Deaths by age and sex - abridged         194    Oman   512        184068536</span>
 <span class="co">#&gt;   LocTypeName LocTypeID RegName RegID AreaName AreaID LocAreaTypeName</span>
 <span class="co">#&gt; 1     Country         5      NA     0       NA      0      Whole area</span>
 <span class="co">#&gt; 2     Country         5      NA     0       NA      0      Whole area</span>
@@ -584,17 +584,17 @@
 <span class="co">#&gt;   StatisticalConceptSort SexName SexID SexSort AgeID AgeUnit AgeStart AgeEnd</span>
 <span class="co">#&gt; 1                      6 Unknown     0       5   303    Year       10     15</span>
 <span class="co">#&gt; 2                      6 Unknown     0       5   310    Year       45     50</span>
-<span class="co">#&gt; 3                      6    Male     1       1   314    Year       65     70</span>
-<span class="co">#&gt; 4                      6 Unknown     0       5   315    Year       70     75</span>
-<span class="co">#&gt; 5                      6 Unknown     0       5   318    Year       85     90</span>
-<span class="co">#&gt; 6                      6    Male     1       1   304    Year       15     20</span>
+<span class="co">#&gt; 3                      6 Unknown     0       5   305    Year       20     25</span>
+<span class="co">#&gt; 4                      6 Unknown     0       5   312    Year       55     60</span>
+<span class="co">#&gt; 5                      6 Unknown     0       5   315    Year       70     75</span>
+<span class="co">#&gt; 6                      6 Unknown     0       5   317    Year       80     85</span>
 <span class="co">#&gt;   AgeSpan AgeMid AgeLabel AgeSort agesort DataTypeGroupName DataTypeGroupID</span>
 <span class="co">#&gt; 1       5   12.5    10-14      92       0            Direct               3</span>
 <span class="co">#&gt; 2       5   47.5    45-49     263       0            Direct               3</span>
-<span class="co">#&gt; 3       5   67.5    65-69     323       0            Direct               3</span>
-<span class="co">#&gt; 4       5   72.5    70-74     339       0            Direct               3</span>
-<span class="co">#&gt; 5       5   87.5    85-89     369       0            Direct               3</span>
-<span class="co">#&gt; 6       5   17.5    15-19     126       0            Direct               3</span>
+<span class="co">#&gt; 3       5   22.5    20-24     172       0            Direct               3</span>
+<span class="co">#&gt; 4       5   57.5    55-59     297       0            Direct               3</span>
+<span class="co">#&gt; 5       5   72.5    70-74     339       0            Direct               3</span>
+<span class="co">#&gt; 6       5   82.5    80-84     360       0            Direct               3</span>
 <span class="co">#&gt;   DataTypeName DataTypeID DataTypeSort      ModelType ModelPatternFamilyName</span>
 <span class="co">#&gt; 1       Direct         16           11 Not applicable         Not applicable</span>
 <span class="co">#&gt; 2       Direct         16           11 Not applicable         Not applicable</span>
@@ -633,10 +633,10 @@
 <span class="co">#&gt;   TimeLabel FootNoteID id     SeriesID DataValue</span>
 <span class="co">#&gt; 1      2010          0  1 1.551674e+16         0</span>
 <span class="co">#&gt; 2      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 3      2010          0  1 1.551674e+16       393</span>
+<span class="co">#&gt; 3      2010          0  1 1.551674e+16         0</span>
 <span class="co">#&gt; 4      2010          0  1 1.551674e+16         0</span>
 <span class="co">#&gt; 5      2010          0  1 1.551674e+16         0</span>
-<span class="co">#&gt; 6      2010          0  1 1.551674e+16       101</span></code></pre></div>
+<span class="co">#&gt; 6      2010          0  1 1.551674e+16         0</span></code></pre></div>
 <p>By default, the results from <code>get_recorddata</code> exclude any uncertainty columns such as <code>StandardErrorValue</code>, <code>ConfidenceInterval</code>, etc. By setting <code>includeUncertainty = TRUE</code>, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to <code>StandardErrorValue</code>, the user can quickly see the uncertainty columns.</p>
 </div>
 <div id="additional-queries-with-datatypegroupids-and-datatypegroupid2s" class="section level4">
