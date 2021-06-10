@@ -59,19 +59,19 @@ install_DDSQLtools_version <- function(version = NULL, date = NULL, hash = NULL)
         2. Date (yyyy-mm-dd)
         3. the hash key of the commit\n\n")
     cat("no identifier given, you can view options with 
-    get_DemoTools_version()\n\n")
+    get_DDSQLtools_version()\n\n")
     cat("to install the current head, try:
         remotes::install_github('timriffe/DDSQLtools'")
   }
   
-  versions <- get_DemoTools_versions()
+  versions <- get_DDSQLtools_versions()
   
   out <- NULL
   if (!is.null(hash)){
     if (hash %in% version$hash){
       remotes::install_github("timriffe/DDSQLtools", ref = hash)
     } else {
-      stop("hash not found, try using one from the (incomplete) list returned by:\n get_DemoTools_versions()")
+      stop("hash not found, try using one from the (incomplete) list returned by:\n get_DDSQLtools_versions()")
     }
     out <- 1
   }
