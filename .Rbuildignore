@@ -21,3 +21,5 @@ devdata
 ^tic\.R$
 ^data-raw$
 build.R
+version_lookup.R
+version_lookup.csv
