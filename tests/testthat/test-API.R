@@ -274,6 +274,16 @@ test_that("get_recorddata returns error when setting wrong server", {
 })
 
 test_that("get_recorddata with codes gives same output with strings", {
+  X <- X[order(X$StructuredDataID), ]
+  Y <- Y[order(Y$StructuredDataID), ]
+  mixed <- mixed[order(mixed$StructuredDataID), ]
+  mixed_codes <- mixed_codes[order(mixed_codes$StructuredDataID), ]
+
+  row.names(X) <- NULL
+  row.names(Y) <- NULL
+  row.names(mixed) <- NULL
+  row.names(mixed_codes) <- NULL
+
   expect_equal(X, Y)
   expect_equal(X, mixed)
   expect_equal(X, mixed_codes)
