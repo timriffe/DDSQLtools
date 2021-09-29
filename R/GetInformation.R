@@ -730,12 +730,12 @@ read_API <- function(type, save_file, verbose = FALSE, ...) {
   # Temporary, just to check how the URL is constructed
   cat("\n", P, "\n")
 
-  out <- jsonlite::fromJSON(txt = P, flatten = TRUE)
+  out <- jsonlite::fromJSON(txt = P, flatten = TRUE, bigint_as_char = TRUE)
   ## print("URL saved")
 
   # Cleaning up columns
   out <- as.data.frame(lapply(out, trimws), stringsAsFactors = FALSE)
-  out <- format.numeric.colums(out)
+  out <- format.numeric.colums(out, exceptions = "SeriesID")
 
   if (save_file) {
     save_in_working_dir(data = out, file_name = paste0("UNPD_", type))

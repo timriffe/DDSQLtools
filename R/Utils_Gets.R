@@ -253,11 +253,10 @@ build_filter <- function(dataTypeIds = NULL,
 #' will convert the column to class numeric.
 #' @param X data.frame
 #' @keywords internal
-format.numeric.colums <- function(X) {
-  cn <- colnames(X)
+format.numeric.colums <- function(X, exceptions) {
   isNum <- apply(X, 2, FUN = function(w) all(varhandle::check.numeric(w)))
+  isNum[colnames(X) %in% exceptions] <- FALSE
   X[isNum] <- lapply(X[, isNum], as.numeric)
-
   X
 }
 

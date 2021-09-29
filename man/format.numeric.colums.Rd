@@ -4,7 +4,7 @@
 \alias{format.numeric.colums}
 \title{Format data from character to numeric}
 \usage{
-\method{format}{numeric.colums}(X)
+\method{format}{numeric.colums}(X, exceptions)
 }
 \arguments{
 \item{X}{data.frame}
