@@ -546,3 +546,10 @@ test_that("get_recorddata grabs uncertainty columns when includeUncertainty = TR
   # ARE included.
   expect_true(all(uncertainty_cols %in% names(X)))
 })
+
+test_that("Checks that SeriesID is a character vector", {
+  # This is due to Patrick's request that this should never be a numeric
+  # due to loss of precision when grabbing from fromJSON.
+
+  expect_type(X$SeriesID, "character")
+})
