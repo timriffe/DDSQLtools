@@ -158,25 +158,27 @@ Different numbers of rows. UN format.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/lt_abridged.html'>lt_abridged</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>mx</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Mx5</span>
-<span class='fu'>do_lifetable</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>mx</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
-#&gt; <span class='message'>Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
-#&gt; <span class='message'>Check ?lt_abridged for details and default values.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 180 × 13</span>
-#&gt;    LocID ReferencePeriod DataValue AgeStart AgeSpan SexID IndicatorID DataTypeID
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
-#&gt; <span style='color: #BCBCBC;'> 1</span>   328            <span style='text-decoration: underline;'>1</span>993   0.029<span style='text-decoration: underline;'>7</span>         0       1     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 2</span>   328            <span style='text-decoration: underline;'>1</span>993   0.006<span style='text-decoration: underline;'>65</span>        1       4     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 3</span>   328            <span style='text-decoration: underline;'>1</span>993   0.003<span style='text-decoration: underline;'>43</span>        5       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 4</span>   328            <span style='text-decoration: underline;'>1</span>993   0.003<span style='text-decoration: underline;'>78</span>       10       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 5</span>   328            <span style='text-decoration: underline;'>1</span>993   0.007<span style='text-decoration: underline;'>07</span>       15       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 6</span>   328            <span style='text-decoration: underline;'>1</span>993   0.013<span style='text-decoration: underline;'>4</span>        20       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 7</span>   328            <span style='text-decoration: underline;'>1</span>993   0.018<span style='text-decoration: underline;'>4</span>        25       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 8</span>   328            <span style='text-decoration: underline;'>1</span>993   0.022<span style='text-decoration: underline;'>3</span>        30       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'> 9</span>   328            <span style='text-decoration: underline;'>1</span>993   0.025<span style='text-decoration: underline;'>7</span>        35       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #BCBCBC;'>10</span>   328            <span style='text-decoration: underline;'>1</span>993   0.036<span style='text-decoration: underline;'>1</span>        40       5     1 nMx         do_lifeta…
-#&gt; <span style='color: #949494;'># … with 170 more rows, and 5 more variables: DataTypeName &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   AgeLabel &lt;dbl&gt;, AgeMid &lt;dbl&gt;, AgeEnd &lt;dbl&gt;, AgeID &lt;dbl&gt;</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>mx</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Mx5</span></span>
+<span class='r-in'><span class='fu'>do_lifetable</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>mx</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Check ?lt_abridged for details and default values.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 180 × 13</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    LocID ReferencePeriod DataValue AgeStart AgeSpan SexID IndicatorID DataTypeID</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span>   328            <span style='text-decoration: underline;'>1</span>993   0.029<span style='text-decoration: underline;'>7</span>         0       1     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span>   328            <span style='text-decoration: underline;'>1</span>993   0.006<span style='text-decoration: underline;'>65</span>        1       4     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span>   328            <span style='text-decoration: underline;'>1</span>993   0.003<span style='text-decoration: underline;'>43</span>        5       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span>   328            <span style='text-decoration: underline;'>1</span>993   0.003<span style='text-decoration: underline;'>78</span>       10       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span>   328            <span style='text-decoration: underline;'>1</span>993   0.007<span style='text-decoration: underline;'>07</span>       15       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span>   328            <span style='text-decoration: underline;'>1</span>993   0.013<span style='text-decoration: underline;'>4</span>        20       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span>   328            <span style='text-decoration: underline;'>1</span>993   0.018<span style='text-decoration: underline;'>4</span>        25       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span>   328            <span style='text-decoration: underline;'>1</span>993   0.022<span style='text-decoration: underline;'>3</span>        30       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span>   328            <span style='text-decoration: underline;'>1</span>993   0.025<span style='text-decoration: underline;'>7</span>        35       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span>   328            <span style='text-decoration: underline;'>1</span>993   0.036<span style='text-decoration: underline;'>1</span>        40       5     1 nMx         do_lifeta…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 170 more rows, and 5 more variables: DataTypeName &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   AgeLabel &lt;dbl&gt;, AgeMid &lt;dbl&gt;, AgeEnd &lt;dbl&gt;, AgeID &lt;dbl&gt;</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

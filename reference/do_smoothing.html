@@ -216,82 +216,84 @@ compare the results from a variety of methods.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DemoTools/man/smooth_age_5.html'>smooth_age_5</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>P5</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_M_DB</span>
-
-<span class='va'>M</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>,
-       <span class='st'>"United Nations"</span>, <span class='st'>"Strong"</span>, <span class='st'>"Zigzag"</span>, <span class='st'>"MAV"</span><span class='op'>)</span>
-
-<span class='va'>S1</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S2</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S3</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S4</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S5</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S6</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>6</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>S7</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>7</span><span class='op'>]</span><span class='op'>)</span>
-
-<span class='va'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,
-                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span><span class='op'>)</span>
-<span class='va'>S1</span><span class='op'>[</span>, <span class='va'>select_columns</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 × 8</span>
-#&gt;    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName    DataTypeID    DataValue
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> <span style='color: #BB0000;'>NA</span>           0    2.5      5 0-4      DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>951</span>843 
-#&gt; <span style='color: #BCBCBC;'> 2</span> <span style='color: #BB0000;'>NA</span>           5    7.5     10 5-9      DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>936</span>424 
-#&gt; <span style='color: #BCBCBC;'> 3</span> <span style='color: #BB0000;'>NA</span>          10   12.5     15 10-14    DemoTools::age… do_smoothing…  4<span style='text-decoration: underline;'>234</span>663.
-#&gt; <span style='color: #BCBCBC;'> 4</span> <span style='color: #BB0000;'>NA</span>          15   17.5     20 15-19    DemoTools::age… do_smoothing…  4<span style='text-decoration: underline;'>132</span>916.
-#&gt; <span style='color: #BCBCBC;'> 5</span> <span style='color: #BB0000;'>NA</span>          20   22.5     25 20-24    DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>835</span>300.
-#&gt; <span style='color: #BCBCBC;'> 6</span> <span style='color: #BB0000;'>NA</span>          25   27.5     30 25-29    DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>321</span>728.
-#&gt; <span style='color: #BCBCBC;'> 7</span> <span style='color: #BB0000;'>NA</span>          30   32.5     35 30-34    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>529</span>984.
-#&gt; <span style='color: #BCBCBC;'> 8</span> <span style='color: #BB0000;'>NA</span>          35   37.5     40 35-39    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>178</span>255.
-#&gt; <span style='color: #BCBCBC;'> 9</span> <span style='color: #BB0000;'>NA</span>          40   42.5     45 40-44    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>098</span>388.
-#&gt; <span style='color: #BCBCBC;'>10</span> <span style='color: #BB0000;'>NA</span>          45   47.5     50 45-49    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>834</span>366.
-#&gt; <span style='color: #BCBCBC;'>11</span> <span style='color: #BB0000;'>NA</span>          50   52.5     55 50-54    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>535</span>701.
-#&gt; <span style='color: #BCBCBC;'>12</span> <span style='color: #BB0000;'>NA</span>          55   57.5     60 55-59    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>213</span>834.
-#&gt; <span style='color: #BCBCBC;'>13</span> <span style='color: #BB0000;'>NA</span>          60   62.5     65 60-64    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>896</span>041 
-#&gt; <span style='color: #BCBCBC;'>14</span> <span style='color: #BB0000;'>NA</span>          65   67.5     70 65-69    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>638</span>954 
-#&gt; <span style='color: #BCBCBC;'>15</span> <span style='color: #BB0000;'>NA</span>          70   72.5     75 70-74    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>401</span>297 
-#&gt; <span style='color: #BCBCBC;'>16</span> <span style='color: #BB0000;'>NA</span>          75   87.5      0 75+      DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>375</span>648 </div><div class='input'>
-<span class='va'>S</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>S1</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S2</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S3</span><span class='op'>$</span><span class='va'>DataValue</span>,
-           <span class='va'>S4</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S5</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S6</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S7</span><span class='op'>$</span><span class='va'>DataValue</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>S</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Age <span class='op'>=</span> <span class='va'>S1</span><span class='op'>$</span><span class='va'>AgeLabel</span>, SmoothingMethod <span class='op'>=</span> <span class='va'>M</span><span class='op'>)</span>
-
-<span class='va'>S</span>
-</div><div class='output co'>#&gt;        SmoothingMethod
-#&gt; Age     Carrier-Farrag     KKN Arriaga United Nations    Strong    Zigzag
-#&gt;   0-4          3951843 3951843 3813809        3951843 3868225.4 3951843.0
-#&gt;   5-9          3936424 3936424 4074458        3936424 4020041.6 3936424.0
-#&gt;   10-14        4234663 4229492 4264697        4076626 4118061.1 4053592.3
-#&gt;   15-19        4132916 4138087 4102882        4292026 3947097.2 4256199.5
-#&gt;   20-24        3835300 3807223 3833019        3986911 3667466.1 4046477.2
-#&gt;   25-29        3321728 3349805 3324009        3152875 3283462.8 3192630.1
-#&gt;   30-34        2529984 2555637 2520776        2485954 2784409.8 2443296.8
-#&gt;   35-39        2178255 2152602 2187463        2241969 2419614.0 2179786.3
-#&gt;   40-44        2098388 2088796 2097290        2084947 2091286.8 2113598.4
-#&gt;   45-49        1834366 1843958 1835464        1850159 1797414.7 1888536.9
-#&gt;   50-54        1535701 1524627 1525280        1547446 1539709.0 1537081.2
-#&gt;   55-59        1213834 1224908 1224255        1208549 1243421.0 1197050.7
-#&gt;   60-64         896041  896041  920620         901219  937185.4  902926.7
-#&gt;   65-69         638954  638954  614375         638954  621002.3  638954.0
-#&gt;   70-74         401297  401297  401297         401297  401297.0  401297.0
-#&gt;   75+           375648  375648  375648         375648  375648.0  375648.0
-#&gt;        SmoothingMethod
-#&gt; Age           MAV
-#&gt;   0-4   3951843.0
-#&gt;   5-9   3961357.3
-#&gt;   10-14 4101334.3
-#&gt;   15-19 4126853.7
-#&gt;   20-24 3842934.0
-#&gt;   25-29 3187917.7
-#&gt;   30-34 2617428.3
-#&gt;   35-39 2256497.0
-#&gt;   40-44 2078089.3
-#&gt;   45-49 1823822.3
-#&gt;   50-54 1540345.7
-#&gt;   55-59 1215192.0
-#&gt;   60-64  915272.3
-#&gt;   65-69  645430.7
-#&gt;   70-74  401297.0
-#&gt;   75+    375648.0</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>P5</span> <span class='op'>&lt;-</span> <span class='va'>DDSQLtools.data</span><span class='op'>$</span><span class='va'>Pop5_Egypt_M_DB</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>M</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Carrier-Farrag"</span>, <span class='st'>"KKN"</span>, <span class='st'>"Arriaga"</span>,</span>
+<span class='r-in'>       <span class='st'>"United Nations"</span>, <span class='st'>"Strong"</span>, <span class='st'>"Zigzag"</span>, <span class='st'>"MAV"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>S1</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S2</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S3</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S4</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S5</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S6</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>6</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S7</span> <span class='op'>&lt;-</span> <span class='fu'>do_smoothing</span><span class='op'>(</span><span class='va'>P5</span>, method <span class='op'>=</span> <span class='va'>M</span><span class='op'>[</span><span class='fl'>7</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>select_columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AgeID"</span>, <span class='st'>"AgeStart"</span>, <span class='st'>"AgeMid"</span>, <span class='st'>"AgeEnd"</span>, <span class='st'>"AgeLabel"</span>,</span>
+<span class='r-in'>                    <span class='st'>"DataTypeName"</span>, <span class='st'>"DataTypeID"</span>, <span class='st'>"DataValue"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>S1</span><span class='op'>[</span>, <span class='va'>select_columns</span><span class='op'>]</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 16 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    AgeID AgeStart AgeMid AgeEnd AgeLabel DataTypeName    DataTypeID    DataValue</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> <span style='color: #BB0000;'>NA</span>           0    2.5      5 0-4      DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>951</span>843 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> <span style='color: #BB0000;'>NA</span>           5    7.5     10 5-9      DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>936</span>424 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> <span style='color: #BB0000;'>NA</span>          10   12.5     15 10-14    DemoTools::age… do_smoothing…  4<span style='text-decoration: underline;'>234</span>663.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> <span style='color: #BB0000;'>NA</span>          15   17.5     20 15-19    DemoTools::age… do_smoothing…  4<span style='text-decoration: underline;'>132</span>916.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> <span style='color: #BB0000;'>NA</span>          20   22.5     25 20-24    DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>835</span>300.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> <span style='color: #BB0000;'>NA</span>          25   27.5     30 25-29    DemoTools::age… do_smoothing…  3<span style='text-decoration: underline;'>321</span>728.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> <span style='color: #BB0000;'>NA</span>          30   32.5     35 30-34    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>529</span>984.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> <span style='color: #BB0000;'>NA</span>          35   37.5     40 35-39    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>178</span>255.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> <span style='color: #BB0000;'>NA</span>          40   42.5     45 40-44    DemoTools::age… do_smoothing…  2<span style='text-decoration: underline;'>098</span>388.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> <span style='color: #BB0000;'>NA</span>          45   47.5     50 45-49    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>834</span>366.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> <span style='color: #BB0000;'>NA</span>          50   52.5     55 50-54    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>535</span>701.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> <span style='color: #BB0000;'>NA</span>          55   57.5     60 55-59    DemoTools::age… do_smoothing…  1<span style='text-decoration: underline;'>213</span>834.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> <span style='color: #BB0000;'>NA</span>          60   62.5     65 60-64    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>896</span>041 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> <span style='color: #BB0000;'>NA</span>          65   67.5     70 65-69    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>638</span>954 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> <span style='color: #BB0000;'>NA</span>          70   72.5     75 70-74    DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>401</span>297 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> <span style='color: #BB0000;'>NA</span>          75   87.5      0 75+      DemoTools::age… do_smoothing…   <span style='text-decoration: underline;'>375</span>648 </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>S</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>S1</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S2</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S3</span><span class='op'>$</span><span class='va'>DataValue</span>,</span>
+<span class='r-in'>           <span class='va'>S4</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S5</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S6</span><span class='op'>$</span><span class='va'>DataValue</span>, <span class='va'>S7</span><span class='op'>$</span><span class='va'>DataValue</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>S</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Age <span class='op'>=</span> <span class='va'>S1</span><span class='op'>$</span><span class='va'>AgeLabel</span>, SmoothingMethod <span class='op'>=</span> <span class='va'>M</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>S</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        SmoothingMethod</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Age     Carrier-Farrag     KKN Arriaga United Nations    Strong    Zigzag</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0-4          3951843 3951843 3813809        3951843 3868225.4 3951843.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   5-9          3936424 3936424 4074458        3936424 4020041.6 3936424.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   10-14        4234663 4229492 4264697        4076626 4118061.1 4053592.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   15-19        4132916 4138087 4102882        4292026 3947097.2 4256199.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   20-24        3835300 3807223 3833019        3986911 3667466.1 4046477.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   25-29        3321728 3349805 3324009        3152875 3283462.8 3192630.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   30-34        2529984 2555637 2520776        2485954 2784409.8 2443296.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   35-39        2178255 2152602 2187463        2241969 2419614.0 2179786.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   40-44        2098388 2088796 2097290        2084947 2091286.8 2113598.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   45-49        1834366 1843958 1835464        1850159 1797414.7 1888536.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   50-54        1535701 1524627 1525280        1547446 1539709.0 1537081.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   55-59        1213834 1224908 1224255        1208549 1243421.0 1197050.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   60-64         896041  896041  920620         901219  937185.4  902926.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   65-69         638954  638954  614375         638954  621002.3  638954.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   70-74         401297  401297  401297         401297  401297.0  401297.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   75+           375648  375648  375648         375648  375648.0  375648.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        SmoothingMethod</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Age           MAV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0-4   3951843.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   5-9   3961357.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   10-14 4101334.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   15-19 4126853.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   20-24 3842934.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   25-29 3187917.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   30-34 2617428.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   35-39 2256497.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   40-44 2078089.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   45-49 1823822.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   50-54 1540345.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   55-59 1215192.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   60-64  915272.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   65-69  645430.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   70-74  401297.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   75+    375648.0</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -179,47 +179,47 @@ are returned with format <code>DD/MM/YYYY</code>, where <code>DD</code> are days
 are months and <code>YYYY</code> are years.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Link to country list</span>
-<span class='va'>L1</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>
-  type <span class='op'>=</span> <span class='st'>"locations"</span>,
-  addDefault <span class='op'>=</span> <span class='st'>"false"</span>,
-  includeDependencies <span class='op'>=</span> <span class='st'>"false"</span>,
-  includeFormerCountries <span class='op'>=</span> <span class='st'>"false"</span>
-<span class='op'>)</span>
-<span class='va'>L1</span>
-
-<span class='co'># Link to location types (for Egypt)</span>
-<span class='co'># With strings rather than codes</span>
-<span class='va'>L2</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>
-  type <span class='op'>=</span> <span class='st'>"locAreaTypes"</span>,
-  indicatorTypeIds <span class='op'>=</span> <span class='st'>"Population by sex"</span>,
-  locIds <span class='op'>=</span> <span class='st'>"Egypt"</span>,
-  isComplete <span class='op'>=</span> <span class='st'>"Abridged"</span>
-<span class='op'>)</span>
-<span class='va'>L2</span>
-
-<span class='co'># Link to subgroup types (for Egypt)</span>
-<span class='va'>L3</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>
-  type <span class='op'>=</span> <span class='st'>"subGroups"</span>,
-  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,
-  locIds <span class='op'>=</span> <span class='fl'>818</span>,
-  isComplete <span class='op'>=</span> <span class='fl'>0</span>
-<span class='op'>)</span>
-<span class='va'>L3</span>
-
-<span class='co'># Link to indicator list</span>
-<span class='va'>L4</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>
-  type <span class='op'>=</span> <span class='st'>"indicators"</span>,
-  addDefault <span class='op'>=</span> <span class='st'>"false"</span>
-<span class='op'>)</span>
-<span class='va'>L4</span>
-
-<span class='co'># Link to data process type list</span>
-<span class='va'>L5</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"dataProcessTypes"</span><span class='op'>)</span>
-<span class='va'>L5</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'># Link to country list</span></span>
+<span class='r-in'><span class='va'>L1</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span></span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"locations"</span>,</span>
+<span class='r-in'>  addDefault <span class='op'>=</span> <span class='st'>"false"</span>,</span>
+<span class='r-in'>  includeDependencies <span class='op'>=</span> <span class='st'>"false"</span>,</span>
+<span class='r-in'>  includeFormerCountries <span class='op'>=</span> <span class='st'>"false"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>L1</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Link to location types (for Egypt)</span></span>
+<span class='r-in'><span class='co'># With strings rather than codes</span></span>
+<span class='r-in'><span class='va'>L2</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span></span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"locAreaTypes"</span>,</span>
+<span class='r-in'>  indicatorTypeIds <span class='op'>=</span> <span class='st'>"Population by sex"</span>,</span>
+<span class='r-in'>  locIds <span class='op'>=</span> <span class='st'>"Egypt"</span>,</span>
+<span class='r-in'>  isComplete <span class='op'>=</span> <span class='st'>"Abridged"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>L2</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Link to subgroup types (for Egypt)</span></span>
+<span class='r-in'><span class='va'>L3</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span></span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"subGroups"</span>,</span>
+<span class='r-in'>  indicatorTypeIds <span class='op'>=</span> <span class='fl'>8</span>,</span>
+<span class='r-in'>  locIds <span class='op'>=</span> <span class='fl'>818</span>,</span>
+<span class='r-in'>  isComplete <span class='op'>=</span> <span class='fl'>0</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>L3</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Link to indicator list</span></span>
+<span class='r-in'><span class='va'>L4</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span></span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"indicators"</span>,</span>
+<span class='r-in'>  addDefault <span class='op'>=</span> <span class='st'>"false"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>L4</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Link to data process type list</span></span>
+<span class='r-in'><span class='va'>L5</span> <span class='op'>&lt;-</span> <span class='fu'>linkGenerator</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"dataProcessTypes"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>L5</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
