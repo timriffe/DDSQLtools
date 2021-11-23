@@ -228,7 +228,7 @@ Different numbers of rows. UN format.</p>
 <span class='r-in'>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>AgeLabel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span><span class='op'>(</span><span class='va'>AgeStart</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Extrapolation failed to converge</span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> Falling back to Gompertz with starting parameters:</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span>  parS = nc(A = 0.005, B = 0.13))</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span>  parS = c(A = 0.005, B = 0.13))</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Check ?lt_abridged for details and default values.</span>
@@ -241,7 +241,7 @@ Different numbers of rows. UN format.</p>
 <span class='r-in'>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>AgeLabel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>AgeStart</span>, <span class='st'>"-"</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lead</a></span><span class='op'>(</span><span class='va'>AgeStart</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Extrapolation failed to converge</span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> Falling back to Gompertz with starting parameters:</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span>  parS = nc(A = 0.005, B = 0.13))</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span>  parS = c(A = 0.005, B = 0.13))</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Additional (optional) arguments to control the output for the DemoTools::lt_abridged method:</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Deaths Exposures nMx nqx lx AgeInt radix axmethod a0rule Sex IMR region mod SRB OAnew extrapLaw extrapFrom extrapFit ...</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Check ?lt_abridged for details and default values.</span>
