@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://pkgdown.r-lib.org/404.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/articles/Downloading-UNPD-data-into-R.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>http://pkgdown.r-lib.org/authors.html</loc>
+  </url>
+  <url>
     <loc>http://pkgdown.r-lib.org/index.html</loc>
   </url>
   <url>
-    <loc>http://pkgdown.r-lib.org/reference/DDSQLtools.html</loc>
+    <loc>http://pkgdown.r-lib.org/reference/DDSQLtools.data.html</loc>
   </url>
   <url>
-    <loc>http://pkgdown.r-lib.org/reference/DDSQLtools.data.html</loc>
+    <loc>http://pkgdown.r-lib.org/reference/DDSQLtools.html</loc>
   </url>
   <url>
     <loc>http://pkgdown.r-lib.org/reference/build_filter.html</loc>
@@ -88,6 +109,9 @@
     <loc>http://pkgdown.r-lib.org/reference/get_subgroups.html</loc>
   </url>
   <url>
+    <loc>http://pkgdown.r-lib.org/reference/index.html</loc>
+  </url>
+  <url>
     <loc>http://pkgdown.r-lib.org/reference/is_OAG.html</loc>
   </url>
   <url>
@@ -101,8 +125,5 @@
   </url>
   <url>
     <loc>http://pkgdown.r-lib.org/reference/save_in_working_dir.html</loc>
-  </url>
-  <url>
-    <loc>http://pkgdown.r-lib.org/articles/Downloading-UNPD-data-into-R.html</loc>
   </url>
 </urlset>

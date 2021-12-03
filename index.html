@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.07</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">01.02.07</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -61,7 +57,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/timriffe/DDSQLtools/">
+  <a href="https://github.com/timriffe/DDSQLtools/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -78,79 +74,90 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="ddsqltools" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#ddsqltools" class="anchor"></a>DDSQLtools</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="ddsqltools">DDSQLtools<a class="anchor" aria-label="anchor" href="#ddsqltools"></a>
+</h1></div>
 
-<div id="wrappers-for-the-demotools-package-to-work-with-unpd-sql-data-format" class="section level3">
-<h3 class="hasAnchor">
-<a href="#wrappers-for-the-demotools-package-to-work-with-unpd-sql-data-format" class="anchor"></a>Wrappers for the <a href="https://github.com/timriffe/DemoTools">DemoTools</a> package to work with UNPD SQL data format.</h3>
+<div class="section level3">
+<h3 id="wrappers-for-the-demotools-package-to-work-with-unpd-sql-data-format">Wrappers for the <a href="https://github.com/timriffe/DemoTools" class="external-link">DemoTools</a> package to work with UNPD SQL data format.<a class="anchor" aria-label="anchor" href="#wrappers-for-the-demotools-package-to-work-with-unpd-sql-data-format"></a>
+</h3>
 <p>Date: 2021-10-05</p>
-<p>This project is commissioned by the <a href="http://www.un.org/en/development/desa/population/">UN Population Division</a> and financed by the <a href="https://www.gatesfoundation.org/">Bill and Melinda Gates Foundation</a> as part of the <a href="http://www.un.org/en/development/desa/population/projects/making-family-planning-count/index.shtml">Making Family Planning Count</a> project. Work is also done in collaboration with <a href="https://www.linkedin.com/in/mpascariu/">Marius D. Pascariu</a> and <a href="https://cimentadaj.github.io/">Jorge Cimentada</a>. This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 IGO (<a href="https://creativecommons.org/licenses/by-sa/3.0/igo/">CC BY-SA 3.0 IGO</a>). If you detect a bug or have a suggestion please notify us using the <a href="https://github.com/timriffe/DDSQLtools/issues">Issues</a> tab on github. Even better if you fix it and make a pull request! See <a href="https://github.com/timriffe/DDSQLtools/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more tips on reporting bugs or offering patches.</p>
+<p>This project is commissioned by the <a href="http://www.un.org/en/development/desa/population/" class="external-link">UN Population Division</a> and financed by the <a href="https://www.gatesfoundation.org/" class="external-link">Bill and Melinda Gates Foundation</a> as part of the <a href="http://www.un.org/en/development/desa/population/projects/making-family-planning-count/index.shtml" class="external-link">Making Family Planning Count</a> project. Work is also done in collaboration with <a href="https://www.linkedin.com/in/mpascariu/" class="external-link">Marius D. Pascariu</a> and <a href="https://cimentadaj.github.io/" class="external-link">Jorge Cimentada</a>. This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 IGO (<a href="https://creativecommons.org/licenses/by-sa/3.0/igo/" class="external-link">CC BY-SA 3.0 IGO</a>). If you detect a bug or have a suggestion please notify us using the <a href="https://github.com/timriffe/DDSQLtools/issues" class="external-link">Issues</a> tab on github. Even better if you fix it and make a pull request! See <a href="https://github.com/timriffe/DDSQLtools/blob/master/CONTRIBUTING.md" class="external-link">CONTRIBUTING.md</a> for more tips on reporting bugs or offering patches.</p>
 <p>You can load the <code>DDSQLtools</code> package in R like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
 <span class="fu">install_github</span><span class="op">(</span><span class="st">"timriffe/DDSQLtools"</span><span class="op">)</span></code></pre></div>
 <p>(if the first incon of this README is red, then this might not be working at the moment. You can assume we’re fixing it. If it’s green, then it’ll probably work.)</p>
-<p>If you are a random visiting demographer then you probably would rather check out the <a href="https://github.com/timriffe/DemoTools">DemoTools</a> package.</p>
+<p>If you are a random visiting demographer then you probably would rather check out the <a href="https://github.com/timriffe/DemoTools" class="external-link">DemoTools</a> package.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/timriffe/DDSQLtools/">https://​github.com/​timriffe/​DDSQLtools/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/timriffe/DDSQLtools/issues">https://​github.com/​timriffe/​DDSQLtools/​issues</a>
-</li>
+<li><a href="https://github.com/timriffe/DDSQLtools/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/timriffe/DDSQLtools/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Tim Riffe <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-2673-4622" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Marius D. Pascariu <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2568-6489" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Jorge Cimentada <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-5594-1156" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing DDSQLtools</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/timriffe/DDSQLtools/actions"><img src="https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/timriffe/DDSQLtools"><img src="https://codecov.io/gh/timriffe/DDSQLtools/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://github.com/timriffe/DDSQLtools"><img src="https://img.shields.io/badge/devel%20version-01.02.07-yellow.svg"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
+<li>Tim Riffe <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-2673-4622" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Marius D. Pascariu <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2568-6489" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jorge Cimentada <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-5594-1156" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/timriffe/DDSQLtools/actions" class="external-link"><img src="https://github.com/timriffe/DDSQLtools/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/timriffe/DDSQLtools" class="external-link"><img src="https://codecov.io/gh/timriffe/DDSQLtools/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/timriffe/DDSQLtools" class="external-link"><img src="https://img.shields.io/badge/devel%20version-01.02.07-yellow.svg"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Tim Riffe, Marius D. Pascariu, Jorge Cimentada.</p>
+  <p></p>
+<p>Developed by Tim Riffe, Marius D. Pascariu, Jorge Cimentada.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -158,6 +165,8 @@
 
   
 
+
+  
 
   </body>
 </html>

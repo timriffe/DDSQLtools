@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.0
 pkgdown_sha: ~
 articles:
   Downloading-UNPD-data-into-R: Downloading-UNPD-data-into-R.html
-last_built: 2021-11-23T00:11Z
+last_built: 2021-12-03T00:20Z
 urls:
   reference: http://pkgdown.r-lib.org/reference
   article: http://pkgdown.r-lib.org/articles

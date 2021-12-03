@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DDSQLtools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">01.02.07</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">01.02.07</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -61,7 +57,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/timriffe/DDSQLtools/">
+  <a href="https://github.com/timriffe/DDSQLtools/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -82,7 +78,7 @@
       <h1 data-toc-skip>Downloading UNPD data into R</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/timriffe/DDSQLtools/blob/master/vignettes/Downloading-UNPD-data-into-R.Rmd"><code>vignettes/Downloading-UNPD-data-into-R.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/timriffe/DDSQLtools/blob/HEAD/vignettes/Downloading-UNPD-data-into-R.Rmd" class="external-link"><code>vignettes/Downloading-UNPD-data-into-R.Rmd</code></a></small>
       <div class="hidden name"><code>Downloading-UNPD-data-into-R.Rmd</code></div>
 
     </div>
@@ -94,10 +90,10 @@
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"timriffe/DDSQLtools"</span><span class="op">)</span></code></pre></div>
 <p>and load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timriffe/DDSQLtools">DDSQLtools</a></span><span class="op">)</span></code></pre></div>
-<div id="quick-recipes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#quick-recipes" class="anchor"></a>Quick recipes</h2>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timriffe/DDSQLtools" class="external-link">DDSQLtools</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="quick-recipes">Quick recipes<a class="anchor" aria-label="anchor" href="#quick-recipes"></a>
+</h2>
 <p>Before we begin, some of the output might show numbers with scientific notation depending on your R setup (2.56×10 instead of 0.00000256). You can suppress scientific notation by typing this into your R console: <code>options(scipen = 9999)</code>.</p>
 <p>If you’re already familiar with concepts from the UNPD SQL API, then you’ll only have to interact with the <code>get_recorddata</code> function. For example, here’s how to get data on population by age and sex for Egypt with different options:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -119,9 +115,9 @@
                             isComplete <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p>Note that <strong>using numeric codes is faster than using string names because we don’t have to make code translations behind the scenes</strong> (if you’re unsure what these codes mean, please refer to the section <code>Exploring the UNPD SQL API from R</code> below). If you want to figure out which names to use, each of these arguments has an equivalent lookup function. For example, for figuring out the possible values in <code>locIds</code>, use <code><a href="../reference/get_locations.html">get_locations()</a></code>. You can see all arguments and their equivalent lookup functions in the documentation of <code><a href="../reference/get_recorddata.html">?get_recorddata</a></code>. Do note that these lookup functions have both the <code>'Name'</code> and a <code>'ShortName'</code> of each value. The translation will only accept string names from the <code>'Name'</code> column.</p>
 <p>Here are a few other examples:</p>
-<div id="population-by-age-and-sex-with-census-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#population-by-age-and-sex-with-census-data" class="anchor"></a>Population by age and sex with census data</h4>
+<div class="section level4">
+<h4 id="population-by-age-and-sex-with-census-data">Population by age and sex with census data<a class="anchor" aria-label="anchor" href="#population-by-age-and-sex-with-census-data"></a>
+</h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">china</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
                         indicatorTypeIds <span class="op">=</span> <span class="st">"Population by age and sex"</span>,
@@ -143,7 +139,7 @@
 <span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 2, indicatorTypeIds = 8, isComplete = 0, locIds = 156, locAreaTypeIds = 2, subGroupIds = 2)</span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=156&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">china</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">china</span><span class="op">)</span>
 <span class="co">#&gt;                          IndicatorName IndicatorID LocName LocID</span>
 <span class="co">#&gt; 1 Population by age and sex - abridged          58   China   156</span>
 <span class="co">#&gt; 2 Population by age and sex - abridged          58   China   156</span>
@@ -292,9 +288,9 @@
 <span class="co">#&gt; 5            0  1953.5      1953          0  1 15911390187176125  33264940</span>
 <span class="co">#&gt; 6            0  1953.5      1953          0  1    78230188493073  29506800</span></code></pre></div>
 </div>
-<div id="births-by-age-of-mother" class="section level4">
-<h4 class="hasAnchor">
-<a href="#births-by-age-of-mother" class="anchor"></a>Births by age of mother</h4>
+<div class="section level4">
+<h4 id="births-by-age-of-mother">Births by age of mother<a class="anchor" aria-label="anchor" href="#births-by-age-of-mother"></a>
+</h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Census"</span>,
                indicatorTypeIds <span class="op">=</span> <span class="st">"Births by age of mother"</span>,
@@ -6001,7 +5997,7 @@
 <span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 11, indicatorTypeIds = 16, isComplete = 0, locIds = 768, locAreaTypeIds = 2, subGroupIds = 2)</span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=11&amp;indicatorTypeIds=16&amp;isComplete=0&amp;locIds=768&amp;locAreaTypeIds=2&amp;subGroupIds=2</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">togo</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">togo</span><span class="op">)</span>
 <span class="co">#&gt;                                IndicatorName IndicatorID LocName LocID</span>
 <span class="co">#&gt; 1 Births by age of mother (and sex of child)         170    Togo   768</span>
 <span class="co">#&gt; 2 Births by age of mother (and sex of child)         170    Togo   768</span>
@@ -6143,9 +6139,9 @@
 <span class="co">#&gt; 5      4900</span>
 <span class="co">#&gt; 6      1890</span></code></pre></div>
 </div>
-<div id="deaths-by-age-and-sex-using-register-data-with-uncertainty" class="section level4">
-<h4 class="hasAnchor">
-<a href="#deaths-by-age-and-sex-using-register-data-with-uncertainty" class="anchor"></a>Deaths by age and sex using register data with uncertainty</h4>
+<div class="section level4">
+<h4 id="deaths-by-age-and-sex-using-register-data-with-uncertainty">Deaths by age and sex using register data with uncertainty<a class="anchor" aria-label="anchor" href="#deaths-by-age-and-sex-using-register-data-with-uncertainty"></a>
+</h4>
 <p>You can also request uncertainty estimates with <code>includeUncertainty = TRUE</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">oman</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
@@ -6169,7 +6165,7 @@
 <span class="co">#&gt;   get_recorddata(dataProcessTypeIds = 9, indicatorTypeIds = 20, isComplete = 0, locIds = 512, locAreaTypeIds = 2, subGroupIds = 2, includeUncertainty = 1)</span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=9&amp;indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512&amp;locAreaTypeIds=2&amp;subGroupIds=2&amp;includeUncertainty=true</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oman</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">oman</span><span class="op">)</span>
 <span class="co">#&gt;                      IndicatorName IndicatorID LocName LocID StructuredDataID</span>
 <span class="co">#&gt; 1 Deaths by age and sex - abridged         194    Oman   512        245581366</span>
 <span class="co">#&gt; 2 Deaths by age and sex - abridged         194    Oman   512        245581367</span>
@@ -6319,10 +6315,10 @@
 <span class="co">#&gt; 6      1645</span></code></pre></div>
 <p>By default, the results from <code>get_recorddata</code> exclude any uncertainty columns such as <code>StandardErrorValue</code>, <code>ConfidenceInterval</code>, etc. By setting <code>includeUncertainty = TRUE</code>, the resulting data frame adds new fields which have uncertainty for the requested values. These fields are all next to each other so by limiting the data to the fields next to <code>StandardErrorValue</code>, the user can quickly see the uncertainty columns.</p>
 </div>
-<div id="additional-queries-with-datatypegroupids-and-datatypegroupid2s" class="section level4">
-<h4 class="hasAnchor">
-<a href="#additional-queries-with-datatypegroupids-and-datatypegroupid2s" class="anchor"></a>Additional queries with dataTypeGroupIds and dataTypeGroupId2s</h4>
-<p><code>get_recorddataadditional</code> allows to use additional arguments such as <code>dataTypeGroupIds</code> and <code>dataTypeGroupId2s</code>.For a list of all arguments you can use, see <a href="https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecordsAdditional">here</a>. For example:</p>
+<div class="section level4">
+<h4 id="additional-queries-with-datatypegroupids-and-datatypegroupid2s">Additional queries with dataTypeGroupIds and dataTypeGroupId2s<a class="anchor" aria-label="anchor" href="#additional-queries-with-datatypegroupids-and-datatypegroupid2s"></a>
+</h4>
+<p><code>get_recorddataadditional</code> allows to use additional arguments such as <code>dataTypeGroupIds</code> and <code>dataTypeGroupId2s</code>.For a list of all arguments you can use, see <a href="https://popdiv.dfs.un.org/Demodata/swagger/ui/index#!/StructuredData/StructuredData_GetStructuredDataRecordsAdditional" class="external-link">here</a>. For example:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">## For dataTypeGroupIds</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>dt &lt;-</span>
@@ -6347,14 +6343,14 @@
 <span id="cb9-22"><a href="#cb9-22"></a>  )</span></code></pre></div>
 <p><code>get_datatypes</code> can show you which <code>dataTypeIds</code> are within the umbrella of aggregated categories such as <code>dataTypeGroupIds</code> and <code>dataTypeGroupId2s</code>.</p>
 </div>
-<div id="change-the-ip-of-the-unpd-sql-api" class="section level4">
-<h4 class="hasAnchor">
-<a href="#change-the-ip-of-the-unpd-sql-api" class="anchor"></a>Change the IP of the UNPD SQL API</h4>
+<div class="section level4">
+<h4 id="change-the-ip-of-the-unpd-sql-api">Change the IP of the UNPD SQL API<a class="anchor" aria-label="anchor" href="#change-the-ip-of-the-unpd-sql-api"></a>
+</h4>
 <p>Currently the IP of the server is automatically set (to <code>https://popdiv.dfs.un.org/DemoData/api/</code>) but can be changed simply by adding <code>options(unpd_server = "your server")</code> to the beginning of your script:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Change this to the desired server. This is the server</span>
 <span class="co"># which is set by default.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>unpd_server <span class="op">=</span> <span class="st">"https://popdiv.dfs.un.org/DemoData/api/"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>unpd_server <span class="op">=</span> <span class="st">"https://popdiv.dfs.un.org/DemoData/api/"</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="st">"Register"</span>,
                indicatorTypeIds <span class="op">=</span> <span class="st">"Deaths by age and sex"</span>,
@@ -6363,13 +6359,13 @@
                subGroupIds <span class="op">=</span> <span class="st">"Total or All groups"</span>,
                isComplete <span class="op">=</span> <span class="st">"Abridged"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="downloading-many-countries" class="section level4">
-<h4 class="hasAnchor">
-<a href="#downloading-many-countries" class="anchor"></a>Downloading many countries</h4>
+<div class="section level4">
+<h4 id="downloading-many-countries">Downloading many countries<a class="anchor" aria-label="anchor" href="#downloading-many-countries"></a>
+</h4>
 <p>Due to the nature of the UNPD API, it’s not possible to download over 30 countries in the same API request. For example, if we wanted to download data on these countries:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
+<span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
                  <span class="fl">192</span>, <span class="fl">170</span>, <span class="fl">414</span>, <span class="fl">616</span>, <span class="fl">320</span>, <span class="fl">480</span>, <span class="fl">218</span>,
                  <span class="fl">818</span>, <span class="fl">222</span>, <span class="fl">300</span>, <span class="fl">558</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">348</span>, <span class="fl">470</span>,
@@ -6386,11 +6382,11 @@
                endYear <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <p>You’ll get an error saying that <code>DDSQLtools</code> could not connect to the API. When that happens you can loop over chunks of countries to get it faster. The first thing you want to do is to copy the <strong>optimized query</strong> printed by <code>get_recorddata</code> that already translated the string codes to numbers.</p>
 <p>After that, you need to loop through groups of countries and make requests for each group separately. Below is the same example using base R and the <code>tidyverse</code>. On average, downloading these countries takes between 25 to 30 minutes.</p>
-<div id="using-base-r" class="section level5">
-<h5 class="hasAnchor">
-<a href="#using-base-r" class="anchor"></a>Using base R</h5>
+<div class="section level5">
+<h5 id="using-base-r">Using base R<a class="anchor" aria-label="anchor" href="#using-base-r"></a>
+</h5>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
+<code class="sourceCode R"><span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
                  <span class="fl">192</span>, <span class="fl">170</span>, <span class="fl">414</span>, <span class="fl">616</span>, <span class="fl">320</span>, <span class="fl">480</span>, <span class="fl">218</span>,
                  <span class="fl">818</span>, <span class="fl">222</span>, <span class="fl">300</span>, <span class="fl">558</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">348</span>, <span class="fl">470</span>,
@@ -6399,11 +6395,11 @@
 
 <span class="co"># Here replace with number of desired chunk of countries</span>
 <span class="va">n_chunks</span> <span class="op">&lt;-</span> <span class="fl">3</span>
-<span class="va">chunk_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_chunks</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">myLocations</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cnty_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">myLocations</span>, <span class="va">chunk_groups</span><span class="op">)</span>
+<span class="va">chunk_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_chunks</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">myLocations</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cnty_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">myLocations</span>, <span class="va">chunk_groups</span><span class="op">)</span>
 
 <span class="co"># Loop through each chunk of countries with `lapply`</span>
-<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">cnty_groups</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">cnty_groups</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
 
   <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="fl">9</span>,
                         startYear <span class="op">=</span> <span class="fl">1920</span>,
@@ -6416,21 +6412,21 @@
 
   <span class="co"># Informative message to keep track of which chunk</span>
   <span class="co"># of countries have been completed.</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Countries"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">x</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>, <span class="st">"done"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Countries"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">x</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>, <span class="st">"done"</span><span class="op">)</span>
   <span class="va">res</span>
 <span class="op">}</span><span class="op">)</span>
 
 <span class="co"># Row-bind all the data frames into one data frame</span>
-<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">deaths</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deaths</span><span class="op">)</span></code></pre></div>
+<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">deaths</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">deaths</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="using-the-tidyverse" class="section level5">
-<h5 class="hasAnchor">
-<a href="#using-the-tidyverse" class="anchor"></a>Using the tidyverse</h5>
+<div class="section level5">
+<h5 id="using-the-tidyverse">Using the tidyverse<a class="anchor" aria-label="anchor" href="#using-the-tidyverse"></a>
+</h5>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
 
-<span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
+<span class="va">myLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">492</span>, <span class="fl">570</span>, <span class="fl">674</span>, <span class="fl">308</span>, <span class="fl">96</span>, <span class="fl">196</span>, <span class="fl">8</span>,
                  <span class="fl">376</span>, <span class="fl">662</span>, <span class="fl">670</span>, <span class="fl">642</span>, <span class="fl">84</span>, <span class="fl">188</span>, <span class="fl">442</span>, <span class="fl">100</span>,
                  <span class="fl">192</span>, <span class="fl">170</span>, <span class="fl">414</span>, <span class="fl">616</span>, <span class="fl">320</span>, <span class="fl">480</span>, <span class="fl">218</span>,
                  <span class="fl">818</span>, <span class="fl">222</span>, <span class="fl">300</span>, <span class="fl">558</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">348</span>, <span class="fl">470</span>,
@@ -6438,12 +6434,12 @@
                  <span class="fl">591</span>, <span class="fl">144</span>, <span class="fl">862</span><span class="op">)</span>
 
 <span class="va">n_chunks</span> <span class="op">&lt;-</span> <span class="fl">3</span>
-<span class="va">chunk_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_chunks</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">myLocations</span><span class="op">)</span><span class="op">)</span>
+<span class="va">chunk_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_chunks</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">myLocations</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">cnty_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">myLocations</span>, <span class="va">chunk_groups</span><span class="op">)</span>
+<span class="va">cnty_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">myLocations</span>, <span class="va">chunk_groups</span><span class="op">)</span>
 
 <span class="co"># Loop through each location with `purrr`</span>
-<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">cnty_groups</span>, <span class="op">~</span> <span class="op">{</span>
+<span class="va">deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">cnty_groups</span>, <span class="op">~</span> <span class="op">{</span>
 
   <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_recorddata.html">get_recorddata</a></span><span class="op">(</span>dataProcessTypeIds <span class="op">=</span> <span class="fl">9</span>,
                         startYear <span class="op">=</span> <span class="fl">1920</span>,
@@ -6454,21 +6450,21 @@
                         locAreaTypeIds <span class="op">=</span> <span class="fl">2</span>,
                         subGroupIds <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Countries"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">x</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>, <span class="st">" done"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Countries"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">x</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>, <span class="st">" done"</span><span class="op">)</span>
   <span class="va">res</span>
 <span class="op">}</span><span class="op">)</span>
 
 <span class="va">deaths</span> <span class="op">&lt;-</span>
-  <span class="va">deaths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">deaths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">deaths</span></code></pre></div>
 </div>
 </div>
-<div id="identifying-id-and-names-of-values" class="section level4">
-<h4 class="hasAnchor">
-<a href="#identifying-id-and-names-of-values" class="anchor"></a>Identifying ID and Names of values</h4>
+<div class="section level4">
+<h4 id="identifying-id-and-names-of-values">Identifying ID and Names of values<a class="anchor" aria-label="anchor" href="#identifying-id-and-names-of-values"></a>
+</h4>
 <p>Whenever you download some data, you’ll see that there are several columns that end with <code>Name</code>. This columns contain, for example, the name of the location (<code>LocName</code>) or the name of the subgroup (<code>SubGroupName</code>). To be able to see the equivalent ID of these names, there are two different strategies using the <code>haven</code> package.</p>
 <p>First, let’s get some data:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -6484,23 +6480,23 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/structureddatarecords?dataProcessTypeIds=2&amp;indicatorTypeIds=8&amp;isComplete=0&amp;locIds=818&amp;locAreaTypeIds=2&amp;subGroupIds=2</span></code></pre></div>
 </div>
-<div id="base-r" class="section level4">
-<h4 class="hasAnchor">
-<a href="#base-r" class="anchor"></a>Base R</h4>
+<div class="section level4">
+<h4 id="base-r">Base R<a class="anchor" aria-label="anchor" href="#base-r"></a>
+</h4>
 <p>You can use <code>print_labels</code> from <code>haven</code> on the column of interest and it will show you the ID:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
-<span class="fu"><a href="https://haven.tidyverse.org/reference/print_labels.html">print_labels</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">LocName</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="fu"><a href="https://haven.tidyverse.org/reference/print_labels.html" class="external-link">print_labels</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">LocName</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Labels:</span>
 <span class="co">#&gt;  value label</span>
 <span class="co">#&gt;  Egypt   818</span></code></pre></div>
 <p>If you want to flip the labels for the entire data frame such that the ID is current value and not the name, you can do that with <code>as_factor</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res_edit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">res_edit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
 
 <span class="co"># No long showing the name but the ID</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res_edit</span><span class="op">[</span><span class="st">"LocName"</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_edit</span><span class="op">[</span><span class="st">"LocName"</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt;   LocName</span>
 <span class="co">#&gt; 1     818</span>
 <span class="co">#&gt; 2     818</span>
@@ -6509,103 +6505,103 @@
 <span class="co">#&gt; 5     818</span>
 <span class="co">#&gt; 6     818</span></code></pre></div>
 </div>
-<div id="tidyverse" class="section level4">
-<h4 class="hasAnchor">
-<a href="#tidyverse" class="anchor"></a>Tidyverse</h4>
+<div class="section level4">
+<h4 id="tidyverse">Tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"></a>
+</h4>
 <p>Using the tidyverse, the solution from base R applies as well. However, if you convert your data frame to a <code>tibble</code>, it will automatically show you the labels in the data frame.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="co">#&gt; ✔ ggplot2 3.3.5     ✔ purrr   0.3.4</span>
-<span class="co">#&gt; ✔ tibble  3.1.6     ✔ dplyr   1.0.7</span>
-<span class="co">#&gt; ✔ tidyr   1.1.4     ✔ stringr 1.4.0</span>
-<span class="co">#&gt; ✔ readr   2.1.0     ✔ forcats 0.5.1</span>
-<span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; ── <span style="font-weight: bold;">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2</span> 3.3.5     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr  </span> 0.3.4</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble </span> 3.1.6     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr  </span> 1.0.7</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr  </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr</span> 1.4.0</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr  </span> 2.1.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats</span> 0.5.1</span>
+<span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span>
 
-<span class="va">res_tb</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">res_tb</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># See the code next to the name? No need to print it</span>
 <span class="co"># separately, `tibble` print boths things together.</span>
-<span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 800 × 23</span>
+<span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 800 × 23</span></span>
 <span class="co">#&gt;    IndicatorName        LocName     LocTypeName RegName AreaName LocAreaTypeName</span>
-<span class="co">#&gt;    &lt;chr+lbl&gt;            &lt;chr+lbl&gt;   &lt;chr+lbl&gt;   &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;chr+lbl&gt;      </span>
-<span class="co">#&gt;  1 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  2 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  3 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  4 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  5 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  6 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  7 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  8 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt;  9 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt; 10 Population by … [58] Egypt [818] Country [5]      NA       NA Whole area [2] </span>
-<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;chr+lbl&gt;,</span>
-<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;chr+lbl&gt;,</span>
-<span class="co">#&gt; #   StatisticalConceptName &lt;chr+lbl&gt;, SexName &lt;chr+lbl&gt;,</span>
-<span class="co">#&gt; #   DataTypeGroupName &lt;chr+lbl&gt;, DataTypeName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ModelPatternFamilyName &lt;chr+lbl&gt;, ModelPatternName &lt;chr+lbl&gt;, …</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr+lbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr+lbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr+lbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl+l&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl+lb&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr+lbl&gt;</span>      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Population by …<span style="color: #949494;"> [58]</span> Egypt<span style="color: #949494;"> [818]</span> Country<span style="color: #949494;"> [5]</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> Whole area<span style="color: #949494;"> [2]</span> </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;chr+lbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;chr+lbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   StatisticalConceptName &lt;chr+lbl&gt;, SexName &lt;chr+lbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataTypeGroupName &lt;chr+lbl&gt;, DataTypeName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   ModelPatternFamilyName &lt;chr+lbl&gt;, ModelPatternName &lt;chr+lbl&gt;, …</span></span></code></pre></div>
 <p>If you’re interested in keeping either the codes or the names, you can do that with <code>as_factor</code>:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># You can extract just the ID</span>
-  <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"labels"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 800 × 23</span>
+  <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"labels"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 800 × 23</span></span>
 <span class="co">#&gt;    IndicatorName LocName LocTypeName RegName AreaName LocAreaTypeName</span>
-<span class="co">#&gt;    &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
-<span class="co">#&gt;  1 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  2 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  3 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  4 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  5 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  6 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  7 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  8 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt;  9 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt; 10 58            818     5           &lt;NA&gt;    &lt;NA&gt;     2              </span>
-<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 58            818     5           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       2              </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">res_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># Or just the values</span>
-  <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 800 × 23</span>
+  <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"Name"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 800 × 23</span></span>
 <span class="co">#&gt;    IndicatorName            LocName LocTypeName RegName AreaName LocAreaTypeName</span>
-<span class="co">#&gt;    &lt;fct&gt;                    &lt;fct&gt;   &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;          </span>
-<span class="co">#&gt;  1 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  2 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  3 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  4 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  5 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  6 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  7 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  8 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt;  9 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt; 10 Population by age and s… Egypt   Country     &lt;NA&gt;    &lt;NA&gt;     Whole area     </span>
-<span class="co">#&gt; # … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span>
-<span class="co">#&gt; #   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Population by age and s… Egypt   Country     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       Whole area     </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 790 more rows, and 17 more variables: SubGroupTypeName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   SubGroupName &lt;chr&gt;, IndicatorShortName &lt;chr&gt;, DataCatalogName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataCatalogShortName &lt;chr&gt;, DataSourceName &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataSourceShortName &lt;chr&gt;, DataStatusName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   StatisticalConceptName &lt;fct&gt;, SexName &lt;fct&gt;, DataTypeGroupName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataTypeName &lt;chr&gt;, ModelPatternFamilyName &lt;fct&gt;, ModelPatternName &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DataReliabilityName &lt;fct&gt;, PeriodTypeName &lt;fct&gt;, PeriodGroupName &lt;fct&gt;</span></span></code></pre></div>
 <p>Since <code>get_recorddataadditional</code> is a cousing of <code>get_recorddatal</code> with additional options to specify, all of the above applies to <code>get_recorddataadditional</code>.</p>
 </div>
 </div>
-<div id="exploring-the-unpd-sql-api-from-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exploring-the-unpd-sql-api-from-r" class="anchor"></a>Exploring the UNPD SQL API from R</h2>
+<div class="section level2">
+<h2 id="exploring-the-unpd-sql-api-from-r">Exploring the UNPD SQL API from R<a class="anchor" aria-label="anchor" href="#exploring-the-unpd-sql-api-from-r"></a>
+</h2>
 <p>The previous examples assume you’re familiar with the names or codes of the parameters of the API: locations, subgroups, etc… Whenever you don’t know these values, you need to resort to the list of available values. Each parameter defined above has an equivalent <code>get_*</code> function to extract all possible values. The current list is:</p>
 <ul>
 <li>dataProcessTypeIds = <code><a href="../reference/get_dataprocesstype.html">get_dataprocesstype()</a></code>
@@ -6705,20 +6701,20 @@
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/locareatypes?indicatorTypeIds=20&amp;isComplete=0&amp;locIds=512</span>
 <span class="co">#&gt; Error in fun(vec, ...): Area Type(s) 'Semi-rural' not found. Check get_locationtypes()</span></code></pre></div>
 <p>This error is just saying that the combination of data that you’ve specified is not available (in this case, <code>Semi-rural</code> is not available for register data on deaths by age and sex in <code>Oman</code> for all groups abridged).</p>
-<p>Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn’t know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the <a href="http://24.239.36.16:9654/un3/Web/index.html">front end of the API</a> and then use these in the request.</p>
+<p>Figuring out which specific set of values returns what the user want is a tedious process. If the user doesn’t know the specific combination of values by memory, the most optimal strategy that we advise is to explore the available values in the <a href="http://24.239.36.16:9654/un3/Web/index.html" class="external-link">front end of the API</a> and then use these in the request.</p>
 <p>Let’s do one example. Follow the hyperlink and click on <code>"Get Started - Select Indicator &amp; Country"</code>. Then select <code>"Deaths by age and sex"</code> -&gt; <code>"Oman"</code>. All possible data sets for <code>Oman</code> and <code>"Deaths by age and sex"</code> will appear automatically. We can filter down the options in the left-most menu and use these values to populate our <code>get_recorddata</code> call.</p>
 <p>Looking at the possible values of <code>"Type of location"</code>, only <code>"Whole area"</code> is available. This means that we can’t specify <code>"Semi-rural"</code> (as we saw in the example above). Looking at <code>"Type of subgroup"</code>, the only available group is <code>Total or All groups</code>, meaning that we can’t specify <code>"Christian Orthodox"</code> either.</p>
 <p>Using this strategy is much easier and less time consuming that trying out different values.</p>
 </div>
-<div id="exploring-indicators" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exploring-indicators" class="anchor"></a>Exploring indicators</h2>
+<div class="section level2">
+<h2 id="exploring-indicators">Exploring indicators<a class="anchor" aria-label="anchor" href="#exploring-indicators"></a>
+</h2>
 <p>To explore all possible indicatorIds, indicatorTypeIds and components, <code>get_iitypes</code> can be of use. Although <code>get_indicators</code> and <code>get_indicatortypes</code> are very helpful for looking at the entire list of indicators, a user often wants to combine the two. That’s where <code>get_iitypes</code> comes in. For example:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_iitypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_iitypes.html">get_iitypes</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  https://popdiv.dfs.un.org/DemoData/api/indicatorindicatortypes?</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">all_iitypes</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_iitypes</span><span class="op">)</span>
 <span class="co">#&gt;   PK_IndicatorID DemoBaseIndicatorID SortOrder IsActive IsInput IsOutput</span>
 <span class="co">#&gt; 1             13                2314         4     TRUE   FALSE     TRUE</span>
 <span class="co">#&gt; 2             14                2313         8     TRUE   FALSE     TRUE</span>
@@ -7803,11 +7799,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tim Riffe, Marius D. Pascariu, Jorge Cimentada.</p>
+  <p></p>
+<p>Developed by Tim Riffe, Marius D. Pascariu, Jorge Cimentada.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -7815,6 +7813,8 @@
 
   
 
+
+  
 
   </body>
 </html>
